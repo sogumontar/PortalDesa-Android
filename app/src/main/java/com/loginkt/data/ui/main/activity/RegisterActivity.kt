@@ -1,14 +1,13 @@
-package com.loginkt.data
+package com.loginkt.data.ui.main.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import com.loginkt.R
 
-class RegisterForm : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +19,7 @@ class RegisterForm : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.password)
         val daftar = findViewById<Button>(R.id.daftar)
         daftar.setOnClickListener(){
-            intent = Intent(this, RegisterForm::class.java)
+            intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }

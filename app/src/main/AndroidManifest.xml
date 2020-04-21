@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".data.Desa"></activity>
-        <activity android:name=".data.RegisterForm" />
+        <activity android:name=".data.ui.main.activity.RegisterActivity" />
         <activity
-            android:name=".data.LoginActivity"
+            android:name=".data.ui.main.activity.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

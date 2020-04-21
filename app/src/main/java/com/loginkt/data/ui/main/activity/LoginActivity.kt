@@ -1,4 +1,4 @@
-package com.loginkt.data
+package com.loginkt.data.ui.main.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
         val login = findViewById<Button>(R.id.btnLogin)
         val daftar = findViewById<TextView>(R.id.tvDaftar);
         daftar.setOnClickListener(){
-            intent = Intent(this, RegisterForm::class.java)
+            intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }
