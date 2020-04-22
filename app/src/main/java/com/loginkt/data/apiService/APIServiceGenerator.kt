@@ -1,11 +1,8 @@
 package com.loginkt.data.apiService
 
-import android.text.TextUtils
 import com.loginkt.BuildConfig
-import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import okio.Timeout
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit

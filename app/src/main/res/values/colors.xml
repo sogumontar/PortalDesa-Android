@@ -3,6 +3,9 @@
     <color name="colorPrimary">#ACE7EF</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="biru">#0000FF</color>
+    <color name="blue_secondary">#2680eb</color>
     <color name="blue_primary">#ace7ef</color>
+    <color name="white_bg">#f7f7f7</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>
