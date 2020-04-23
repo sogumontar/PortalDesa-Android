@@ -6,6 +6,9 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class AppActivity extends AppCompatActivity {
 
@@ -29,6 +32,29 @@ public class AppActivity extends AppCompatActivity {
                     onBackPressed();
                 }
             });
+        }
+    }
+
+    public void showFragment(Fragment fragment, int fragmentResourceID) {
+        if (fragment != null) {
+            FragmentManager fragmentManager = this.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(fragmentResourceID, fragment);
+            fragmentTransaction.detach(fragment);
+            fragmentTransaction.attach(fragment);
+            fragmentTransaction.commit();
+        }
+
+    }
+
+    public void showFragmentAllowingStateLoss(Fragment fragment, int fragmentResourceID) {
+        if (fragment != null) {
+            FragmentManager fragmentManager = this.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(fragmentResourceID, fragment);
+            fragmentTransaction.detach(fragment);
+            fragmentTransaction.attach(fragment);
+            fragmentTransaction.commitAllowingStateLoss();
         }
     }
 

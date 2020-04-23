@@ -59,4 +59,7 @@ dependencies {
     //Butter Knife
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    //Picaso Image Loader
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

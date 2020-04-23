@@ -50,8 +50,8 @@
 
                 <ImageView
                     android:id="@+id/iv_tab_home"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:background="@drawable/home"/>
 
                 <TextView
@@ -66,7 +66,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/tab_riwayat"
+                android:id="@+id/tab_product"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -75,17 +75,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/iv_tab_riwayat"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/home"/>
+                    android:id="@+id/iv_product"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_product"/>
 
                 <TextView
                     android:id="@+id/tv_tab_riwayat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="lkghldf"
+                    android:text="Product"
                     android:textColor="#1F204D"
                     android:textSize="10sp" />
 
@@ -93,7 +93,7 @@
 
 
             <LinearLayout
-                android:id="@+id/tab_qrcode"
+                android:id="@+id/tab_akun"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -103,13 +103,13 @@
 
                 <ImageView
                     android:id="@+id/iv_tab_qrcode"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:background="@drawable/home"
                     />
 
                 <TextView
-                    android:id="@+id/tv_tab_qrcode"
+                    android:id="@+id/tv_akun"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Akun"
