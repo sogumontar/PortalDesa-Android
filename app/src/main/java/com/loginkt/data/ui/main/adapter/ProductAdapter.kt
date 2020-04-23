@@ -8,7 +8,7 @@ import com.loginkt.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_popular_vilage.view.*
 
-class PopularVilageAdapter : RecyclerView.Adapter<PopularVilageAdapter.ViewHolder>() {
+class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
@@ -21,9 +21,9 @@ class PopularVilageAdapter : RecyclerView.Adapter<PopularVilageAdapter.ViewHolde
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PopularVilageAdapter.ViewHolder {
+    ): ProductAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_popular_vilage, parent, false)
+            .inflate(R.layout.item_product, parent, false)
         return ViewHolder(view)
     }
 

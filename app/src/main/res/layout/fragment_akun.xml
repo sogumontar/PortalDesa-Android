@@ -38,46 +38,27 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:orientation="horizontal"
-        >
-<LinearLayout
-    android:id="@+id/ln_login"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:background="@drawable/rounded_blue"
-    android:layout_margin="5dp"
-    android:padding="20dp"
-    android:layout_weight="1">
-        <EditText
-            android:id="@+id/login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textSize="20sp"
-            android:layout_toStartOf="@id/img_search"
-            android:background="@null"
-            android:layout_marginLeft="30dp"
-            android:textColor="@color/white"/>
-</LinearLayout>
-        <LinearLayout
-            android:id="@+id/ln_register"
+        ><Button
+        android:id="@+id/btn_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/rounded_blue_secondary"
+        android:layout_margin="5dp"
+        android:textColor="@color/white"
+        android:text="Masuk"
+        android:padding="20dp"/>
+        <Button
+            android:id="@+id/btn_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_blue"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_green"
             android:layout_margin="5dp"
-            android:gravity="center"
-            android:padding="20dp"
-            android:layout_weight="1">
-            <EditText
-                android:id="@+id/register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Register"
-                android:textSize="20sp"
-                android:layout_toStartOf="@id/img_search"
-                android:background="@null"
-                android:layout_marginLeft="30dp"
-                android:textColor="@color/white"/>
-        </LinearLayout>
+            android:textColor="@color/white"
+            android:text="Daftar"
+            android:padding="20dp"/>
+
     </LinearLayout>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView

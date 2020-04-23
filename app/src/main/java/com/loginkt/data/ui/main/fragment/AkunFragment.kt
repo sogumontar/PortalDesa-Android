@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.loginkt.R
 import com.loginkt.data.ui.main.activity.LoginActivity
 import com.loginkt.data.ui.main.activity.RegisterActivity
-import com.loginkt.data.ui.main.adapter.PopularVilageAdapter
 import com.loginkt.data.ui.main.adapter.ProfileAdapter
 import kotlinx.android.synthetic.main.fragment_akun.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class AkunFragment : Fragment() {
 
@@ -24,7 +22,6 @@ class AkunFragment : Fragment() {
             return newInstance()
         }
     }
-
     //3
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -35,13 +32,13 @@ class AkunFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ln_login.setOnClickListener() {
-        val intent = Intent(activity!!, LoginActivity::class.java)
+        btn_login.setOnClickListener() {
+        val intent = Intent(activity, LoginActivity::class.java)
         startActivity(intent)
         }
 
-        ln_register.setOnClickListener() {
-        val intent = Intent(activity!!, RegisterActivity::class.java)
+        btn_register.setOnClickListener() {
+        val intent = Intent(activity, RegisterActivity::class.java)
         startActivity(intent)
         }
         recycler_view.setHasFixedSize(true)
