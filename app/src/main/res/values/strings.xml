@@ -10,5 +10,8 @@
     <string name="Masuk">Masuk</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="sign_up_tab_title_sign_up">Buat Akun</string>
+    <string name="title_penginapan">Penginapan</string>
+    <string name="title_product">Produk Desa</string>
 
 </resources>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.*
 
 import com.loginkt.R
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -15,11 +16,7 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
-        val username = findViewById<EditText>(R.id.username)
-        val password = findViewById<EditText>(R.id.password)
-        val login = findViewById<Button>(R.id.btnLogin)
-        val daftar = findViewById<TextView>(R.id.tvDaftar);
-        daftar.setOnClickListener(){
+        btnLogin.setOnClickListener(){
             intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }

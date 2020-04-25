@@ -6,21 +6,25 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import com.loginkt.R
+import com.loginkt.data.base.AppActivity
+import kotlinx.android.synthetic.main.activity_register_form.*
+import kotlinx.android.synthetic.main.toolbar.*
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_form)
 
-        val nama = findViewById<EditText>(R.id.nama)
-        val alamat = findViewById<EditText>(R.id.alamat)
-        val email = findViewById<EditText>(R.id.username)
-        val password = findViewById<EditText>(R.id.password)
-        val daftar = findViewById<Button>(R.id.daftar)
         daftar.setOnClickListener(){
             intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+        initView()
+    }
+
+    private fun initView() {
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = getString(R.string.sign_up_tab_title_sign_up)
     }
 }
