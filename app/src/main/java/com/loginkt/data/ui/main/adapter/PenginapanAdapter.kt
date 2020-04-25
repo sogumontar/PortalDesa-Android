@@ -6,14 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.loginkt.R
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_popular_vilage.view.*
+import kotlinx.android.synthetic.main.item_penginapan.view.*
 
 class PenginapanAdapter : RecyclerView.Adapter<PenginapanAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
-        val tvDesc = v.tv_desc
-        val imgPopular = v.img_icon
+        val tvAlamat = v.tv_alamat
+        val tvHarga = v.tv_harga
+        val imgLogo = v.img_logo
     }
 
 
@@ -31,10 +32,11 @@ class PenginapanAdapter : RecyclerView.Adapter<PenginapanAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Picasso.get()
-            .load(R.drawable.balige)
-            .into(holder.imgPopular)
+            .load(R.drawable.penginapan)
+            .into(holder.imgLogo)
 
-        holder?.tvDesc.text = "Detail "+position
+        holder?.tvAlamat.text = "Siborong borong"
+        holder?.tvHarga.text = "Rp 100.000 / hari"
     }
 
     // Return the size of your dataset (invoked by the layout manager)
