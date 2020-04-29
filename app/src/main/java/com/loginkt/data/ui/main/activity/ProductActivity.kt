@@ -1,6 +1,8 @@
 package com.loginkt.data.ui.main.activity
 
 import android.os.Bundle
+import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.loginkt.R
@@ -16,9 +18,8 @@ class ProductActivity : AppActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
 
-        recycler_view.setHasFixedSize(true)
-        val menuListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        recycler_view.setLayoutManager(menuListLayoutManager)
+        val mainMenuLayoutManager = GridLayoutManager(this, 2)
+        recycler_view.setLayoutManager(mainMenuLayoutManager)
         recycler_view.setNestedScrollingEnabled(false)
         initView()
     }
@@ -26,7 +27,8 @@ class ProductActivity : AppActivity() {
     fun initView(){
         initToolbar(R.id.toolbar)
         tv_toolbar_title.text = getString(R.string.title_product)
-        val adapter = ProductAdapter()
+        val adapter = ProductAdapter(this)
         recycler_view.setAdapter(adapter)
+
     }
 }

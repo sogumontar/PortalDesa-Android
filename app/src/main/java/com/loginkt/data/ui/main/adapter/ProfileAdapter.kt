@@ -5,8 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.loginkt.R
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_popular_vilage.view.*
 import kotlinx.android.synthetic.main.item_profile.view.*
 
 class ProfileAdapter : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
@@ -29,7 +27,7 @@ class ProfileAdapter : RecyclerView.Adapter<ProfileAdapter.ViewHolder>() {
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder?.tvMenu.text = "Detail "+position
+        holder?.tvMenu.text = "Tentang Aplikasi"
     }
 
     // Return the size of your dataset (invoked by the layout manager)

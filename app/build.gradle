@@ -15,13 +15,13 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "SERVER_URL", '""'
+            buildConfigField "String", "SERVER_URL", '"http://172.20.10.8:9000"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         release {
-            buildConfigField "String", "SERVER_URL", '""'
+            buildConfigField "String", "SERVER_URL", '"http://172.20.10.8:9000"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

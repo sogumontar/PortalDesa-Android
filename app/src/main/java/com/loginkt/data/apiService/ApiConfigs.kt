@@ -1,13 +1,11 @@
 package com.loginkt.data.apiService
 
-class ApiConfigs {
-    /**
-     * Headers
-     */
-    val CONTENT_TYPE = "application/json"
+interface ApiConfigs {
+    companion object {
+        const val SIGN_IN = "/auth/signin"
 
-    /**
-     * Networking Configuration
-     */
-    val REQUEST_TIME_OUT = 120
+        const val CONTENT_TYPE = "application/json"
+        const val CODE_SUCCESS = 200
+
+    }
 }

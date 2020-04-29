@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:id="@+id/ln_product">
 
     <ImageView
         android:id="@+id/img_icon"
-        android:layout_width="201dp"
-        android:layout_height= "130dp"
+        android:layout_width="match_parent"
+        android:layout_height= "180dp"
         android:layout_margin="10dp"
         android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/img_singkong"
         android:translationZ="5dp" />
 
     <TextView
-        android:id="@+id/tv_desc"
+        android:id="@+id/tv_nama"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:textColor="@color/black_home"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
         android:text="Balige"
-        android:textSize="12sp" />
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_harga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/black2"
+        android:text="Balige"
+        android:textSize="18sp" />
 
 </LinearLayout>
