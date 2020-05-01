@@ -24,5 +24,5 @@ import java.util.concurrent.TimeUnit
          .client(client)
          .addConverterFactory(GsonConverterFactory.create())
          .build()
-     val services: ApiServices = retrofit.create(ApiServices::class.java)
+     val createService: ApiServices = retrofit.create(ApiServices::class.java)
  }

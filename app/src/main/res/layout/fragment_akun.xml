@@ -32,12 +32,14 @@
 
 
     <LinearLayout
+        android:id="@+id/ln_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
         android:orientation="horizontal"
-        ><Button
+        >
+        <Button
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -66,5 +68,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@color/white" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_blue_secondary"
+        android:layout_margin="20dp"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:text="Keluar"
+        android:padding="20dp"/>
 
 </LinearLayout>
