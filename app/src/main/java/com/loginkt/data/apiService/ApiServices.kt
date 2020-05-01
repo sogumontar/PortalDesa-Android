@@ -1,6 +1,8 @@
 package com.loginkt.data.apiService
 
+import com.loginkt.data.model.request.SignupRequest
 import com.loginkt.data.model.request.UserRequest
+import com.loginkt.data.model.response.SignupResponse
 import com.loginkt.data.model.response.UserResponse
 import retrofit2.Call
 import retrofit2.http.*
@@ -10,13 +12,23 @@ import retrofit2.http.*
  */
 interface  ApiServices{
 
-    @GET(ApiConfigs.SIGN_IN)
-    fun getUsers(@Path("username") username: String )
-
+    //Sign in
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @POST(ApiConfigs.SIGN_IN)
-    fun doSignIn(@Body insuranceInquiryRequest: UserRequest): Call<UserResponse>
+    fun doSignIn(@Body userRequest: UserRequest): Call<UserResponse>
+
+    //Sign up
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.SIGN_UP)
+    fun doSignup(@Body signupRequest: SignupRequest): Call<SignupResponse>
+
+    //List Product
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.SIGN_UP)
+    fun get(@Body signupRequest: SignupRequest): Call<SignupResponse>
 
 
 

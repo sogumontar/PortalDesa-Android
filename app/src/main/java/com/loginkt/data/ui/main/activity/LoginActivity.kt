@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.telecom.Call
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.*
 import com.google.gson.Gson
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), View.OnClickListener{
 
    lateinit var preferences : Preferences
 
@@ -27,17 +28,20 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
-
-        btnLogin.setOnClickListener(){
-//            intent = Intent(this, RegisterActivity::class.java)
-//            startActivity(intent)
-            userLogin(getUser())
-        }
+        preferences = Preferences(this)
+        btnLogin.setOnClickListener(this)
 
     }
+
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            btnLogin.id->userLogin(getUser())
+        }
+    }
+
     fun userLogin(user : UserRequest){
         val client = APIServiceGenerator().createService
-
+        progreebar.visibility = View.VISIBLE
         val call = client.doSignIn(user)
         call.enqueue(object : Callback<UserResponse> {
             override fun onResponse(
@@ -45,19 +49,22 @@ class LoginActivity : AppCompatActivity() {
                 response: Response<UserResponse>
             ) {
                 val userResponse = response.body()
-                if(userResponse != null){
-                    val statusCode = userResponse!!.code
-                    val token = userResponse!!.token
-                    if (statusCode == ApiConfigs.CODE_SUCCESS) {
+//                if(userResponse != null){
+//                    val statu/sCode = userResponse!!.code
+                    val token = userResponse!!.accessToken
+//                    if (statusCode == ApiConfigs.CODE_SUCCESS) {
                         preferences.setToken(token)
+                        progreebar.visibility = View.GONE
 
                         var intent = Intent(baseContext as LoginActivity, MainActivity::class.java)
                         startActivity(intent)
-                    }
-                }
+                        finish()
+//                    }
+//                }
             }
 
             override fun onFailure(call: retrofit2.Call<UserResponse>, t: Throwable) {
+                progreebar.visibility = View.GONE
                 Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
                 Log.e(this.javaClass.simpleName, " Exceptions : $t")
             }

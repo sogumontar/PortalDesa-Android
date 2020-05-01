@@ -2,9 +2,10 @@ package com.loginkt.data.support
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.media.session.MediaSession
 import com.google.gson.Gson
 
-class Preferences {
+class Preferences(mContext: Context) {
 
     val TAG = "Preferences"
 
@@ -14,9 +15,7 @@ class Preferences {
 
     val TOKEN = "token"
 
-
-    fun Preferences(mContext: Context){
-        this.mContext = mContext
+    init {
         mSharedPreferences = mContext.getSharedPreferences("portal_preference", 0)
     }
 
@@ -27,7 +26,7 @@ class Preferences {
      */
     fun setToken(token: String?) {
         val e = mSharedPreferences.edit()
-        e.putString(Preferences().TOKEN, Gson().toJson(token))
+        e.putString(TOKEN, "Bearer "+token)
         e.apply()
     }
 
@@ -36,7 +35,7 @@ class Preferences {
      */
     fun clearToken() {
         val e = mSharedPreferences.edit()
-        e.putString(Preferences().TOKEN, "")
+        e.putString(TOKEN, "")
         e.commit()
     }
 
@@ -46,9 +45,7 @@ class Preferences {
      * @return accessToken
      */
     fun getAccessToken(): String {
-        val tokenJson = mSharedPreferences.getString(Preferences().TOKEN, "")
-        var accessToken = ""
-        accessToken = "Bearer " + tokenJson
+        val accessToken = mSharedPreferences.getString(TOKEN, "")
 
         return accessToken
     }

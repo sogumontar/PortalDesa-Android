@@ -7,8 +7,17 @@ import com.fasterxml.jackson.annotation.JsonInclude
 @JsonIgnoreProperties(ignoreUnknown = true)
 class UserResponse {
 
-    var code: Int = 400
-    var status: String? = null
-    var message: String? = null
-    var token: String? = null
+//    var code: Int = 400
+//    var status: String? = null
+//    var message: String? = null
+//    var token: String? = null
+
+    var accessToken : String? = null
+    var tokenType : String? = null
+    var role : String? = null
+    var skuLog : String? = null
+    var status : Int = 1
+    var nickName : String? = null
+    var email : String? = null
+
 }

@@ -1,5 +1,6 @@
 package com.loginkt.data.ui.main.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.loginkt.R
+import com.loginkt.data.support.Preferences
 import com.loginkt.data.ui.main.activity.LoginActivity
 import com.loginkt.data.ui.main.activity.RegisterActivity
 import com.loginkt.data.ui.main.adapter.ProfileAdapter
 import kotlinx.android.synthetic.main.fragment_akun.*
 
-class AkunFragment : Fragment() {
+class AkunFragment : Fragment(), View.OnClickListener {
+    lateinit private var preferences : Preferences
 
     companion object {
 
@@ -31,16 +34,7 @@ class AkunFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        btn_login.setOnClickListener() {
-        val intent = Intent(activity, LoginActivity::class.java)
-        startActivity(intent)
-        }
-
-        btn_register.setOnClickListener() {
-        val intent = Intent(activity, RegisterActivity::class.java)
-        startActivity(intent)
-        }
+        preferences = Preferences(activity as Context)
         recycler_view.setHasFixedSize(true)
         val menuListLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         recycler_view.setLayoutManager(menuListLayoutManager)
@@ -48,7 +42,41 @@ class AkunFragment : Fragment() {
         initView()
     }
 
+    private fun goToLogin(){
+        val intent = Intent(activity, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToRegister(){
+        val intent = Intent(activity, RegisterActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun doLogout(){
+        preferences.clearToken()
+        val intent = Intent(activity, LoginActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+        activity!!.finish()
+    }
+
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            btn_login.id-> goToLogin()
+            btn_register.id-> goToRegister()
+            btn_logout.id-> doLogout()
+        }
+    }
+
     fun initView(){
+        val tok = preferences.getAccessToken()
+        btn_login.setOnClickListener(this)
+        btn_register.setOnClickListener(this)
+        btn_logout.setOnClickListener(this)
+        if(!tok.equals("")){
+            ln_signin.visibility = View.GONE
+            btn_logout.visibility = View.VISIBLE
+        }
         val adapter = ProfileAdapter()
         recycler_view.setAdapter(adapter)
     }
