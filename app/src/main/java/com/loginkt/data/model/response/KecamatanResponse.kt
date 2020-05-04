@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonInclude
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-class SignupResponse {
-
-    var timestamp: String? = null
-    var code: Int = 400
-    var status: String? = null
-    var message: String? = null
+class KecamatanResponse {
+    var sku: String? = null
+    var fotoCamat: String? = null
+    var gambarKecamatan: String? = null
+    var nama: String? = null
+    var namaCamat: String? = null
 }

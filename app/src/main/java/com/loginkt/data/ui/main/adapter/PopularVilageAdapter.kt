@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.loginkt.R
+import com.loginkt.data.model.response.KecamatanResponse
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_popular_vilage.view.*
 
-class PopularVilageAdapter : RecyclerView.Adapter<PopularVilageAdapter.ViewHolder>() {
+class PopularVilageAdapter(val listKec : List<KecamatanResponse>) : RecyclerView.Adapter<PopularVilageAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
@@ -34,11 +35,11 @@ class PopularVilageAdapter : RecyclerView.Adapter<PopularVilageAdapter.ViewHolde
             .load(R.drawable.balige)
             .into(holder.imgPopular)
 
-        holder?.tvDesc.text = "Detail "+position
+        holder?.tvDesc.text = listKec.get(position).nama
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount(): Int {
-        return 5
+        return listKec.size
     }
 }
