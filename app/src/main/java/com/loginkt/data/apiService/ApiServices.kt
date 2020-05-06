@@ -17,7 +17,7 @@ interface  ApiServices{
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @POST(ApiConfigs.SIGN_IN)
-    fun doSignIn(@Body userRequest: UserRequest): Call<UserResponse>
+    fun doSignIn(@Body userRequest: UserRequest ): Call<UserResponse>
 
     //Sign up
     @Headers(

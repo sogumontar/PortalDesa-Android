@@ -47,6 +47,6 @@ class Preferences(mContext: Context) {
     fun getAccessToken(): String {
         val accessToken = mSharedPreferences.getString(TOKEN, "")
 
-        return accessToken
+        return accessToken!!
     }
 }

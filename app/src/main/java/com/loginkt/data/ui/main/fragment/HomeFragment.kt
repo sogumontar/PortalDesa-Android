@@ -18,7 +18,6 @@ import com.loginkt.data.ui.main.activity.MainActivity
 import com.loginkt.data.ui.main.activity.PenginapanActivity
 import com.loginkt.data.ui.main.activity.ProductActivity
 import com.loginkt.data.ui.main.adapter.PopularVilageAdapter
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,7 +61,6 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: retrofit2.Call<List<KecamatanResponse>>, t: Throwable) {
-                progreebar.visibility = View.GONE
                 Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
                 Log.e(this.javaClass.simpleName, " Exceptions : $t")
             }
