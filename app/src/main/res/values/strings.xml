@@ -13,5 +13,6 @@
     <string name="sign_up_tab_title_sign_up">Buat Akun</string>
     <string name="title_penginapan">Penginapan</string>
     <string name="title_product">Produk Desa</string>
+    <string name="simpan_btn">Simpan</string>
 
 </resources>

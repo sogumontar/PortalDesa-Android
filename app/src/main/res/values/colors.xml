@@ -14,4 +14,5 @@
     <color name="tab_orange_soft">#ffd466</color>
     <color name="super_soft_grey">#eeeeee</color>
     <color name="soft_grey">#dddddd</color>
+    <color name="red_danger">#A52D2D</color>
 </resources>

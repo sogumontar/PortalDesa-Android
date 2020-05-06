@@ -29,16 +29,19 @@ class AkunFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_akun, container, false)
+        val preferences =
+            this.activity!!.getSharedPreferences("Role", Context.MODE_PRIVATE)
+        if(preferences.equals("ROLE_ADMIN")){
+            return inflater.inflate(R.layout.activity_akun_fragment_after_login, container, false)
+        }else{
+            return inflater.inflate(R.layout.fragment_akun, container, false)
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         preferences = Preferences(activity as Context)
-        recycler_view.setHasFixedSize(true)
-        val menuListLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        recycler_view.setLayoutManager(menuListLayoutManager)
-        recycler_view.setNestedScrollingEnabled(false)
         initView()
     }
 
@@ -77,8 +80,6 @@ class AkunFragment : Fragment(), View.OnClickListener {
             ln_signin.visibility = View.GONE
             btn_logout.visibility = View.VISIBLE
         }
-        val adapter = ProfileAdapter()
-        recycler_view.setAdapter(adapter)
     }
 
 

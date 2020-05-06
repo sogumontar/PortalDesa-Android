@@ -6,6 +6,7 @@ interface ApiConfigs {
         const val SIGN_UP = "/auth/signup"
         const val LIST_PRODUCT = "/auth/signup"
         const val LIST_KECAMATAN = "/kecamatan/"
+        const val LIST_PRODUK = "/produk/"
 
         const val CONTENT_TYPE = "application/json"
         const val CODE_SUCCESS = 200

@@ -3,6 +3,7 @@ package com.loginkt.data.apiService
 import com.loginkt.data.model.request.SignupRequest
 import com.loginkt.data.model.request.UserRequest
 import com.loginkt.data.model.response.KecamatanResponse
+import com.loginkt.data.model.response.ProductResponse
 import com.loginkt.data.model.response.SignupResponse
 import com.loginkt.data.model.response.UserResponse
 import retrofit2.Call
@@ -28,14 +29,18 @@ interface  ApiServices{
     //List Product
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
-    @GET(ApiConfigs.LIST_PRODUCT)
-    fun getProductList(): Call<SignupResponse>
+    @GET(ApiConfigs.LIST_PRODUK)
+    fun getProductList(): Call<List<ProductResponse>>
 
     //List Product
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @GET(ApiConfigs.LIST_KECAMATAN)
     fun getKecamatanList(): Call<List<KecamatanResponse>>
+
+
+
+
 
 
 

@@ -10,6 +10,7 @@ import com.loginkt.R
 import com.loginkt.data.base.AppActivity
 import com.loginkt.data.ui.main.fragment.AkunFragment
 import com.loginkt.data.ui.main.fragment.HomeFragment
+import com.loginkt.data.ui.main.fragment.ProductFragment
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppActivity(), View.OnClickListener {
@@ -40,7 +41,7 @@ class MainActivity : AppActivity(), View.OnClickListener {
 
             when (type) {
                 "Beranda" -> displayFragment(HomeFragment(), R.id.fragment_container)
-                "Product" -> displayFragment(AkunFragment(), R.id.fragment_container)
+                "Product" -> displayFragment(ProductFragment(), R.id.fragment_container)
                 "Akun" -> displayFragment(AkunFragment(), R.id.fragment_container)
 
                 else -> {

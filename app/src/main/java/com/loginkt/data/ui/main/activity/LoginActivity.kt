@@ -49,18 +49,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
                 response: Response<UserResponse>
             ) {
                 val userResponse = response.body()
-//                if(userResponse != null){
-//                    val statu/sCode = userResponse!!.code
+                if(userResponse!!.status != null){
+                    val statusCode = userResponse!!.status
                     val token = userResponse!!.accessToken
-//                    if (statusCode == ApiConfigs.CODE_SUCCESS) {
+                    if (statusCode != 401) {
                         preferences.setToken(token)
+                        preferences.setRole(userResponse!!.role)
+                        Log.d("Role",userResponse!!.role);
                         progreebar.visibility = View.GONE
-
                         var intent = Intent(baseContext as LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
-//                    }
-//                }
+                    }
+                }
             }
 
             override fun onFailure(call: retrofit2.Call<UserResponse>, t: Throwable) {

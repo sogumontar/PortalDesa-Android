@@ -15,8 +15,22 @@ class Preferences(mContext: Context) {
 
     val TOKEN = "token"
 
+    val ROLE = "Unknown"
+
     init {
         mSharedPreferences = mContext.getSharedPreferences("portal_preference", 0)
+    }
+    fun setRole(role: String?) {
+        val e = mSharedPreferences.edit()
+        e.putString(ROLE, role)
+        e.apply()
+    }fun clearAll() {
+        val e = mSharedPreferences.all
+        e.clear()
+    }
+    fun getRole(): String {
+        val roles = mSharedPreferences.getString(ROLE, "")
+        return roles!!
     }
 
     /**
