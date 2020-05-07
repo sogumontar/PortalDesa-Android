@@ -6,7 +6,7 @@
     <string name="prompt_username">Username</string>
     <string name="prompt_alamat">Alamat</string>
     <string name="prompt_password">Password</string>
-    <string name="daftar"><u>Daftar disini</u></string>
+    <string name="daftar"><u>Daftar</u></string>
     <string name="Masuk">Masuk</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>

@@ -7,7 +7,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:padding="16dp"
 android:background="@color/white_bg"
-tools:context=".data.ui.main.activity.LoginActivity">
+tools:context=".data.ui.main.activity.SignInActivity">
     <ProgressBar
         android:id="@+id/progreebar"
         android:layout_width="wrap_content"

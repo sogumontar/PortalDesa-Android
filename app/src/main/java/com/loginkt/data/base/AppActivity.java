@@ -47,6 +47,7 @@ public class AppActivity extends AppCompatActivity {
 
     }
 
+
     public void showFragmentAllowingStateLoss(Fragment fragment, int fragmentResourceID) {
         if (fragment != null) {
             FragmentManager fragmentManager = this.getSupportFragmentManager();

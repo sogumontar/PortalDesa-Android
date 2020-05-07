@@ -2,17 +2,12 @@ package com.loginkt.data.ui.main.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.telecom.Call
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.*
-import com.google.gson.Gson
 
 import com.loginkt.R
 import com.loginkt.data.apiService.APIServiceGenerator
-import com.loginkt.data.apiService.ApiConfigs
-import com.loginkt.data.apiService.ApiServices
 import com.loginkt.data.model.request.UserRequest
 import com.loginkt.data.model.response.UserResponse
 import com.loginkt.data.support.Preferences
@@ -20,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginActivity : AppCompatActivity(), View.OnClickListener{
+class SignInActivity : AppCompatActivity(), View.OnClickListener{
 
    lateinit var preferences : Preferences
 
@@ -57,7 +52,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
                         preferences.setRole(userResponse!!.role)
                         Log.d("Role",userResponse!!.role);
                         progreebar.visibility = View.GONE
-                        var intent = Intent(baseContext as LoginActivity, MainActivity::class.java)
+                        var intent = Intent(baseContext as SignInActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                     }

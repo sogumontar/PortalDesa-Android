@@ -14,7 +14,7 @@ class DetailProductAcitivity : AppActivity() {
         setContentView(R.layout.activity_detail_product)
 
 //        daftar.setOnClickListener(){
-//            intent = Intent(this, RegisterActivity::class.java)
+//            intent = Intent(this, SignUpActivity::class.java)
 //            startActivity(intent)
 //        }
 //        initView()

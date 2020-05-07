@@ -15,4 +15,5 @@
     <color name="super_soft_grey">#eeeeee</color>
     <color name="soft_grey">#dddddd</color>
     <color name="red_danger">#A52D2D</color>
+    <color name="snackbar_red">#F26253</color>
 </resources>

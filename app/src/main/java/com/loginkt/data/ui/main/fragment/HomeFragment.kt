@@ -12,9 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.loginkt.R
 import com.loginkt.data.apiService.APIServiceGenerator
 import com.loginkt.data.model.response.KecamatanResponse
-import com.loginkt.data.model.response.UserResponse
-import com.loginkt.data.ui.main.activity.LoginActivity
-import com.loginkt.data.ui.main.activity.MainActivity
 import com.loginkt.data.ui.main.activity.PenginapanActivity
 import com.loginkt.data.ui.main.activity.ProductActivity
 import com.loginkt.data.ui.main.adapter.PopularVilageAdapter
