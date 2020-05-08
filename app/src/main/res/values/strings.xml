@@ -13,5 +13,15 @@
     <string name="sign_up_tab_title_sign_up">Buat Akun</string>
     <string name="title_penginapan">Penginapan</string>
     <string name="title_product">Produk Desa</string>
+    <string name="des">
+        <string-item>
+            Desa Meat berlokasi di kecamatan balige,
+            desa ini sering digunakan sebagai tempat
+            untuk berkemah oleh para masyarakat dari luar
+            kota maupun dari dalam daerah. Hampir setiap
+            minggu tempat ini ramai digunakan sebagai
+            tempat untuk berkemah.
+        </string-item>
+    </string>
 
 </resources>
