@@ -11,13 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".data.ui.main.activity.Form.DaftarAdminDesa"></activity>
-        <activity android:name=".data.ui.main.fragment.AkunFragmentAfterLogin" />
         <activity
             android:name=".data.ui.main.activity.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.SignInActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".data.ui.main.activity.admin.MainActivityAdmin"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.MainActivity"

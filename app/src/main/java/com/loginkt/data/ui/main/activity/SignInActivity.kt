@@ -11,6 +11,7 @@ import com.loginkt.data.apiService.APIServiceGenerator
 import com.loginkt.data.model.request.UserRequest
 import com.loginkt.data.model.response.UserResponse
 import com.loginkt.data.support.Preferences
+import com.loginkt.data.ui.main.activity.admin.MainActivityAdmin
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Callback
 import retrofit2.Response
@@ -52,9 +53,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener{
                         preferences.setRole(userResponse!!.role)
                         Log.d("Role",userResponse!!.role);
                         progreebar.visibility = View.GONE
-                        var intent = Intent(baseContext as SignInActivity, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        goToHome(userResponse!!.role)
                     }
                 }
             }
@@ -65,6 +64,16 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener{
                 Log.e(this.javaClass.simpleName, " Exceptions : $t")
             }
         })
+    }
+
+    private fun goToHome( role: String?){
+        var intent = Intent()
+        if(role!!.equals("ROLE_ADMIN")){
+            intent = Intent(this  , MainActivityAdmin::class.java)
+        }else{
+            intent = Intent(this, MainActivity::class.java)
+        }
+        startActivity(intent)
     }
 
     private fun getUser(): UserRequest{

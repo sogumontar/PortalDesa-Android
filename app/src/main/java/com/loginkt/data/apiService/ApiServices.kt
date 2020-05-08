@@ -2,10 +2,7 @@ package com.loginkt.data.apiService
 
 import com.loginkt.data.model.request.SignupRequest
 import com.loginkt.data.model.request.UserRequest
-import com.loginkt.data.model.response.KecamatanResponse
-import com.loginkt.data.model.response.ProductResponse
-import com.loginkt.data.model.response.SignupResponse
-import com.loginkt.data.model.response.UserResponse
+import com.loginkt.data.model.response.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -37,6 +34,21 @@ interface  ApiServices{
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @GET(ApiConfigs.LIST_KECAMATAN)
     fun getKecamatanList(): Call<List<KecamatanResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ADMIN_LIST_AKUN_ADMIN)
+    fun getDaftarAkunAdminList(): Call<List<DaftarAkunResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ADMIN_LIST_AKUN_MERCHANT)
+    fun getDaftarAkunMerchantList(): Call<List<DaftarAkunResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ADMIN_LIST_AKUN_CUSTOMER)
+    fun getDaftarAkunCustomerList(): Call<List<DaftarAkunResponse>>
 
 
 
