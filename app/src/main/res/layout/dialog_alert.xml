@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    app:cardCornerRadius="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        tools:ignore="MissingPrefix">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    fontPath="fonts/SemiBold.otf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/text_edittext_black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Title"/>
+
+                <TextView
+                    android:id="@+id/tv_message"
+                    fontPath="fonts/Regular.otf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_edittext_black"
+                    tools:text="Message" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_primary"
+                fontPath="fonts/Regular.otf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_btn"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                tools:text="OK" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

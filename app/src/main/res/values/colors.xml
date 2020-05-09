@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="blue_secondary">#2680eb</color>
+    <color name="transparent">@android:color/transparent</color>
     <color name="blue_primary">#ace7ef</color>
     <color name="green_primary">#60b74e</color>
     <color name="white_bg">#f7f7f7</color>
@@ -16,4 +17,5 @@
     <color name="soft_grey">#dddddd</color>
     <color name="red_danger">#A52D2D</color>
     <color name="snackbar_red">#F26253</color>
+    <color name="text_edittext_black">#484848</color>
 </resources>

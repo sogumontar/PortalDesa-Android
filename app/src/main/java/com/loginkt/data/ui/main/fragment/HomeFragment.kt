@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.loginkt.R
 import com.loginkt.data.apiService.APIServiceGenerator
 import com.loginkt.data.model.response.KecamatanResponse
+import com.loginkt.data.support.Connectivity
 import com.loginkt.data.ui.main.activity.PenginapanActivity
 import com.loginkt.data.ui.main.activity.ProductActivity
 import com.loginkt.data.ui.main.adapter.PopularVilageAdapter
@@ -45,23 +46,26 @@ class HomeFragment : Fragment() {
     }
 
     fun initView(){
-        val client = APIServiceGenerator().createService
-        val call = client.getKecamatanList()
-        call.enqueue(object : Callback<List<KecamatanResponse>> {
-            override fun onResponse(
-                call: retrofit2.Call<List<KecamatanResponse>>,
-                response: Response<List<KecamatanResponse>>
-            ) {
-                val listKecamatan = response.body()
-                val adapter = PopularVilageAdapter(listKecamatan!!)
-                recycler_popular.setAdapter(adapter)
-            }
+        if (Connectivity().isNetworkAvailable(activity!!)) {
+            val client = APIServiceGenerator().createService
+            val call = client.getKecamatanList()
+            call.enqueue(object : Callback<List<KecamatanResponse>> {
+                override fun onResponse(
+                    call: retrofit2.Call<List<KecamatanResponse>>,
+                    response: Response<List<KecamatanResponse>>
+                ) {
+                    val listKecamatan = response.body()
+//                val adapter = PopularVilageAdapter(listKecamatan!!)
+//                recycler_popular.setAdapter(adapter)
+                }
 
-            override fun onFailure(call: retrofit2.Call<List<KecamatanResponse>>, t: Throwable) {
-                Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                Log.e(this.javaClass.simpleName, " Exceptions : $t")
-            }
-        })
+                override fun onFailure(
+                    call: retrofit2.Call<List<KecamatanResponse>>,
+                    t: Throwable
+                ) {
+                }
+            })
+        }
 
         btn_penginapan.setOnClickListener(){
             val intent = Intent(activity, PenginapanActivity::class.java)

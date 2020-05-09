@@ -9,6 +9,7 @@ import com.loginkt.data.apiService.APIServiceGenerator
 import com.loginkt.data.base.AppActivity
 import com.loginkt.data.model.request.SignupRequest
 import com.loginkt.data.model.response.SignupResponse
+import com.loginkt.data.support.Connectivity
 import com.loginkt.data.support.FormValidation
 import com.loginkt.data.support.TopSnackBar
 import kotlinx.android.synthetic.main.activity_login.*
@@ -35,24 +36,25 @@ class SignUpActivity : AppActivity(), View.OnClickListener {
 
     private fun doRegister(){
         if(checkField()) {
-            val client = APIServiceGenerator().createService
-            val call = client.doSignup(getSignUpRequest())
-            call.enqueue(object : Callback<SignupResponse> {
-                override fun onResponse(
-                    call: retrofit2.Call<SignupResponse>,
-                    response: Response<SignupResponse>
-                ) {
-                    val signupResponse = response.body()
-                    goToHome()
-                    finish()
-                }
+            if (Connectivity().isNetworkAvailable(this)) {
+                showProgressDialog()
+                val client = APIServiceGenerator().createService
+                val call = client.doSignup(getSignUpRequest())
+                call.enqueue(object : Callback<SignupResponse> {
+                    override fun onResponse(
+                        call: retrofit2.Call<SignupResponse>,
+                        response: Response<SignupResponse>
+                    ) {
+                        val signupResponse = response.body()
+                        goToHome()
+                        finish()
+                    }
 
-                override fun onFailure(call: retrofit2.Call<SignupResponse>, t: Throwable) {
-                    progreebar.visibility = View.GONE
-                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
-                }
-            })
+                    override fun onFailure(call: retrofit2.Call<SignupResponse>, t: Throwable) {
+                        dismissProgressDialog()
+                    }
+                })
+            }
         }
     }
 

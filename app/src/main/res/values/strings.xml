@@ -16,5 +16,9 @@
     <string name="title_penginapan">Penginapan</string>
     <string name="title_product">Produk Desa</string>
     <string name="simpan_btn">Simpan</string>
+    <string name="information">Pemberitahuan</string>
+    <string name="no_internet_connection">Silahkan cek koneksi internet anda!</string>
+    <string name="close">Tutup</string>
+
 
 </resources>

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 
 import com.loginkt.R
@@ -15,8 +16,10 @@ import com.loginkt.data.ui.main.activity.admin.MainActivityAdmin
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Callback
 import retrofit2.Response
+import com.loginkt.data.base.AppActivity
 
-class SignInActivity : AppCompatActivity(), View.OnClickListener{
+
+class SignInActivity : AppActivity(), View.OnClickListener{
 
    lateinit var preferences : Preferences
 
@@ -36,8 +39,8 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener{
     }
 
     fun userLogin(user : UserRequest){
+        showProgressDialog()
         val client = APIServiceGenerator().createService
-        progreebar.visibility = View.VISIBLE
         val call = client.doSignIn(user)
         call.enqueue(object : Callback<UserResponse> {
             override fun onResponse(
@@ -51,17 +54,14 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener{
                     if (statusCode != 401) {
                         preferences.setToken(token)
                         preferences.setRole(userResponse!!.role)
-                        Log.d("Role",userResponse!!.role);
-                        progreebar.visibility = View.GONE
+
                         goToHome(userResponse!!.role)
                     }
                 }
             }
 
             override fun onFailure(call: retrofit2.Call<UserResponse>, t: Throwable) {
-                progreebar.visibility = View.GONE
-                Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                dismissProgressDialog()
             }
         })
     }
