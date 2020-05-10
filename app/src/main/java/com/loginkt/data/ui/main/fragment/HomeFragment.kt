@@ -22,6 +22,8 @@ import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
+    private var listKecamatan : List<KecamatanResponse>? = null
+
     companion object {
 
         fun newInstance(): HomeFragment {
@@ -38,10 +40,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recycler_popular.setHasFixedSize(true)
-        val menuListLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        recycler_popular.setLayoutManager(menuListLayoutManager)
-        recycler_popular.setNestedScrollingEnabled(false)
         initView()
     }
 
@@ -54,9 +52,9 @@ class HomeFragment : Fragment() {
                     call: retrofit2.Call<List<KecamatanResponse>>,
                     response: Response<List<KecamatanResponse>>
                 ) {
-                    val listKecamatan = response.body()
-//                val adapter = PopularVilageAdapter(listKecamatan!!)
-//                recycler_popular.setAdapter(adapter)
+                    val listKecamatanResponse = response.body()
+                    listKecamatan = listKecamatanResponse
+                    displayKecamatan()
                 }
 
                 override fun onFailure(
@@ -74,6 +72,17 @@ class HomeFragment : Fragment() {
         btn_produk.setOnClickListener(){
             val intent = Intent(activity, ProductActivity::class.java)
             startActivity(intent)
+        }
+    }
+    fun displayKecamatan(){
+        if (listKecamatan != null && recycler_popular != null) {
+            recycler_popular.setHasFixedSize(true)
+            val menuListLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+            recycler_popular.setLayoutManager(menuListLayoutManager)
+            val adapter = PopularVilageAdapter(listKecamatan!!)
+            view_animator.setDisplayedChild(1)
+            recycler_popular.setAdapter(adapter)
+
         }
     }
 }

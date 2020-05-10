@@ -12,11 +12,22 @@
         android:layout_marginLeft="10dp"
         android:textColor="@color/black_home"
         android:textSize="20sp"/>
+    <ViewAnimator
+        android:id="@+id/view_animator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:animateFirstView="true">
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_produk"
         android:layout_width="match_parent"
         android:layout_height="604dp"
         android:layout_marginTop="20dp"
         android:background="@color/white" />
+    </ViewAnimator>
 </LinearLayout>

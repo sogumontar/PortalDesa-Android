@@ -1,29 +1,20 @@
 package com.loginkt.data.ui.main.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.loginkt.R
 import com.loginkt.data.apiService.APIServiceGenerator
-import com.loginkt.data.model.response.KecamatanResponse
 import com.loginkt.data.model.response.ProductResponse
 import com.loginkt.data.support.Connectivity
-import com.loginkt.data.ui.main.activity.PenginapanActivity
-import com.loginkt.data.ui.main.activity.ProductActivity
 import com.loginkt.data.ui.main.adapter.ListProductAdapter
-import com.loginkt.data.ui.main.adapter.PopularVilageAdapter
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_produk.*
 import retrofit2.Response
-import java.util.zip.Inflater
-import javax.security.auth.callback.Callback
 
 /**
  * Created by Sogumontar Hendra Simangunsong on 06/05/2020.
@@ -44,8 +35,6 @@ class ProductFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycler_view_produk.setHasFixedSize(true)
-        val produkListLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        recycler_view_produk.setLayoutManager(produkListLayoutManager)
         initData()
     }
 
@@ -72,9 +61,13 @@ class ProductFragment : Fragment(){
     }
 
     fun displayProduct(){
-        if (productResponse != null) {
+        if (productResponse != null && recycler_view_produk != null) {
+            val produkListLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+            recycler_view_produk.setLayoutManager(produkListLayoutManager)
             val adapter = ListProductAdapter(productResponse!!)
+            view_animator.setDisplayedChild(1)
             recycler_view_produk.setAdapter(adapter)
+
         }
     }
 }
