@@ -55,7 +55,7 @@ class SignInActivity : AppActivity(), View.OnClickListener{
                         preferences.setToken(token)
                         preferences.setRole(userResponse!!.role)
 
-                        goToHome(userResponse!!.role)
+                        goToHome(userResponse   !!.role)
                     }
                 }
             }
