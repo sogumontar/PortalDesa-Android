@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".data.ui.main.activity.SignUpActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.SignInActivity"

@@ -64,7 +64,7 @@ class ProductFragment : Fragment(){
         if (productResponse != null && recycler_view_produk != null) {
             val produkListLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
             recycler_view_produk.setLayoutManager(produkListLayoutManager)
-            val adapter = ListProductAdapter(productResponse!!)
+            val adapter = ListProductAdapter(activity!!, productResponse!!)
             view_animator.setDisplayedChild(1)
             recycler_view_produk.setAdapter(adapter)
 

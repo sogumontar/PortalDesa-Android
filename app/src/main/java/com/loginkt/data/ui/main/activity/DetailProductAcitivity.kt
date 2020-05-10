@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import com.loginkt.R
 import com.loginkt.data.base.AppActivity
+import com.loginkt.data.support.Flag
+import kotlinx.android.synthetic.main.activity_detail_product.*
 import kotlinx.android.synthetic.main.activity_register_form.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -13,9 +15,11 @@ class DetailProductAcitivity : AppActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
 
+        val name = intent.getStringExtra(Flag.PRODUCT_NAME)
+        tv_nama.text = name.toString()
 //        daftar.setOnClickListener(){
 //            intent = Intent(this, SignUpActivity::class.java)
-//            startActivity(intent)
+//            startActivity(intent)D
 //        }
 //        initView()
     }
