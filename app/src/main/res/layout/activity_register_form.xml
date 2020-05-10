@@ -5,9 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".data.ui.main.activity.SignUpActivity">
     <include layout="@layout/toolbar" />
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-5dp"
+        android:background="@color/white"
+        android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -119,4 +125,5 @@
             android:textColor="#ffff"/>
 
     </LinearLayout>
+    </ScrollView>
 </LinearLayout>
