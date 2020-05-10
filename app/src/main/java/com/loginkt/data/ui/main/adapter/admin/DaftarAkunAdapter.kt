@@ -16,6 +16,9 @@ class DaftarAkunAdapter(val listAkun : List<DaftarAkunResponse>) : RecyclerView.
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
         val tvDesc = v.tv_nama_akun
+        val tvAlamat = v.tv_alamat
+        val tvEmail = v.tv_email
+
     }
 
 
@@ -34,6 +37,8 @@ class DaftarAkunAdapter(val listAkun : List<DaftarAkunResponse>) : RecyclerView.
 
 
         holder?.tvDesc.text = listAkun.get(position).name
+        holder?.tvAlamat.text = listAkun.get(position).alamat
+        holder?.tvEmail.text = listAkun.get(position).email
     }
 
     // Return the size of your dataset (invoked by the layout manager)

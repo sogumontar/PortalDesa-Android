@@ -69,4 +69,8 @@ dependencies {
 
     //Picaso Image Loader
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //cardView
+    implementation "androidx.cardview:cardview:1.0.0"
+
 }
