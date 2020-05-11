@@ -92,6 +92,17 @@
             android:textColor="@color/black_home"
             android:textSize="16sp" />
 
+            <ViewAnimator
+                android:id="@+id/view_animator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:animateFirstView="true">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_popular"
             android:layout_width="match_parent"
@@ -99,6 +110,7 @@
             android:padding="10dp">
 
         </androidx.recyclerview.widget.RecyclerView>
+            </ViewAnimator>
         </LinearLayout>
     </ScrollView>
 

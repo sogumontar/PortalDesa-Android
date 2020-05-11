@@ -1,5 +1,6 @@
 package com.loginkt.data.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 
@@ -11,10 +12,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class AppActivity extends AppCompatActivity {
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        progressDialog = new ProgressDialog(this);
     }
 
     public void initToolbar(int toolbarId) {
@@ -33,6 +36,21 @@ public class AppActivity extends AppCompatActivity {
                 }
             });
         }
+
+    }
+
+
+    public void showProgressDialog() {
+        progressDialog.setMessage("Loading ...");
+        progressDialog.show();
+
+        // To Dismiss progress dialog
+        //progressDialog.dismiss();
+    }
+
+    public void dismissProgressDialog() {
+        // To Dismiss progress dialog
+        progressDialog.dismiss();
     }
 
     public void showFragment(Fragment fragment, int fragmentResourceID) {
@@ -46,6 +64,7 @@ public class AppActivity extends AppCompatActivity {
         }
 
     }
+
 
     public void showFragmentAllowingStateLoss(Fragment fragment, int fragmentResourceID) {
         if (fragment != null) {

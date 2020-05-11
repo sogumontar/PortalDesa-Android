@@ -21,7 +21,6 @@
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:layout_below="@+id/img_icon"
-        android:layout_above="@+id/daftar"
         android:paddingLeft="10dp"
         android:orientation="vertical">
 

@@ -1,20 +1,24 @@
-package com.loginkt.data.ui.main.adapter
+package com.loginkt.data.ui.main.adapter.admin
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.loginkt.R
-import com.loginkt.data.model.response.KecamatanResponse
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_popular_vilage.view.*
+import com.loginkt.data.model.response.DaftarAkunResponse
+import kotlinx.android.synthetic.main.item_daftar_akun.view.*
 
-class PopularVilageAdapter(val listKec : List<KecamatanResponse>) : RecyclerView.Adapter<PopularVilageAdapter.ViewHolder>() {
+/**
+ * Created by Sogumontar Hendra Simangunsong on 08/05/2020.
+ */
+class DaftarAkunAdapter(val listAkun : List<DaftarAkunResponse>) : RecyclerView.Adapter<DaftarAkunAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
-        val tvDesc = v.tv_desc
-        val imgPopular = v.img_icon
+        val tvDesc = v.tv_nama_akun
+        val tvAlamat = v.tv_alamat
+        val tvEmail = v.tv_email
+
     }
 
 
@@ -22,24 +26,23 @@ class PopularVilageAdapter(val listKec : List<KecamatanResponse>) : RecyclerView
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PopularVilageAdapter.ViewHolder {
+    ): DaftarAkunAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_popular_vilage, parent, false)
+            .inflate(R.layout.item_daftar_akun, parent, false)
         return ViewHolder(view)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        Picasso.get()
-            .load("https://portal-desa.herokuapp.com/kecamatan/get/"+listKec.get(position).nama+".jpg")
-            .into(holder.imgPopular)
 
-        holder?.tvDesc.text = listKec.get(position).nama
+        holder?.tvDesc.text = listAkun.get(position).name
+        holder?.tvAlamat.text = listAkun.get(position).alamat
+        holder?.tvEmail.text = listAkun.get(position).email
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount(): Int {
-        return listKec.size
+        return listAkun.size
     }
 }

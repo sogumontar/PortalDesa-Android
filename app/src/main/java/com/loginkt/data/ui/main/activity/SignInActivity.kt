@@ -2,25 +2,24 @@ package com.loginkt.data.ui.main.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.telecom.Call
 import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.*
-import com.google.gson.Gson
 
 import com.loginkt.R
 import com.loginkt.data.apiService.APIServiceGenerator
-import com.loginkt.data.apiService.ApiConfigs
-import com.loginkt.data.apiService.ApiServices
 import com.loginkt.data.model.request.UserRequest
 import com.loginkt.data.model.response.UserResponse
 import com.loginkt.data.support.Preferences
+import com.loginkt.data.ui.main.activity.admin.MainActivityAdmin
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Callback
 import retrofit2.Response
+import com.loginkt.data.base.AppActivity
 
-class LoginActivity : AppCompatActivity(), View.OnClickListener{
+
+class SignInActivity : AppActivity(), View.OnClickListener{
 
    lateinit var preferences : Preferences
 
@@ -40,8 +39,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
     }
 
     fun userLogin(user : UserRequest){
+        showProgressDialog()
         val client = APIServiceGenerator().createService
-        progreebar.visibility = View.VISIBLE
         val call = client.doSignIn(user)
         call.enqueue(object : Callback<UserResponse> {
             override fun onResponse(
@@ -49,26 +48,32 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
                 response: Response<UserResponse>
             ) {
                 val userResponse = response.body()
-//                if(userResponse != null){
-//                    val statu/sCode = userResponse!!.code
+                if(userResponse!!.status != null){
+                    val statusCode = userResponse!!.status
                     val token = userResponse!!.accessToken
-//                    if (statusCode == ApiConfigs.CODE_SUCCESS) {
+                    if (statusCode != 401) {
                         preferences.setToken(token)
-                        progreebar.visibility = View.GONE
+                        preferences.setRole(userResponse!!.role)
 
-                        var intent = Intent(baseContext as LoginActivity, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-//                    }
-//                }
+                        goToHome(userResponse   !!.role)
+                    }
+                }
             }
 
             override fun onFailure(call: retrofit2.Call<UserResponse>, t: Throwable) {
-                progreebar.visibility = View.GONE
-                Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                dismissProgressDialog()
             }
         })
+    }
+
+    private fun goToHome( role: String?){
+        var intent = Intent()
+        if(role!!.equals("ROLE_ADMIN")){
+            intent = Intent(this  , MainActivityAdmin::class.java)
+        }else{
+            intent = Intent(this, MainActivity::class.java)
+        }
+        startActivity(intent)
     }
 
     private fun getUser(): UserRequest{

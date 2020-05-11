@@ -2,9 +2,7 @@ package com.loginkt.data.apiService
 
 import com.loginkt.data.model.request.SignupRequest
 import com.loginkt.data.model.request.UserRequest
-import com.loginkt.data.model.response.KecamatanResponse
-import com.loginkt.data.model.response.SignupResponse
-import com.loginkt.data.model.response.UserResponse
+import com.loginkt.data.model.response.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -17,7 +15,7 @@ interface  ApiServices{
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @POST(ApiConfigs.SIGN_IN)
-    fun doSignIn(@Body userRequest: UserRequest): Call<UserResponse>
+    fun doSignIn(@Body userRequest: UserRequest ): Call<UserResponse>
 
     //Sign up
     @Headers(
@@ -28,14 +26,33 @@ interface  ApiServices{
     //List Product
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
-    @GET(ApiConfigs.LIST_PRODUCT)
-    fun getProductList(): Call<SignupResponse>
+    @GET(ApiConfigs.LIST_PRODUK)
+    fun getProductList(): Call<List<ProductResponse>>
 
     //List Product
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @GET(ApiConfigs.LIST_KECAMATAN)
     fun getKecamatanList(): Call<List<KecamatanResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ADMIN_LIST_AKUN_ADMIN)
+    fun getDaftarAkunAdminList(): Call<List<DaftarAkunResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ADMIN_LIST_AKUN_MERCHANT)
+    fun getDaftarAkunMerchantList(): Call<List<DaftarAkunResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ADMIN_LIST_AKUN_CUSTOMER)
+    fun getDaftarAkunCustomerList(): Call<List<DaftarAkunResponse>>
+
+
+
+
 
 
 

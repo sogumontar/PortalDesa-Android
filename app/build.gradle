@@ -53,6 +53,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //TSnackBar
+    implementation 'com.androidadvance:topsnackbar:1.1.1'
+
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
     //okhttp3 logging interceptor
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 
@@ -62,4 +69,8 @@ dependencies {
 
     //Picaso Image Loader
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //cardView
+    implementation "androidx.cardview:cardview:1.0.0"
+
 }
