@@ -66,6 +66,7 @@ class DetailKecamatanActivtiy : AppActivity() {
                 val menuListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
                 recycler_view.setLayoutManager(menuListLayoutManager)
                 val adapter = PenginapanAdapter(listData)
+                view_animator.setDisplayedChild(1)
                 recycler_view.setAdapter(adapter)
             }else{
                 view_animator.setDisplayedChild(1)
