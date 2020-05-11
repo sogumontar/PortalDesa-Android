@@ -5,6 +5,7 @@ interface ApiConfigs {
         const val SIGN_IN = "/auth/signin"
         const val SIGN_UP = "/auth/signup"
         const val LIST_KECAMATAN = "/kecamatan/"
+        const val LIST_DESA_KECAMATAN = "/desa/kecamatan/{kecamatan}"
         const val LIST_PRODUK = "/produk/"
 
 

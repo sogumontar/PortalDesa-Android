@@ -5,15 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.loginkt.R
+import com.loginkt.data.model.response.KecamatanResponse
+import com.loginkt.data.model.response.ListDesaKecamatanResponse
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_penginapan.view.*
 
-class PenginapanAdapter : RecyclerView.Adapter<PenginapanAdapter.ViewHolder>() {
+class PenginapanAdapter(val listDesa : List<ListDesaKecamatanResponse>) : RecyclerView.Adapter<PenginapanAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
-        val tvAlamat = v.tv_alamat
-        val tvHarga = v.tv_harga
+        val tvDesa = v.tv_desa
+        val tvKecamatan = v.tv_kecamatan
         val imgLogo = v.img_logo
     }
 
@@ -32,15 +34,15 @@ class PenginapanAdapter : RecyclerView.Adapter<PenginapanAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Picasso.get()
-            .load(R.drawable.penginapan)
+            .load("https://portal-desa.herokuapp.com/desa/get/PINT-0001.png")
             .into(holder.imgLogo)
 
-        holder?.tvAlamat.text = "Siborong borong"
-        holder?.tvHarga.text = "Rp 100.000 / hari"
+        holder.tvDesa.text = listDesa.get(position).nama
+        holder.tvKecamatan.text = listDesa.get(position).kecamatan
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount(): Int {
-        return 5
+        return listDesa.size
     }
 }
