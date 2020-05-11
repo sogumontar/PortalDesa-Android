@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
     fun displayKecamatan(){
         if (listKecamatan != null && recycler_popular != null) {
             recycler_popular.setHasFixedSize(true)
-            val menuListLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+            val menuListLayoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
             recycler_popular.setLayoutManager(menuListLayoutManager)
             val adapter = PopularVilageAdapter(listKecamatan!!)
             view_animator.setDisplayedChild(1)
