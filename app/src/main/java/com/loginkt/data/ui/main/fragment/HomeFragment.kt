@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
             recycler_popular.setHasFixedSize(true)
             val menuListLayoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
             recycler_popular.setLayoutManager(menuListLayoutManager)
-            val adapter = PopularVilageAdapter(listKecamatan!!)
+            val adapter = PopularVilageAdapter(activity!!, listKecamatan!!)
             view_animator.setDisplayedChild(1)
             recycler_popular.setAdapter(adapter)
 

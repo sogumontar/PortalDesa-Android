@@ -26,7 +26,7 @@ class PenginapanActivity : AppActivity() {
     fun initView(){
         initToolbar(R.id.toolbar)
         tv_toolbar_title.text = getString(R.string.title_penginapan)
-        val adapter = PenginapanAdapter()
-        recycler_view.setAdapter(adapter)
+//        val adapter = PenginapanAdapter()
+//        recycler_view.setAdapter(adapter)
     }
 }

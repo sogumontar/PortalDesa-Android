@@ -41,6 +41,9 @@
         <activity
             android:name=".data.ui.main.activity.DetailProductAcitivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".data.ui.main.activity.DetailKecamatanActivtiy"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

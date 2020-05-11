@@ -29,11 +29,17 @@ interface  ApiServices{
     @GET(ApiConfigs.LIST_PRODUK)
     fun getProductList(): Call<List<ProductResponse>>
 
-    //List Product
+    //List Kecamatan
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @GET(ApiConfigs.LIST_KECAMATAN)
     fun getKecamatanList(): Call<List<KecamatanResponse>>
+
+    //List Kecamatan
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_DESA_KECAMATAN)
+    fun getDesaByKecamatan(@Path("kecamatan") kecamatan : String): Call<List<ListDesaKecamatanResponse>>
 
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
