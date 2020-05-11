@@ -20,24 +20,27 @@ class MainActivityAdmin : AppActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_admin)
         tabSelected(2, "Akun")
+        admin_tab_pesanan.setOnClickListener(this)
+        admin_tab_akun.setOnClickListener(this)
+        admin_tab_desa.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         val id = v.id
-//        if (id == admin_tab_pesanan.getId()) {
-//            tabSelected(0, "Pesanan")
-//        } else if (id == admin_tab_desa.getId()) {
-//            tabSelected(1, "Desa")
-//        } else if (id == admin_tab_akun.getId()) {
+        if (id == admin_tab_pesanan.getId()) {
+            tabSelected(0, "Pesanan")
+        } else if (id == admin_tab_desa.getId()) {
+            tabSelected(1, "Desa")
+        } else if (id == admin_tab_akun.getId()) {
             tabSelected(2, "Akun")
-//        }
+        }
     }
     fun tabSelected(position: Int, type: String) {
         if (!TextUtils.isEmpty(type)) {
 
             when (type) {
-//                "Pesanan" -> displayFragment(DaftarPesanan(), R.id.admin_fragment_container)
-//                "Desa" -> displayFragment(DaftarDesa(), R.id.admin_fragment_container)
+                "Pesanan" -> displayFragment(DaftarPesanan(), R.id.admin_fragment_container)
+                "Desa" -> displayFragment(DaftarDesa(), R.id.admin_fragment_container)
                 "Akun" -> displayFragment(DaftarAkunFragment(), R.id.admin_fragment_container)
 
                 else -> {
@@ -49,22 +52,22 @@ class MainActivityAdmin : AppActivity(), View.OnClickListener {
         }
     }
     private fun updateTabView(position: Int) {
-//        admin_tab_pesanan.setBackground(ContextCompat.getDrawable(this, R.color.blue_primary))
-//        admin_tab_desa.setBackground(ContextCompat.getDrawable(this, R.color.blue_primary))
+        admin_tab_pesanan.setBackground(ContextCompat.getDrawable(this, R.color.blue_primary))
+        admin_tab_desa.setBackground(ContextCompat.getDrawable(this, R.color.blue_primary))
         admin_tab_akun.setBackground(ContextCompat.getDrawable(this, R.color.blue_primary))
         when (position) {
-//            0 -> admin_tab_pesanan.setBackground(
-//                ContextCompat.getDrawable(
-//                    this,
-//                    R.drawable.button_orange_selector
-//                )
-//            )
-//            1 -> admin_tab_desa.setBackground(
-//                ContextCompat.getDrawable(
-//                    this,
-//                    R.drawable.button_orange_selector
-//                )
-//            )
+            0 -> admin_tab_pesanan.setBackground(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.button_orange_selector
+                )
+            )
+            1 -> admin_tab_desa.setBackground(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.button_orange_selector
+                )
+            )
             2 -> admin_tab_akun.setBackground(
                 ContextCompat.getDrawable(
                     this,

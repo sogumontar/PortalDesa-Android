@@ -64,7 +64,6 @@
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:translationZ="3dp"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:padding="8dp"/>

@@ -1,26 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/ln_product">
-
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/img_icon"
-            android:layout_width="300dp"
-            android:layout_height="180dp"
-            android:layout_margin="15dp"
-            android:scaleType="fitXY"
-            android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"
-            android:translationZ="5dp" />
-    </LinearLayout>
-
+        android:layout_margin="16dp">
+            <ImageView
+                android:id="@+id/img_icon"
+                android:layout_width="357dp"
+                android:layout_height="226dp"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher"
+                android:translationZ="5dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/card_title"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/card_content"
+                    android:textColor="#555" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_share"
+                    android:theme="@style/PrimaryFlatButton" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_explore"
+                    android:theme="@style/PrimaryFlatButton" />
+            </LinearLayout>
+    </android.support.v7.widget.CardView>
     <TextView
         android:id="@+id/tv_desc"
         android:layout_width="wrap_content"
@@ -28,6 +56,8 @@
         android:layout_margin="10dp"
         android:textColor="@color/black_home"
         android:text="Balige"
-        android:textSize="15sp" />
+        android:textSize="12sp" />
 
-</LinearLayout>
+
+
+</RelativeLayout>
