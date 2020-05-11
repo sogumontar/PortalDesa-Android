@@ -32,7 +32,7 @@ class PopularVilageAdapter(val listKec : List<KecamatanResponse>) : RecyclerView
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Picasso.get()
-            .load(R.drawable.balige)
+            .load("https://portal-desa.herokuapp.com/kecamatan/get/"+listKec.get(position).nama+".jpg")
             .into(holder.imgPopular)
 
         holder?.tvDesc.text = listKec.get(position).nama
