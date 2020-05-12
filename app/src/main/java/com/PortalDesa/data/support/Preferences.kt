@@ -2,6 +2,7 @@ package com.PortalDesa.data.support
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.provider.ContactsContract
 
 class Preferences(mContext: Context) {
 
@@ -13,12 +14,33 @@ class Preferences(mContext: Context) {
 
     val TOKEN = "token"
 
-    val ROLE = "Unknown"
     val SKU  = "Unknown"
+
+    val ROLES = ""
+
+    val NAMA = ""
 
     init {
         mSharedPreferences = mContext.getSharedPreferences("portal_preference", 0)
     }
+    fun setName(nama: String?) {
+        val e = mSharedPreferences.edit()
+        e.putString(NAMA, nama)
+        e.apply()
+    }fun getNama(): String {
+        val namas = mSharedPreferences.getString(NAMA, "")
+        return namas!!
+    }
+
+    fun setROLES(roles: String?) {
+        val e = mSharedPreferences.edit()
+        e.putString(ROLES, roles)
+        e.apply()
+    }fun getRoles(): String {
+        val roles = mSharedPreferences.getString(ROLES, "")
+        return roles!!
+    }
+
     fun setSku(sku: String?) {
         val e = mSharedPreferences.edit()
         e.putString(SKU, sku)
@@ -27,19 +49,11 @@ class Preferences(mContext: Context) {
         val skus = mSharedPreferences.getString(SKU, "")
         return skus!!
     }
-    fun setRole(role: String?) {
-        val e = mSharedPreferences.edit()
-        e.putString(ROLE, role)
-        e.apply()
-    }fun clearAll() {
+
+    fun clearAll() {
         val e = mSharedPreferences.all
         e.clear()
     }
-    fun getRole(): String {
-        val roles = mSharedPreferences.getString(ROLE, "")
-        return roles!!
-    }
-
     /**
      * Save data Token
      *

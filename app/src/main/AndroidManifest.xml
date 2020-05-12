@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".data.ui.main.activity.merchant.PenginapanForm"></activity>
+        <activity android:name=".data.ui.main.activity.merchant.CreatePenginapanForm"></activity>
+        <activity android:name=".data.ui.main.activity.merchant.PenginapanForm" />
         <activity android:name=".data.ui.main.activity.ProfileActivity" />
         <activity
             android:name=".data.ui.main.activity.SignUpActivity"

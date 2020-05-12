@@ -57,10 +57,15 @@ class SignInActivity : AppActivity(), View.OnClickListener{
                     val statusCode = userResponse!!.status
                     val token = userResponse!!.accessToken
                     val sku = userResponse!!.skuLog
+                    val roles = userResponse!!.role
+                    val nick = userResponse!!.nickName
                     if (statusCode != 401) {
+                        preferences.setName(nick)
+                        preferences.getNama()
+                        preferences.setROLES(roles)
+                        preferences.getRoles()
                         preferences.setToken(token)
-                        preferences.getSku()
-                        preferences.setRole(userResponse!!.role)
+                        preferences.getAccessToken()
                         preferences.setSku(sku)
                         preferences.getSku()
 
@@ -75,9 +80,9 @@ class SignInActivity : AppActivity(), View.OnClickListener{
         })
     }
 
-    private fun goToHome( role: String?){
+    private fun goToHome( roles: String?){
         var intent = Intent()
-        if(role!!.equals("ROLE_ADMIN")){
+        if(roles!!.equals("ROLE_ADMIN")){
             intent = Intent(this  , MainActivityAdmin::class.java)
         }else{
             intent = Intent(this, MainActivity::class.java)

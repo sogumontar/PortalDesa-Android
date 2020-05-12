@@ -69,9 +69,11 @@ interface  ApiServices{
     fun updateProfileBySku(@Path("sku") sku : String, @Body usersUpdateRequest : UsersUpdateRequest): Call<UsersUpdateRequest>
 
     @Headers(
-        "Content-Type:" + ApiConfigs.ROUTE_ADD_PENGINAPAN)
-    @POST(ApiConfigs.UPDATE_DETAIL_PROFILE)
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.ROUTE_ADD_PENGINAPAN)
     fun addPenginapan(@Body request : PenginapanRequest): Call<PenginapanRequest>
+
+
 
 
 

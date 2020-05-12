@@ -1,5 +1,7 @@
 package com.PortalDesa.data.ui.main.fragment
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +14,8 @@ import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.ui.main.activity.merchant.CreatePenginapanForm
 import com.PortalDesa.data.ui.main.adapter.ListProductAdapter
 import kotlinx.android.synthetic.main.fragment_produk.*
 import retrofit2.Response
@@ -20,7 +24,9 @@ import retrofit2.Response
  * Created by Sogumontar Hendra Simangunsong on 06/05/2020.
  */
 
-class ProductFragment : Fragment(){
+class ProductFragment : Fragment(), View.OnClickListener{
+
+    lateinit private var preferences : Preferences
 
     private var productResponse: List<ProductResponse>? = null
     companion object{
@@ -35,10 +41,17 @@ class ProductFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycler_view_produk.setHasFixedSize(true)
+        preferences = Preferences(activity as Context)
         initData()
     }
 
     fun initData(){
+        val role = preferences.getRoles()
+        button_create.setOnClickListener(this)
+        if(role.equals("ROLE_MERCHANT")){
+            button_create.visibility = View.VISIBLE
+        }
+        val sku = preferences.getSku()
         if (Connectivity().isNetworkAvailable(activity!!)) {
             val client = APIServiceGenerator().createService
             val call = client.getProductList()
@@ -68,6 +81,17 @@ class ProductFragment : Fragment(){
             view_animator.setDisplayedChild(1)
             recycler_view_produk.setAdapter(adapter)
 
+        }
+    }
+
+    fun goToForm(){
+        val intent = Intent(activity, CreatePenginapanForm::class.java)
+        startActivity(intent)
+    }
+
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            button_create.id-> goToForm()
         }
     }
 }
