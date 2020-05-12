@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/img_icon"
         android:layout_width="match_parent"
-        android:layout_height= "250dp"
+        android:layout_height="361dp"
         android:layout_alignParentStart="true"
         android:scaleType="fitXY"
         android:src="@drawable/ulos2" />
@@ -64,30 +64,32 @@
             android:text="Ulos ini digunakan untuk acara adat batak seperti  acara pernikahan dan lain lain."
             android:textSize="16sp" />
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
-    <Button
-        android:id="@+id/pesan"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_weight="1"
-        android:layout_margin="15dp"
-        android:background="@drawable/rounded_blue_secondary"
-        android:text="Pesan"
-        android:textColor="#ffff"/>
-        <Button
-            android:id="@+id/keranjang"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:layout_margin="15dp"
-            android:background="@drawable/rounded_green"
-            android:text="Keranjang"
-            android:textColor="#ffff"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/pesan"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_blue_secondary"
+                android:text="Pesan"
+                android:textColor="#ffff" />
+
+            <Button
+                android:id="@+id/keranjang"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_green"
+                android:text="Keranjang"
+                android:textColor="#ffff" />
+        </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>

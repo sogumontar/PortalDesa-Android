@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LoginKt</string>
+    <string name="app_name">Portal Desa</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_nama">Nama</string>
@@ -7,6 +7,7 @@
     <string name="prompt_alamat">Alamat</string>
     <string name="prompt_password">Password</string>
     <string name="daftar"><u>Daftar</u></string>
+    <string name="simpan"><u>Simpan</u></string>
     <string name="block"><u>Block</u></string>
     <string name="activate"><u>Activate</u></string>
     <string name="Masuk">Masuk</string>
@@ -14,7 +15,7 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="sign_up_tab_title_sign_up">Buat Akun</string>
     <string name="title_penginapan">Penginapan</string>
-    <string name="title_daftar_desa">Penginapan</string>
+    <string name="title_daftar_desa">Desa</string>
     <string name="title_product">Produk Desa</string>
     <string name="simpan_btn">Simpan</string>
     <string name="information">Pemberitahuan</string>

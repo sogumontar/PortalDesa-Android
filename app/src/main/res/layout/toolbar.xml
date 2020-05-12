@@ -11,14 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/blue_primary">
-
+        <ImageView
+            android:id="@+id/img_icons"
+            android:layout_width="72dp"
+            android:layout_height="56dp"
+            android:layout_margin="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/logoportaldesa"
+            android:translationZ="5dp" />
         <TextView
             android:id="@+id/tv_toolbar_title"
-            fontPath="fonts/SemiBold.otf"
+            fontPath="fonts/SemiBold.ot f"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="70dp"
-            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="18sp"
             tools:text="" />

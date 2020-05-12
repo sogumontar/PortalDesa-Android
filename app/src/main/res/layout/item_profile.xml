@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="4dp"
-        android:text="kgjdkfj"
+        android:text="Propil"
         android:textColor="@color/black_home"
         android:textSize="18sp"/>
 

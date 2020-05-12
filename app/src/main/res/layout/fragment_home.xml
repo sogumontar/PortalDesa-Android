@@ -79,6 +79,16 @@
                 android:textColor="@color/white"
                 android:text="Produk"
                 android:padding="20dp"/>
+            <Button
+                android:id="@+id/check"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_green"
+                android:layout_margin="5dp"
+                android:textColor="@color/white"
+                android:text="test input file"
+                android:padding="20dp"/>
 
         </LinearLayout>
 

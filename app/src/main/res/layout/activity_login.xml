@@ -31,10 +31,10 @@
 
         <ImageView
             android:id="@+id/logoApp"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="214dp"
+            android:layout_height="217dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logoportaldesa" />
 
         <TextView
             android:id="@+id/txt2"
@@ -95,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
                 android:text="Register"
+                android:clickable="true"
                 android:textColor="#ACE7EF"
                 android:textSize="14sp"
                 android:textStyle="bold" />
