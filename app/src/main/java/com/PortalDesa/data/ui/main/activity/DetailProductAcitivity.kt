@@ -1,5 +1,6 @@
 package com.PortalDesa.data.ui.main.activity
 
+import android.content.Intent
 import android.os.Bundle
 import com.PortalDesa.R
 import com.PortalDesa.data.base.AppActivity
@@ -14,11 +15,19 @@ class DetailProductAcitivity : AppActivity() {
 
         val name = intent.getStringExtra(Flag.PRODUCT_NAME)
         tv_nama.text = name.toString()
-//        daftar.setOnClickListener(){
-//            intent = Intent(this, SignsUpActivity::class.java)
-//            startActivity(intent)D
-//        }
+        keranjang.setOnClickListener(){
+            addToCart()
+            goToKeranjang()
+        }
 //        initView()
+    }
+
+    fun addToCart(){
+
+    }
+    fun goToKeranjang(){
+        intent = Intent(this, KeranjangActivity::class.java)
+        startActivity(intent)
     }
 
 //    private fun initView() {

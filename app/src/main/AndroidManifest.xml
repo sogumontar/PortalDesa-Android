@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".data.ui.main.activity.merchant.CreateProdukForm"></activity>
+        <activity android:name=".data.ui.main.activity.PemesananActivity"></activity>
+        <activity android:name=".data.ui.main.activity.KeranjangActivity" />
+        <activity android:name=".data.ui.main.activity.merchant.CreateProdukForm" />
         <activity android:name=".data.ui.main.activity.merchant.UpdatePenginapan" />
         <activity android:name=".data.ui.main.activity.merchant.CreatePenginapanForm" />
         <activity android:name=".data.ui.main.activity.merchant.PenginapanForm" />
