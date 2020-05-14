@@ -61,7 +61,7 @@ class SignInActivity : AppActivity(), View.OnClickListener{
                     val nick = userResponse!!.nickName
                     if (statusCode != 401) {
                         preferences.setName(nick)
-                        preferences.getNama()
+                        preferences.setNAMAp(nick)
                         preferences.setROLES(roles)
                         preferences.getRoles()
                         preferences.setToken(token)

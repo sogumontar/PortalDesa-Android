@@ -11,13 +11,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Selamat datang \ndi Aplikasi Portal Desa"
-        android:textColor="@color/black_home"
-        android:textSize="30sp"/>
+            <TextView
+                android:layout_width="411dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="Aplikasi Portal Desa"
+                android:textStyle="bold"
+                android:textColor="@color/black_home"
+                android:textSize="30sp" />
 
 
     <RelativeLayout

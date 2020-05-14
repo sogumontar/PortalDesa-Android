@@ -1,9 +1,6 @@
 package com.PortalDesa.data.apiService
 
-import com.PortalDesa.data.model.request.PenginapanRequest
-import com.PortalDesa.data.model.request.SignupRequest
-import com.PortalDesa.data.model.request.UserRequest
-import com.PortalDesa.data.model.request.UsersUpdateRequest
+import com.PortalDesa.data.model.request.*
 import com.PortalDesa.data.model.response.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -25,11 +22,7 @@ interface  ApiServices{
     @POST(ApiConfigs.SIGN_UP)
     fun doSignup(@Body signupRequest: SignupRequest): Call<SignupResponse>
 
-    //List Product
-    @Headers(
-        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
-    @GET(ApiConfigs.LIST_PRODUK)
-    fun getProductList(): Call<List<ProductResponse>>
+
 
     //List Kecamatan
     @Headers(
@@ -68,19 +61,54 @@ interface  ApiServices{
     @PUT(ApiConfigs.UPDATE_DETAIL_PROFILE)
     fun updateProfileBySku(@Path("sku") sku : String, @Body usersUpdateRequest : UsersUpdateRequest): Call<UsersUpdateRequest>
 
+    
+    //Penginapan
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @POST(ApiConfigs.ROUTE_ADD_PENGINAPAN)
     fun addPenginapan(@Body request : PenginapanRequest): Call<PenginapanRequest>
 
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ROUTE_PENGINAPAN_ALL)
+    fun lihatPenginapanAll(): Call<List<PenginapanResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ROUTE_PENGINAPAN_MERCHANT)
+    fun lihatPenginapanAllByMerchant(@Path("sku") sku : String): Call<List<PenginapanResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ROUTE_PENGINAPAN_BY_SKU)
+    fun lihatPenginapanBySku(@Path("sku") sku : String): Call<PenginapanResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @PUT(ApiConfigs.ROUTE_PENGINAPAN_DELETE_BY_SKU)
+    fun deletePenginapan(@Path("sku") sku : String): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @PUT(ApiConfigs.ROUTE_UPDATE_PENGINAPAN_BY_SKU)
+    fun updatePenginapan(@Path("sku") sku : String, @Body penginapanRequest: PenginapanRequest): Call<DefaultResponse>
 
 
 
+    //Produk
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_PRODUK)
+    fun getProductList(): Call<List<ProductResponse>>
 
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_PRODUK_BY_SKU_ADMIN)
+    fun getProductBySkuAdmin(@Path("sku")sku : String): Call<List<ProductResponse>>
 
-
-
-
-
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.ROUTE_ADD_PRODUK)
+    fun addProduk(@Body request : ProdukRequest): Call<ProdukRequest>
 
 }

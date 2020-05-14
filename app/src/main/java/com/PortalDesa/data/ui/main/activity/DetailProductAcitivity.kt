@@ -15,7 +15,7 @@ class DetailProductAcitivity : AppActivity() {
         val name = intent.getStringExtra(Flag.PRODUCT_NAME)
         tv_nama.text = name.toString()
 //        daftar.setOnClickListener(){
-//            intent = Intent(this, SignUpActivity::class.java)
+//            intent = Intent(this, SignsUpActivity::class.java)
 //            startActivity(intent)D
 //        }
 //        initView()

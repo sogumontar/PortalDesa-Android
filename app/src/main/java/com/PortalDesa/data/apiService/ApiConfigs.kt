@@ -6,7 +6,7 @@ interface ApiConfigs {
         const val SIGN_UP = "/auth/signup"
         const val LIST_KECAMATAN = "/kecamatan/"
         const val LIST_DESA_KECAMATAN = "/desa/kecamatan/{kecamatan}"
-        const val LIST_PRODUK = "/produk/"
+
         const val DETAIL_PROFILE = "/auth/findSku/{sku}"
         const val UPDATE_DETAIL_PROFILE = "/auth/update/{sku}"
 
@@ -21,6 +21,15 @@ interface ApiConfigs {
 
         //Penginapan
         const val ROUTE_ADD_PENGINAPAN = "/penginapan/add"
+        const val ROUTE_PENGINAPAN_ALL = "/penginapan/"
+        const val ROUTE_PENGINAPAN_MERCHANT = "/penginapan/bySkuAdmin/{sku}"
+        const val ROUTE_PENGINAPAN_DELETE_BY_SKU = "/penginapan/delete/{sku}"
+        const val ROUTE_PENGINAPAN_BY_SKU = "/penginapan/{sku}"
+        const val ROUTE_UPDATE_PENGINAPAN_BY_SKU = "/update/{sku}"
 
+        //Produk
+        const val ROUTE_ADD_PRODUK = "/produk/add"
+        const val LIST_PRODUK = "/produk/"
+        const val LIST_PRODUK_BY_SKU_ADMIN = "/produk/skuDesa/{sku}"
     }
 }

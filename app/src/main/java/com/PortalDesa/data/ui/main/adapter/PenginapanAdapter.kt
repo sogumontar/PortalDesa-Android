@@ -13,9 +13,9 @@ class PenginapanAdapter(val listDesa : List<ListDesaKecamatanResponse>) : Recycl
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
-        val tvDesa = v.tv_desa
+        val tvDesa = v.penginapan_item_nama
         val tvKecamatan = v.tv_kecamatan
-        val imgLogo = v.img_logo
+        val imgLogo = v.img_penginapan
     }
 
 

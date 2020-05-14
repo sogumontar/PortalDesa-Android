@@ -16,8 +16,10 @@ import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.merchant.CreatePenginapanForm
+import com.PortalDesa.data.ui.main.activity.merchant.CreateProdukForm
 import com.PortalDesa.data.ui.main.adapter.ListProductAdapter
 import kotlinx.android.synthetic.main.fragment_produk.*
+import kotlinx.android.synthetic.main.item_product.*
 import retrofit2.Response
 
 /**
@@ -47,29 +49,70 @@ class ProductFragment : Fragment(), View.OnClickListener{
 
     fun initData(){
         val role = preferences.getRoles()
-        button_create.setOnClickListener(this)
-        if(role.equals("ROLE_MERCHANT")){
-            button_create.visibility = View.VISIBLE
-        }
+        button_create_produk.setOnClickListener(this)
+//        if(role.equals("ROLE_MERCHANT")){
+//            button_create_produk.visibility = View.VISIBLE
+//            produk_btn_hapus.visibility = View.VISIBLE
+//            produk_btn_update.visibility=View.VISIBLE
+//            produk_btn_cart.visibility=View.GONE
+//            produk_btn_pesan.visibility=View.GONE
+//        }else if(role.equals("ROLE_USER")){
+//            button_create_produk.visibility = View.GONE
+//            produk_btn_hapus.visibility = View.GONE
+//            produk_btn_update.visibility=View.GONE
+//            produk_btn_cart.visibility=View.VISIBLE
+//            produk_btn_pesan.visibility=View.VISIBLE
+//        }
         val sku = preferences.getSku()
         if (Connectivity().isNetworkAvailable(activity!!)) {
             val client = APIServiceGenerator().createService
-            val call = client.getProductList()
-            call.enqueue(object : retrofit2.Callback<List<ProductResponse>> {
-                override fun onResponse(
-                    call: retrofit2.Call<List<ProductResponse>>,
-                    response: Response<List<ProductResponse>>
-                ) {
-                    val listProduk = response.body()
-                    productResponse = listProduk
-                    displayProduct()
-                }
+            if(role.equals("ROLE_MERCHANT")) {
+                val call = client.getProductBySkuAdmin(sku)
+                call.enqueue(object : retrofit2.Callback<List<ProductResponse>> {
+                    override fun onResponse(
+                        call: retrofit2.Call<List<ProductResponse>>,
+                        response: Response<List<ProductResponse>>
+                    ) {
+                        val listProduk = response.body()
+                        productResponse = listProduk
+                        displayProduct()
+                    }
 
-                override fun onFailure(call: retrofit2.Call<List<ProductResponse>>, t: Throwable) {
-                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
-                }
-            })
+                    override fun onFailure(
+                        call: retrofit2.Call<List<ProductResponse>>,
+                        t: Throwable
+                    ) {
+                        Log.i(
+                            this.javaClass.simpleName,
+                            " Requested API : " + call.request().body()!!
+                        )
+                        Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                    }
+                })
+            }else{
+                val call = client.getProductList()
+                call.enqueue(object : retrofit2.Callback<List<ProductResponse>> {
+                    override fun onResponse(
+                        call: retrofit2.Call<List<ProductResponse>>,
+                        response: Response<List<ProductResponse>>
+                    ) {
+                        val listProduk = response.body()
+                        productResponse = listProduk
+                        displayProduct()
+                    }
+
+                    override fun onFailure(
+                        call: retrofit2.Call<List<ProductResponse>>,
+                        t: Throwable
+                    ) {
+                        Log.i(
+                            this.javaClass.simpleName,
+                            " Requested API : " + call.request().body()!!
+                        )
+                        Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                    }
+                })
+            }
         }
     }
 
@@ -85,13 +128,13 @@ class ProductFragment : Fragment(), View.OnClickListener{
     }
 
     fun goToForm(){
-        val intent = Intent(activity, CreatePenginapanForm::class.java)
+        val intent = Intent(activity, CreateProdukForm::class.java)
         startActivity(intent)
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
-            button_create.id-> goToForm()
+            button_create_produk.id-> goToForm()
         }
     }
 }

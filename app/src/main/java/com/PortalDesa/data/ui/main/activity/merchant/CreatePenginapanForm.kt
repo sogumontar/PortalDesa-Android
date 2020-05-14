@@ -24,10 +24,10 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         preferences = Preferences(this)
         super.onCreate(savedInstanceState)
+        sku = preferences.getSku()
+        nickName = preferences.getNamap()
         setContentView(R.layout.activity_create_penginapan_form)
         btn_save.setOnClickListener(this)
-        sku = preferences.getSku()
-        nickName = preferences.getNama()
     }
     fun save(request: PenginapanRequest) {
         showProgressDialog()
@@ -59,6 +59,7 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
         requestUser.jumlahKamar= Integer.parseInt(jumlah);
         requestUser.lokasi= penginapan_lokasi.text.toString()
         requestUser.desa = nickName
+        requestUser.skumerchant = sku
         requestUser.kecamatan= "Silaen"
         return requestUser
     }

@@ -30,7 +30,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/penginapan_nama"
+                android:id="@+id/update_penginapan_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -43,7 +43,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/penginapan_harga"
+                android:id="@+id/update_penginapan_harga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -58,7 +58,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/penginapan_deskripsi"
+                android:id="@+id/update_penginapan_deskripsi"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/penginapan_kamar"
+                android:id="@+id/update_penginapan_kamar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
@@ -92,7 +92,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/penginapan_lokasi"
+                android:id="@+id/update_penginapan_lokasi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -101,13 +101,12 @@
                 android:inputType="text"/>
 
             <Button
-                android:id="@+id/btn_save"
+                android:id="@+id/update_btn_save"
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_btn"
                 android:text="@string/simpan"
-                android:layout_margin="20dp"
                 android:textColor="#ffff"/>
 
         </LinearLayout>

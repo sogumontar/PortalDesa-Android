@@ -32,5 +32,58 @@
         android:textColor="@color/black2"
         android:text="Balige"
         android:textSize="18sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/produk_btn_update"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_blue_secondary"
+            android:text="Ubah"
+            android:textColor="#ffff" />
+
+        <Button
+            android:id="@+id/produk_btn_hapus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_red_button"
+            android:text="Hapus"
+            android:visibility="gone"
+            android:textColor="#ffff" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/produk_btn_pesan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_blue_secondary"
+            android:text="Pesan"
+            android:visibility="gone"
+            android:textColor="#ffff" />
+
+        <Button
+            android:id="@+id/produk_btn_cart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_green"
+            android:text="keranjang"
+            android:visibility="gone"
+            android:textColor="#ffff" />
+    </LinearLayout>
+
 
 </LinearLayout>

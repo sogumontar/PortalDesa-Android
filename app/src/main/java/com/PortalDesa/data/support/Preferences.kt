@@ -20,9 +20,22 @@ class Preferences(mContext: Context) {
 
     val NAMA = ""
 
+    val NAMAp = " "
+
     init {
         mSharedPreferences = mContext.getSharedPreferences("portal_preference", 0)
     }
+
+    fun setNAMAp(nama: String?) {
+        val e = mSharedPreferences.edit()
+        e.putString(NAMAp, nama)
+        e.apply()
+    }
+    fun getNamap(): String {
+        val nama = mSharedPreferences.getString(NAMAp, "")
+        return nama!!
+    }
+
     fun setName(nama: String?) {
         val e = mSharedPreferences.edit()
         e.putString(NAMA, nama)
@@ -71,6 +84,9 @@ class Preferences(mContext: Context) {
     fun clearToken() {
         val e = mSharedPreferences.edit()
         e.putString(TOKEN, "")
+        e.putString(ROLES, "")
+        e.putString(SKU, "")
+        e.putString(NAMA, "")
         e.commit()
     }
 

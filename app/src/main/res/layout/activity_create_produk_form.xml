@@ -30,11 +30,11 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/penginapan_nama"
+                android:id="@+id/produk_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukan nama penginapan"
+                android:hint="Masukan nama produk"
                 android:padding="8dp" />
             <TextView
                 android:layout_width="wrap_content"
@@ -43,11 +43,11 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/penginapan_harga"
+                android:id="@+id/produk_harga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukan harga penginapan"
+                android:hint="Masukan harga produk"
                 android:padding="8dp"
                 android:inputType="number"/>
 
@@ -58,50 +58,19 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/penginapan_deskripsi"
+                android:id="@+id/produk_deskripsi"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukkan deskripsi penginapan"
+                android:hint="Masukkan deskripsi produk"
                 android:padding="8dp"
                 android:inputType="textImeMultiLine"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                android:text="Jumlah Kamar"
-                android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/penginapan_kamar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginBottom="15dp"
-                android:hint="Masukkan jumlah kamar"
-                android:padding="8dp"
-                android:inputType="number"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lokasi"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/penginapan_lokasi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:padding="8dp"
-                android:hint="Masukkan Lokasi penginapan"
-                android:inputType="text"/>
 
             <Button
-                android:id="@+id/btn_save"
+                android:id="@+id/btn_produk_save"
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

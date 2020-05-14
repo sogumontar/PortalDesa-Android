@@ -15,5 +15,6 @@ class PenginapanRequest{
     var lokasi: String? = null
     var desa: String? = null
     var kecamatan: String? = null
+    var skumerchant: String? = null
 
 }
