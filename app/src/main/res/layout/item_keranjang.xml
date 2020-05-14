@@ -1,125 +1,43 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:id="@+id/tab1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/txt3"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:text="Pembelian"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_below="@+id/imageView"
-            android:layout_marginTop="70dp"
-            />
-
-        <FrameLayout
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+        <LinearLayout
+            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txt3"
-            android:layout_marginTop="10dp">
-
+            android:orientation="horizontal">
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="100dp"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
                 android:src="@drawable/ulos2" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
             <TextView
-                android:id="@+id/txt1"
-                android:layout_width="250dp"
-                android:layout_height="60dp"
-                android:layout_gravity="end|center_horizontal"
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Ulos"
-                android:textSize="23sp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
             <TextView
-                android:id="@+id/tx1"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_gravity="end|center_horizontal"
+                android:id="@+id/tv_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Rp 290.000"
-                android:textColor="@color/red_danger"
-                android:layout_below="@+id/txt1"
-                android:layout_marginTop="40dp"/>
-
-            <TextView
-                android:id="@+id/tx2"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_gravity="end|center_horizontal"
-                android:text="Size L / 2 Unit"
-                android:textColor="@color/black2"
-                android:layout_below="@+id/txt1"
-                android:layout_marginTop="70dp"/>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/cart_delete"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="30dp"
-                    android:text="Hapus"
-                    android:textColor="@color/white"
-                    android:background="@drawable/rounded_red_button"/>
-                <Button
-                    android:id="@+id/cart_update"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="30dp"
-                    android:layout_below="@+id/cart_delete"
-                    android:text="Hapus"
-                    android:textColor="@color/white"
-                    android:background="@drawable/rounded_red_button"/>
-                <EditText
-                    android:id="@+id/cart_jumlah"
-                    android:layout_width="78dp"
-                    android:layout_height="50dp"
-                    android:layout_below="@+id/cart_delete"
-                    android:layout_gravity="end|center_horizontal"
-                    android:layout_marginTop="85dp"
-                    android:padding="8dp"
-                    android:inputType="number"/>
-
-
-            </FrameLayout>
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:id="@+id/tx"
-                android:layout_width="250dp"
-                android:layout_height="60dp"
-                android:text="Ulos"
-                android:textSize="23sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/tx4"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:text="Rp 290.000"
-                android:textColor="@color/red_danger"
-                android:layout_below="@+id/txt1"
-                android:layout_marginTop="40dp"/>
-        </FrameLayout>
-    </LinearLayout>
-</RelativeLayout>
+                android:textColor="@color/red_danger"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_del"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Hapus"
+                android:textColor="@color/white"
+                android:background="@drawable/rounded_red_button"/>
+        </LinearLayout>
+</LinearLayout>
