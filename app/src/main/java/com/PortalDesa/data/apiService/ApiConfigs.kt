@@ -21,6 +21,7 @@ interface ApiConfigs {
 
         //Penginapan
         const val ROUTE_ADD_PENGINAPAN = "/penginapan/add"
+        const val ROUTE_ADD_PENGINAPAN_GAMBAR = "/penginapan/penginapan/add/gambar"
 
     }
 }

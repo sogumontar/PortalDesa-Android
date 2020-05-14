@@ -1,9 +1,6 @@
 package com.PortalDesa.data.apiService
 
-import com.PortalDesa.data.model.request.PenginapanRequest
-import com.PortalDesa.data.model.request.SignupRequest
-import com.PortalDesa.data.model.request.UserRequest
-import com.PortalDesa.data.model.request.UsersUpdateRequest
+import com.PortalDesa.data.model.request.*
 import com.PortalDesa.data.model.response.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -72,6 +69,11 @@ interface  ApiServices{
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @POST(ApiConfigs.ROUTE_ADD_PENGINAPAN)
     fun addPenginapan(@Body request : PenginapanRequest): Call<PenginapanRequest>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.ROUTE_ADD_PENGINAPAN_GAMBAR)
+    fun addPenginapanimage(@Body request : PenginapanImageRequest): Call<PenginapanImageResponse>
 
 
 

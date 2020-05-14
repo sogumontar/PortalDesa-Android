@@ -1,5 +1,6 @@
 package com.PortalDesa.data.ui.main.activity.merchant
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
@@ -8,32 +9,42 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.PortalDesa.R
+import kotlinx.android.synthetic.main.activity_penginapan_form.*
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import android.util.Base64
+import com.PortalDesa.data.apiService.APIServiceGenerator
+import com.PortalDesa.data.model.request.PenginapanImageRequest
+import com.PortalDesa.data.model.request.UserRequest
+import com.PortalDesa.data.model.response.ListDesaKecamatanResponse
+import com.PortalDesa.data.model.response.PenginapanImageResponse
+import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.support.Preferences
+import kotlinx.android.synthetic.main.activity_login.*
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class PenginapanForm : AppCompatActivity() {
 
-    private var btn: Button? = null
-    private var imageview: ImageView? = null
     private val GALLERY = 1
     private val CAMERA = 2
 
+    var preferences : Preferences? = null
+
+    var name : String = ""
+    var bitmap_val : Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_penginapan_form)
-        btn = findViewById<View>(R.id.btn) as Button
-        imageview = findViewById<View>(R.id.iv) as ImageView
-
-        btn!!.setOnClickListener { showPictureDialog() }
+        preferences = Preferences(this)
+        btn_image.setOnClickListener { showPictureDialog() }
+        btn_send.setOnClickListener{encoder()}
     }
 
 
@@ -63,7 +74,42 @@ class PenginapanForm : AppCompatActivity() {
         startActivityForResult(intent, CAMERA)
     }
 
-    public override fun onActivityResult(requestCode:Int, resultCode:Int, data: Intent?) {
+    fun encoder(){
+        val baos = ByteArrayOutputStream()
+        bitmap_val!!.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val imageBytes = baos.toByteArray()
+        val imageString = Base64.encodeToString(imageBytes, Base64.NO_WRAP or Base64.URL_SAFE)
+        uploadImagePenginapan(imageString)
+    }
+
+    fun uploadImagePenginapan(imageString : String){
+        if (Connectivity().isNetworkAvailable(this)) {
+            val request = PenginapanImageRequest()
+            request.nama = preferences!!.getSku()
+            request.gambar = imageString
+            val client = APIServiceGenerator().createService
+            val call = client.addPenginapanimage(request)
+            call.enqueue(object : Callback<PenginapanImageResponse> {
+                override fun onResponse(
+                    call: retrofit2.Call<PenginapanImageResponse>,
+                    response: Response<PenginapanImageResponse>
+                ) {
+                    Log.i("cek", "cek")
+                    val listKecamatanResponse = response.body()
+                }
+
+                override fun onFailure(
+                    call: retrofit2.Call<PenginapanImageResponse>,
+                    t: Throwable
+                ) {
+                    Log.i("cek", "cek2")
+                }
+            })
+        }
+
+    }
+
+    override fun onActivityResult(requestCode:Int, resultCode:Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)
 /* if (resultCode == this.RESULT_CANCELED)
@@ -79,6 +125,8 @@ return
                 {
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
                     val path = saveImage(bitmap)
+                    bitmap_val = bitmap
+                    name = path
                     Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
 
                     imageview!!.setImageBitmap(bitmap)
@@ -95,8 +143,10 @@ return
         else if (requestCode == CAMERA)
         {
             val thumbnail = data!!.extras!!.get("data") as Bitmap
+            bitmap_val = thumbnail
             imageview!!.setImageBitmap(thumbnail)
-            saveImage(thumbnail)
+            val path = saveImage(thumbnail)
+            name = path
             Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
         }
     }
@@ -126,6 +176,7 @@ return
                 arrayOf(f.getPath()),
                 arrayOf("image/jpeg"), null)
             fo.close()
+            name = f.getAbsolutePath()
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath())
 
             return f.getAbsolutePath()
