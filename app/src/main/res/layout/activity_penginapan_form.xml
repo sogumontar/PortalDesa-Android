@@ -8,7 +8,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn"
+        android:id="@+id/btn_image"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -21,5 +21,14 @@
         android:layout_marginTop="20dp"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher"
-        android:id="@+id/iv"/>
+        android:id="@+id/imageview"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_send"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Upload" />
 </LinearLayout>

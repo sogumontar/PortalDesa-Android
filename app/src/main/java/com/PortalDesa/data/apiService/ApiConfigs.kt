@@ -26,6 +26,7 @@ interface ApiConfigs {
         const val ROUTE_PENGINAPAN_DELETE_BY_SKU = "/penginapan/delete/{sku}"
         const val ROUTE_PENGINAPAN_BY_SKU = "/penginapan/{sku}"
         const val ROUTE_UPDATE_PENGINAPAN_BY_SKU = "/update/{sku}"
+        const val ROUTE_ADD_PENGINAPAN_GAMBAR = "/penginapan/penginapan/add/gambar"
 
         //Produk
         const val ROUTE_ADD_PRODUK = "/produk/add"

@@ -72,6 +72,9 @@ interface  ApiServices{
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @GET(ApiConfigs.ROUTE_PENGINAPAN_ALL)
     fun lihatPenginapanAll(): Call<List<PenginapanResponse>>
+    @POST(ApiConfigs.ROUTE_ADD_PENGINAPAN_GAMBAR)
+    fun addPenginapanimage(@Body request : PenginapanImageRequest): Call<PenginapanImageResponse>
+
 
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
