@@ -114,4 +114,10 @@ interface  ApiServices{
     @POST(ApiConfigs.ROUTE_ADD_PRODUK)
     fun addProduk(@Body request : ProdukRequest): Call<ProdukRequest>
 
+    //Keranjang
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_CART_CUSTOMER)
+    fun cartCustomer(@Body request : KeranjangRequest): Call<KeranjangRequest>
+
 }

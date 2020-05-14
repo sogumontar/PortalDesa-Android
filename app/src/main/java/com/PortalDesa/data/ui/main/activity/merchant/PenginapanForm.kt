@@ -1,33 +1,29 @@
 package com.PortalDesa.data.ui.main.activity.merchant
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.PortalDesa.R
+import com.PortalDesa.data.apiService.APIServiceGenerator
+import com.PortalDesa.data.model.request.PenginapanImageRequest
+import com.PortalDesa.data.model.response.PenginapanImageResponse
+import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.support.Preferences
 import kotlinx.android.synthetic.main.activity_penginapan_form.*
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import android.util.Base64
-import com.PortalDesa.data.apiService.APIServiceGenerator
-import com.PortalDesa.data.model.request.PenginapanImageRequest
-import com.PortalDesa.data.model.request.UserRequest
-import com.PortalDesa.data.model.response.ListDesaKecamatanResponse
-import com.PortalDesa.data.model.response.PenginapanImageResponse
-import com.PortalDesa.data.support.Connectivity
-import com.PortalDesa.data.support.Preferences
-import kotlinx.android.synthetic.main.activity_login.*
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
 
 class PenginapanForm : AppCompatActivity() {
@@ -74,6 +70,14 @@ class PenginapanForm : AppCompatActivity() {
         startActivityForResult(intent, CAMERA)
     }
 
+    fun imageToString(BitmapData: Bitmap): String? {
+        val bos = ByteArrayOutputStream()
+        BitmapData.compress(Bitmap.CompressFormat.PNG, 100, bos)
+        val byte_arr = bos.toByteArray()
+        //appendLog(file);
+        return Base64.encodeToString(byte_arr, Base64.DEFAULT)
+    }
+
     fun encoder(){
         val baos = ByteArrayOutputStream()
         bitmap_val!!.compress(Bitmap.CompressFormat.JPEG, 100, baos)
@@ -82,7 +86,7 @@ class PenginapanForm : AppCompatActivity() {
         uploadImagePenginapan(imageString)
     }
 
-    fun uploadImagePenginapan(imageString : String){
+    fun uploadImagePenginapan(imageString: String?){
         if (Connectivity().isNetworkAvailable(this)) {
             val request = PenginapanImageRequest()
             request.nama = preferences!!.getSku()
@@ -124,6 +128,7 @@ return
                 try
                 {
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
+                    uploadImagePenginapan(imageToString(bitmap))
                     val path = saveImage(bitmap)
                     bitmap_val = bitmap
                     name = path

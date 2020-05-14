@@ -26,11 +26,14 @@ interface ApiConfigs {
         const val ROUTE_PENGINAPAN_DELETE_BY_SKU = "/penginapan/delete/{sku}"
         const val ROUTE_PENGINAPAN_BY_SKU = "/penginapan/{sku}"
         const val ROUTE_UPDATE_PENGINAPAN_BY_SKU = "/update/{sku}"
-        const val ROUTE_ADD_PENGINAPAN_GAMBAR = "/penginapan/penginapan/add/gambar"
+        const val ROUTE_ADD_PENGINAPAN_GAMBAR = "/produk/add/gambar"
 
         //Produk
         const val ROUTE_ADD_PRODUK = "/produk/add"
         const val LIST_PRODUK = "/produk/"
         const val LIST_PRODUK_BY_SKU_ADMIN = "/produk/skuDesa/{sku}"
+
+        //Cart
+        const val LIST_CART_CUSTOMER = "/customer/{sku}"
     }
 }
