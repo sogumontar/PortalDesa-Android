@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.item_popular_vilage.view.*
 /**
  * Created by Sogumontar Hendra Simangunsong on 06/05/2020.
  */
-class ListProductAdapter(val context : Context, val listProduk : List<ProductResponse>) : RecyclerView.Adapter<ListProductAdapter.ViewHolder>() {
+class ListProductAdapter(val context : Context, var listProduk : List<ProductResponse>) : RecyclerView.Adapter<ListProductAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
@@ -27,6 +27,10 @@ class ListProductAdapter(val context : Context, val listProduk : List<ProductRes
         val imgPopular = v.img_icon
     }
 
+    fun filterList(myDataset: List<ProductResponse>) {
+        listProduk = myDataset
+        notifyDataSetChanged()
+    }
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(
