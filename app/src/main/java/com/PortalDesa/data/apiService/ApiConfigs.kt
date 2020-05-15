@@ -35,6 +35,7 @@ interface ApiConfigs {
         const val LIST_PRODUK_BY_SKU_PRODUK = "/produk/sku/{sku}"
 
         //Cart
-        const val LIST_CART_CUSTOMER = "/customer/{sku}"
+        const val LIST_CART_CUSTOMER = "/keranjang/customer/{sku}"
+        const val ADD_TO_CART_CUSTOMER = "/keranjang/save"
     }
 }

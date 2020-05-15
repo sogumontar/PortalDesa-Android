@@ -11,5 +11,5 @@ class SignupRequest{
     var email: String? = null
     var password: String? = null
     var confirmPassword: String? = null
-    var role: String? = null
+    var role: String? = "ROLE_USER"
 }

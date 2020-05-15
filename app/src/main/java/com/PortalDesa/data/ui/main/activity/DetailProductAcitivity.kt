@@ -4,9 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.base.AppActivity
+import com.PortalDesa.data.model.request.KeranjangRequest
+import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Flag
@@ -18,18 +21,19 @@ class DetailProductAcitivity : AppActivity() {
     private var productResponse:ProductResponse? = null
     lateinit var preferences: Preferences
     var role: String?=""
+    var skuLogin: String? =""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
         preferences = Preferences(this)
         role=preferences.getRoles()
+        skuLogin=preferences.getSku()
         val name = intent.getStringExtra(Flag.PRODUCT_NAME)
         initView()
         initData();
 //        tv_nama.text = name.toString()
         keranjang.setOnClickListener() {
             addToCart()
-            goToKeranjang()
         }
     }
 
@@ -61,7 +65,7 @@ class DetailProductAcitivity : AppActivity() {
             produk_update_btn.visibility= View.VISIBLE
             pesan.visibility=View.GONE
             keranjang.visibility=View.GONE
-        }else if(role.equals("ROLE_CUSTOMER")){
+        }else if(role.equals("ROLE_USER")){
             produk_delete_btn.visibility= View.GONE
             produk_update_btn.visibility= View.GONE
             pesan.visibility=View.VISIBLE
@@ -80,7 +84,43 @@ class DetailProductAcitivity : AppActivity() {
         tv_desc.setText(productResponse?.deskripsi)
     }
     fun addToCart() {
+        val a= Jumlah.text.toString()
+        if(a.equals("")){
+            Toast.makeText(this,"Masukkan Jumlah Pesanan",Toast.LENGTH_SHORT).show()
+        }else {
+            if (Connectivity().isNetworkAvailable(this)) {
+                val client = APIServiceGenerator().createService
+                val call = client.addToCart(getRequest())
+                call.enqueue(object : retrofit2.Callback<DefaultResponse> {
+                    override fun onResponse(
+                        call: retrofit2.Call<DefaultResponse>,
+                        response: Response<DefaultResponse>
+                    ) {
+                        goToKeranjang()
+                    }
 
+                    override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
+                        Log.i(
+                            this.javaClass.simpleName,
+                            " Requested API : " + call.request().body()!!
+                        )
+                        Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                    }
+                })
+
+            }
+        }
+    }
+
+    fun getRequest(): KeranjangRequest{
+        val keranjangRequest= KeranjangRequest()
+        keranjangRequest.id =  productResponse?.sku
+        keranjangRequest.idCustomer = skuLogin
+        keranjangRequest.idProduk = productResponse?.sku
+        keranjangRequest.jumlah = Integer.parseInt(Jumlah.text.toString())
+        keranjangRequest.skuDesa = productResponse?.skuDesa
+        keranjangRequest.status = 1
+        return keranjangRequest
     }
 
     fun goToKeranjang() {

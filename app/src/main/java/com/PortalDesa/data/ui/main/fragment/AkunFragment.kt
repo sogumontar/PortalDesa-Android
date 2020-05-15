@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.PortalDesa.R
 import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.ui.main.activity.KeranjangActivity
 import com.PortalDesa.data.ui.main.activity.ProfileActivity
 import com.PortalDesa.data.ui.main.activity.SignInActivity
 import com.PortalDesa.data.ui.main.activity.SignUpActivity
@@ -57,6 +58,10 @@ class AkunFragment : Fragment(), View.OnClickListener {
         val intent = Intent(activity, ProfileActivity::class.java)
         startActivity(intent)
     }
+    private fun goToKeranjang(){
+        val intent = Intent(activity, KeranjangActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun doLogout(){
         preferences.clearToken()
@@ -72,6 +77,8 @@ class AkunFragment : Fragment(), View.OnClickListener {
             btn_register.id-> goToRegister()
             btn_logout.id-> doLogout()
             btn_profile.id-> goProfile()
+            btn_keranjang_akun.id -> goToKeranjang()
+
         }
     }
 
@@ -81,11 +88,13 @@ class AkunFragment : Fragment(), View.OnClickListener {
         btn_logout.setOnClickListener(this)
         btn_profile.setOnClickListener(this)
         btn_pesanan.setOnClickListener(this)
+        btn_keranjang_akun.setOnClickListener(this)
         if(!tok.equals("")){
             ln_signin.visibility = View.GONE
             btn_logout.visibility = View.VISIBLE
             btn_profile.visibility=View.VISIBLE
             btn_pesanan.visibility=View.VISIBLE
+            btn_keranjang_akun.visibility=View.VISIBLE
         }else{
             val intent = Intent(activity, SignInActivity::class.java)
             startActivity(intent)

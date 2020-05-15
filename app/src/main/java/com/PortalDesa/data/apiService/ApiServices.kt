@@ -125,4 +125,9 @@ interface  ApiServices{
     @GET(ApiConfigs.LIST_CART_CUSTOMER)
     fun cartCustomer(@Path("sku")sku : String): Call<List<KeranjangResponse>>
 
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.ADD_TO_CART_CUSTOMER)
+    fun addToCart(@Body request : KeranjangRequest): Call<DefaultResponse>
+
 }

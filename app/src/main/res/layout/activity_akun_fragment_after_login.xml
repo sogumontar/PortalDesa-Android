@@ -99,6 +99,23 @@
             android:text="Pesanan"
             android:padding="20dp"/>
         </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btn_keranjang"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_green"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:text="Keranjang"
+                    android:padding="20dp"/>
+            </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

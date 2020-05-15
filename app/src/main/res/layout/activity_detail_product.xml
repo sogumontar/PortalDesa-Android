@@ -51,7 +51,7 @@
             android:layout_margin="10dp"
             android:layout_gravity="center"
             android:textColor="@color/black"
-            android:text="Ulos"
+            android:text=""
             android:textSize="40sp" />
 
             <TextView
@@ -63,7 +63,7 @@
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
                 android:textColor="@color/black2"
-                android:text="Rp 300.000"
+                android:text="Rp "
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -71,11 +71,32 @@
         <TextView
             android:id="@+id/tv_desc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="122dp"
             android:layout_margin="10dp"
+            android:text="Deskripsi"
             android:textColor="@color/black2"
-            android:text="Ulos ini digunakan untuk acara adat batak seperti  acara pernikahan dan lain lain."
             android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="46dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="122dp"
+                android:layout_margin="10dp"
+                android:text="Jumlah"
+                android:textColor="@color/black2"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/Jumlah"
+                android:layout_width="293dp"
+                android:layout_height="match_parent"
+                android:inputType="number">
+
+            </EditText>
+        </LinearLayout>
 
     </LinearLayout>
     </LinearLayout>

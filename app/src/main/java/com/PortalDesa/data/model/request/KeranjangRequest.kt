@@ -10,8 +10,8 @@ class KeranjangRequest{
     var id: String? = null
     var idCustomer: String? = null
     var idProduk: String? = null
-    var jumlah: String? = null
+    var jumlah: Int? = 0
     var skuDesa: String? = null
-    var status: String? = null
+    var status: Int? = 0
 
 }

@@ -28,6 +28,7 @@ class KeranjangActivity : AppActivity() {
         val menuListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recycler_view_keranjang.setLayoutManager(menuListLayoutManager)
         recycler_view_keranjang.setNestedScrollingEnabled(false)
+        initData()
         initView()
     }
 
