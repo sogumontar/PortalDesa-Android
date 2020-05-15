@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
+import com.PortalDesa.data.model.response.KeranjangResponse
+import com.PortalDesa.data.model.response.PenginapanResponse
 import kotlinx.android.synthetic.main.item_keranjang.view.*
 
 /**
  * Created by Sogumontar Hendra Simangunsong on 14/05/2020.
  */
-class KeranjangAdapter(val context : Context) : RecyclerView.Adapter<KeranjangAdapter.ViewHolder>() {
+class KeranjangAdapter(val context : Context, val listKeranjang: List<KeranjangResponse>)
+    : RecyclerView.Adapter<KeranjangAdapter.ViewHolder>() {
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
         val tvDesc = v.btn_del

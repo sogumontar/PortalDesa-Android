@@ -32,6 +32,7 @@ interface ApiConfigs {
         const val ROUTE_ADD_PRODUK = "/produk/add"
         const val LIST_PRODUK = "/produk/"
         const val LIST_PRODUK_BY_SKU_ADMIN = "/produk/skuDesa/{sku}"
+        const val LIST_PRODUK_BY_SKU_PRODUK = "/produk/sku/{sku}"
 
         //Cart
         const val LIST_CART_CUSTOMER = "/customer/{sku}"

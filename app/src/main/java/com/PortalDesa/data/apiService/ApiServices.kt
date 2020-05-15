@@ -111,6 +111,11 @@ interface  ApiServices{
 
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_PRODUK_BY_SKU_PRODUK)
+    fun getProductBySku(@Path("sku")sku : String): Call<ProductResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @POST(ApiConfigs.ROUTE_ADD_PRODUK)
     fun addProduk(@Body request : ProdukRequest): Call<ProdukRequest>
 
@@ -118,6 +123,6 @@ interface  ApiServices{
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @GET(ApiConfigs.LIST_CART_CUSTOMER)
-    fun cartCustomer(@Body request : KeranjangRequest, @Path("sku")sku : String): Call<KeranjangResponse>
+    fun cartCustomer(@Path("sku")sku : String): Call<List<KeranjangResponse>>
 
 }

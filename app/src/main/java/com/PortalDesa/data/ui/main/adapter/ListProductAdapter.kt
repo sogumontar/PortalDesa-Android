@@ -48,7 +48,7 @@ class ListProductAdapter(val context : Context, val listProduk : List<ProductRes
         holder?.tvDesc.text = listProduk.get(position).nama
         holder?.ln_product.setOnClickListener(View.OnClickListener {
             val intent = Intent(context, DetailProductAcitivity::class.java)
-            intent.putExtra(Flag.PRODUCT_NAME, listProduk.get(position).nama)
+            intent.putExtra(Flag.PRODUCT_NAME, listProduk.get(position).sku)
             context.startActivity(intent)
         })
     }

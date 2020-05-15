@@ -87,7 +87,27 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
+            <Button
+                android:id="@+id/produk_update_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:background="@drawable/rounded_blue_secondary"
+                android:text="Update"
+                android:textColor="#ffff" />
 
+            <Button
+                android:id="@+id/produk_delete_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:background="@drawable/rounded_red_button"
+                android:text="Delete"
+                android:textColor="#ffff" />
             <Button
                 android:id="@+id/pesan"
                 android:layout_width="0dp"
