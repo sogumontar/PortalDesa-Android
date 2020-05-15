@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
@@ -118,8 +119,8 @@ class ProductFragment : Fragment(), View.OnClickListener{
 
     fun displayProduct(){
         if (productResponse != null && recycler_view_produk != null) {
-            val produkListLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-            recycler_view_produk.setLayoutManager(produkListLayoutManager)
+            val mainMenuLayoutManager = GridLayoutManager(activity, 2)
+            recycler_view_produk.setLayoutManager(mainMenuLayoutManager)
             val adapter = ListProductAdapter(activity!!, productResponse!!)
             view_animator.setDisplayedChild(1)
             recycler_view_produk.setAdapter(adapter)
