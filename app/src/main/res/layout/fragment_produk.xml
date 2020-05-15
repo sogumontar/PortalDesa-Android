@@ -48,13 +48,12 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/search"
+                    android:id="@+id/et_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_toStartOf="@id/img_search"
                     android:background="@null"
-                    android:focusable="false"
                     android:hint="Search"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
