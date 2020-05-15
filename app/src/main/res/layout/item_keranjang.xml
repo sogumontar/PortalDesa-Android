@@ -6,13 +6,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="114dp"
         android:orientation="horizontal"
         android:padding="16dp">
 
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="50dp"
+            android:layout_width="83dp"
+            android:layout_height="71dp"
             android:src="@drawable/ulos2" />
 
         <LinearLayout
@@ -22,7 +22,7 @@
 
             <TextView
                 android:id="@+id/tv_name"
-                android:layout_width="204dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nama Produk"
                 android:textColor="@color/black"
@@ -31,16 +31,22 @@
 
             <TextView
                 android:id="@+id/tv_desc"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rp 000.000"
                 android:textColor="@color/red_danger" />
+            <TextView
+                android:id="@+id/tv_pcs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jumlah"
+                android:textColor="@color/black" />
         </LinearLayout>
 
 
         <Button
             android:id="@+id/btn_del"
-            android:layout_width="83dp"
+            android:layout_width="86dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:background="@drawable/rounded_red_button"

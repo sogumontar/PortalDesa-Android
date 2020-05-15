@@ -1,5 +1,6 @@
 package com.PortalDesa.data.ui.main.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.base.AppActivity
 import com.PortalDesa.data.model.request.KeranjangRequest
+import com.PortalDesa.data.model.request.KeranjangRequestCheck
 import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
@@ -83,6 +85,9 @@ class DetailProductAcitivity : AppActivity() {
         tv_harga.setText("Rp."+productResponse?.harga)
         tv_desc.setText(productResponse?.deskripsi)
     }
+    fun alert(){
+        Toast.makeText(this,"Produk sudah ada di dalam keranjang",Toast.LENGTH_SHORT).show()
+    }
     fun addToCart() {
         val a= Jumlah.text.toString()
         if(a.equals("")){
@@ -90,13 +95,19 @@ class DetailProductAcitivity : AppActivity() {
         }else {
             if (Connectivity().isNetworkAvailable(this)) {
                 val client = APIServiceGenerator().createService
-                val call = client.addToCart(getRequest())
+                val call = client.checkCart(getRequestCheck())
                 call.enqueue(object : retrofit2.Callback<DefaultResponse> {
                     override fun onResponse(
                         call: retrofit2.Call<DefaultResponse>,
                         response: Response<DefaultResponse>
                     ) {
-                        goToKeranjang()
+                        val cek = response.body()
+                        val messages=response.body()?.message
+                        if(cek?.status==0){
+                             doCart()
+                        }else{
+                            alert()
+                        }
                     }
 
                     override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
@@ -109,17 +120,53 @@ class DetailProductAcitivity : AppActivity() {
                 })
 
             }
+
         }
+    }
+    fun doCart(){
+        if (Connectivity().isNetworkAvailable(this)) {
+            val client = APIServiceGenerator().createService
+            val call = client.addToCart(getRequest())
+            call.enqueue(object : retrofit2.Callback<DefaultResponse> {
+                override fun onResponse(
+                    call: retrofit2.Call<DefaultResponse>,
+                    response: Response<DefaultResponse>
+                ) {
+                    goToKeranjang()
+                }
+
+                override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
+                    Log.i(
+                        this.javaClass.simpleName,
+                        " Requested API : " + call.request().body()!!
+                    )
+                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                }
+            })
+
+        }
+    }
+    fun getRequestCheck(): KeranjangRequestCheck{
+        val keranjangRequest= KeranjangRequestCheck()
+        val idProduk = productResponse?.sku
+        val idCustomer= skuLogin
+        keranjangRequest.idCustomer = skuLogin
+        keranjangRequest.idProduk = idProduk
+        return keranjangRequest
     }
 
     fun getRequest(): KeranjangRequest{
         val keranjangRequest= KeranjangRequest()
+        val idProduk = productResponse?.sku
+        val idCustomer= skuLogin
         keranjangRequest.id =  productResponse?.sku
         keranjangRequest.idCustomer = skuLogin
-        keranjangRequest.idProduk = productResponse?.sku
+        keranjangRequest.idProduk = idProduk
         keranjangRequest.jumlah = Integer.parseInt(Jumlah.text.toString())
         keranjangRequest.skuDesa = productResponse?.skuDesa
         keranjangRequest.status = 1
+        keranjangRequest.harga = Integer.parseInt(productResponse?.harga)
+
         return keranjangRequest
     }
 

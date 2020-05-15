@@ -130,4 +130,38 @@ interface  ApiServices{
     @POST(ApiConfigs.ADD_TO_CART_CUSTOMER)
     fun addToCart(@Body request : KeranjangRequest): Call<DefaultResponse>
 
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @DELETE(ApiConfigs.DELETE_TO_CART_CUSTOMER)
+    fun deleteCart(@Path("id") id : String): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.CHECK_CART_CUSTOMER)
+    fun checkCart(@Body request : KeranjangRequestCheck): Call<DefaultResponse>
+
+
+    //Transaksi
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.TRANSAKSI_ADD)
+    fun addTransaction(@Body request : TransaksiRequest): Call<DefaultResponse>
+
+
+    //Customer
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ROUTE_GET_ALAMAT_CUSTOMER)
+    fun getAlamatCustomer(@Path("sku")sku : String): Call<CustomerResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ROUTE_SAVE_ALAMAT_CUSTOMER)
+    fun saveAlamatCustomer(@Body request : CustomerRequest): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @PUT(ApiConfigs.ROUTE_UPDATE_ALAMAT_CUSTOMER)
+    fun updateAlamatCustomer(@Path("sku")sku: String , @Body request : CustomerRequest): Call<DefaultResponse>
+
 }

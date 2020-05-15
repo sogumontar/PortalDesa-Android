@@ -37,5 +37,15 @@ interface ApiConfigs {
         //Cart
         const val LIST_CART_CUSTOMER = "/keranjang/customer/{sku}"
         const val ADD_TO_CART_CUSTOMER = "/keranjang/save"
+        const val DELETE_TO_CART_CUSTOMER = "/keranjang/delete/{id}"
+        const val CHECK_CART_CUSTOMER = "/keranjang/check"
+
+        //Transaksi
+        const val TRANSAKSI_ADD= "/transaksi/add"
+
+        //Customer
+        const val ROUTE_GET_ALAMAT_CUSTOMER= "/customer/{sku}"
+        const val ROUTE_SAVE_ALAMAT_CUSTOMER= "/customer/add"
+        const val ROUTE_UPDATE_ALAMAT_CUSTOMER= "/customer/update/{sku}"
     }
 }

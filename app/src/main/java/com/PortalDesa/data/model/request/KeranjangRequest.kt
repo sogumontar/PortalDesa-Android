@@ -13,5 +13,6 @@ class KeranjangRequest{
     var jumlah: Int? = 0
     var skuDesa: String? = null
     var status: Int? = 0
+    var harga: Int? =0
 
 }

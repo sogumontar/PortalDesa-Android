@@ -20,7 +20,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_keranjang"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="494dp"
             android:background="@color/white" />
 
         <FrameLayout
@@ -29,43 +29,9 @@
             android:background="@drawable/rounded_edittext"
             android:layout_marginTop="20dp">
 
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="Biaya Pengiriman"/>
-            <TextView
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center_horizontal"
-                android:text=":"/>
-            <TextView
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center_horizontal"
-                android:text="Rp 48.000"/>
+
         </FrameLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edittext"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="Total Pesanan"/>
-            <TextView
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center_horizontal"
-                android:text=":"/>
-            <TextView
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center_horizontal"
-                android:text="Rp 500.000"/>
-        </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -88,6 +54,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
             <TextView
+                android:id="@+id/total"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_horizontal"
@@ -96,6 +63,126 @@
                 android:textColor="@color/black"
                 android:textSize="15sp"/>
         </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alamat Tujuan : "
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/transaksi_alamat"
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:padding="8dp" />
+
+            <Button
+                android:visibility="gone"
+                android:id="@+id/btn_transaksi_ubah"
+                android:layout_width="69dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_blue_secondary"
+                android:text="Ubah"
+                android:textColor="@color/white"/>
+            <Button
+                android:id="@+id/btn_transaksi_simpan"
+                android:layout_width="69dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_blue_secondary"
+                android:text="Simpan"
+                android:textColor="@color/white"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                >
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Metode Pembayaran"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    />
+                <RadioButton
+                    android:id="@+id/metode_atm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ATM Mandiri"
+                    android:onClick="radio_button_click"
+                    />
+                <RadioButton
+                    android:id="@+id/metode_indomaret"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Atm BRI"
+                    android:onClick="radio_button_click"
+                    />
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linear_metode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="120dp"
+                android:src="@drawable/atm" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No Rek : 5412 7512 3412 3456\n Atas Nama : Benyamin Simanungkalit"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Atas Nama : Benyamin Simanungkalit"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linear_metode_bri"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="70dp"
+                android:src="@drawable/mandiri" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No Rek : 7712 6543 1231 7006\n Atas Nama : Ojaks Sidabukke"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Atas Nama : Benyamin Simanungkalit"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
 
 
     </LinearLayout>
