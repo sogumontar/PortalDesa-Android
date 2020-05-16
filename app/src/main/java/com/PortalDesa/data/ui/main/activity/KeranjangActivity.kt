@@ -1,5 +1,6 @@
 package com.PortalDesa.data.ui.main.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +26,7 @@ import com.PortalDesa.data.ui.main.adapter.KeranjangAdapter
 import kotlinx.android.synthetic.main.activity_keranjang.*
 import retrofit2.Response
 import java.util.*
+import kotlin.concurrent.schedule
 
 class KeranjangActivity : AppActivity(),  View.OnClickListener {
     private var customerResponse: CustomerResponse? = null
@@ -69,7 +71,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
     fun initData(){
         val role = preferences.getRoles()
         val sku = preferences.getSku()
-        checkAlamat()
+
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
                 val call = client.cartCustomer(sku)
@@ -80,8 +82,17 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                     ) {
                         val listProduk = response.body()
                         keranjangResponse= listProduk
-                        initView()
-                        displayProduct()
+                        if(listProduk!!.size==0){
+                            Toast.makeText(applicationContext,"Produk di Keranjang Belum ada",Toast.LENGTH_SHORT).show()
+                            Timer("SettingUp", false).schedule(1000) {
+                                goToProduct()
+                            }
+                        }else{
+                            checkAlamat()
+                            initView()
+                            displayProduct()
+                        }
+
                     }
 
                     override fun onFailure(call: retrofit2.Call<List<KeranjangResponse>>, t: Throwable) {
@@ -91,6 +102,11 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                 })
 
         }
+    }
+
+    fun goToProduct(){
+        intent = Intent(this  , MainActivity::class.java)
+        startActivity(intent)
     }
     fun displayProduct(){
         var hargaTotal: Int=0
@@ -135,14 +151,16 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                 ) {
                     val listProduk = response.body()
                     customerResponse= listProduk
-                    alamat=customerResponse!!.alamat!!
-                    transaksi_alamat.setText(customerResponse!!.alamat.toString())
-                    if(customerResponse!!.alamat.toString().equals("")){
-                        btn_transaksi_simpan.visibility=View.VISIBLE
-                        btn_transaksi_ubah.visibility=View.GONE
-                    }else{
+                    if(customerResponse!=null){
+                        alamat=customerResponse!!.alamat!!
+                        transaksi_alamat.setText(customerResponse!!.alamat.toString())
                         btn_transaksi_simpan.visibility=View.GONE
                         btn_transaksi_ubah.visibility=View.VISIBLE
+                    }else{
+                        alamat=""
+                        transaksi_alamat.setText(alamat.toString())
+                        btn_transaksi_simpan.visibility=View.VISIBLE
+                        btn_transaksi_ubah.visibility=View.GONE
                     }
                 }
 
@@ -158,12 +176,12 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
         val intent = Intent(this, KeranjangActivity::class.java)
         startActivity(intent)
     }
-    fun getAlamatRequest(): CustomerRequest{
-        val alamatRequest = CustomerRequest()
-        alamatRequest.id = UUID.randomUUID().toString()
-        alamatRequest.alamat = transaksi_alamat.text.toString()
-        alamatRequest.sku = preferences.getSku()
-        return alamatRequest
+    private fun getAlamatRequest(): CustomerRequest{
+        val customerRequest = CustomerRequest()
+        customerRequest.id = UUID.randomUUID().toString()
+        customerRequest.alamat = transaksi_alamat.text.toString()
+        customerRequest.sku = preferences.getSku()
+        return customerRequest
     }
 
     fun ubahAlamat(){
@@ -196,7 +214,6 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                     call: retrofit2.Call<DefaultResponse>,
                     response: Response<DefaultResponse>
                 ) {
-                    val listProduk = response.body()
                     goToKeranjang()
                 }
 

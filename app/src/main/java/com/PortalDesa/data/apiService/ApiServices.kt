@@ -156,7 +156,7 @@ interface  ApiServices{
 
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
-    @GET(ApiConfigs.ROUTE_SAVE_ALAMAT_CUSTOMER)
+    @POST(ApiConfigs.ROUTE_SAVE_ALAMAT_CUSTOMER)
     fun saveAlamatCustomer(@Body request : CustomerRequest): Call<DefaultResponse>
 
     @Headers(

@@ -1,8 +1,10 @@
 package com.PortalDesa.data.ui.main.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 
 import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
@@ -53,13 +55,12 @@ class SignInActivity : AppActivity(), View.OnClickListener{
                 response: Response<UserResponse>
             ) {
                 val userResponse = response.body()
-                if(userResponse!!.status != null){
+                if(userResponse?.status == 1){
                     val statusCode = userResponse!!.status
                     val token = userResponse!!.accessToken
                     val sku = userResponse!!.skuLog
                     val roles = userResponse!!.role
                     val nick = userResponse!!.nickName
-                    if (statusCode != 401) {
                         preferences.setName(nick)
                         preferences.setNAMAp(nick)
                         preferences.setROLES(roles)
@@ -70,7 +71,9 @@ class SignInActivity : AppActivity(), View.OnClickListener{
                         preferences.getSku()
 
                         goToHome(userResponse   !!.role)
-                    }
+                }else{
+                    Toast.makeText(applicationContext,"Username/Password Salah", Toast.LENGTH_SHORT).show()
+                    goToLogin()
                 }
             }
 
@@ -78,6 +81,10 @@ class SignInActivity : AppActivity(), View.OnClickListener{
                 dismissProgressDialog()
             }
         })
+    }
+    fun goToLogin(){
+        intent = Intent(this  , SignInActivity::class.java)
+        startActivity(intent)
     }
 
     private fun goToHome( roles: String?){
