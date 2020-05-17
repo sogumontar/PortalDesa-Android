@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="401dp"
+        android:layout_above="@+id/btn_pesan"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_pesanan"
+            android:layout_width="411dp"
+            android:layout_height="495dp"
+            android:layout_gravity="center"
+            android:background="@color/white" />
+    </ScrollView>
+</RelativeLayout>

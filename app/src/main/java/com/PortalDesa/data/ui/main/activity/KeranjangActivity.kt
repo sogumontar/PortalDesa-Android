@@ -32,6 +32,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
     private var customerResponse: CustomerResponse? = null
     private var keranjangResponse: List<KeranjangResponse>? = null
     private var productResponse: ProductResponse? = null
+    private var totall: Int? = null
     var sku: String = ""
     var metode: String =""
     var alamat: String =""
@@ -113,6 +114,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
         for(dat in keranjangResponse!!){
             hargaTotal+= (dat.harga!!*dat.jumlah!!)
         }
+        totall=hargaTotal
         total.setText(hargaTotal.toString())
         if (keranjangResponse != null && recycler_view_keranjang!= null) {
             val produkListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -129,17 +131,6 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
         recycler_view_keranjang.setAdapter(adapter)
     }
 
-    fun getDataForRequest():TransaksiRequest{
-        val transaksiRequest = TransaksiRequest()
-        var skuProduk: String = ""
-        for(dat in keranjangResponse!!){
-            skuProduk += dat.idProduk + ","
-        }
-        transaksiRequest.id=UUID.randomUUID().toString()
-//        transaksiRequest.alamat
-        transaksiRequest.skuProduk = skuProduk
-        return transaksiRequest
-    }
     fun checkAlamat(){
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
@@ -179,9 +170,27 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
     private fun getAlamatRequest(): CustomerRequest{
         val customerRequest = CustomerRequest()
         customerRequest.id = UUID.randomUUID().toString()
+        val alam=transaksi_alamat.text.toString()
         customerRequest.alamat = transaksi_alamat.text.toString()
         customerRequest.sku = preferences.getSku()
         return customerRequest
+    }
+
+    fun getDataForRequest():TransaksiRequest{
+        val transaksiRequest = TransaksiRequest()
+        var skuProduk: String = ""
+        for(dat in keranjangResponse!!){
+            skuProduk += dat.idProduk + ","
+        }
+        transaksiRequest.id=UUID.randomUUID().toString()
+        transaksiRequest.skuProduk = skuProduk
+        transaksiRequest.skuCustomer = preferences.getSku()
+        transaksiRequest.alamat = transaksi_alamat.text.toString()
+        transaksiRequest.harga = totall
+        transaksiRequest.metode =metode
+        transaksiRequest.resi = ""
+        transaksiRequest.status =1
+        return transaksiRequest
     }
 
     fun ubahAlamat(){
@@ -226,6 +235,28 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
         }
     }
 
+    fun simpanTransaksi(){
+        showProgressDialog()
+        if (Connectivity().isNetworkAvailable(this)) {
+            val client = APIServiceGenerator().createService
+            val call = client.addTransaction(getDataForRequest())
+            call.enqueue(object : retrofit2.Callback<DefaultResponse> {
+                override fun onResponse(
+                    call: retrofit2.Call<DefaultResponse>,
+                    response: Response<DefaultResponse>
+                ) {
+                    goToKeranjang()
+                }
+
+                override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
+                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
+                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                }
+            })
+
+        }
+    }
+
     fun check(){
         if(metode.toString().equals("")){
             Toast.makeText(this,"Pilih Metode Pembayaran",Toast.LENGTH_SHORT).show()
@@ -234,7 +265,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
             btn_transaksi_ubah.visibility= View.GONE
             Toast.makeText(this,"Masukkan Alamat Pengiriman",Toast.LENGTH_SHORT).show()
         }else{
-            Toast.makeText(this,metode,Toast.LENGTH_SHORT).show()
+            simpanTransaksi()
         }
     }
 

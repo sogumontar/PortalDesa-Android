@@ -7,6 +7,6 @@ import com.fasterxml.jackson.annotation.JsonInclude
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class KeranjangRequestCheck{
-    var idCustomer: String? = null
+    var skuCustomer: String? = null
     var idProduk: String? = null
 }

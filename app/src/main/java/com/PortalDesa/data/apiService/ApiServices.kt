@@ -119,6 +119,13 @@ interface  ApiServices{
     @POST(ApiConfigs.ROUTE_ADD_PRODUK)
     fun addProduk(@Body request : ProdukRequest): Call<ProdukRequest>
 
+
+    //Pesanan
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_PESANAN_CUSTOMER)
+    fun getPesanan(@Path("sku")sku : String): Call<List<PesananResponse>>
+
     //Keranjang
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
@@ -163,5 +170,6 @@ interface  ApiServices{
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @PUT(ApiConfigs.ROUTE_UPDATE_ALAMAT_CUSTOMER)
     fun updateAlamatCustomer(@Path("sku")sku: String , @Body request : CustomerRequest): Call<DefaultResponse>
+
 
 }

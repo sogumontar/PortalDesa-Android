@@ -18,23 +18,26 @@ import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
 import kotlinx.android.synthetic.main.activity_detail_product.*
 import retrofit2.Response
+import java.util.*
+import kotlin.concurrent.schedule
 
 class DetailProductAcitivity : AppActivity() {
-    private var productResponse:ProductResponse? = null
+    private var productResponse: ProductResponse? = null
     lateinit var preferences: Preferences
-    var role: String?=""
-    var skuLogin: String? =""
+    var role: String? = ""
+    var skuLogin: String? = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
         preferences = Preferences(this)
-        role=preferences.getRoles()
-        skuLogin=preferences.getSku()
+        role = preferences.getRoles()
+        skuLogin = preferences.getSku()
         val name = intent.getStringExtra(Flag.PRODUCT_NAME)
         initView()
         initData();
 //        tv_nama.text = name.toString()
         keranjang.setOnClickListener() {
+            showProgressDialog()
             addToCart()
         }
     }
@@ -49,7 +52,7 @@ class DetailProductAcitivity : AppActivity() {
                     response: Response<ProductResponse>
                 ) {
                     val listProduk = response.body()
-                    productResponse= listProduk
+                    productResponse = listProduk
                     displayProduct()
                 }
 
@@ -61,38 +64,45 @@ class DetailProductAcitivity : AppActivity() {
 
         }
     }
-    fun initView(){
-        if(role.equals("ROLE_MERCHANT")){
-            produk_delete_btn.visibility= View.VISIBLE
-            produk_update_btn.visibility= View.VISIBLE
-            pesan.visibility=View.GONE
-            keranjang.visibility=View.GONE
-        }else if(role.equals("ROLE_USER")){
-            produk_delete_btn.visibility= View.GONE
-            produk_update_btn.visibility= View.GONE
-            pesan.visibility=View.VISIBLE
-            keranjang.visibility=View.VISIBLE
-        }else{
-            produk_delete_btn.visibility= View.GONE
-            produk_update_btn.visibility= View.GONE
-            pesan.visibility=View.GONE
-            keranjang.visibility=View.GONE
+
+    fun initView() {
+        if (role.equals("ROLE_MERCHANT")) {
+            produk_delete_btn.visibility = View.VISIBLE
+            produk_update_btn.visibility = View.VISIBLE
+            pesan.visibility = View.GONE
+            keranjang.visibility = View.GONE
+        } else if (role.equals("ROLE_USER")) {
+            produk_delete_btn.visibility = View.GONE
+            produk_update_btn.visibility = View.GONE
+            pesan.visibility = View.VISIBLE
+            keranjang.visibility = View.VISIBLE
+        } else {
+            produk_delete_btn.visibility = View.GONE
+            produk_update_btn.visibility = View.GONE
+            pesan.visibility = View.GONE
+            keranjang.visibility = View.GONE
         }
     }
 
-    fun displayProduct(){
+    fun displayProduct() {
         tv_nama.setText(productResponse?.nama)
-        tv_harga.setText("Rp."+productResponse?.harga)
+        tv_harga.setText("Rp." + productResponse?.harga)
         tv_desc.setText(productResponse?.deskripsi)
     }
-    fun alert(){
-        Toast.makeText(this,"Produk sudah ada di dalam keranjang",Toast.LENGTH_SHORT).show()
+
+    fun alert() {
+        Toast.makeText(this, "Produk sudah ada di dalam keranjang", Toast.LENGTH_SHORT).show()
+        Timer("SettingUp", false).schedule(1000) {
+            goToKeranjang()
+        }
+
     }
+
     fun addToCart() {
-        val a= Jumlah.text.toString()
-        if(a.equals("")){
-            Toast.makeText(this,"Masukkan Jumlah Pesanan",Toast.LENGTH_SHORT).show()
-        }else {
+        val a = Jumlah.text.toString()
+        if (a.equals("")) {
+            Toast.makeText(this, "Masukkan Jumlah Pesanan", Toast.LENGTH_SHORT).show()
+        } else {
             if (Connectivity().isNetworkAvailable(this)) {
                 val client = APIServiceGenerator().createService
                 val call = client.checkCart(getRequestCheck())
@@ -102,10 +112,11 @@ class DetailProductAcitivity : AppActivity() {
                         response: Response<DefaultResponse>
                     ) {
                         val cek = response.body()
-                        val messages=response.body()?.message
-                        if(cek?.status==0){
-                             doCart()
-                        }else{
+                        val status = cek!!.status
+                        val messages = response.body()?.message
+                        if (cek?.status == 0) {
+                            doCart()
+                        } else {
                             alert()
                         }
                     }
@@ -123,7 +134,8 @@ class DetailProductAcitivity : AppActivity() {
 
         }
     }
-    fun doCart(){
+
+    fun doCart() {
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
             val call = client.addToCart(getRequest())
@@ -146,20 +158,21 @@ class DetailProductAcitivity : AppActivity() {
 
         }
     }
-    fun getRequestCheck(): KeranjangRequestCheck{
-        val keranjangRequest= KeranjangRequestCheck()
+
+    fun getRequestCheck(): KeranjangRequestCheck {
+        val keranjangRequest = KeranjangRequestCheck()
         val idProduk = productResponse?.sku
-        val idCustomer= skuLogin
-        keranjangRequest.idCustomer = skuLogin
+        val idCustomer = skuLogin
+        keranjangRequest.skuCustomer = skuLogin
         keranjangRequest.idProduk = idProduk
         return keranjangRequest
     }
 
-    fun getRequest(): KeranjangRequest{
-        val keranjangRequest= KeranjangRequest()
+    fun getRequest(): KeranjangRequest {
+        val keranjangRequest = KeranjangRequest()
         val idProduk = productResponse?.sku
-        val idCustomer= skuLogin
-        keranjangRequest.id =  productResponse?.sku
+        val idCustomer = skuLogin
+        keranjangRequest.id = productResponse?.sku
         keranjangRequest.idCustomer = skuLogin
         keranjangRequest.idProduk = idProduk
         keranjangRequest.jumlah = Integer.parseInt(Jumlah.text.toString())

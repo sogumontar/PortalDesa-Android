@@ -19,8 +19,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_keranjang"
-            android:layout_width="match_parent"
-            android:layout_height="494dp"
+            android:layout_width="411dp"
+            android:layout_height="495dp"
+            android:layout_gravity="center"
             android:background="@color/white" />
 
         <FrameLayout
@@ -58,7 +59,7 @@
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_horizontal"
-                android:text="Rp 500.000"
+                android:text="Rp 0"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="15sp"/>

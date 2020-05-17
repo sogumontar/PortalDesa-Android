@@ -6,13 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.PortalDesa.R
 import com.PortalDesa.data.support.Preferences
-import com.PortalDesa.data.ui.main.activity.KeranjangActivity
-import com.PortalDesa.data.ui.main.activity.ProfileActivity
-import com.PortalDesa.data.ui.main.activity.SignInActivity
-import com.PortalDesa.data.ui.main.activity.SignUpActivity
+import com.PortalDesa.data.ui.main.activity.*
 import kotlinx.android.synthetic.main.fragment_akun.*
 
 class AkunFragment : Fragment(), View.OnClickListener {
@@ -70,6 +68,10 @@ class AkunFragment : Fragment(), View.OnClickListener {
         startActivity(intent)
         activity!!.finish()
     }
+    fun goToPesanan(){
+        val intent = Intent(activity, PesananActivity::class.java)
+        startActivity(intent)
+    }
 
     override fun onClick(v: View?) {
         when(v!!.id){
@@ -78,6 +80,7 @@ class AkunFragment : Fragment(), View.OnClickListener {
             btn_logout.id-> doLogout()
             btn_profile.id-> goProfile()
             btn_keranjang_akun.id -> goToKeranjang()
+            btn_pesanan.id -> goToPesanan()
 
         }
     }
