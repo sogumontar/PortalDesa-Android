@@ -119,6 +119,11 @@ interface  ApiServices{
     @POST(ApiConfigs.ROUTE_ADD_PRODUK)
     fun addProduk(@Body request : ProdukRequest): Call<ProdukRequest>
 
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @PUT(ApiConfigs.DELETE_PRODUK_BY_SKU_PRODUK)
+    fun deleteProduk(@Path("sku") sku : String): Call<DefaultResponse>
+
 
     //Pesanan
     @Headers(

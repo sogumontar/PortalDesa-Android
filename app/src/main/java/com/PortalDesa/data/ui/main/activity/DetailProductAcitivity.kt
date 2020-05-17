@@ -36,12 +36,38 @@ class DetailProductAcitivity : AppActivity() {
         initView()
         initData();
 //        tv_nama.text = name.toString()
+        produk_delete_btn.setOnClickListener(){
+            showProgressDialog()
+            deleteProduk()
+        }
+
         keranjang.setOnClickListener() {
             showProgressDialog()
             addToCart()
         }
     }
 
+    fun deleteProduk(){
+        if (Connectivity().isNetworkAvailable(this)) {
+            val client = APIServiceGenerator().createService
+            val call = client.deleteProduk(intent.getStringExtra(Flag.PRODUCT_NAME))
+            call.enqueue(object : retrofit2.Callback<DefaultResponse> {
+                override fun onResponse(
+                    call: retrofit2.Call<DefaultResponse>,
+                    response: Response<DefaultResponse>
+                ) {
+                    val listProduk = response.body()
+                    goToHome()
+                }
+
+                override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
+                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
+                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                }
+            })
+
+        }
+    }
     fun initData() {
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
@@ -69,9 +95,11 @@ class DetailProductAcitivity : AppActivity() {
         if (role.equals("ROLE_MERCHANT")) {
             produk_delete_btn.visibility = View.VISIBLE
             produk_update_btn.visibility = View.VISIBLE
+            lin_jumlah.visibility=View.GONE
             pesan.visibility = View.GONE
             keranjang.visibility = View.GONE
         } else if (role.equals("ROLE_USER")) {
+            lin_jumlah.visibility=View.VISIBLE
             produk_delete_btn.visibility = View.GONE
             produk_update_btn.visibility = View.GONE
             pesan.visibility = View.VISIBLE
@@ -188,6 +216,10 @@ class DetailProductAcitivity : AppActivity() {
         startActivity(intent)
     }
 
+    fun goToHome() {
+        intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
 //    private fun initView() {
 //        initToolbar(R.id.toolbar)
 //        tv_toolbar_title.text = getString(R.string.sign_up_tab_title_sign_up)

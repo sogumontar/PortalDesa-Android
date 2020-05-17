@@ -8,23 +8,17 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="161dp"
+        android:layout_height="183dp"
         android:layout_margin="7dp"
         app:cardBackgroundColor="@color/card"
         app:cardCornerRadius="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="214dp"
+            android:layout_height="236dp"
             android:orientation="horizontal"
             android:padding="16dp">
 
-
-            <LinearLayout
-                android:layout_width="14dp"
-                android:layout_height="match_parent">
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="345dp"
@@ -36,7 +30,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="93dp"
+                        android:layout_width="112dp"
                         android:layout_height="wrap_content"
                         android:text="Alamat    : "
                         android:textColor="@color/black"
@@ -57,7 +51,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="93dp"
+                        android:layout_width="111dp"
                         android:layout_height="wrap_content"
                         android:text="Metode   : "
                         android:textColor="@color/black"
@@ -78,7 +72,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="93dp"
+                        android:layout_width="111dp"
                         android:layout_height="wrap_content"
                         android:text="Harga      : "
                         android:textColor="@color/black"

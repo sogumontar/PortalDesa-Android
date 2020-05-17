@@ -24,7 +24,6 @@ class AkunFragmentAfterLogin : AppActivity(), View.OnClickListener {
     fun initView(){
         if(preferences.getRoles().equals("ROLE_MERCHANT")){
             btn_keranjang.visibility=View.GONE
-            btn_akun_pesanan.visibility=View.GONE
         }else{
             btn_produk.visibility=View.GONE
             btn_penginapan.visibility=View.GONE
@@ -36,15 +35,9 @@ class AkunFragmentAfterLogin : AppActivity(), View.OnClickListener {
         val intent = Intent(this, KeranjangActivity::class.java)
         startActivity(intent)
     }
-    fun goToPesanan(){
-        Toast.makeText(this,"asd",Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, PesananActivity::class.java)
-        startActivity(intent)
-    }
     override fun onClick(v: View?)  {
         when(v!!.id){
             btn_keranjang.id->goToKeranjang()
-            btn_akun_pesanan.id -> goToPesanan()
         }
     }
 

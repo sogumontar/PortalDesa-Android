@@ -18,7 +18,8 @@ import kotlinx.android.synthetic.main.item_popular_vilage.view.*
 /**
  * Created by Sogumontar Hendra Simangunsong on 06/05/2020.
  */
-class ListProductAdapter(val context : Context, var listProduk : List<ProductResponse>) : RecyclerView.Adapter<ListProductAdapter.ViewHolder>() {
+class ListProductAdapter(val context: Context, var listProduk: List<ProductResponse>) :
+    RecyclerView.Adapter<ListProductAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
@@ -46,7 +47,7 @@ class ListProductAdapter(val context : Context, var listProduk : List<ProductRes
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Picasso.get()
-            .load(R.drawable.balige)
+            .load("https://portal-desa.herokuapp.com" + listProduk.get(position).gambar )
             .into(holder.imgPopular)
 
         holder?.tvDesc.text = listProduk.get(position).nama

@@ -92,12 +92,18 @@ class AkunFragment : Fragment(), View.OnClickListener {
         btn_profile.setOnClickListener(this)
         btn_pesanan.setOnClickListener(this)
         btn_keranjang_akun.setOnClickListener(this)
-        if(!tok.equals("")){
+        if(!preferences.getRoles().equals("ROLE_MERCHANT")){
             ln_signin.visibility = View.GONE
             btn_logout.visibility = View.VISIBLE
             btn_profile.visibility=View.VISIBLE
             btn_pesanan.visibility=View.VISIBLE
             btn_keranjang_akun.visibility=View.VISIBLE
+        }else if(preferences.getRoles().equals("ROLE_MERCHANT")){
+            ln_signin.visibility = View.GONE
+            btn_logout.visibility = View.VISIBLE
+            btn_profile.visibility=View.VISIBLE
+            btn_pesanan.visibility=View.VISIBLE
+            btn_keranjang_akun.visibility=View.GONE
         }else{
             val intent = Intent(activity, SignInActivity::class.java)
             startActivity(intent)
