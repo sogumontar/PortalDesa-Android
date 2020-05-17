@@ -41,10 +41,12 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
         preferences = Preferences(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_keranjang)
+
         recycler_view_keranjang.setHasFixedSize(true)
         btn_pesan.setOnClickListener(this)
         btn_transaksi_simpan.setOnClickListener(this)
         btn_transaksi_ubah.setOnClickListener(this)
+
         val menuListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recycler_view_keranjang.setLayoutManager(menuListLayoutManager)
         recycler_view_keranjang.setNestedScrollingEnabled(false)
@@ -70,6 +72,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
         }
     }
     fun initData(){
+        showProgressDialog()
         val role = preferences.getRoles()
         val sku = preferences.getSku()
 
@@ -90,8 +93,9 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                             }
                         }else{
                             checkAlamat()
-                            initView()
+//                            initView()
                             displayProduct()
+                            dismissProgressDialog()
                         }
 
                     }
@@ -116,7 +120,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
         }
         totall=hargaTotal
         total.setText(hargaTotal.toString())
-        if (keranjangResponse != null && recycler_view_keranjang!= null) {
+        if (keranjangResponse != null) {
             val produkListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             recycler_view_keranjang.setLayoutManager(produkListLayoutManager)
 

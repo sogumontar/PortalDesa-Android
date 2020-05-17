@@ -130,10 +130,6 @@ class ProductFragment : Fragment(), View.OnClickListener{
                         call: retrofit2.Call<List<ProductResponse>>,
                         t: Throwable
                     ) {
-                        Log.i(
-                            this.javaClass.simpleName,
-                            " Requested API : " + call.request().body()!!
-                        )
                         Log.e(this.javaClass.simpleName, " Exceptions : $t")
                     }
                 })
