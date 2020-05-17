@@ -25,8 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_alignParentStart="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/ulos2" />
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +51,7 @@
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:text=""
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/tv_harga"
@@ -62,7 +61,7 @@
                 android:gravity="right"
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
-                android:textColor="@color/black2"
+                android:textColor="@color/red_danger"
                 android:text="Rp "
                 android:textSize="20sp" />
 
@@ -71,31 +70,34 @@
         <TextView
             android:id="@+id/tv_desc"
             android:layout_width="match_parent"
-            android:layout_height="122dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Deskripsi"
+            android:text=""
             android:textColor="@color/black2"
             android:textSize="16sp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="46dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="122dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_margin="10dp"
                 android:text="Jumlah"
                 android:textColor="@color/black2"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/Jumlah"
-                android:layout_width="293dp"
+                android:id="@+id/et_jumlah"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:inputType="number">
+                android:layout_weight="1"
+                android:inputType="number"/>
 
-            </EditText>
         </LinearLayout>
 
     </LinearLayout>
@@ -130,7 +132,7 @@
                 android:text="Delete"
                 android:textColor="#ffff" />
             <Button
-                android:id="@+id/pesan"
+                android:id="@+id/btn_pesan"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_margin="15dp"
@@ -140,7 +142,7 @@
                 android:textColor="#ffff" />
 
             <Button
-                android:id="@+id/keranjang"
+                android:id="@+id/btn_keranjang"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_margin="15dp"

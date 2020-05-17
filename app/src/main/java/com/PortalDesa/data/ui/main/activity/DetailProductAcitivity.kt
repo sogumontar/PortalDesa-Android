@@ -13,10 +13,10 @@ import com.PortalDesa.data.model.request.KeranjangRequest
 import com.PortalDesa.data.model.request.KeranjangRequestCheck
 import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.model.response.ProductResponse
-import com.PortalDesa.data.support.Connectivity
-import com.PortalDesa.data.support.Flag
-import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.support.*
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_product.*
+import kotlinx.android.synthetic.main.activity_register_form.*
 import retrofit2.Response
 import java.util.*
 import kotlin.concurrent.schedule
@@ -26,23 +26,25 @@ class DetailProductAcitivity : AppActivity() {
     lateinit var preferences: Preferences
     var role: String? = ""
     var skuLogin: String? = ""
+    lateinit var topSnackBar: TopSnackBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
         preferences = Preferences(this)
+        topSnackBar = TopSnackBar()
         role = preferences.getRoles()
         skuLogin = preferences.getSku()
-        val name = intent.getStringExtra(Flag.PRODUCT_NAME)
         initView()
         initData();
 //        tv_nama.text = name.toString()
-        keranjang.setOnClickListener() {
-            showProgressDialog()
+        btn_keranjang.setOnClickListener() {
             addToCart()
         }
     }
 
     fun initData() {
+        showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
             val call = client.getProductBySku(intent.getStringExtra(Flag.PRODUCT_NAME))
@@ -54,9 +56,11 @@ class DetailProductAcitivity : AppActivity() {
                     val listProduk = response.body()
                     productResponse = listProduk
                     displayProduct()
+                    dismissProgressDialog()
                 }
 
                 override fun onFailure(call: retrofit2.Call<ProductResponse>, t: Throwable) {
+                    dismissProgressDialog()
                     Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
                     Log.e(this.javaClass.simpleName, " Exceptions : $t")
                 }
@@ -69,24 +73,27 @@ class DetailProductAcitivity : AppActivity() {
         if (role.equals("ROLE_MERCHANT")) {
             produk_delete_btn.visibility = View.VISIBLE
             produk_update_btn.visibility = View.VISIBLE
-            pesan.visibility = View.GONE
-            keranjang.visibility = View.GONE
+            btn_pesan.visibility = View.GONE
+            btn_keranjang.visibility = View.GONE
         } else if (role.equals("ROLE_USER")) {
             produk_delete_btn.visibility = View.GONE
             produk_update_btn.visibility = View.GONE
-            pesan.visibility = View.VISIBLE
-            keranjang.visibility = View.VISIBLE
+            btn_pesan.visibility = View.VISIBLE
+            btn_keranjang.visibility = View.VISIBLE
         } else {
             produk_delete_btn.visibility = View.GONE
             produk_update_btn.visibility = View.GONE
-            pesan.visibility = View.GONE
-            keranjang.visibility = View.GONE
+            btn_pesan.visibility = View.GONE
+            btn_keranjang.visibility = View.GONE
         }
     }
 
     fun displayProduct() {
+        Picasso.get()
+            .load("https://portal-desa.herokuapp.com"+productResponse?.gambar)
+            .into(img_icon)
         tv_nama.setText(productResponse?.nama)
-        tv_harga.setText("Rp." + productResponse?.harga)
+        tv_harga.setText(Utils().numberToIDR(productResponse!!.harga!!.toInt(), true))
         tv_desc.setText(productResponse?.deskripsi)
     }
 
@@ -98,11 +105,15 @@ class DetailProductAcitivity : AppActivity() {
 
     }
 
+    private fun showMessage(message: String) {
+        topSnackBar.showError(this, findViewById(R.id.snackbar_container), message)
+    }
+
     fun addToCart() {
-        val a = Jumlah.text.toString()
-        if (a.equals("")) {
-            Toast.makeText(this, "Masukkan Jumlah Pesanan", Toast.LENGTH_SHORT).show()
+        if (!FormValidation().required(et_jumlah.getText().toString())) {
+            Toast.makeText(this, "Jumlah tidak boleh kosong", Toast.LENGTH_SHORT).show()
         } else {
+            showProgressDialog()
             if (Connectivity().isNetworkAvailable(this)) {
                 val client = APIServiceGenerator().createService
                 val call = client.checkCart(getRequestCheck())
@@ -112,8 +123,6 @@ class DetailProductAcitivity : AppActivity() {
                         response: Response<DefaultResponse>
                     ) {
                         val cek = response.body()
-                        val status = cek!!.status
-                        val messages = response.body()?.message
                         if (cek?.status == 0) {
                             doCart()
                         } else {
@@ -175,7 +184,7 @@ class DetailProductAcitivity : AppActivity() {
         keranjangRequest.id = productResponse?.sku
         keranjangRequest.idCustomer = skuLogin
         keranjangRequest.idProduk = idProduk
-        keranjangRequest.jumlah = Integer.parseInt(Jumlah.text.toString())
+        keranjangRequest.jumlah = Integer.parseInt(et_jumlah.text.toString())
         keranjangRequest.skuDesa = productResponse?.skuDesa
         keranjangRequest.status = 1
         keranjangRequest.harga = Integer.parseInt(productResponse?.harga)
@@ -186,6 +195,7 @@ class DetailProductAcitivity : AppActivity() {
     fun goToKeranjang() {
         intent = Intent(this, KeranjangActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
 //    private fun initView() {

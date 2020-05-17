@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
 import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Flag
+import com.PortalDesa.data.support.Utils
 import com.PortalDesa.data.ui.main.activity.DetailProductAcitivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_product.view.img_icon
@@ -23,6 +24,7 @@ class ListProductAdapter(val context : Context, var listProduk : List<ProductRes
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
         val tvDesc = v.tv_desc
+        val tvHarga = v.tv_harga
         val ln_product = v.ln_product
         val imgPopular = v.img_icon
     }
@@ -46,10 +48,11 @@ class ListProductAdapter(val context : Context, var listProduk : List<ProductRes
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Picasso.get()
-            .load(R.drawable.balige)
+            .load("https://portal-desa.herokuapp.com"+listProduk.get(position).gambar)
             .into(holder.imgPopular)
 
         holder?.tvDesc.text = listProduk.get(position).nama
+        holder?.tvHarga.text = Utils().numberToIDR(listProduk.get(position).harga!!.toInt(), true)
         holder?.ln_product.setOnClickListener(View.OnClickListener {
             val intent = Intent(context, DetailProductAcitivity::class.java)
             intent.putExtra(Flag.PRODUCT_NAME, listProduk.get(position).sku)

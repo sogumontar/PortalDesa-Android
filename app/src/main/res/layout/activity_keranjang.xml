@@ -19,8 +19,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_keranjang"
-            android:layout_width="411dp"
-            android:layout_height="495dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@color/white" />
 

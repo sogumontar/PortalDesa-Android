@@ -16,6 +16,7 @@ import com.PortalDesa.data.model.response.PenginapanResponse
 import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Flag
+import com.PortalDesa.data.support.Utils
 import com.PortalDesa.data.ui.main.activity.KeranjangActivity
 import kotlinx.android.synthetic.main.item_keranjang.view.*
 import retrofit2.Response
@@ -31,7 +32,7 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
-        val tvDesc = v.btn_del
+        val tvDelete = v.btn_del
         val name = v.tv_name
         val harga = v.tv_desc
         val jumlah = v.tv_pcs
@@ -68,7 +69,7 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
                 ) {
                     val listProduk = response.body()
                     holder.name.setText(listProduk?.nama)
-                    holder.harga.setText("Rp." + listProduk?.harga)
+                    holder.harga.setText(Utils().numberToIDR(listProduk?.harga!!.toInt(), true))
                     holder.jumlah.setText(listKeranjang.get(position).jumlah!!.toString())
                 }
 
@@ -81,8 +82,8 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
         }
 
 
-        holder.tvDesc.text = "hapus"
-        holder.tvDesc.setOnClickListener {
+        holder.tvDelete.text = "hapus"
+        holder.tvDelete.setOnClickListener {
             delete(listKeranjang.get(position).id!!)
         }
 
