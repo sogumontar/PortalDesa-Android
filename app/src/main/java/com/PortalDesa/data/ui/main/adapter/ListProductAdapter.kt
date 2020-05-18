@@ -49,11 +49,7 @@ class ListProductAdapter(val context: Context, var listProduk: List<ProductRespo
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Picasso.get()
-<<<<<<< HEAD
-            .load("https://portal-desa.herokuapp.com" + listProduk.get(position).gambar )
-=======
             .load("https://portal-desa.herokuapp.com"+listProduk.get(position).gambar)
->>>>>>> 398993edb0211b837095381557d009dbf3e347f9
             .into(holder.imgPopular)
 
         holder?.tvDesc.text = listProduk.get(position).nama
