@@ -2,6 +2,12 @@ package com.PortalDesa.data.apiService
 
 interface ApiConfigs {
     companion object {
+
+        //Account
+        const val SUSPEND_ACCOUNT= "/adminDev/account/suspend/{sku}"
+        const val ACTIVATE_ACCOUNT= "/adminDev/account/activate/{sku}"
+
+        //Auth
         const val SIGN_IN = "/auth/signin"
         const val SIGN_UP = "/auth/signup"
         const val LIST_KECAMATAN = "/kecamatan/"
@@ -14,6 +20,7 @@ interface ApiConfigs {
         const val ADMIN_LIST_AKUN_MERCHANT = "/adminDev/account/merchant"
         const val ADMIN_LIST_AKUN_CUSTOMER = "/adminDev/account/customer"
         const val ADMIN_LIST_AKUN_ADMIN = "/adminDev/account/admin"
+        const val ADD_DATA_MERCHANT = "/adminDev/add"
 
         const val CONTENT_TYPE = "application/json"
         const val CODE_SUCCESS = 200

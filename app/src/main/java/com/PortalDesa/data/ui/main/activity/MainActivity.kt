@@ -1,5 +1,6 @@
 package com.PortalDesa.data.ui.main.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -7,6 +8,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.PortalDesa.R
 import com.PortalDesa.data.base.AppActivity
+import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.ui.main.activity.admin.MainActivityAdmin
 import com.PortalDesa.data.ui.main.fragment.AkunFragment
 import com.PortalDesa.data.ui.main.fragment.HomeFragment
 import com.PortalDesa.data.ui.main.fragment.ProductFragment
@@ -14,13 +17,18 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppActivity(), View.OnClickListener {
     private var mTabPosition = 0
-
+    lateinit var preferences: Preferences
     override fun onCreate(savedInstanceState: Bundle?) {
+        preferences = Preferences(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if (preferences.getRoles().equals("ROLE_ADMIN")) {
+            goToAdminActivity()
+        }
         tabSelected(0, "Beranda")
         tab_home.setOnClickListener(this)
         tab_product.setOnClickListener(this)
+
         tab_akun.setOnClickListener(this)
     }
 
@@ -33,6 +41,11 @@ class MainActivity : AppActivity(), View.OnClickListener {
         } else if (id == tab_akun.getId()) {
             tabSelected(2, "Akun")
         }
+    }
+
+    private fun goToAdminActivity() {
+        val intent = Intent(this, MainActivityAdmin::class.java)
+        startActivity(intent)
     }
 
     fun tabSelected(position: Int, type: String) {

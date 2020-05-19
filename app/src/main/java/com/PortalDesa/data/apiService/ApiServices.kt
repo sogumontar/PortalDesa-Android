@@ -10,6 +10,25 @@ import retrofit2.http.*
  */
 interface  ApiServices{
 
+    //Admin
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.ADD_DATA_MERCHANT)
+    fun createDataMerchant(@Body userRequest: DaftarAdminDesaRequest ): Call<DefaultResponse>
+
+
+    //Account
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.SUSPEND_ACCOUNT)
+    fun suspendAccount(@Path("sku") sku: String): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ACTIVATE_ACCOUNT)
+    fun activateAccount(@Path("sku") sku: String): Call<DefaultResponse>
+
+
     //Sign in
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
@@ -61,7 +80,7 @@ interface  ApiServices{
     @PUT(ApiConfigs.UPDATE_DETAIL_PROFILE)
     fun updateProfileBySku(@Path("sku") sku : String, @Body usersUpdateRequest : UsersUpdateRequest): Call<UsersUpdateRequest>
 
-    
+
     //Penginapan
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)

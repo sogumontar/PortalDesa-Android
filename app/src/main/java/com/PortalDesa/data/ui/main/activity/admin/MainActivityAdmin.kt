@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.PortalDesa.R
 import com.PortalDesa.data.base.AppActivity
+import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.fragment.admin.DaftarAkunFragment
 import com.PortalDesa.data.ui.main.fragment.admin.DaftarDesa
 import com.PortalDesa.data.ui.main.fragment.admin.DaftarPesanan
@@ -14,8 +15,10 @@ import kotlinx.android.synthetic.main.content_main_admin.*
 
 class MainActivityAdmin : AppActivity(), View.OnClickListener {
     private var mTabPosition = 2
+    lateinit var preferences : Preferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        preferences = Preferences(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_admin)
         tabSelected(2, "Akun")

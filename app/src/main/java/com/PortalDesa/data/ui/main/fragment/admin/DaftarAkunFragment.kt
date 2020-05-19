@@ -1,7 +1,8 @@
 package com.PortalDesa.data.ui.main.fragment.admin
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
-import com.PortalDesa.data.apiService.APIServiceGenerator
-import com.PortalDesa.data.model.response.DaftarAkunResponse
-import com.PortalDesa.data.ui.main.adapter.admin.DaftarAkunAdapter
+import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.ui.main.activity.Form.DaftarAdminDesa
+import com.PortalDesa.data.ui.main.activity.SignInActivity
+import com.PortalDesa.data.ui.main.activity.admin.DaftarAkunActivity
 import kotlinx.android.synthetic.main.activity_daftar_akun_fragment.*
-import retrofit2.Response
 
-class DaftarAkunFragment : Fragment() {
+class DaftarAkunFragment : Fragment(), View.OnClickListener {
+    lateinit private var preferences: Preferences
+
     companion object {
 
         fun newInstance(): DaftarAkunFragment {
@@ -26,35 +29,44 @@ class DaftarAkunFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        val preferences = this.activity!!.getSharedPreferences("Role", Context.MODE_PRIVATE)
         return inflater.inflate(R.layout.activity_daftar_akun_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recycler_daftar_akun.setHasFixedSize(true)
         val daftarAkunLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        recycler_daftar_akun.setLayoutManager(daftarAkunLayoutManager)
-        recycler_daftar_akun.setNestedScrollingEnabled(false)
+        preferences = Preferences(activity as Context)
         initView()
     }
-    fun initView(){
-        val client = APIServiceGenerator().createService
-        val call = client.getDaftarAkunAdminList()
-        call.enqueue(object : retrofit2.Callback<List<DaftarAkunResponse>> {
-            override fun onResponse(
-                call: retrofit2.Call<List<DaftarAkunResponse>>,
-            response: Response<List<DaftarAkunResponse>>
-            ) {
-                val listKecamatan = response.body()
-                val adapter = DaftarAkunAdapter(listKecamatan!!)
-                recycler_daftar_akun.setAdapter(adapter)
-            }
-
-            override fun onFailure(call: retrofit2.Call<List<DaftarAkunResponse>>, t: Throwable) {
-                Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                Log.e(this.javaClass.simpleName, " Exceptions : $t")
-            }
-        })
-
+    fun initView() {
+        val tok = preferences.getAccessToken()
+        btn_login.setOnClickListener(this)
+        admin_btn_logout.setOnClickListener(this)
+        admin_btn_akun.setOnClickListener(this)
+        btn_register_merchant.setOnClickListener(this)
     }
+    fun goToDaftarAkun() {
+        val intent = Intent(activity, DaftarAkunActivity::class.java)
+        startActivity(intent)
+    }
+    private fun doLogout() {
+        preferences.clearToken()
+        val intent = Intent(activity, SignInActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+        activity!!.finish()
+    }
+    fun goToDaftarkanMerchant(){
+        val intent = Intent(activity, DaftarAdminDesa::class.java)
+        startActivity(intent)
+    }
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            admin_btn_akun.id -> goToDaftarAkun()
+            admin_btn_logout.id -> doLogout()
+            btn_register_merchant.id -> goToDaftarkanMerchant()
+        }
+    }
+
 }

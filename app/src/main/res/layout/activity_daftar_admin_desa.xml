@@ -117,9 +117,9 @@ tools:context=".data.ui.main.activity.SignInActivity">
 
             <TextView
                 android:id="@+id/txt7"
-                android:layout_width="wrap_content"
+                android:layout_width="86dp"
                 android:layout_height="wrap_content"
-                android:text="Ulangi Password:" />
+                android:text="Ulangi\n Password  :" />
 
             <EditText
                 android:id="@+id/confirmPassword"
@@ -132,7 +132,7 @@ tools:context=".data.ui.main.activity.SignInActivity">
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btn_admin_daftar_merchant"
             android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

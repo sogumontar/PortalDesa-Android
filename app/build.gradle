@@ -16,12 +16,14 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "SERVER_URL", '"https://portal-desa.herokuapp.com"'
+            buildConfigField "String", "SERVER_URL_IMAGE", '"https://file-repositorys.herokuapp.com"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         release {
             buildConfigField "String", "SERVER_URL", '"https://portal-desa.herokuapp.com"'
+            buildConfigField "String", "SERVER_URL_IMAGE", '"https://file-repositorys.herokuapp.com"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

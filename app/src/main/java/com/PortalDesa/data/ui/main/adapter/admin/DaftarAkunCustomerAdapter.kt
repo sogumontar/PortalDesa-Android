@@ -14,14 +14,14 @@ import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.admin.DaftarAkunActivity
-import kotlinx.android.synthetic.main.item_daftar_akun.view.*
+import kotlinx.android.synthetic.main.item_daftar_akun_customer.view.*
 import retrofit2.Response
 
 /**
  * Created by Sogumontar Hendra Simangunsong on 08/05/2020.
  */
-class DaftarAkunAdapter(val context: Context,val listAkun : List<DaftarAkunResponse>) :
-    RecyclerView.Adapter<DaftarAkunAdapter.ViewHolder>() {
+class DaftarAkunCustomerAdapter(val context: Context,val listAkun : List<DaftarAkunResponse>) :
+    RecyclerView.Adapter<DaftarAkunCustomerAdapter.ViewHolder>() {
 
     lateinit private var preferences: Preferences
 
@@ -40,9 +40,9 @@ class DaftarAkunAdapter(val context: Context,val listAkun : List<DaftarAkunRespo
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): DaftarAkunAdapter.ViewHolder {
+    ): DaftarAkunCustomerAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_daftar_akun, parent, false)
+            .inflate(R.layout.item_daftar_akun_customer, parent, false)
         return ViewHolder(view)
     }
 
@@ -65,7 +65,6 @@ class DaftarAkunAdapter(val context: Context,val listAkun : List<DaftarAkunRespo
         context.startActivity(intent)
     }
     fun blocked(sku:String){
-
         if (Connectivity().isNetworkAvailable(context)) {
             val client = APIServiceGenerator().createService
             val call = client.suspendAccount(sku)
