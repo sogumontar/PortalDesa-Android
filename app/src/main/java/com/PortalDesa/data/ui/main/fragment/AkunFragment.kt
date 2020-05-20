@@ -35,8 +35,6 @@ class AkunFragment : Fragment(), View.OnClickListener {
         }else{
             return inflater.inflate(R.layout.fragment_akun, container, false)
         }
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

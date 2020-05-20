@@ -18,7 +18,7 @@ import com.PortalDesa.data.ui.main.adapter.admin.DaftarAkunCustomerAdapter
 import kotlinx.android.synthetic.main.activity_daftar_akun.*
 import retrofit2.Response
 
-class DaftarAkunActivity : AppActivity(),  View.OnClickListener {
+    class DaftarAkunActivity : AppActivity(),  View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +44,11 @@ class DaftarAkunActivity : AppActivity(),  View.OnClickListener {
                     response: Response<List<DaftarAkunResponse>>
                 ) {
                     val listKecamatan = response.body()
-                    val adapter = DaftarAkunAdapter(this@DaftarAkunActivity, listKecamatan!!)
-                    recycler_daftar_akun.setAdapter(adapter)
+                    if(listKecamatan!=null) {
+                        val adapter = DaftarAkunAdapter(this@DaftarAkunActivity, listKecamatan!!)
+                        recycler_daftar_akun.setAdapter(adapter)
+                    }
+
                 }
 
                 override fun onFailure(
@@ -70,8 +73,10 @@ class DaftarAkunActivity : AppActivity(),  View.OnClickListener {
                     response: Response<List<DaftarAkunResponse>>
                 ) {
                     val listKecamatan = response.body()
-                    val adapter = DaftarAkunCustomerAdapter(this@DaftarAkunActivity, listKecamatan!!)
-                    recycler_daftar_akun_customer.setAdapter(adapter)
+                    if(listKecamatan!=null) {
+                        val adapter = DaftarAkunCustomerAdapter(this@DaftarAkunActivity, listKecamatan!!)
+                        recycler_daftar_akun_customer.setAdapter(adapter)
+                    }
                 }
 
                 override fun onFailure(

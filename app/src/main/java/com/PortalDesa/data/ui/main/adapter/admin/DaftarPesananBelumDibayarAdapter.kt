@@ -1,4 +1,4 @@
-package com.PortalDesa.data.ui.main.adapter
+package com.PortalDesa.data.ui.main.adapter.admin
 
 import android.content.Context
 import android.content.Intent
@@ -12,23 +12,28 @@ import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.model.response.PesananResponse
 import com.PortalDesa.data.support.Connectivity
-import com.PortalDesa.data.ui.main.activity.PesananActivity
+import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.ui.main.activity.admin.DaftarPesananActivity
 import kotlinx.android.synthetic.main.item_pesanan.view.*
 import retrofit2.Response
 
 /**
- * Created by Sogumontar Hendra Simangunsong on 17/05/2020.
+ * Created by Sogumontar Hendra Simangunsong on 20/05/2020.
  */
+class DaftarPesananBelumDibayarAdapter(val context: Context, val listPesanan : List<PesananResponse>) :
+    RecyclerView.Adapter<DaftarPesananBelumDibayarAdapter.ViewHolder>() {
 
-class PesananAdapter(val context: Context, val list : List<PesananResponse>) : RecyclerView.Adapter<PesananAdapter.ViewHolder>() {
+    lateinit private var preferences: Preferences
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
+
         val alamat = v.pesanan_alamat
         val metode = v.pesanan_metode
         val harga = v.penginapan_harga
-        val btn_delete = v.btn_pesanan_del
-        val btn_bayar = v.btn_bayar
+        val btnBayar = v.btn_bayar
+        val btnDelete = v.btn_pesanan_del
+
     }
 
 
@@ -36,7 +41,7 @@ class PesananAdapter(val context: Context, val list : List<PesananResponse>) : R
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PesananAdapter.ViewHolder {
+    ): DaftarPesananBelumDibayarAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_pesanan, parent, false)
         return ViewHolder(view)
@@ -45,18 +50,19 @@ class PesananAdapter(val context: Context, val list : List<PesananResponse>) : R
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.alamat.text = list.get(position).alamat
-        holder.harga.text = list.get(position).harga
-        holder.metode.text = list.get(position).metode
-        holder.btn_delete.setOnClickListener(View.OnClickListener {
-            hapus(list.get(position).id!!)
-        })
-        holder.btn_bayar.setOnClickListener(View.OnClickListener {
-
-        })
+        if(listPesanan.get(position).status!=1){
+//            holder?.btnBayar.visibility=View.GONE
+//            holder?.btnDelete.visibility=View.VISIBLE
+        }
+        holder?.btnDelete.setOnClickListener { hapus(listPesanan.get(position).id!!) }
+        holder?.btnBayar.visibility=View.GONE
+        holder?.alamat.text = listPesanan.get(position).alamat
+        holder?.metode.text = listPesanan.get(position).metode
+        holder?.harga.text = listPesanan.get(position).harga
     }
+
     fun reload(){
-        val intent = Intent(context, PesananActivity::class.java)
+        val intent = Intent(context, DaftarPesananActivity::class.java)
         context.startActivity(intent)
     }
     fun hapus(sku:String){
@@ -80,6 +86,7 @@ class PesananAdapter(val context: Context, val list : List<PesananResponse>) : R
     }
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount(): Int {
-        return list.size
+        return listPesanan.size
     }
+
 }

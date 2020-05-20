@@ -30,7 +30,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:text="Selamat Datang"
+                        android:text="Selamat Datang Admin"
                         android:textColor="@color/black_home"
                         android:textSize="30sp"/>
                     <TextView
@@ -43,7 +43,21 @@
                         android:textSize="30sp"/>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/lin"
+                    android:layout_width="match_parent"
+                    android:layout_height="248dp">
 
+                    <ImageView
+                        android:id="@+id/img_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="216dp"
+                        android:layout_margin="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/logoportaldesa2"
+                        android:translationZ="5dp" />
+
+                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/ln_profile"
                     android:layout_width="match_parent"
@@ -100,7 +114,23 @@
                         android:text="Daftar Akun"
                         android:padding="20dp"/>
                 </LinearLayout>
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/admin_btn_pesanan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_green"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/white"
+                        android:text="Daftar Pesanan"
+                        android:padding="20dp"/>
+                </LinearLayout>
                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

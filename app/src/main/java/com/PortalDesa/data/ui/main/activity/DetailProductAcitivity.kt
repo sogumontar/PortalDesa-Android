@@ -127,6 +127,7 @@ class DetailProductAcitivity : AppActivity() {
                             doCart()
                         } else {
                             alert()
+                            doCart()
                         }
                     }
 

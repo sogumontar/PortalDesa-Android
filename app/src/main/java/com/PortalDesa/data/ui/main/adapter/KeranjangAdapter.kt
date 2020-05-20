@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
+import com.PortalDesa.data.model.request.KeranjangUpdateRequest
 import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.model.response.KeranjangResponse
 import com.PortalDesa.data.model.response.PenginapanResponse
@@ -38,6 +39,7 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
         val jumlah = v.tv_pcs
         val incr = v.incr_keranjang
         val decr = v.decr_keranjang
+        val btn_ubah =v.btn_ubah
 
     }
 
@@ -92,15 +94,45 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
                 delete(listKeranjang.get(position).id!!)
             } else {
                 holder.jumlah.setText((Integer.parseInt(holder.jumlah.text.toString()) - 1).toString())
+                holder.btn_ubah.visibility=View.VISIBLE
             }
         }
 
         holder.incr.setOnClickListener {
             holder.jumlah.setText((Integer.parseInt(holder.jumlah.text.toString()) + 1).toString())
-
+            holder.btn_ubah.visibility=View.VISIBLE
+        }
+        holder.btn_ubah.setOnClickListener {
+            rubah(listKeranjang.get(position).id!!,Integer.parseInt(holder.jumlah.text.toString()))
         }
 
 
+    }
+    fun getData(value:String, jumlah:Int): KeranjangUpdateRequest{
+        val keranjangUpdateRequest= KeranjangUpdateRequest()
+        keranjangUpdateRequest.id = value
+        keranjangUpdateRequest.jumlah = jumlah
+        return keranjangUpdateRequest
+    }
+
+    fun rubah(value:String,jumlah:Int){
+        if (Connectivity().isNetworkAvailable(context)) {
+            val client = APIServiceGenerator().createService
+            val call = client.updateCart(getData(value,jumlah))
+            call.enqueue(object : retrofit2.Callback<DefaultResponse> {
+                override fun onResponse(
+                    call: retrofit2.Call<DefaultResponse>,
+                    response: Response<DefaultResponse>
+                ) {
+                    goToKeranjang()
+                }
+
+                override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
+                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                }
+            })
+
+        }
     }
 
     fun delete(value: String) {

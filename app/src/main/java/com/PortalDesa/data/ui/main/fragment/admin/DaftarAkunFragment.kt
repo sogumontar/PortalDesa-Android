@@ -14,6 +14,7 @@ import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.Form.DaftarAdminDesa
 import com.PortalDesa.data.ui.main.activity.SignInActivity
 import com.PortalDesa.data.ui.main.activity.admin.DaftarAkunActivity
+import com.PortalDesa.data.ui.main.activity.admin.DaftarPesananActivity
 import kotlinx.android.synthetic.main.activity_daftar_akun_fragment.*
 
 class DaftarAkunFragment : Fragment(), View.OnClickListener {
@@ -45,6 +46,7 @@ class DaftarAkunFragment : Fragment(), View.OnClickListener {
         admin_btn_logout.setOnClickListener(this)
         admin_btn_akun.setOnClickListener(this)
         btn_register_merchant.setOnClickListener(this)
+        admin_btn_pesanan.setOnClickListener(this)
     }
     fun goToDaftarAkun() {
         val intent = Intent(activity, DaftarAkunActivity::class.java)
@@ -62,11 +64,17 @@ class DaftarAkunFragment : Fragment(), View.OnClickListener {
         val intent = Intent(activity, DaftarAdminDesa::class.java)
         startActivity(intent)
     }
+
+    fun goToDaftarPesanan(){
+        val intent = Intent(activity, DaftarPesananActivity::class.java)
+        startActivity(intent)
+    }
     override fun onClick(v: View?) {
         when (v!!.id) {
             admin_btn_akun.id -> goToDaftarAkun()
             admin_btn_logout.id -> doLogout()
             btn_register_merchant.id -> goToDaftarkanMerchant()
+            admin_btn_pesanan.id -> goToDaftarPesanan()
         }
     }
 

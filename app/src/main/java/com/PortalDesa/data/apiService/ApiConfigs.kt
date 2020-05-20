@@ -44,12 +44,17 @@ interface ApiConfigs {
 
         //Pesanan
         const val LIST_PESANAN_CUSTOMER = "/transaksi/sku/pesan/{sku}"
+        const val LIST_PESANAN_ALL_BELUM_BAYAR = "/transaksi/pesanan"
+        const val LIST_PESANAN_ALL_SUDAH_BAYAR = "/transaksi/pesanan/sudah"
+        const val CANCEL_PESANAN = "/transaksi/pesanan/cancel/{sku}"
+
 
         //Cart
         const val LIST_CART_CUSTOMER = "/keranjang/customer/{sku}"
         const val ADD_TO_CART_CUSTOMER = "/keranjang/save"
         const val DELETE_TO_CART_CUSTOMER = "/keranjang/delete/{id}"
         const val CHECK_CART_CUSTOMER = "/keranjang/check"
+        const val UPDATE_CART_CUSTOMER = "/keranjang/update"
 
         //Transaksi
         const val TRANSAKSI_ADD= "/transaksi/add"

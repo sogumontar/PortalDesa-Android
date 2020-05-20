@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".data.ui.main.activity.admin.DaftarPesananActivity"></activity>
         <activity android:name=".data.ui.main.activity.admin.DaftarAkunActivity" />
         <activity android:name=".data.ui.main.activity.PesananActivity" />
         <activity android:name=".data.ui.main.activity.PemesananActivity" />

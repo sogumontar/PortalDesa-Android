@@ -144,11 +144,6 @@ interface  ApiServices{
     fun deleteProduk(@Path("sku") sku : String): Call<DefaultResponse>
 
 
-    //Pesanan
-    @Headers(
-        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
-    @GET(ApiConfigs.LIST_PESANAN_CUSTOMER)
-    fun getPesanan(@Path("sku")sku : String): Call<List<PesananResponse>>
 
     //Keranjang
     @Headers(
@@ -170,6 +165,34 @@ interface  ApiServices{
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @POST(ApiConfigs.CHECK_CART_CUSTOMER)
     fun checkCart(@Body request : KeranjangRequestCheck): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @PUT(ApiConfigs.UPDATE_CART_CUSTOMER)
+    fun updateCart(@Body request : KeranjangUpdateRequest): Call<DefaultResponse>
+
+
+
+    //Pesanan
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_PESANAN_CUSTOMER)
+    fun getPesanan(@Path("sku")sku : String): Call<List<PesananResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_PESANAN_ALL_BELUM_BAYAR)
+    fun getPesananAll(): Call<List<PesananResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_PESANAN_ALL_SUDAH_BAYAR)
+    fun getPesananAllSudahBayar(): Call<List<PesananResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.CANCEL_PESANAN)
+    fun cancelPesanan(@Path("sku")sku : String): Call<DefaultResponse>
 
 
     //Transaksi

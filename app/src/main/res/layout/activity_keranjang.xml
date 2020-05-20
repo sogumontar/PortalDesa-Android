@@ -197,5 +197,5 @@
         android:text="PESAN ->"
         android:layout_alignParentBottom="true"
         android:textColor="@color/white"
-        android:background="@drawable/rounded_blue_secondary"/>
+        android:background="@drawable/rounded_green"/>
 </RelativeLayout>
