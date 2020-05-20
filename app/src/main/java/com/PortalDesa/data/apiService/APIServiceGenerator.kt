@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 class APIServiceGenerator {
 
-    val TIME_OUT = 120L
+    val TIME_OUT = 240L
     val API_BASE_URL = BuildConfig.SERVER_URL
     val API_BASE_URL_IMAGE = BuildConfig.SERVER_URL_IMAGE
 

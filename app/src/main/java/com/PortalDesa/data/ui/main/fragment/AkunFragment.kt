@@ -29,9 +29,12 @@ class AkunFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val preferences =
-            this.activity!!.getSharedPreferences("Role", Context.MODE_PRIVATE)
-        return inflater.inflate(R.layout.fragment_akun, container, false)
+        val preferences = this.activity!!.getSharedPreferences("Role", Context.MODE_PRIVATE)
+        if(preferences.equals("ROLE_ADMIN")){
+            return inflater.inflate(R.layout.activity_akun_fragment_after_login, container, false)
+        }else{
+            return inflater.inflate(R.layout.fragment_akun, container, false)
+        }
 
 
     }
@@ -64,6 +67,7 @@ class AkunFragment : Fragment(), View.OnClickListener {
 
     private fun doLogout() {
         preferences.clearToken()
+        preferences.clearAll()
         val intent = Intent(activity, SignInActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
@@ -94,7 +98,7 @@ class AkunFragment : Fragment(), View.OnClickListener {
         btn_profile.setOnClickListener(this)
         btn_pesanan.setOnClickListener(this)
         btn_keranjang_akun.setOnClickListener(this)
-        if (!preferences.getRoles().equals("ROLE_MERCHANT")) {
+        if (preferences.getRoles().equals("ROLE_USER")) {
             ln_signin.visibility = View.GONE
             btn_logout.visibility = View.VISIBLE
             btn_profile.visibility = View.VISIBLE

@@ -1,35 +1,32 @@
 package com.PortalDesa.data.ui.main.activity.merchant
 
-import android.content.Context
+import android.R.attr.bitmap
 import android.content.Intent
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.PortalDesa.R
+import com.PortalDesa.data.apiService.APIServiceGenerator
+import com.PortalDesa.data.base.AppActivity
+import com.PortalDesa.data.model.request.PenginapanImageRequest
+import com.PortalDesa.data.model.response.PenginapanImageResponse
+import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.support.Preferences
 import kotlinx.android.synthetic.main.activity_penginapan_form.*
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import android.util.Base64
-import com.PortalDesa.data.apiService.APIServiceGenerator
-import com.PortalDesa.data.base.AppActivity
-import com.PortalDesa.data.model.request.PenginapanImageRequest
-import com.PortalDesa.data.model.request.UserRequest
-import com.PortalDesa.data.model.response.ListDesaKecamatanResponse
-import com.PortalDesa.data.model.response.PenginapanImageResponse
-import com.PortalDesa.data.support.Connectivity
-import com.PortalDesa.data.support.Preferences
-import kotlinx.android.synthetic.main.activity_login.*
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
+
 
 class PenginapanForm : AppActivity() {
 
@@ -80,12 +77,14 @@ class PenginapanForm : AppActivity() {
 
     fun encoder(): String{
         showProgressDialog()
-        val bao = ByteArrayOutputStream()
-        bitmap_val!!.compress(Bitmap.CompressFormat.JPEG, 100, bao)
-        val ba = bao.toByteArray()
-        val imageStringBase64 = Base64.encodeToString(ba, Base64.DEFAULT)
-        Log.d("Image Base64", imageStringBase64)
-        return imageStringBase64
+
+        val outputStream = ByteArrayOutputStream()
+        bitmap_val!!.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+
+        return Base64.encodeToString(
+            outputStream.toByteArray(),
+            Base64.DEFAULT
+        )
     }
 
     fun uploadImagePenginapan(imageString : String){
