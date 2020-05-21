@@ -1,6 +1,5 @@
 package com.PortalDesa.data.ui.main.activity.merchant
 
-import android.R.attr.bitmap
 import android.content.Intent
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
@@ -35,6 +34,8 @@ class PenginapanForm : AppActivity() {
 
     var preferences : Preferences? = null
 
+    var penginapanImageRequest : PenginapanImageRequest?=null
+
     var name : String = ""
     var bitmap_val : Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +45,7 @@ class PenginapanForm : AppActivity() {
         btn_image.setOnClickListener { showPictureDialog() }
         btn_send.setOnClickListener{
 
-            uploadImagePenginapan(encoder())
+            uploadImagePenginapan(penginapanImageRequest!!)
         }
     }
 
@@ -87,12 +88,19 @@ class PenginapanForm : AppActivity() {
         )
     }
 
-    fun uploadImagePenginapan(imageString : String){
+    fun getImageStringBase64(bitmap: Bitmap): String? {
+        val bao = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bao)
+        val ba = bao.toByteArray()
+        val imageStringBase64 =
+            Base64.encodeToString(ba, Base64.DEFAULT)
+        Log.d("Image Base64", imageStringBase64)
+        return imageStringBase64
+    }
+
+    fun uploadImagePenginapan(request : PenginapanImageRequest){
         if (Connectivity().isNetworkAvailable(this)) {
-            val request = PenginapanImageRequest()
-            request.nama = preferences!!.getSku()
-            request.gambar = imageString
-            val client = APIServiceGenerator().createService
+                        val client = APIServiceGenerator().createService
             val call = client.addPenginapanimage(request)
             call.enqueue(object : Callback<PenginapanImageResponse> {
                 override fun onResponse(
@@ -161,6 +169,11 @@ return
     }
 
     fun saveImage(myBitmap: Bitmap):String {
+        val request = PenginapanImageRequest()
+        request.nama = preferences!!.getSku()
+        request.gambar = getImageStringBase64(myBitmap)
+
+        penginapanImageRequest = request
         val bytes = ByteArrayOutputStream()
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
         val wallpaperDirectory = File(
