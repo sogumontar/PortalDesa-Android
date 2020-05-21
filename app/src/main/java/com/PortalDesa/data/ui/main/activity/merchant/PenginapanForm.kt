@@ -1,5 +1,6 @@
 package com.PortalDesa.data.ui.main.activity.merchant
 
+import android.R.attr.bitmap
 import android.content.Intent
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
@@ -171,7 +172,7 @@ return
     fun saveImage(myBitmap: Bitmap):String {
         val request = PenginapanImageRequest()
         request.nama = preferences!!.getSku()
-        request.gambar = getImageStringBase64(myBitmap)
+        request.gambar = "image, "+getImageStringBase64(myBitmap)
 
         penginapanImageRequest = request
         val bytes = ByteArrayOutputStream()

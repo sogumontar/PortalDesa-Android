@@ -28,7 +28,7 @@ class ProfileActivity : AppActivity(), View.OnClickListener {
 
 
     fun getDetailProfile() {
-//        showProgressDialog()
+        showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
             val call = client.getDetailProfile(sku)
@@ -40,12 +40,14 @@ class ProfileActivity : AppActivity(), View.OnClickListener {
                     val detail = response.body()
                     data = detail
                     displayData()
+                    dismissProgressDialog()
                 }
 
                 override fun onFailure(
                     call: retrofit2.Call<ProfileResponse>,
                     t: Throwable
                 ) {
+                    dismissProgressDialog()
                 }
             })
         }

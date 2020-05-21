@@ -12,6 +12,7 @@ import com.PortalDesa.R
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.*
 import kotlinx.android.synthetic.main.fragment_akun.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class AkunFragment : Fragment(), View.OnClickListener {
     lateinit private var preferences: Preferences
@@ -42,6 +43,7 @@ class AkunFragment : Fragment(), View.OnClickListener {
         preferences = Preferences(activity as Context)
         initView()
     }
+
 
     private fun goToLogin() {
         val intent = Intent(activity, SignInActivity::class.java)
@@ -82,32 +84,30 @@ class AkunFragment : Fragment(), View.OnClickListener {
             btn_login.id -> goToLogin()
             btn_register.id -> goToRegister()
             btn_logout.id -> doLogout()
-            btn_profile.id -> goProfile()
-            btn_keranjang_akun.id -> goToKeranjang()
-            btn_pesanan.id -> goToPesanan()
+            ln_profile.id -> goProfile()
+            ln_keranjang.id -> goToKeranjang()
+            ln_pesanan.id -> goToPesanan()
 
         }
     }
 
     fun initView() {
-        val tok = preferences.getAccessToken()
+        tv_toolbar_title.text = "Profil"
         btn_login.setOnClickListener(this)
         btn_logout.setOnClickListener(this)
-        btn_profile.setOnClickListener(this)
-        btn_pesanan.setOnClickListener(this)
-        btn_keranjang_akun.setOnClickListener(this)
+        ln_profile.setOnClickListener(this)
         if (preferences.getRoles().equals("ROLE_USER")) {
             ln_signin.visibility = View.GONE
             btn_logout.visibility = View.VISIBLE
-            btn_profile.visibility = View.VISIBLE
-            btn_pesanan.visibility = View.VISIBLE
-            btn_keranjang_akun.visibility = View.VISIBLE
+            ln_profile.visibility = View.VISIBLE
+            ln_keranjang.visibility = View.VISIBLE
+            ln_pesanan.visibility = View.VISIBLE
         } else if (preferences.getRoles().equals("ROLE_MERCHANT")) {
             ln_signin.visibility = View.GONE
             btn_logout.visibility = View.VISIBLE
-            btn_profile.visibility = View.VISIBLE
-            btn_pesanan.visibility = View.VISIBLE
-            btn_keranjang_akun.visibility = View.GONE
+            ln_profile.visibility = View.VISIBLE
+            ln_keranjang.visibility = View.VISIBLE
+            ln_pesanan.visibility = View.VISIBLE
         } else {
             val intent = Intent(activity, SignInActivity::class.java)
             startActivity(intent)

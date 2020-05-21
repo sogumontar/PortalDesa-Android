@@ -21,6 +21,7 @@
         android:paddingTop="10dp"
         android:paddingRight="25dp"
         android:paddingLeft="25dp"
+        android:padding="30dp"
         android:orientation="vertical">
 
             <TextView
@@ -34,8 +35,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukan nama anda disini"
-                android:padding="8dp" />
+                android:hint="Masukan nama anda"
+                android:background="@drawable/bg_signup_edittext"
+                android:textSize="13sp"
+                android:textColor="@color/black2"
+                android:padding="10dp" />
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,8 +51,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukan username anda disini"
-                android:padding="8dp" />
+                android:hint="Masukan username anda"
+                android:background="@drawable/bg_signup_edittext"
+                android:textSize="13sp"
+                android:textColor="@color/black2"
+                android:padding="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -62,8 +69,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:hint="Masukkan email anda disini"
-            android:padding="8dp" />
+            android:hint="Masukkan email anda"
+            android:background="@drawable/bg_signup_edittext"
+            android:textSize="13sp"
+            android:textColor="@color/black2"
+            android:padding="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -78,8 +88,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
             android:layout_marginBottom="15dp"
-            android:hint="Masukkan alamat anda disini"
-            android:padding="8dp" />
+            android:hint="Masukkan alamat anda"
+            android:background="@drawable/bg_signup_edittext"
+            android:textSize="13sp"
+            android:textColor="@color/black2"
+            android:padding="10dp" />
 
 
         <TextView
@@ -93,9 +106,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:padding="8dp"
                 android:hint="Masukkan password anda"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:background="@drawable/bg_signup_edittext"
+                android:textSize="13sp"
+                android:textColor="@color/black2"
+                android:padding="10dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,7 +127,10 @@
             android:layout_gravity="end|center_vertical"
             android:inputType="textPassword"
             android:layout_marginBottom="15dp"
-            android:padding="8dp"
+            android:background="@drawable/bg_signup_edittext"
+            android:textSize="13sp"
+            android:padding="10dp"
+            android:textColor="@color/black2"
             android:hint="Masukkan kembali password anda" />
 
         <Button
@@ -120,7 +139,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_btn"
-
             android:text="@string/daftar"
             android:textColor="#ffff"/>
 

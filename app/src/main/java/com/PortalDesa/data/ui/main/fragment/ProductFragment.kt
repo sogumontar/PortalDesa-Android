@@ -20,6 +20,7 @@ import com.PortalDesa.data.ui.main.activity.merchant.CreateProdukForm
 import com.PortalDesa.data.ui.main.adapter.ListProductAdapter
 import com.PortalDesa.data.ui.main.adapter.ProductAdapter
 import kotlinx.android.synthetic.main.fragment_produk.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Response
 import java.util.*
 
@@ -38,15 +39,20 @@ class ProductFragment : Fragment(), View.OnClickListener{
             return newInstance()
         }
     }
-    override
-    fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) : View?{
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) : View?{
         return inflater.inflate(R.layout.fragment_produk, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycler_view_produk.setHasFixedSize(true)
         preferences = Preferences(activity as Context)
+        initView()
         initData()
+    }
+
+    fun initView(){
+        tv_toolbar_title.text = "Produk Desa"
     }
 
     fun initData(){

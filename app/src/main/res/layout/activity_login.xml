@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:padding="16dp"
+        android:padding="30dp"
         android:orientation="vertical">
 
         <TextView
@@ -32,7 +32,7 @@
         <ImageView
             android:id="@+id/logoApp"
             android:layout_width="214dp"
-            android:layout_height="217dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/logoportaldesa" />
 
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="5dp"
             android:text="Username" />
 
         <EditText
@@ -49,7 +49,11 @@
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"/>
+            android:background="@drawable/bg_signup_edittext"
+            android:hint="Masukkan Username"
+            android:textSize="13sp"
+            android:textColor="@color/black2"
+            android:padding="10dp"/>
 
         <TextView
             android:id="@+id/txt3"
@@ -66,7 +70,11 @@
             android:layout_height="wrap_content"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
-            android:padding="8dp"/>
+            android:background="@drawable/bg_signup_edittext"
+            android:hint="Masukkan Password"
+            android:textSize="13sp"
+            android:textColor="@color/black2"
+            android:padding="10dp"/>
 
         <Button
             android:id="@+id/btnLogin"
@@ -76,7 +84,7 @@
             android:background="@drawable/rounded_btn"
             android:translationZ="3dp"
             android:text="@string/Masuk"
-            android:textColor="#ffff"/>
+            android:textColor="@color/white"/>
 
         <FrameLayout
             android:layout_width="match_parent"

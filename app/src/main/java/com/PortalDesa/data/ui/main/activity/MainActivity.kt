@@ -22,9 +22,7 @@ class MainActivity : AppActivity(), View.OnClickListener {
         preferences = Preferences(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (preferences.getRoles().equals("ROLE_ADMIN")) {
-            goToAdminActivity()
-        }
+
         tabSelected(0, "Beranda")
         tab_home.setOnClickListener(this)
         tab_product.setOnClickListener(this)
@@ -41,11 +39,6 @@ class MainActivity : AppActivity(), View.OnClickListener {
         } else if (id == tab_akun.getId()) {
             tabSelected(2, "Akun")
         }
-    }
-
-    private fun goToAdminActivity() {
-        val intent = Intent(this, MainActivityAdmin::class.java)
-        startActivity(intent)
     }
 
     fun tabSelected(position: Int, type: String) {

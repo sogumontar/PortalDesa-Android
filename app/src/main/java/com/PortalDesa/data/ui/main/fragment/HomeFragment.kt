@@ -12,6 +12,7 @@ import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.model.response.KecamatanResponse
 import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.ui.main.activity.KecamatanActivity
 import com.PortalDesa.data.ui.main.activity.PenginapanActivity
 import com.PortalDesa.data.ui.main.activity.ProductActivity
 import com.PortalDesa.data.ui.main.activity.merchant.PenginapanForm
@@ -77,13 +78,17 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, PenginapanForm::class.java)
             startActivity(intent)
         }
+        tv_more.setOnClickListener(View.OnClickListener {
+            val intent = Intent(activity, KecamatanActivity::class.java)
+            startActivity(intent)
+        })
     }
     fun displayKecamatan(){
         if (listKecamatan != null && recycler_popular != null) {
             recycler_popular.setHasFixedSize(true)
             val menuListLayoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
             recycler_popular.setLayoutManager(menuListLayoutManager)
-            val adapter = PopularVilageAdapter(activity!!, listKecamatan!!)
+            val adapter = PopularVilageAdapter(activity!!, listKecamatan!!, true)
             view_animator.setDisplayedChild(1)
             recycler_popular.setAdapter(adapter)
 

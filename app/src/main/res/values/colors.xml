@@ -10,6 +10,7 @@
     <color name="card">#EBEBEB</color>
     <color name="white_bg">#f7f7f7</color>
     <color name="white">#FFFFFF</color>
+    <color name="white_88">#88FFFFFF</color>
     <color name="black">#000000</color>
     <color name="black2">#707070</color>
     <color name="black_home">#3c3c3c</color>
@@ -18,5 +19,7 @@
     <color name="soft_grey">#dddddd</color>
     <color name="red_danger">#A52D2D</color>
     <color name="snackbar_red">#F26253</color>
+    <color name="trio_bar_red">#CF4A54</color>
     <color name="text_edittext_black">#484848</color>
+    <color name="soft_grey_2">#E5E5E5</color>
 </resources>
