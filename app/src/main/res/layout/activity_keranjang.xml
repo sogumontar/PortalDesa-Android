@@ -109,14 +109,14 @@
                 android:layout_height="wrap_content"
                 android:padding="15dp"
                 >
+
                 <TextView
                     android:id="@+id/title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="141dp"
                     android:text="Metode Pembayaran"
-                    android:textStyle="bold"
                     android:textSize="20sp"
-                    />
+                    android:textStyle="bold" />
                 <RadioButton
                     android:id="@+id/metode_atm"
                     android:layout_width="wrap_content"

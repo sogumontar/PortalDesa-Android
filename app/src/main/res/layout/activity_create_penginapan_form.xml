@@ -95,10 +95,28 @@
                 android:id="@+id/penginapan_lokasi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:padding="8dp"
                 android:hint="Masukkan Lokasi penginapan"
                 android:inputType="text"/>
+
+
+            <Button
+                android:id="@+id/btn_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:foregroundGravity="left"
+                android:text="Select Image"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="89dp"
+                android:layout_height="82dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:foregroundGravity="center"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher" />
 
             <Button
                 android:id="@+id/btn_save"

@@ -14,6 +14,7 @@ import com.PortalDesa.data.model.request.KeranjangRequestCheck
 import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.*
+import com.PortalDesa.data.ui.main.activity.Form.PemesananLangsung
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_product.*
 import kotlinx.android.synthetic.main.activity_register_form.*
@@ -27,6 +28,7 @@ class DetailProductAcitivity : AppActivity() {
     var role: String? = ""
     var skuLogin: String? = ""
     lateinit var topSnackBar: TopSnackBar
+    var skuFix :String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +43,16 @@ class DetailProductAcitivity : AppActivity() {
         btn_keranjang.setOnClickListener() {
             addToCart()
         }
+        btn_pesan.setOnClickListener {
+            goToPemesananLangsung()
+        }
     }
 
     fun initData() {
         showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
+            skuFix=intent.getStringExtra(Flag.PRODUCT_NAME)
             val call = client.getProductBySku(intent.getStringExtra(Flag.PRODUCT_NAME))
             call.enqueue(object : retrofit2.Callback<ProductResponse> {
                 override fun onResponse(
@@ -197,6 +203,16 @@ class DetailProductAcitivity : AppActivity() {
         intent = Intent(this, KeranjangActivity::class.java)
         startActivity(intent)
         finish()
+    }
+    fun goToPemesananLangsung() {
+        if (!FormValidation().required(et_jumlah.getText().toString())) {
+            Toast.makeText(this, "Jumlah tidak boleh kosong", Toast.LENGTH_SHORT).show()
+        } else {
+            val intent = Intent(this, PemesananLangsung::class.java)
+            intent.putExtra(Flag.SKU_PESANAN_PRODUK, skuFix)
+            intent.putExtra(Flag.JUMLAH_PESANAN_PRODUK,et_jumlah.getText().toString())
+            this.startActivity(intent)
+        }
     }
 
 //    private fun initView() {

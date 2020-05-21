@@ -91,7 +91,7 @@ class PenginapanForm : AppActivity() {
         if (Connectivity().isNetworkAvailable(this)) {
             val request = PenginapanImageRequest()
             request.nama = preferences!!.getSku()
-            request.gambar = imageString
+            request.gambar = "image,"+imageString
             val client = APIServiceGenerator().createService
             val call = client.addPenginapanimage(request)
             call.enqueue(object : Callback<PenginapanImageResponse> {
