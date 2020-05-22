@@ -28,7 +28,7 @@ class DetailProductAcitivity : AppActivity() {
     var role: String? = ""
     var skuLogin: String? = ""
     lateinit var topSnackBar: TopSnackBar
-    var skuFix :String? = ""
+    var skuFix: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +46,16 @@ class DetailProductAcitivity : AppActivity() {
         btn_pesan.setOnClickListener {
             goToPemesananLangsung()
         }
+        produk_delete_btn.setOnClickListener {
+            delete()
+        }
     }
 
     fun initData() {
         showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
-            skuFix=intent.getStringExtra(Flag.PRODUCT_NAME)
+            skuFix = intent.getStringExtra(Flag.PRODUCT_NAME)
             val call = client.getProductBySku(intent.getStringExtra(Flag.PRODUCT_NAME))
             call.enqueue(object : retrofit2.Callback<ProductResponse> {
                 override fun onResponse(
@@ -96,7 +99,7 @@ class DetailProductAcitivity : AppActivity() {
 
     fun displayProduct() {
         Picasso.get()
-            .load("https://portal-desa.herokuapp.com"+productResponse?.gambar)
+            .load("https://portal-desa.herokuapp.com" + productResponse?.gambar)
             .into(img_icon)
         tv_nama.setText(productResponse?.nama)
         tv_harga.setText(Utils().numberToIDR(productResponse!!.harga!!.toInt(), true))
@@ -204,13 +207,41 @@ class DetailProductAcitivity : AppActivity() {
         startActivity(intent)
         finish()
     }
+
+    fun reload() {
+        intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    fun delete() {
+        if (Connectivity().isNetworkAvailable(this)) {
+            val client = APIServiceGenerator().createService
+            val call = client.deleteProduk(productResponse?.sku!!)
+            call.enqueue(object : retrofit2.Callback<DefaultResponse> {
+                override fun onResponse(
+                    call: retrofit2.Call<DefaultResponse>,
+                    response: Response<DefaultResponse>
+                ) {
+                    reload()
+                }
+
+                override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
+
+                }
+            })
+
+        }
+
+    }
+
     fun goToPemesananLangsung() {
         if (!FormValidation().required(et_jumlah.getText().toString())) {
             Toast.makeText(this, "Jumlah tidak boleh kosong", Toast.LENGTH_SHORT).show()
         } else {
             val intent = Intent(this, PemesananLangsung::class.java)
             intent.putExtra(Flag.SKU_PESANAN_PRODUK, skuFix)
-            intent.putExtra(Flag.JUMLAH_PESANAN_PRODUK,et_jumlah.getText().toString())
+            intent.putExtra(Flag.JUMLAH_PESANAN_PRODUK, et_jumlah.getText().toString())
             this.startActivity(intent)
         }
     }

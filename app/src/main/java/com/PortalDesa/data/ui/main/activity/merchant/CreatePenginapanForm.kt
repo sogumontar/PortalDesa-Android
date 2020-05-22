@@ -20,6 +20,7 @@ import com.PortalDesa.data.model.response.PenginapanImageResponse
 import com.PortalDesa.data.model.response.ProfileResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.support.TopSnackBar
 import com.PortalDesa.data.ui.main.activity.PenginapanActivity
 import kotlinx.android.synthetic.main.activity_create_penginapan_form.*
 import kotlinx.android.synthetic.main.activity_create_penginapan_form.btn_image
@@ -32,14 +33,15 @@ import java.io.IOException
 import java.util.*
 
 class CreatePenginapanForm : AppActivity(), View.OnClickListener {
-    private var data: ProfileResponse? = null
     var sku: String = ""
-    var nickName: String =""
+    var nickName: String = ""
     lateinit var preferences: Preferences
+    lateinit var topSnackBar: TopSnackBar
     private val GALLERY = 1
     private val CAMERA = 2
-    var name : String = ""
-    var bitmap_val : Bitmap? = null
+    var name: String = ""
+    var bitmap_val: Bitmap? = null
+    var penginapanImageRequest: PenginapanImageRequest? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         preferences = Preferences(this)
         super.onCreate(savedInstanceState)
@@ -48,13 +50,18 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
         setContentView(R.layout.activity_create_penginapan_form)
         btn_image.setOnClickListener { showPictureDialog() }
         btn_save.setOnClickListener(this)
+        btn_save.setOnClickListener {
+
+            uploadImagePenginapan(penginapanImageRequest!!)
+        }
     }
 
     private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(this)
         pictureDialog.setTitle("Select Action")
         val pictureDialogItems = arrayOf("Select photo from gallery", "Capture photo from camera")
-        pictureDialog.setItems(pictureDialogItems
+        pictureDialog.setItems(
+            pictureDialogItems
         ) { dialog, which ->
             when (which) {
                 0 -> choosePhotoFromGallary()
@@ -65,8 +72,10 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
     }
 
     fun choosePhotoFromGallary() {
-        val galleryIntent = Intent(Intent.ACTION_PICK,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        val galleryIntent = Intent(
+            Intent.ACTION_PICK,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        )
 
         startActivityForResult(galleryIntent, GALLERY)
     }
@@ -77,25 +86,20 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
     }
 
 
-
-    fun encoder(): String{
-        showProgressDialog()
-
-        val outputStream = ByteArrayOutputStream()
-        bitmap_val!!.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-
-        return Base64.encodeToString(
-            outputStream.toByteArray(),
-            Base64.DEFAULT
-        )
+    fun getImageStringBase64(bitmap: Bitmap): String? {
+        val bao = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bao)
+        val ba = bao.toByteArray()
+        val imageStringBase64 =
+            Base64.encodeToString(ba, Base64.DEFAULT)
+        Log.d("Image Base64", imageStringBase64)
+        return imageStringBase64
     }
 
-    fun uploadImagePenginapan(imageString : String){
+    fun uploadImagePenginapan(request : PenginapanImageRequest){
+        showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
-            val request = PenginapanImageRequest()
-            request.nama = preferences!!.getSku()
-            request.gambar = "image,"+imageString
-            val client = APIServiceGenerator().createServiceImage
+            val client = APIServiceGenerator().createService
             val call = client.addPenginapanimage(request)
             call.enqueue(object : Callback<PenginapanImageResponse> {
                 override fun onResponse(
@@ -111,7 +115,10 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
                     call: retrofit2.Call<PenginapanImageResponse>,
                     t: Throwable
                 ) {
-                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
+                    Log.i(
+                        this.javaClass.simpleName,
+                        " Requested API : " + call.request().body()!!
+                    )
                     Log.e(this.javaClass.simpleName, " Exceptions : $t")
                     Log.i("cek", "cek2 Exceptions : $t")
                     dismissProgressDialog()
@@ -119,16 +126,69 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
             })
         }
 
+
+    }
+
+    fun save(request: PenginapanRequest) {
+        showProgressDialog()
+        val client = APIServiceGenerator().createService
+        val call = client.addPenginapan(request)
+        call.enqueue(object : Callback<PenginapanRequest> {
+            override fun onResponse(
+                call: retrofit2.Call<PenginapanRequest>,
+                response: Response<PenginapanRequest>
+            ) {
+                dismissProgressDialog()
+                goToPenginapan()
+                finish()
+            }
+
+            override fun onFailure(call: retrofit2.Call<PenginapanRequest>, t: Throwable) {
+                dismissProgressDialog()
+            }
+        })
+
+    }
+//    fun save(request: PenginapanRequest) {
+//        val coba =request.desa
+//        val client = APIServiceGenerator().createService
+//        val call = client.addPenginapan(request)
+//        call.enqueue(object : Callback<PenginapanRequest> {
+//            override fun onResponse(
+//                call: retrofit2.Call<PenginapanRequest>,
+//                response: Response<PenginapanRequest>
+//            ) {
+//                finish()
+//                goToPenginapan()
+//            }
+//
+//            override fun onFailure(call: retrofit2.Call<PenginapanRequest>, t: Throwable) {
+//                dismissProgressDialog()
+//            }
+//        })
+//
+//    }
+
+    private fun getData(): PenginapanRequest {
+        val harga = penginapan_harga.text.toString()
+        val jumlah = penginapan_kamar.text.toString()
+        val requestUser = PenginapanRequest()
+        requestUser.nama = penginapan_nama.text.toString()
+        requestUser.harga = Integer.parseInt(harga)
+        requestUser.deskripsi = penginapan_deskripsi.text.toString()
+        requestUser.jumlahKamar = Integer.parseInt(jumlah)
+        requestUser.lokasi = penginapan_lokasi.text.toString()
+        requestUser.desa = nickName
+        requestUser.skumerchant = sku
+        requestUser.kecamatan = "Silaen"
+        return requestUser
     }
 
 
     override fun onActivityResult(requestCode:Int, resultCode:Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)
-/* if (resultCode == this.RESULT_CANCELED)
-{
-return
-}*/
+
         if (requestCode == GALLERY)
         {
             if (data != null)
@@ -165,10 +225,15 @@ return
     }
 
     fun saveImage(myBitmap: Bitmap):String {
+        val request = PenginapanImageRequest()
+        request.nama = preferences!!.getSku()
+        request.gambar = "image, "+getImageStringBase64(myBitmap)
+
+        penginapanImageRequest = request
         val bytes = ByteArrayOutputStream()
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
         val wallpaperDirectory = File(
-            (Environment.getExternalStorageDirectory()).toString() + IMAGE_DIRECTORY)
+            (Environment.getExternalStorageDirectory()).toString() + "/bayunugrohoweb")
 // have the object build the directory structure, if needed.
         Log.d("fee",wallpaperDirectory.toString())
         if (!wallpaperDirectory.exists())
@@ -202,53 +267,13 @@ return
     }
 
 
-    companion object {
-        private val IMAGE_DIRECTORY = "/bayunugrohoweb"
-    }
 
-    fun save(request: PenginapanRequest) {
-        showProgressDialog()
-
-        val client = APIServiceGenerator().createService
-        val call = client.addPenginapan(request)
-        call.enqueue(object : Callback<PenginapanRequest> {
-            override fun onResponse(
-                call: retrofit2.Call<PenginapanRequest>,
-                response: Response<PenginapanRequest>
-            ) {
-                goToPenginapan()
-                finish()
-            }
-
-            override fun onFailure(call: retrofit2.Call<PenginapanRequest>, t: Throwable) {
-                dismissProgressDialog()
-            }
-        })
-
-    }
-
-    private fun getData(): PenginapanRequest{
-        val harga=penginapan_harga.text.toString()
-        val jumlah=penginapan_kamar.text.toString()
-        val requestUser = PenginapanRequest()
-        requestUser.nama = penginapan_nama.text.toString()
-        requestUser.harga= Integer.parseInt(harga);
-        requestUser.deskripsi= penginapan_deskripsi.text.toString()
-        requestUser.jumlahKamar= Integer.parseInt(jumlah);
-        requestUser.lokasi= penginapan_lokasi.text.toString()
-        requestUser.desa = nickName
-        requestUser.skumerchant = sku
-        requestUser.kecamatan= "Silaen"
-        return requestUser
+    fun goToPenginapan() {
+        val intent = Intent(this, PenginapanActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onClick(v: View?) {
-        when (v!!.id) {
-            btn_save.id -> uploadImagePenginapan(encoder())
-        }
-    }
-    fun goToPenginapan(){
-        val intent = Intent(this, PenginapanActivity::class.java)
-        startActivity(intent)
+        TODO("Not yet implemented")
     }
 }

@@ -33,10 +33,10 @@ class PenginapanAdapter(val listDesa : List<ListDesaKecamatanResponse>) : Recycl
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Picasso.get()
-            .load("https://portal-desa.herokuapp.com/desa/get/PINT-0001.png")
+            .load("https://portal-desa.herokuapp.com"+listDesa.get(position).gambar)
             .into(holder.imgLogo)
 
-        holder.tvDesa.text = listDesa.get(position).nama
+        holder.tvDesa.text = listDesa.get(position).gambar
         holder.tvKecamatan.text = listDesa.get(position).kecamatan
     }
 

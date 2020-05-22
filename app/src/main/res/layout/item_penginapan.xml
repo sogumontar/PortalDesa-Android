@@ -21,7 +21,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="4dp"
-            android:src="@drawable/balige" />
+            android:src="@drawable/default_image" />
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -85,7 +85,7 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_red_button"
             android:text="Hapus"
-            android:textColor="#ffff" />
+            android:textColor="@color/snackbar_red" />
     </LinearLayout>
 
     <View

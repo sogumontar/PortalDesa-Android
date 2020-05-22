@@ -130,7 +130,7 @@
             android:visibility="gone"
             android:background="@drawable/rounded_red_button"
             android:text="Delete"
-            android:textColor="#ffff" />
+            android:textColor="@color/snackbar_red" />
         <Button
             android:id="@+id/btn_pesan"
             android:layout_width="0dp"

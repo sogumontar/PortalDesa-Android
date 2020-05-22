@@ -39,7 +39,8 @@ class ProfileActivity : AppActivity(), View.OnClickListener {
                 ) {
                     val detail = response.body()
                     data = detail
-                    displayData()
+                    val test =  detail?.name
+                    displayData(detail)
                     dismissProgressDialog()
                 }
 
@@ -74,10 +75,11 @@ class ProfileActivity : AppActivity(), View.OnClickListener {
 
     }
 
-    fun displayData() {
-        et_alamat!!.setText(data?.alamat)
-        et_email!!.setText(data?.email)
-        et_name!!.setText(data?.name)
+    fun displayData(datas : ProfileResponse?) {
+        val alamat = datas?.alamat
+        et_alamat!!.setText(datas?.alamat)
+        et_email!!.setText(datas?.email)
+        et_name!!.setText(datas?.name)
     }
     private fun getUser(): UsersUpdateRequest{
         val requestUser = UsersUpdateRequest()

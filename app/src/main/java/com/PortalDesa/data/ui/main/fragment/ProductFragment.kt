@@ -52,12 +52,14 @@ class ProductFragment : Fragment(), View.OnClickListener{
     }
 
     fun initView(){
+        if(preferences.getRoles().equals("ROLE_MERCHANT")){
+            button_create_produk.visibility=View.VISIBLE
+        }
         tv_toolbar_title.text = "Produk Desa"
     }
 
     fun initData(){
         val role = preferences.getRoles()
-
         et_search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(
                 charSequence: CharSequence,

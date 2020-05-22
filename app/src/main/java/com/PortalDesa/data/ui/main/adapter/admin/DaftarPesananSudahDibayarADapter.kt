@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
 import com.PortalDesa.data.model.response.PesananResponse
 import com.PortalDesa.data.support.Preferences
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_pesanan.view.*
 
 /**
@@ -27,6 +28,8 @@ class DaftarPesananSudahDibayarADapter(val context: Context, val listPesanan : L
         val harga = v.penginapan_harga
         val btnBlocked = v.btn_bayar
         val btnActivated = v.btn_pesanan_del
+        val image = v.imageview
+        val lin =v.linDaftar
 
     }
 
@@ -47,7 +50,13 @@ class DaftarPesananSudahDibayarADapter(val context: Context, val listPesanan : L
         if(listPesanan.get(position).status!=1){
             holder?.btnBlocked.visibility=View.GONE
             holder?.btnActivated.visibility=View.VISIBLE
+            holder?.lin.visibility=View.VISIBLE
+            Picasso.get()
+                .load("https://portal-desa.herokuapp.com/transaksi/get/"+listPesanan.get(position).resi)
+                .into(holder.image)
+            holder?.image
         }
+
         holder?.btnBlocked.setOnClickListener { hapus(listPesanan.get(position).id!!) }
         holder?.btnActivated.visibility=View.GONE
         holder?.alamat.text = listPesanan.get(position).alamat

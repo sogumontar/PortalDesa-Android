@@ -7,7 +7,12 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     tools:context=".data.ui.main.activity.SignUpActivity">
-    <include layout="@layout/toolbar" />
+    <FrameLayout
+        android:id="@+id/snackbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,10 +72,27 @@
                 android:padding="8dp"
                 android:inputType="textImeMultiLine"/>
 
+            <Button
+                android:id="@+id/btn_image"
+                android:layout_width="158dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/button_white_grey_selected_bg"
+                android:text="Select Image"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="200dp"
+                android:layout_height="172dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/default_image" />
 
             <Button
-                android:id="@+id/btn_produk_save"
+                android:id="@+id/btn_send"
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

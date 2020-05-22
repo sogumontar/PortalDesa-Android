@@ -239,7 +239,7 @@ class PemesananLangsung : AppActivity(), View.OnClickListener {
         transaksiRequest.skuProduk = intent.getStringExtra(Flag.SKU_PESANAN_PRODUK)
         transaksiRequest.skuCustomer = preferences.getSku()
         transaksiRequest.alamat = transaksi_alamat.text.toString()
-        transaksiRequest.harga = Integer.parseInt(pesanan_langsung_harga.text.toString())
+        transaksiRequest.harga = productResponse!!.harga!!.toInt()
         transaksiRequest.metode =metode
         transaksiRequest.resi = ""
         transaksiRequest.status =1
@@ -250,9 +250,8 @@ class PemesananLangsung : AppActivity(), View.OnClickListener {
         when (v!!.id) {
             pesanan_langsung_btn_incr.id -> btn_incr()
             pesanan_langsung_btn_decr.id -> btn_decr()
-            btn_transaksi_simpan.id -> simpanAlamat()
             btn_transaksi_ubah.id -> ubahAlamat()
-            btn_transaksi_simpan.id -> check()
+            btn_pesan.id -> check()
         }
     }
 }

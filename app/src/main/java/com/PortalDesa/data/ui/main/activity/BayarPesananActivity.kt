@@ -1,9 +1,9 @@
-package com.PortalDesa.data.ui.main.activity.merchant
+package com.PortalDesa.data.ui.main.activity
 
-import android.R.attr.bitmap
 import android.content.Intent
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -14,11 +14,12 @@ import androidx.appcompat.app.AlertDialog
 import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.base.AppActivity
-import com.PortalDesa.data.model.request.PenginapanImageRequest
-import com.PortalDesa.data.model.response.PenginapanImageResponse
+import com.PortalDesa.data.model.request.TransaksiRequest
+import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
-import kotlinx.android.synthetic.main.activity_penginapan_form.*
+import kotlinx.android.synthetic.main.activity_bayar_pesanan.*
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -27,30 +28,59 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
 
-
-class PenginapanForm : AppActivity() {
+class BayarPesananActivity : AppActivity() {
 
     private val GALLERY = 1
     private val CAMERA = 2
 
     var preferences: Preferences? = null
 
-    var penginapanImageRequest: PenginapanImageRequest? = null
+    var transaksiRequest: TransaksiRequest? = null
 
     var name: String = ""
     var bitmap_val: Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_penginapan_form)
+        setContentView(R.layout.activity_bayar_pesanan)
         preferences = Preferences(this)
         btn_image.setOnClickListener { showPictureDialog() }
         btn_send.setOnClickListener {
 
-            uploadImagePenginapan(penginapanImageRequest!!)
+            uploadImagePenginapan(transaksiRequest!!)
         }
     }
+    fun uploadImagePenginapan(request: TransaksiRequest) {
+        if (Connectivity().isNetworkAvailable(this)) {
+            val client = APIServiceGenerator().createService
+            val test = intent.getStringExtra(Flag.ID_PESANAN)
+            val call = client.bayar(intent.getStringExtra(Flag.ID_PESANAN),request)
+            call.enqueue(object : Callback<DefaultResponse> {
+                override fun onResponse(
+                    call: retrofit2.Call<DefaultResponse>,
+                    response: Response<DefaultResponse>
+                ) {
+                    Log.i("cek", "cek")
+                    dismissProgressDialog()
+                    goToPesanan()
+                }
 
+                override fun onFailure(
+                    call: retrofit2.Call<DefaultResponse>,
+                    t: Throwable
+                ) {
+                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
+                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                    Log.i("cek", "cek2 Exceptions : $t")
+                    dismissProgressDialog()
+                }
+            })
+        }
 
+    }
+    fun goToPesanan() {
+        val intent = Intent(this, PesananActivity::class.java)
+        startActivity(intent)
+    }
     private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(this)
         pictureDialog.setTitle("Select Action")
@@ -65,7 +95,6 @@ class PenginapanForm : AppActivity() {
         }
         pictureDialog.show()
     }
-
     fun choosePhotoFromGallary() {
         val galleryIntent = Intent(
             Intent.ACTION_PICK,
@@ -80,18 +109,6 @@ class PenginapanForm : AppActivity() {
         startActivityForResult(intent, CAMERA)
     }
 
-    fun encoder(): String {
-        showProgressDialog()
-
-        val outputStream = ByteArrayOutputStream()
-        bitmap_val!!.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-
-        return Base64.encodeToString(
-            outputStream.toByteArray(),
-            Base64.DEFAULT
-        )
-    }
-
     fun getImageStringBase64(bitmap: Bitmap): String? {
         val bao = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bao)
@@ -101,35 +118,6 @@ class PenginapanForm : AppActivity() {
         Log.d("Image Base64", imageStringBase64)
         return imageStringBase64
     }
-
-    fun uploadImagePenginapan(request: PenginapanImageRequest) {
-        if (Connectivity().isNetworkAvailable(this)) {
-            val client = APIServiceGenerator().createService
-            val call = client.addPenginapanimage(request)
-            call.enqueue(object : Callback<PenginapanImageResponse> {
-                override fun onResponse(
-                    call: retrofit2.Call<PenginapanImageResponse>,
-                    response: Response<PenginapanImageResponse>
-                ) {
-                    Log.i("cek", "cek")
-                    dismissProgressDialog()
-                    val listKecamatanResponse = response.body()
-                }
-
-                override fun onFailure(
-                    call: retrofit2.Call<PenginapanImageResponse>,
-                    t: Throwable
-                ) {
-                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
-                    Log.i("cek", "cek2 Exceptions : $t")
-                    dismissProgressDialog()
-                }
-            })
-        }
-
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)
@@ -167,11 +155,11 @@ return
     }
 
     fun saveImage(myBitmap: Bitmap): String {
-        val request = PenginapanImageRequest()
-        request.nama = preferences!!.getSku()
-        request.gambar = "image, " + getImageStringBase64(myBitmap)
+        val request = TransaksiRequest()
+        request.skuCustomer = preferences!!.getSku()
+        request.resi = "image, " + getImageStringBase64(myBitmap)
 
-        penginapanImageRequest = request
+        transaksiRequest = request
         val bytes = ByteArrayOutputStream()
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
         val wallpaperDirectory = File(
@@ -214,5 +202,4 @@ return
     companion object {
         private val IMAGE_DIRECTORY = "/bayunugrohoweb"
     }
-
 }

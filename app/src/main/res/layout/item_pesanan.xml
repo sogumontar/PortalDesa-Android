@@ -8,21 +8,21 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="183dp"
+        android:layout_height="358dp"
         android:layout_margin="7dp"
         app:cardBackgroundColor="@color/card"
         app:cardCornerRadius="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="236dp"
+            android:layout_height="346dp"
             android:orientation="horizontal"
             android:padding="16dp">
 
 
             <LinearLayout
-                android:layout_width="345dp"
-                android:layout_height="148dp"
+                android:layout_width="371dp"
+                android:layout_height="263dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -88,6 +88,23 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linDaftar"
+                    android:visibility="gone"
+                    android:layout_width="134dp"
+                    android:layout_height="149dp">
+
+                    <ImageView
+                        android:id="@+id/imageview"
+                        android:layout_width="124dp"
+                        android:layout_height="149dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:foregroundGravity="center"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/default_image" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="103dp">
 
@@ -104,7 +121,7 @@
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/rounded_red_button"
                         android:text="Hapus"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/snackbar_red" />
 
                     <LinearLayout
                         android:layout_width="34dp"

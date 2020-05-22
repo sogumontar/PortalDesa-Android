@@ -115,7 +115,7 @@
             android:background="@drawable/rounded_red_button"
             android:padding="10dp"
             android:text="Hapus"
-            android:textColor="@color/white" />
+            android:textColor="@color/snackbar_red" />
 
         <LinearLayout
             android:layout_width="54dp"

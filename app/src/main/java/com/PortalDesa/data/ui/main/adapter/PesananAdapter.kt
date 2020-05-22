@@ -12,6 +12,8 @@ import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.model.response.PesananResponse
 import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.support.Flag
+import com.PortalDesa.data.ui.main.activity.BayarPesananActivity
 import com.PortalDesa.data.ui.main.activity.PesananActivity
 import kotlinx.android.synthetic.main.item_pesanan.view.*
 import retrofit2.Response
@@ -52,9 +54,12 @@ class PesananAdapter(val context: Context, val list : List<PesananResponse>) : R
             hapus(list.get(position).id!!)
         })
         holder.btn_bayar.setOnClickListener(View.OnClickListener {
-
+            val intent = Intent(context, BayarPesananActivity::class.java)
+            intent.putExtra(Flag.ID_PESANAN, list.get(position).id)
+            context.startActivity(intent)
         })
     }
+
     fun reload(){
         val intent = Intent(context, PesananActivity::class.java)
         context.startActivity(intent)

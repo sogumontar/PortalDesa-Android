@@ -91,6 +91,9 @@ interface  ApiServices{
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @GET(ApiConfigs.ROUTE_PENGINAPAN_ALL)
     fun lihatPenginapanAll(): Call<List<PenginapanResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @POST(ApiConfigs.ROUTE_ADD_PENGINAPAN_GAMBAR)
     fun addPenginapanimage(@Body request : PenginapanImageRequest): Call<PenginapanImageResponse>
 
@@ -143,7 +146,10 @@ interface  ApiServices{
     @PUT(ApiConfigs.DELETE_PRODUK_BY_SKU_PRODUK)
     fun deleteProduk(@Path("sku") sku : String): Call<DefaultResponse>
 
-
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.ROUTE_ADD_PRODUCT_GAMBAR)
+    fun addProdukimage(@Body request : PenginapanImageRequest): Call<PenginapanImageResponse>
 
     //Keranjang
     @Headers(
@@ -217,6 +223,11 @@ interface  ApiServices{
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @PUT(ApiConfigs.ROUTE_UPDATE_ALAMAT_CUSTOMER)
     fun updateAlamatCustomer(@Path("sku")sku: String , @Body request : CustomerRequest): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @PUT(ApiConfigs.TRANSAKSI_PAYMENT)
+    fun bayar(@Path("idPesanan")sku: String , @Body request : TransaksiRequest): Call<DefaultResponse>
 
 
 }

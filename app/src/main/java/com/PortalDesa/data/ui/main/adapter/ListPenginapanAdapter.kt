@@ -76,7 +76,7 @@ class ListPenginapanAdapter(val context: Context, val listpenginapan: List<Pengi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Picasso.get()
-            .load(R.drawable.balige)
+            .load("https://portal-desa.herokuapp.com" + listpenginapan.get(position).gambar)
             .into(holder.imgPopular)
 
         holder?.tvDesc.text = listpenginapan.get(position).nama
