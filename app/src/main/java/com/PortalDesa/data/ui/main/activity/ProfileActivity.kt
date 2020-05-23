@@ -10,6 +10,7 @@ import com.PortalDesa.data.model.response.ProfileResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -23,36 +24,13 @@ class ProfileActivity : AppActivity(), View.OnClickListener {
         setContentView(R.layout.activity_profile)
         btn_update.setOnClickListener(this)
         sku = preferences.getSku()
-        getDetailProfile()
+        initView()
+        displayData()
     }
 
-
-    fun getDetailProfile() {
-        showProgressDialog()
-        if (Connectivity().isNetworkAvailable(this)) {
-            val client = APIServiceGenerator().createService
-            val call = client.getDetailProfile(sku)
-            call.enqueue(object : Callback<ProfileResponse> {
-                override fun onResponse(
-                    call: retrofit2.Call<ProfileResponse>,
-                    response: Response<ProfileResponse>
-                ) {
-                    val detail = response.body()
-                    data = detail
-                    val test =  detail?.name
-                    displayData(detail)
-                    dismissProgressDialog()
-                }
-
-                override fun onFailure(
-                    call: retrofit2.Call<ProfileResponse>,
-                    t: Throwable
-                ) {
-                    dismissProgressDialog()
-                }
-            })
-        }
-
+    private fun initView() {
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = getString(R.string.sign_up_tab_title_profile)
     }
 
     fun updateDetailUsers(request: UsersUpdateRequest) {
@@ -75,16 +53,14 @@ class ProfileActivity : AppActivity(), View.OnClickListener {
 
     }
 
-    fun displayData(datas : ProfileResponse?) {
-        val alamat = datas?.alamat
-        et_alamat!!.setText(datas?.alamat)
-        et_email!!.setText(datas?.email)
-        et_name!!.setText(datas?.name)
+    fun displayData() {
+        et_email.setText(preferences.getUserDetail()!!.email)
+        et_name.setText(preferences.getUserDetail()!!.nickName)
     }
     private fun getUser(): UsersUpdateRequest{
         val requestUser = UsersUpdateRequest()
         requestUser.name = et_name.text.toString()
-        requestUser.alamat = et_alamat.text.toString()
+        requestUser.alamat = "Balige"
         requestUser.email = et_email.text.toString()
         return requestUser
     }

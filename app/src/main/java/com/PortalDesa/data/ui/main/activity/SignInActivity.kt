@@ -56,6 +56,7 @@ class SignInActivity : AppActivity(), View.OnClickListener{
             ) {
                 val userResponse = response.body()
                 if(userResponse?.status == 1){
+                    preferences.saveUserDetail(userResponse)
                     val statusCode = userResponse!!.status
                     val token = userResponse!!.accessToken
                     val sku = userResponse!!.skuLog
@@ -95,6 +96,7 @@ class SignInActivity : AppActivity(), View.OnClickListener{
             intent = Intent(this, MainActivity::class.java)
         }
         startActivity(intent)
+        finish()
     }
 
     private fun getUser(): UserRequest{

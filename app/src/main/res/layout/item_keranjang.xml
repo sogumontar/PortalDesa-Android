@@ -7,29 +7,28 @@
     android:orientation="vertical"
     app:layout_constraintCircleRadius="30dp">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/card"
-        app:cardCornerRadius="20dp">
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/img_product"
-                android:layout_width="85dp"
-                android:layout_height="136dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_alignParentLeft="true"
                 android:src="@drawable/ulos2" />
 
             <LinearLayout
                 android:id="@+id/ln_data"
-                android:layout_width="280dp"
-                android:layout_height="127dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/img_product"
                 android:orientation="vertical">
@@ -40,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:text="Nama Produk"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -49,24 +48,24 @@
                     android:layout_height="wrap_content"
                     android:text="Rp 000.000"
                     android:textColor="@color/green_primary"
-                    android:textSize="20dp" />
+                    android:textSize="13dp" />
 
                 <LinearLayout
-                    android:gravity="right"
                     android:layout_width="match_parent"
-                    android:layout_height="69dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
+                    <TextView
                         android:layout_gravity="center"
                         android:id="@+id/decr_keranjang"
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginRight="15dp"
                         android:onClick="decrement"
+                        android:gravity="center"
+                        android:background="@drawable/bg_signup_edittext"
                         android:text="-"
-                        android:textColor="@color/black"
                         android:textSize="25sp" />
 
 
@@ -79,48 +78,36 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="0"
-                        android:textColor="#212121"
-                        android:textSize="25dp" />
+                        android:textColor="@color/snackbar_red"
+                        android:textSize="18dp" />
 
-                    <Button
-                        android:layout_gravity="center"
+                    <TextView
+                        android:gravity="center"
                         android:id="@+id/incr_keranjang"
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="15dp"
+                        android:background="@drawable/bg_signup_edittext"
                         android:onClick="increment"
                         android:text="+"
                         android:textSize="25sp" />
                 </LinearLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </LinearLayout>
-
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="53dp">
-
-        <Button
-            android:id="@+id/btn_del"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_red_button"
-            android:padding="10dp"
-            android:text="Hapus"
-            android:textColor="@color/snackbar_red" />
-
-        <LinearLayout
-            android:layout_width="54dp"
-            android:layout_height="match_parent">
-
+        </LinearLayout>
+            <TextView
+                android:id="@+id/tv_hapus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Hapus"
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:textColor="@color/snackbar_red"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <Button
@@ -131,5 +118,4 @@
             android:background="@drawable/rounded_blue_secondary"
             android:text="Simpan"
             android:textColor="@color/white" />
-    </LinearLayout>
 </LinearLayout>

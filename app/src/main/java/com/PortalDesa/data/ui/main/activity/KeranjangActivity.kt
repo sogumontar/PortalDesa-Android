@@ -22,8 +22,11 @@ import com.PortalDesa.data.model.response.KeranjangResponse
 import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.support.Utils
 import com.PortalDesa.data.ui.main.adapter.KeranjangAdapter
 import kotlinx.android.synthetic.main.activity_keranjang.*
+import kotlinx.android.synthetic.main.content_keranjang.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Response
 import java.util.*
 import kotlin.concurrent.schedule
@@ -55,9 +58,11 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                 val radio: RadioButton = findViewById(checkedId)
                 metode=radio.text.toString()
             })
+        initView()
         initData()
 
     }
+
     fun radio_button_click(view: View){
         val radio: RadioButton = findViewById(radio_group.checkedRadioButtonId)
         if(metode.toString().equals("ATM Mandiri")){
@@ -119,7 +124,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
             hargaTotal+= (dat.harga!!*dat.jumlah!!)
         }
         totall=hargaTotal
-        total.setText(hargaTotal.toString())
+        total.setText(Utils().numberToIDR(totall!!, true))
         if (keranjangResponse != null) {
             val produkListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             recycler_view_keranjang.setLayoutManager(produkListLayoutManager)
@@ -131,8 +136,8 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
 
     fun initView(){
         initToolbar(R.id.toolbar)
-        val adapter = KeranjangAdapter(this,keranjangResponse!!)
-        recycler_view_keranjang.setAdapter(adapter)
+        tv_toolbar_title.text = getString(R.string.sign_up_tab_title_keranjang)
+
     }
 
     fun checkAlamat(){

@@ -2,7 +2,9 @@ package com.PortalDesa.data.support
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.provider.ContactsContract
+import com.PortalDesa.data.model.response.UserResponse
+import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 
 class Preferences(mContext: Context) {
 
@@ -13,13 +15,10 @@ class Preferences(mContext: Context) {
     lateinit var mSharedPreferences: SharedPreferences
 
     val TOKEN = "token"
-
+    val USER_DETAIL_DATA = "user_detail_data"
     val SKU  = "Unknown"
-
     val ROLES = ""
-
     val NAMA = ""
-
     val NAMAp = " "
 
     init {
@@ -100,4 +99,29 @@ class Preferences(mContext: Context) {
 
         return accessToken!!
     }
+
+    fun getUserDetail(): UserResponse? {
+        val userDetailJSON: String = mSharedPreferences.getString(USER_DETAIL_DATA, "")
+        return try {
+            if (userDetailJSON.equals(
+                    "",
+                    ignoreCase = true
+                )
+            ) UserResponse() else Gson().fromJson(
+                userDetailJSON,
+                UserResponse::class.java
+            )
+        } catch (e: JsonSyntaxException) {
+            null
+        }
+    }
+
+    fun saveUserDetail(userDetail: UserResponse) {
+        val e: SharedPreferences.Editor =mSharedPreferences.edit()
+        e.putString(USER_DETAIL_DATA,
+            Gson().toJson(userDetail)
+        )
+        e.apply()
+    }
+
 }

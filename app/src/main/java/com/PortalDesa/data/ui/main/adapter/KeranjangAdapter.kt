@@ -33,7 +33,7 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
-        val tvDelete = v.btn_del
+        val tvDelete = v.tv_hapus
         val name = v.tv_name
         val harga = v.tv_desc
         val jumlah = v.tv_pcs
@@ -54,6 +54,7 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
     }
 
     fun goToKeranjang() {
+        KeranjangActivity().dismissProgressDialog()
         Toast.makeText(context, "Hapus item keranjang berhasil", Toast.LENGTH_SHORT)
         val intent = Intent(context, KeranjangActivity::class.java)
         context.startActivity(intent)
@@ -87,6 +88,7 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
         holder.tvDelete.text = "hapus"
         holder.tvDelete.setOnClickListener {
             delete(listKeranjang.get(position).id!!)
+
         }
 
         holder.decr.setOnClickListener {
@@ -136,6 +138,7 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
     }
 
     fun delete(value: String) {
+        KeranjangActivity().showProgressDialog()
         if (Connectivity().isNetworkAvailable(context)) {
             val client = APIServiceGenerator().createService
             val call = client.deleteCart(value)

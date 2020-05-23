@@ -59,6 +59,7 @@ class SignUpActivity : AppActivity(), View.OnClickListener {
     private fun goToHome(){
         intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun checkField(): Boolean {

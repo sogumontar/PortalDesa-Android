@@ -98,6 +98,8 @@ class AkunFragment : Fragment(), View.OnClickListener {
         ln_profile.setOnClickListener(this)
         ln_keranjang.setOnClickListener(this)
         ln_pesanan.setOnClickListener(this)
+        tv_name.text = preferences.getUserDetail()!!.nickName
+        tv_email.text = preferences.getUserDetail()!!.email
         if (preferences.getRoles().equals("ROLE_USER")) {
             ln_signin.visibility = View.GONE
             btn_logout.visibility = View.VISIBLE
