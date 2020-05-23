@@ -12,7 +12,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Select or Capture Image" />
+        android:text="Pilih Gambar" />
 
     <ImageView
         android:layout_width="300dp"
@@ -30,5 +30,5 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Upload" />
+        android:text="Unggah" />
 </LinearLayout>

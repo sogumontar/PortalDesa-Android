@@ -8,20 +8,22 @@
     android:fitsSystemWindows="true"
     tools:context=".data.ui.main.activity.SignUpActivity">
     <include layout="@layout/toolbar" />
+
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="397dp"
+        android:layout_height="676dp"
         android:layout_marginBottom="-5dp"
         android:background="@color/white"
         android:fillViewport="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:paddingTop="10dp"
-            android:paddingRight="25dp"
+            android:orientation="vertical"
             android:paddingLeft="25dp"
-            android:orientation="vertical">
+            android:paddingTop="10dp"
+            android:paddingRight="25dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,6 +38,7 @@
                 android:layout_marginBottom="15dp"
                 android:hint="Masukan nama penginapan"
                 android:padding="8dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,8 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:hint="Masukan harga penginapan"
-                android:padding="8dp"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:padding="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -59,13 +62,13 @@
 
             <EditText
                 android:id="@+id/update_penginapan_deskripsi"
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="15dp"
                 android:hint="Masukkan deskripsi penginapan"
-                android:padding="8dp"
-                android:inputType="textImeMultiLine"/>
+                android:inputType="textImeMultiLine"
+                android:padding="8dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -81,8 +84,8 @@
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginBottom="15dp"
                 android:hint="Masukkan jumlah kamar"
-                android:padding="8dp"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:padding="8dp" />
 
 
             <TextView
@@ -96,19 +99,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:padding="8dp"
                 android:hint="Masukkan Lokasi penginapan"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:padding="8dp" />
+
+
+            <Button
+                android:id="@+id/btn_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:text="Pilih Gambar"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="221dp"
+                android:layout_height="151dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/default_image" />
+
 
             <Button
                 android:id="@+id/update_btn_save"
-                android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/rounded_btn"
                 android:text="@string/simpan"
-                android:textColor="#ffff"/>
+                android:padding="10dp"
+                android:textColor="#ffff" />
 
+            <LinearLayout
+                android:layout_width="357dp"
+                android:layout_height="26dp"></LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

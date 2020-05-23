@@ -1,21 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="401dp"
-        android:layout_above="@+id/btn_pesan"
-        android:background="@color/white"
-        android:fillViewport="true">
+        android:layout_height="21dp"
+        android:gravity="center"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue_primary"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_toolbar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Daftar Pesanan Belum Dibayar"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="231dp"
+        android:orientation="vertical">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_pesanan"
-            android:layout_width="411dp"
-            android:layout_height="495dp"
-            android:layout_gravity="center"
-            android:background="@color/white" />
-    </ScrollView>
-</RelativeLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:gravity="center"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue_primary"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Daftar Pesanan Sudah Dibayar"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_pesanan_sudah_bayar"
+        android:layout_width="match_parent"
+        android:layout_height="351dp"
+        android:padding="10dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

@@ -97,6 +97,11 @@ interface  ApiServices{
     @POST(ApiConfigs.ROUTE_ADD_PENGINAPAN_GAMBAR)
     fun addPenginapanimage(@Body request : PenginapanImageRequest): Call<PenginapanImageResponse>
 
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.ROUTE_ADD_PENGINAPAN_UPDATE_GAMBAR)
+    fun updatePenginapanimage(@Body request : PenginapanImageRequest): Call<DefaultResponse>
+
 
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
@@ -184,6 +189,11 @@ interface  ApiServices{
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @GET(ApiConfigs.LIST_PESANAN_CUSTOMER)
     fun getPesanan(@Path("sku")sku : String): Call<List<PesananResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_PESANAN_CUSTOMER_SUDAH_BAYAR)
+    fun getPesananSudahBayar(@Path("sku")sku : String): Call<List<PesananResponse>>
 
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)

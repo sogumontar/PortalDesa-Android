@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/rounded_blue_secondary"
+                        android:background="@drawable/rounded_btn"
                         android:padding="20dp"
                         android:text="Profile"
                         android:textColor="@color/white" />
@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/rounded_blue_secondary"
+                        android:background="@drawable/rounded_btn"
                         android:padding="20dp"
                         android:text="Pesanan"
                         android:textColor="@color/white" />
@@ -162,7 +162,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/rounded_blue_secondary"
+                        android:background="@drawable/rounded_btn"
                         android:padding="20dp"
                         android:text="Produk"
                         android:textColor="@color/white" />
@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/rounded_blue_secondary"
+                        android:background="@drawable/rounded_btn"
                         android:padding="20dp"
                         android:text="Penginapan"
                         android:textColor="@color/white" />

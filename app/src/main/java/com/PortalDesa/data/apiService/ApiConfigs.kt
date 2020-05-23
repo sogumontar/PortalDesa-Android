@@ -32,8 +32,9 @@ interface ApiConfigs {
         const val ROUTE_PENGINAPAN_MERCHANT = "/penginapan/bySkuAdmin/{sku}"
         const val ROUTE_PENGINAPAN_DELETE_BY_SKU = "/penginapan/delete/{sku}"
         const val ROUTE_PENGINAPAN_BY_SKU = "/penginapan/{sku}"
-        const val ROUTE_UPDATE_PENGINAPAN_BY_SKU = "/update/{sku}"
+        const val ROUTE_UPDATE_PENGINAPAN_BY_SKU = "/penginapan/update/{sku}"
         const val ROUTE_ADD_PENGINAPAN_GAMBAR = "/penginapan/penginapan/add/gambar"
+        const val ROUTE_ADD_PENGINAPAN_UPDATE_GAMBAR = "/penginapan/penginapan/update/gambar"
 
 
         //Produk
@@ -46,6 +47,7 @@ interface ApiConfigs {
 
         //Pesanan
         const val LIST_PESANAN_CUSTOMER = "/transaksi/sku/pesan/{sku}"
+        const val LIST_PESANAN_CUSTOMER_SUDAH_BAYAR = "/transaksi/sku/bayar/{sku}"
         const val LIST_PESANAN_ALL_BELUM_BAYAR = "/transaksi/pesanan"
         const val LIST_PESANAN_ALL_SUDAH_BAYAR = "/transaksi/pesanan/sudah"
         const val CANCEL_PESANAN = "/transaksi/pesanan/cancel/{sku}"

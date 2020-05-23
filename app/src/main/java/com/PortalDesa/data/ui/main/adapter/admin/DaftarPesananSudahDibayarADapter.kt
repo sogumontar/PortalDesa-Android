@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
 import com.PortalDesa.data.model.response.PesananResponse
 import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.ui.main.activity.PesananActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_pesanan.view.*
 
@@ -47,48 +48,24 @@ class DaftarPesananSudahDibayarADapter(val context: Context, val listPesanan : L
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        if(listPesanan.get(position).status!=1){
             holder?.btnBlocked.visibility=View.GONE
-            holder?.btnActivated.visibility=View.VISIBLE
+            holder?.btnActivated.visibility=View.GONE
             holder?.lin.visibility=View.VISIBLE
             Picasso.get()
                 .load("https://portal-desa.herokuapp.com/transaksi/get/"+listPesanan.get(position).resi)
                 .into(holder.image)
             holder?.image
-        }
 
-        holder?.btnBlocked.setOnClickListener { hapus(listPesanan.get(position).id!!) }
-        holder?.btnActivated.visibility=View.GONE
         holder?.alamat.text = listPesanan.get(position).alamat
         holder?.metode.text = listPesanan.get(position).metode
         holder?.harga.text = listPesanan.get(position).harga
     }
 
     fun reload(){
-        val intent = Intent(context, DaftarPesananSudahDibayarADapter::class.java)
+        val intent = Intent(context, PesananActivity::class.java)
         context.startActivity(intent)
     }
-    fun hapus(id:String){
 
-//        if (Connectivity().isNetworkAvailable(context)) {
-//            val client = APIServiceGenerator().createService
-//            val call = client.suspendAccount(sku)
-//            call.enqueue(object : retrofit2.Callback<DefaultResponse> {
-//                override fun onResponse(
-//                    call: retrofit2.Call<DefaultResponse>,
-//                    response: Response<DefaultResponse>
-//                ) {
-//                    Toast.makeText(context,"Suspend Account Success", Toast.LENGTH_LONG).show()
-//                    reload()
-//                }
-//                override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
-//
-//                }
-//            })
-//
-//        }
-    }
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount(): Int {
         return listPesanan.size
     }
