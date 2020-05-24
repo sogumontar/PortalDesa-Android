@@ -2,6 +2,8 @@ package com.PortalDesa.data.ui.main.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
@@ -12,88 +14,55 @@ import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.adapter.PesananAdapter
 import com.PortalDesa.data.ui.main.adapter.PesananSudahBayarAdapter
+import com.PortalDesa.data.ui.main.fragment.BelumBayarFragment
+import com.PortalDesa.data.ui.main.fragment.SudahBayarFragment
 import kotlinx.android.synthetic.main.activity_pesanan.*
+import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Response
 
-class PesananActivity : AppActivity() {
-    private var pesananResponse: List<PesananResponse>? = null
-    private var pesananResponseSudahBayar: List<PesananResponse>? = null
+class PesananActivity : AppActivity(), View.OnClickListener{
     lateinit var preferences: Preferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         preferences = Preferences(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pesanan)
-        recycler_view_pesanan.setHasFixedSize(true)
-        recycler_view_pesanan_sudah_bayar.setHasFixedSize(true)
-        val menuListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        val menuListLayoutManagers = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        recycler_view_pesanan.setLayoutManager(menuListLayoutManager)
-        recycler_view_pesanan.setNestedScrollingEnabled(false)
-        recycler_view_pesanan_sudah_bayar.setLayoutManager(menuListLayoutManagers)
-        recycler_view_pesanan_sudah_bayar.setNestedScrollingEnabled(false)
-        initData()
-        initDataSudahBayar()
+        initView()
+        btn_tab_1.setOnClickListener(this)
+        btn_tab_2.setOnClickListener(this)
+        tabSelected(1)
     }
 
-    fun initData() {
-        val sku = preferences.getSku()
-        if (Connectivity().isNetworkAvailable(this)) {
-            val client = APIServiceGenerator().createService
-            val call = client.getPesanan(sku)
-            call.enqueue(object : retrofit2.Callback<List<PesananResponse>> {
-                override fun onResponse(
-                    call: retrofit2.Call<List<PesananResponse>>,
-                    response: Response<List<PesananResponse>>
-                ) {
-                    val listProduk = response.body()
-                    pesananResponse = listProduk
-                    if(listProduk != null) {
-                        val adapter =
-                            PesananAdapter(this@PesananActivity, listProduk!!)
-                        recycler_view_pesanan.setAdapter(adapter)
-                    }
+    private fun initView() {
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Pesanan"
+    }
 
-                }
-
-                override fun onFailure(call: retrofit2.Call<List<PesananResponse>>, t: Throwable) {
-                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
-                }
-            })
-
+    override fun onClick(v: View) {
+        val id = v.id
+        if (id == btn_tab_1.getId()) {
+            tabSelected(1)
+        } else if (id == btn_tab_2.getId()) {
+            tabSelected(2)
         }
     }
 
-    fun initDataSudahBayar() {
-        val sku = preferences.getSku()
-        if (Connectivity().isNetworkAvailable(this)) {
-            val client = APIServiceGenerator().createService
-            val call = client.getPesananSudahBayar(sku)
-            call.enqueue(object : retrofit2.Callback<List<PesananResponse>> {
-                override fun onResponse(
-                    call: retrofit2.Call<List<PesananResponse>>,
-                    response: Response<List<PesananResponse>>
-                ) {
-                    val listProduk = response.body()
-                    pesananResponseSudahBayar = listProduk
-
-                    if(listProduk != null) {
-                        val adapter =
-                            PesananSudahBayarAdapter(this@PesananActivity, listProduk!!)
-                        recycler_view_pesanan_sudah_bayar.setAdapter(adapter)
-                    }
-
-                }
-
-                override fun onFailure(call: retrofit2.Call<List<PesananResponse>>, t: Throwable) {
-                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
-                }
-            })
-
+    private fun tabSelected(position: Int) {
+        if (position == 1) {
+            btn_tab_1.setTextColor(ContextCompat.getColor(this, R.color.blue_primary))
+            btn_tab_2.setTextColor(ContextCompat.getColor(this, R.color.soft_grey))
+            line_tab_1.setVisibility(View.VISIBLE)
+            line_tab_2.setVisibility(View.GONE)
+            showFragmentAllowingStateLoss(BelumBayarFragment(), R.id.fragment_container)
+        } else {
+            btn_tab_1.setTextColor(ContextCompat.getColor(this, R.color.soft_grey))
+            btn_tab_2.setTextColor(ContextCompat.getColor(this, R.color.blue_primary))
+            line_tab_1.setVisibility(View.GONE)
+            line_tab_2.setVisibility(View.VISIBLE)
+            showFragmentAllowingStateLoss(SudahBayarFragment(), R.id.fragment_container)
         }
     }
-
 
 
 }

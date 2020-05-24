@@ -8,14 +8,14 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="358dp"
+        android:layout_height="wrap_content"
         android:layout_margin="7dp"
         app:cardBackgroundColor="@color/card"
         app:cardCornerRadius="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="346dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp">
 
@@ -95,10 +95,10 @@
 
                     <ImageView
                         android:id="@+id/imageview"
-                        android:layout_width="236dp"
-                        android:layout_height="149dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:foregroundGravity="center"
                         android:scaleType="fitXY"
                         android:src="@drawable/default_image" />

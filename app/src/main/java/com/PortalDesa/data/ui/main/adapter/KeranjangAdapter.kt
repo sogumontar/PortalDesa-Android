@@ -25,7 +25,7 @@ import retrofit2.Response
 /**
  * Created by Sogumontar Hendra Simangunsong on 14/05/2020.
  */
-class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangResponse>) :
+class KeranjangAdapter(val context: Context, var listKeranjang: List<KeranjangResponse>) :
     RecyclerView.Adapter<KeranjangAdapter.ViewHolder>() {
 
     private var productResponse: ProductResponse? = null
@@ -39,8 +39,12 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
         val jumlah = v.tv_pcs
         val incr = v.incr_keranjang
         val decr = v.decr_keranjang
-        val btn_ubah =v.btn_ubah
 
+    }
+
+    fun updateList(myDataset: List<KeranjangResponse>) {
+        listKeranjang = myDataset
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -51,13 +55,6 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
 
     override fun getItemCount(): Int {
         return listKeranjang.size
-    }
-
-    fun goToKeranjang() {
-        KeranjangActivity().dismissProgressDialog()
-        Toast.makeText(context, "Hapus item keranjang berhasil", Toast.LENGTH_SHORT)
-        val intent = Intent(context, KeranjangActivity::class.java)
-        context.startActivity(intent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -87,27 +84,23 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
 
         holder.tvDelete.text = "hapus"
         holder.tvDelete.setOnClickListener {
-            delete(listKeranjang.get(position).id!!)
+            (context as KeranjangActivity).delete(listKeranjang.get(position).id!!, position)
 
         }
 
         holder.decr.setOnClickListener {
             if (holder.jumlah.text.toString().equals("1")) {
-                delete(listKeranjang.get(position).id!!)
+                (context as KeranjangActivity).delete(listKeranjang.get(position).id!!, position)
             } else {
                 holder.jumlah.setText((Integer.parseInt(holder.jumlah.text.toString()) - 1).toString())
-                holder.btn_ubah.visibility=View.VISIBLE
+                rubah(listKeranjang.get(position).id!!,Integer.parseInt(holder.jumlah.text.toString()))
             }
         }
 
         holder.incr.setOnClickListener {
             holder.jumlah.setText((Integer.parseInt(holder.jumlah.text.toString()) + 1).toString())
-            holder.btn_ubah.visibility=View.VISIBLE
-        }
-        holder.btn_ubah.setOnClickListener {
             rubah(listKeranjang.get(position).id!!,Integer.parseInt(holder.jumlah.text.toString()))
         }
-
 
     }
     fun getData(value:String, jumlah:Int): KeranjangUpdateRequest{
@@ -118,6 +111,7 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
     }
 
     fun rubah(value:String,jumlah:Int){
+        (context as KeranjangActivity).showDialogPB(true)
         if (Connectivity().isNetworkAvailable(context)) {
             val client = APIServiceGenerator().createService
             val call = client.updateCart(getData(value,jumlah))
@@ -126,37 +120,17 @@ class KeranjangAdapter(val context: Context, val listKeranjang: List<KeranjangRe
                     call: retrofit2.Call<DefaultResponse>,
                     response: Response<DefaultResponse>
                 ) {
-                    goToKeranjang()
+                    (context as KeranjangActivity).showDialogPB(false)
                 }
 
                 override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
+                    (context as KeranjangActivity).showDialogPB(false)
                     Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                    (context as KeranjangActivity).showDialogPB(false)
                 }
             })
 
         }
     }
-
-    fun delete(value: String) {
-        KeranjangActivity().showProgressDialog()
-        if (Connectivity().isNetworkAvailable(context)) {
-            val client = APIServiceGenerator().createService
-            val call = client.deleteCart(value)
-            call.enqueue(object : retrofit2.Callback<DefaultResponse> {
-                override fun onResponse(
-                    call: retrofit2.Call<DefaultResponse>,
-                    response: Response<DefaultResponse>
-                ) {
-                    goToKeranjang()
-                }
-
-                override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
-                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
-                }
-            })
-
-        }
-    }
-
 
 }

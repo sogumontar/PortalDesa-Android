@@ -1,6 +1,5 @@
 package com.PortalDesa.data.ui.main.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +7,7 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
@@ -24,9 +23,12 @@ import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.support.Utils
 import com.PortalDesa.data.ui.main.adapter.KeranjangAdapter
-import kotlinx.android.synthetic.main.activity_keranjang.*
+import com.PortalDesa.data.ui.main.fragment.BelumBayarFragment
+import com.PortalDesa.data.ui.main.fragment.SudahBayarFragment
+import kotlinx.android.synthetic.main.activity_pesanan.*
 import kotlinx.android.synthetic.main.content_keranjang.*
 import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.toolbar.tv_toolbar_title
 import retrofit2.Response
 import java.util.*
 import kotlin.concurrent.schedule
@@ -40,6 +42,8 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
     var metode: String =""
     var alamat: String =""
     lateinit var preferences: Preferences
+    var adapter : KeranjangAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         preferences = Preferences(this)
         super.onCreate(savedInstanceState)
@@ -100,12 +104,13 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                             checkAlamat()
 //                            initView()
                             displayProduct()
-                            dismissProgressDialog()
+
                         }
 
                     }
 
                     override fun onFailure(call: retrofit2.Call<List<KeranjangResponse>>, t: Throwable) {
+                        dismissProgressDialog()
                         Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
                         Log.e(this.javaClass.simpleName, " Exceptions : $t")
                     }
@@ -113,6 +118,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
 
         }
     }
+
 
     fun goToProduct(){
         intent = Intent(this  , MainActivity::class.java)
@@ -129,15 +135,44 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
             val produkListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             recycler_view_keranjang.setLayoutManager(produkListLayoutManager)
 
-            val adapter = KeranjangAdapter(this, keranjangResponse!!)
+            adapter = KeranjangAdapter(this, keranjangResponse!!)
             recycler_view_keranjang.setAdapter(adapter)
         }
+        dismissProgressDialog()
     }
 
     fun initView(){
         initToolbar(R.id.toolbar)
         tv_toolbar_title.text = getString(R.string.sign_up_tab_title_keranjang)
 
+    }
+
+    fun removeItem(position: Int) {
+        keranjangResponse!!.drop(position)
+//        adapter!!.updateList(keranjangResponse!!)
+        recycler_view_keranjang.adapter!!.notifyDataSetChanged()
+        dismissProgressDialog()
+    }
+
+    fun delete(value: String, pos : Int) {
+        showProgressDialog()
+        if (Connectivity().isNetworkAvailable(this)) {
+            val client = APIServiceGenerator().createService
+            val call = client.deleteCart(value)
+            call.enqueue(object : retrofit2.Callback<DefaultResponse> {
+                override fun onResponse(
+                    call: retrofit2.Call<DefaultResponse>,
+                    response: Response<DefaultResponse>
+                ) {
+                    removeItem(pos)
+                }
+
+                override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
+                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                }
+            })
+
+        }
     }
 
     fun checkAlamat(){
@@ -241,6 +276,14 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                 }
             })
 
+        }
+    }
+
+    fun showDialogPB(check : Boolean){
+        if(check){
+            showProgressDialog()
+        }else{
+            dismissProgressDialog()
         }
     }
 
