@@ -3,7 +3,6 @@ package com.PortalDesa.data.ui.main.activity.merchant
 import android.content.Intent
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -16,15 +15,15 @@ import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.base.AppActivity
 import com.PortalDesa.data.model.request.PenginapanImageRequest
-import com.PortalDesa.data.model.request.PenginapanRequest
+import com.PortalDesa.data.model.request.ProdukRequest
 import com.PortalDesa.data.model.response.DefaultResponse
-import com.PortalDesa.data.model.response.PenginapanResponse
+import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
-import com.PortalDesa.data.ui.main.activity.PenginapanActivity
+import com.PortalDesa.data.ui.main.activity.DetailProductAcitivity
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_update_penginapan.*
+import kotlinx.android.synthetic.main.activity_update_produk.*
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -33,28 +32,29 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
 
-class UpdatePenginapan : AppActivity(), View.OnClickListener {
-
+class UpdateProdukActivity : AppActivity(), View.OnClickListener  {
 
     private val GALLERY = 1
     private val CAMERA = 2
 
     var name: String = ""
+    var skuProduk: String = ""
     var bitmap_val: Bitmap? = null
+
     var penginapanImageRequest: PenginapanImageRequest? = null
-    private var data: PenginapanResponse? = null
+    private var data: ProductResponse? = null
     var sku: String = ""
     lateinit var preferences: Preferences
     override fun onCreate(savedInstanceState: Bundle?) {
-        val skuPenginapan = intent.getStringExtra(Flag.SKU_PENGINAPAN)
+        val skuProduct =intent.getStringExtra(Flag.PRODUCT_NAME)
         preferences = Preferences(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_update_penginapan)
-        sku = preferences.getSku()
-        getDetailPenginapan()
-        btn_image.setOnClickListener { showPictureDialog() }
-        update_btn_save.setOnClickListener(this)
+        setContentView(R.layout.activity_update_produk)
+        getDetailProduk()
+        update_produk_btn_send.setOnClickListener(this)
+        update_produk_btn_image.setOnClickListener { showPictureDialog() }
     }
+
     private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(this)
         pictureDialog.setTitle("Select Action")
@@ -83,38 +83,22 @@ class UpdatePenginapan : AppActivity(), View.OnClickListener {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, CAMERA)
     }
-    fun displayData(){
-        Picasso.get()
-            .load("https://portal-desa.herokuapp.com"+data?.gambar)
-            .into(imageview)
-        imageview
-        update_penginapan_nama.setText(data?.nama)
-        update_penginapan_harga.setText(data?.harga.toString())
-        update_penginapan_deskripsi.setText(data?.deskripsi)
-        update_penginapan_kamar.setText(data?.jumlahKamar.toString())
-        update_penginapan_lokasi.setText(data?.lokasi)
-    }
-
-
-    fun updateGambar(){
-
-    }
-
-    fun getDetailPenginapan(){
+    fun getDetailProduk(){
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
-            val call = client.lihatPenginapanBySku(intent.getStringExtra(Flag.SKU_PENGINAPAN))
-            call.enqueue(object : Callback<PenginapanResponse> {
+            skuProduk =intent.getStringExtra(Flag.SKU_PRODUCT_UPDATE)
+            val call = client.getProductBySku(intent.getStringExtra(Flag.SKU_PRODUCT_UPDATE))
+            call.enqueue(object : Callback<ProductResponse> {
                 override fun onResponse(
-                    call: retrofit2.Call<PenginapanResponse>,
-                    response: Response<PenginapanResponse>
+                    call: retrofit2.Call<ProductResponse>,
+                    response: Response<ProductResponse>
                 ) {
                     val detail = response.body()
                     data = detail
                     displayData()
                 }
                 override fun onFailure(
-                    call: retrofit2.Call<PenginapanResponse>,
+                    call: retrofit2.Call<ProductResponse>,
                     t: Throwable
                 ) {
                 }
@@ -122,11 +106,22 @@ class UpdatePenginapan : AppActivity(), View.OnClickListener {
         }
 
     }
-    fun updatePenginapan(request: PenginapanRequest) {
+
+    fun displayData(){
+        Picasso.get()
+            .load("https://portal-desa.herokuapp.com"+data?.gambar)
+            .into(update_produk_imageview)
+        update_produk_imageview
+        update_produk_produk_nama.setText(data?.nama)
+        update_produk_produk_harga.setText(data?.harga.toString())
+        update_produk_produk_deskripsi.setText(data?.deskripsi)
+    }
+
+    fun updateProduk(request: ProdukRequest) {
         showProgressDialog()
         val client = APIServiceGenerator().createService
-        val coba =intent.getStringExtra(Flag.SKU_PENGINAPAN)
-        val call = client.updatePenginapan(intent.getStringExtra(Flag.SKU_PENGINAPAN), request)
+
+        val call = client.updateProduk(skuProduk, request)
         call.enqueue(object : Callback<DefaultResponse> {
             override fun onResponse(
                 call: retrofit2.Call<DefaultResponse>,
@@ -147,46 +142,10 @@ class UpdatePenginapan : AppActivity(), View.OnClickListener {
         })
 
     }
-
-    fun reload(){
-        val intent = Intent(this, PenginapanActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun getData(): PenginapanRequest{
-        val requestData = PenginapanRequest()
-        requestData.nama= update_penginapan_nama.text.toString()
-        requestData.jumlahKamar= Integer.parseInt(update_penginapan_kamar.text.toString())
-        requestData.deskripsi= update_penginapan_deskripsi.text.toString()
-        requestData.harga= Integer.parseInt(update_penginapan_harga.text.toString())
-        requestData.lokasi= update_penginapan_lokasi.text.toString()
-        requestData.desa=data?.desa
-        requestData.kecamatan=data?.kecamatan
-        requestData.skumerchant=preferences.getSku()
-        return requestData
-    }
-
-    override fun onClick(v: View?) {
-        when (v!!.id) {
-            update_btn_save.id -> updatePenginapan(getData())
-        }
-    }
-
-
-    fun getImageStringBase64(bitmap: Bitmap): String? {
-        val bao = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bao)
-        val ba = bao.toByteArray()
-        val imageStringBase64 =
-            Base64.encodeToString(ba, Base64.DEFAULT)
-        Log.d("Image Base64", imageStringBase64)
-        return imageStringBase64
-    }
-
     fun uploadImagePenginapan(request: PenginapanImageRequest) {
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
-            val call = client.updatePenginapanimage(request)
+            val call = client.updateprodukImage(request)
             call.enqueue(object : Callback<DefaultResponse> {
                 override fun onResponse(
                     call: retrofit2.Call<DefaultResponse>,
@@ -210,6 +169,12 @@ class UpdatePenginapan : AppActivity(), View.OnClickListener {
 
     }
 
+    fun reload(){
+        val intent = Intent(this, DetailProductAcitivity::class.java)
+        intent.putExtra(Flag.PRODUCT_NAME,skuProduk)
+        startActivity(intent)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)
@@ -227,7 +192,7 @@ return
                     name = path
                     Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
 
-                    imageview!!.setImageBitmap(bitmap)
+                    update_produk_imageview!!.setImageBitmap(bitmap)
 
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -239,11 +204,20 @@ return
         } else if (requestCode == CAMERA) {
             val thumbnail = data!!.extras!!.get("data") as Bitmap
             bitmap_val = thumbnail
-            imageview!!.setImageBitmap(thumbnail)
+            update_produk_imageview!!.setImageBitmap(thumbnail)
             val path = saveImage(thumbnail)
             name = path
             Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
         }
+    }
+    fun getImageStringBase64(bitmap: Bitmap): String? {
+        val bao = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bao)
+        val ba = bao.toByteArray()
+        val imageStringBase64 =
+            Base64.encodeToString(ba, Base64.DEFAULT)
+        Log.d("Image Base64", imageStringBase64)
+        return imageStringBase64
     }
 
     fun saveImage(myBitmap: Bitmap): String {
@@ -290,9 +264,22 @@ return
         return ""
     }
 
+    private fun getData(): ProdukRequest{
+        val requestData = ProdukRequest()
+        requestData.nama= update_produk_produk_nama.text.toString()
+        requestData.deskripsi= update_produk_produk_deskripsi.text.toString()
+        requestData.harga= Integer.parseInt(update_produk_produk_harga.text.toString())
+        requestData.skuDesa =data?.skuDesa
+        return requestData
+    }
 
     companion object {
         private val IMAGE_DIRECTORY = "/bayunugrohoweb"
     }
 
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            update_produk_btn_send.id -> updateProduk(getData())
+        }
+    }
 }

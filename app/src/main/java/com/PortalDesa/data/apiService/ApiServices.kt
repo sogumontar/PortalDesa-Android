@@ -156,6 +156,19 @@ interface  ApiServices{
     @POST(ApiConfigs.ROUTE_ADD_PRODUCT_GAMBAR)
     fun addProdukimage(@Body request : PenginapanImageRequest): Call<PenginapanImageResponse>
 
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @PUT(ApiConfigs.ROUTE_UPDATE_PRODUCT)
+    fun updateProduk(@Path("sku") sku : String, @Body produkRequest: ProdukRequest): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.ROUTE_UPDATE_PRODUCT_GAMBAR)
+    fun updateprodukImage(@Body request : PenginapanImageRequest): Call<DefaultResponse>
+
+
+
+
     //Keranjang
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)

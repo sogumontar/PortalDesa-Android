@@ -44,6 +44,8 @@ interface ApiConfigs {
         const val LIST_PRODUK_BY_SKU_PRODUK = "/produk/sku/{sku}"
         const val DELETE_PRODUK_BY_SKU_PRODUK = "/produk/delete/{sku}"
         const val ROUTE_ADD_PRODUCT_GAMBAR = "/produk/add/gambar"
+        const val ROUTE_UPDATE_PRODUCT_GAMBAR = "/produk/update/gambar"
+        const val ROUTE_UPDATE_PRODUCT = "/produk/update/{sku}"
 
         //Pesanan
         const val LIST_PESANAN_CUSTOMER = "/transaksi/sku/pesan/{sku}"

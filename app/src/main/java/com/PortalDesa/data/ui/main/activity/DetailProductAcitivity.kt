@@ -15,6 +15,7 @@ import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.*
 import com.PortalDesa.data.ui.main.activity.Form.PemesananLangsung
+import com.PortalDesa.data.ui.main.activity.merchant.UpdateProdukActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_product.*
 import kotlinx.android.synthetic.main.activity_register_form.*
@@ -48,6 +49,9 @@ class DetailProductAcitivity : AppActivity() {
         }
         produk_delete_btn.setOnClickListener {
             delete()
+        }
+        produk_update_btn.setOnClickListener {
+            goToUpdateForm()
         }
     }
 
@@ -210,6 +214,12 @@ class DetailProductAcitivity : AppActivity() {
 
     fun reload() {
         intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+    fun goToUpdateForm(){
+        intent = Intent(this, UpdateProdukActivity::class.java)
+        intent.putExtra(Flag.SKU_PRODUCT_UPDATE,skuFix)
         startActivity(intent)
         finish()
     }
