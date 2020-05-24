@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.PortalDesa.R
 import com.PortalDesa.data.base.AppActivity
 import com.PortalDesa.data.support.Preferences
-import com.PortalDesa.data.ui.main.fragment.admin.DaftarAkunFragment
+import com.PortalDesa.data.ui.main.fragment.admin.AkunAdminFragment
 import com.PortalDesa.data.ui.main.fragment.admin.DaftarDesa
 import com.PortalDesa.data.ui.main.fragment.admin.DaftarPesanan
 import kotlinx.android.synthetic.main.content_main_admin.*
@@ -43,7 +43,7 @@ class MainActivityAdmin : AppActivity(), View.OnClickListener {
             when (type) {
                 "Pesanan" -> displayFragment(DaftarPesanan(), R.id.admin_fragment_container)
                 "Desa" -> displayFragment(DaftarDesa(), R.id.admin_fragment_container)
-                "Akun" -> displayFragment(DaftarAkunFragment(), R.id.admin_fragment_container)
+                "Akun" -> displayFragment(AkunAdminFragment(), R.id.admin_fragment_container)
 
                 else -> {
                 }

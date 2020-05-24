@@ -31,11 +31,7 @@ class AkunFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         preferences = Preferences(activity as Context)
-        if(preferences.getRoles().equals("ROLE_ADMIN")){
-            return inflater.inflate(R.layout.activity_akun_fragment_after_login, container, false)
-        }else{
             return inflater.inflate(R.layout.fragment_akun, container, false)
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

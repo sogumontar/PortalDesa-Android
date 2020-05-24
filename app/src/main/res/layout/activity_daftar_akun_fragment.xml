@@ -12,7 +12,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:padding="16dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -23,13 +22,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:gravity="center"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
                         android:text="Selamat Datang Admin"
                         android:textColor="@color/black_home"
                         android:textSize="30sp"/>
@@ -46,123 +44,199 @@
                 <LinearLayout
                     android:id="@+id/lin"
                     android:layout_width="match_parent"
-                    android:layout_height="248dp">
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/img_icon"
                         android:layout_width="match_parent"
-                        android:layout_height="216dp"
-                        android:layout_margin="10dp"
+                        android:layout_height="200dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/logoportaldesa2"
                         android:translationZ="5dp" />
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:id="@+id/ln_profile"
+                    android:id="@+id/ln_profil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:orientation="horizontal"
-                    >
-                    <Button
-                        android:id="@+id/btn_login"
-                        android:layout_width="0dp"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_btn"
-                        android:layout_margin="5dp"
-                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"
                         android:text="Profile"
-                        android:padding="20dp"/>
+                        android:textColor="@color/blue_primary"
+                        android:textSize="18sp" />
 
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=">"
+                        android:textColor="@color/black2"
+                        android:textSize="18sp" />
                 </LinearLayout>
+
+
                 <LinearLayout
+                    android:id="@+id/ln_daftar-desa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:orientation="horizontal"
-                    >
-                    <Button
-                        android:id="@+id/btn_register_merchant"
-                        android:layout_width="0dp"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_btn"
-                        android:layout_margin="5dp"
-                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"
                         android:text="Daftarkan Admin Desa"
-                        android:padding="20dp"/>
+                        android:textColor="@color/blue_primary"
+                        android:textSize="18sp" />
 
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-                    <Button
-                        android:id="@+id/admin_btn_akun"
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/rounded_green"
-                        android:layout_margin="5dp"
-                        android:textColor="@color/white"
-                        android:text="Daftar Akun"
-                        android:padding="20dp"/>
+                        android:gravity="right"
+                        android:text=">"
+                        android:textColor="@color/black2"
+                        android:textSize="18sp" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/ln_daftar_akun"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-                    <Button
-                        android:id="@+id/admin_btn_pesanan"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Daftarkan Akun"
+                        android:textColor="@color/blue_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/rounded_green"
-                        android:layout_margin="5dp"
-                        android:textColor="@color/white"
+                        android:gravity="right"
+                        android:text=">"
+                        android:textColor="@color/black2"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_pesanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="Daftar Pesanan"
-                        android:padding="20dp"/>
+                        android:textColor="@color/blue_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=">"
+                        android:textColor="@color/black2"
+                        android:textSize="18sp" />
                 </LinearLayout>
-               <LinearLayout
+
+                <LinearLayout
+                    android:id="@+id/ln_produk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-                    <Button
-                        android:id="@+id/btn_produk"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_btn"
-                        android:layout_margin="5dp"
-                        android:textColor="@color/white"
-                        android:text="Produk"
-                        android:padding="20dp"/>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
 
-                    <Button
-                        android:id="@+id/btn_penginapan"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Produk"
+                        android:textColor="@color/blue_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/rounded_btn"
-                        android:padding="20dp"
-                        android:text="Penginapan"
-                        android:textColor="@color/white" />
+                        android:gravity="right"
+                        android:text=">"
+                        android:textColor="@color/black2"
+                        android:textSize="18sp" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_penginapan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Penginapan"
+                        android:textColor="@color/blue_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=">"
+                        android:textColor="@color/black2"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="30dp"
                     android:gravity="center"
                     android:orientation="horizontal">
                     <Button

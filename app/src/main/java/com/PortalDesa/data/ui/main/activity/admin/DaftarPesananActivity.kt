@@ -2,97 +2,54 @@ package com.PortalDesa.data.ui.main.activity.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.content.ContextCompat
 import com.PortalDesa.R
-import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.base.AppActivity
-import com.PortalDesa.data.model.response.PesananResponse
-import com.PortalDesa.data.support.Connectivity
-import com.PortalDesa.data.ui.main.adapter.admin.DaftarPesananBelumDibayarAdapter
-import com.PortalDesa.data.ui.main.adapter.admin.DaftarPesananSudahDibayarADapter
-import kotlinx.android.synthetic.main.activity_daftar_pesanan2.*
-import retrofit2.Response
+import com.PortalDesa.data.ui.main.fragment.admin.BelumDibayarFragmentAdmin
+import com.PortalDesa.data.ui.main.fragment.admin.SudahDibayarFragmentAdmin
+import kotlinx.android.synthetic.main.activity_pesanan.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class DaftarPesananActivity : AppActivity(),  View.OnClickListener  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_daftar_pesanan2)
-        recycler_daftar_pesanan_belum_dibayar.setHasFixedSize(true)
-        recycler_daftar_pesanan_sudah_dibayar.setHasFixedSize(true)
-        val daftarPesananBelumDibayarLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        val daftarPesananSudahDibayarLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        recycler_daftar_pesanan_belum_dibayar.setLayoutManager(daftarPesananBelumDibayarLayoutManager)
-        recycler_daftar_pesanan_sudah_dibayar.setLayoutManager(daftarPesananSudahDibayarLayoutManager)
-        recycler_daftar_pesanan_belum_dibayar.setNestedScrollingEnabled(false)
-        recycler_daftar_pesanan_sudah_dibayar.setNestedScrollingEnabled(false)
-        initViewDibayar()
-        initViewBelumDibayar()
+        setContentView(R.layout.activity_pesanan)
+        initView()
+        btn_tab_1.setOnClickListener(this)
+        btn_tab_2.setOnClickListener(this)
+        tabSelected(1)
     }
 
-    fun initViewBelumDibayar(){
-        if (Connectivity().isNetworkAvailable(this)) {
-            val client = APIServiceGenerator().createService
-            val call = client.getPesananAll()
-            call.enqueue(object : retrofit2.Callback<List<PesananResponse>> {
-                override fun onResponse(
-                    call: retrofit2.Call<List<PesananResponse>>,
-                    response: Response<List<PesananResponse>>
-                ) {
-                    val listKecamatan = response.body()
-                    if(listKecamatan!=null) {
-                        val adapter = DaftarPesananBelumDibayarAdapter(
-                            this@DaftarPesananActivity,
-                            listKecamatan!!
-                        )
-                        recycler_daftar_pesanan_belum_dibayar.setAdapter(adapter)
-                    }
-                }
-
-                override fun onFailure(
-                    call: retrofit2.Call<List<PesananResponse>>,
-                    t: Throwable
-                ) {
-                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
-                }
-            })
-        }
-
+    private fun initView() {
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Pesanan"
     }
 
-    fun initViewDibayar(){
-        if (Connectivity().isNetworkAvailable(this)) {
-            val client = APIServiceGenerator().createService
-            val call = client.getPesananAllSudahBayar()
-            call.enqueue(object : retrofit2.Callback<List<PesananResponse>> {
-                override fun onResponse(
-                    call: retrofit2.Call<List<PesananResponse>>,
-                    response: Response<List<PesananResponse>>
-                ) {
-                    val listData = response.body()
-                    if(listData != null) {
-                        val adapter =
-                            DaftarPesananSudahDibayarADapter(this@DaftarPesananActivity, listData!!)
-                        recycler_daftar_pesanan_sudah_dibayar.setAdapter(adapter)
-                    }
-                }
-
-                override fun onFailure(
-                    call: retrofit2.Call<List<PesananResponse>>,
-                    t: Throwable
-                ) {
-                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
-                }
-            })
+    override fun onClick(v: View) {
+        val id = v.id
+        if (id == btn_tab_1.getId()) {
+            tabSelected(1)
+        } else if (id == btn_tab_2.getId()) {
+            tabSelected(2)
         }
     }
 
-    override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+    private fun tabSelected(position: Int) {
+        if (position == 1) {
+            btn_tab_1.setTextColor(ContextCompat.getColor(this, R.color.blue_primary))
+            btn_tab_2.setTextColor(ContextCompat.getColor(this, R.color.soft_grey))
+            line_tab_1.setVisibility(View.VISIBLE)
+            line_tab_2.setVisibility(View.GONE)
+            showFragmentAllowingStateLoss(BelumDibayarFragmentAdmin(), R.id.fragment_container)
+        } else {
+            btn_tab_1.setTextColor(ContextCompat.getColor(this, R.color.soft_grey))
+            btn_tab_2.setTextColor(ContextCompat.getColor(this, R.color.blue_primary))
+            line_tab_1.setVisibility(View.GONE)
+            line_tab_2.setVisibility(View.VISIBLE)
+            showFragmentAllowingStateLoss(SudahDibayarFragmentAdmin(), R.id.fragment_container)
+        }
     }
+
 }

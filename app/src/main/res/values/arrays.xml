@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="daftar_kecamatan">
+        <item></item>
+        <item>Siborongborong</item>
+        <item>Balige</item>
+        <item>Silaen</item>
+    </string-array>
+
+</resources>

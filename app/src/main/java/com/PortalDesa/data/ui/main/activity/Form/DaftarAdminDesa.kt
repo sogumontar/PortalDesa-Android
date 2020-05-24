@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.base.AppActivity
@@ -21,6 +22,12 @@ class DaftarAdminDesa : AppActivity(),  View.OnClickListener  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daftar_admin_desa)
         btn_admin_daftar_merchant.setOnClickListener(this)
+        val adapter = ArrayAdapter.createFromResource(this,
+            R.array.daftar_kecamatan, android.R.layout.simple_spinner_item)
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        // Apply the adapter to the spinner
+        spinner.adapter = adapter
     }
 
     fun simpan(){
@@ -52,7 +59,8 @@ class DaftarAdminDesa : AppActivity(),  View.OnClickListener  {
     fun getData() : DaftarAdminDesaRequest {
         val daftarAdminDesaRequest= DaftarAdminDesaRequest()
         daftarAdminDesaRequest.nama = namaDesa.text.toString()
-        daftarAdminDesaRequest.kecamatan = kecamatan.text.toString()
+//        daftarAdminDesaRequest.kecamatan = kecamatan.text.toString()
+        daftarAdminDesaRequest.kecamatan = spinner.selectedItem.toString()
         daftarAdminDesaRequest.username = username.text.toString()
         daftarAdminDesaRequest.email = email.text.toString()
         daftarAdminDesaRequest.password = password.text.toString()

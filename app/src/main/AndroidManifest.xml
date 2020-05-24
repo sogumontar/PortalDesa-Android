@@ -15,8 +15,13 @@
         <activity android:name=".data.ui.main.activity.merchant.UpdateProdukActivity"></activity>
         <activity android:name=".data.ui.main.activity.BayarPesananActivity" />
         <activity android:name=".data.ui.main.activity.Form.PemesananLangsung" />
-        <activity android:name=".data.ui.main.activity.admin.DaftarPesananActivity" />
-        <activity android:name=".data.ui.main.activity.admin.DaftarAkunActivity" />
+        <activity
+            android:name=".data.ui.main.activity.admin.DaftarPesananActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".data.ui.main.activity.admin.DaftarAkunActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".data.ui.main.activity.PesananActivity"
             android:theme="@style/AppTheme.NoActionBar" />

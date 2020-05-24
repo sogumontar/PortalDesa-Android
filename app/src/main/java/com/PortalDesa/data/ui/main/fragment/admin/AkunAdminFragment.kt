@@ -17,13 +17,13 @@ import com.PortalDesa.data.ui.main.activity.admin.DaftarAkunActivity
 import com.PortalDesa.data.ui.main.activity.admin.DaftarPesananActivity
 import kotlinx.android.synthetic.main.activity_daftar_akun_fragment.*
 
-class DaftarAkunFragment : Fragment(), View.OnClickListener {
+class AkunAdminFragment : Fragment(), View.OnClickListener {
     lateinit private var preferences: Preferences
 
     companion object {
 
-        fun newInstance(): DaftarAkunFragment {
-            return DaftarAkunFragment()
+        fun newInstance(): AkunAdminFragment {
+            return AkunAdminFragment()
         }
     }
 
@@ -42,11 +42,10 @@ class DaftarAkunFragment : Fragment(), View.OnClickListener {
     }
     fun initView() {
         val tok = preferences.getAccessToken()
-        btn_login.setOnClickListener(this)
         admin_btn_logout.setOnClickListener(this)
-        admin_btn_akun.setOnClickListener(this)
-        btn_register_merchant.setOnClickListener(this)
-        admin_btn_pesanan.setOnClickListener(this)
+        ln_daftar_akun.setOnClickListener(this)
+        ln_daftar_desa.setOnClickListener(this)
+        ln_pesanan.setOnClickListener(this)
     }
     fun goToDaftarAkun() {
         val intent = Intent(activity, DaftarAkunActivity::class.java)
@@ -71,10 +70,10 @@ class DaftarAkunFragment : Fragment(), View.OnClickListener {
     }
     override fun onClick(v: View?) {
         when (v!!.id) {
-            admin_btn_akun.id -> goToDaftarAkun()
+            ln_daftar_akun.id -> goToDaftarAkun()
             admin_btn_logout.id -> doLogout()
-            btn_register_merchant.id -> goToDaftarkanMerchant()
-            admin_btn_pesanan.id -> goToDaftarPesanan()
+            ln_daftar_desa.id -> goToDaftarkanMerchant()
+            ln_pesanan.id -> goToDaftarPesanan()
         }
     }
 

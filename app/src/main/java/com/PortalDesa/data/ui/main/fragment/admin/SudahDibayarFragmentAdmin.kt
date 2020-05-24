@@ -1,16 +1,13 @@
-package com.PortalDesa.data.ui.main.fragment
+package com.PortalDesa.data.ui.main.fragment.admin
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
+import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
@@ -19,17 +16,12 @@ import com.PortalDesa.data.model.response.PesananResponse
 import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
-import com.PortalDesa.data.ui.main.activity.merchant.CreateProdukForm
-import com.PortalDesa.data.ui.main.adapter.ListProductAdapter
 import com.PortalDesa.data.ui.main.adapter.PesananAdapter
-import com.PortalDesa.data.ui.main.adapter.PesananSudahBayarAdapter
+import com.PortalDesa.data.ui.main.adapter.admin.DaftarPesananSudahDibayarADapter
 import kotlinx.android.synthetic.main.fragment_pernah_bayar.*
-import kotlinx.android.synthetic.main.fragment_produk.view_animator
-import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Response
-import java.util.ArrayList
 
-class SudahBayarFragment() : Fragment(){
+class SudahDibayarFragmentAdmin() : Fragment(){
 
     lateinit private var preferences : Preferences
     private var adapter: PesananAdapter? = null
@@ -37,7 +29,7 @@ class SudahBayarFragment() : Fragment(){
 
     private var productResponse: List<ProductResponse>? = null
     companion object{
-        fun newInstance() : SudahBayarFragment{
+        fun newInstance() : SudahDibayarFragmentAdmin {
             return newInstance()
         }
     }
@@ -52,31 +44,29 @@ class SudahBayarFragment() : Fragment(){
 
     }
 
-    fun initDataSudahBayar() {
-        val sku = preferences.getSku()
+    fun initDataSudahBayar(){
         if (Connectivity().isNetworkAvailable(activity as Context)) {
             val client = APIServiceGenerator().createService
-            val call = client.getPesananSudahBayar(sku)
+            val call = client.getPesananAllSudahBayar()
             call.enqueue(object : retrofit2.Callback<List<PesananResponse>> {
                 override fun onResponse(
                     call: retrofit2.Call<List<PesananResponse>>,
                     response: Response<List<PesananResponse>>
                 ) {
-                    val listProduk = response.body()
-                    pesananResponseSudahBayar = listProduk
-
-                    if(listProduk != null) {
-                        displayData(listProduk)
+                    val listData = response.body()
+                    if(listData != null) {
+                        displayData(listData)
                     }
-
                 }
 
-                override fun onFailure(call: retrofit2.Call<List<PesananResponse>>, t: Throwable) {
+                override fun onFailure(
+                    call: retrofit2.Call<List<PesananResponse>>,
+                    t: Throwable
+                ) {
                     Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
                     Log.e(this.javaClass.simpleName, " Exceptions : $t")
                 }
             })
-
         }
     }
     fun displayData(list: List<PesananResponse>){
@@ -84,7 +74,7 @@ class SudahBayarFragment() : Fragment(){
             val menuListLayoutManager = LinearLayoutManager(activity as Context, RecyclerView.VERTICAL, false)
             recycler_view_pesanan.setLayoutManager(menuListLayoutManager)
             recycler_view_pesanan.setHasFixedSize(true)
-            val adapter = PesananSudahBayarAdapter(activity as Context, list)
+            val adapter = DaftarPesananSudahDibayarADapter(activity as Context, list)
             view_animator.setDisplayedChild(1)
             recycler_view_pesanan.setAdapter(adapter)
         }
