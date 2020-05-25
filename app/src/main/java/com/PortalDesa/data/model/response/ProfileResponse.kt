@@ -14,5 +14,6 @@ class ProfileResponse {
     var alamat: String? = null
     var email: String? = null
     var password: String? = null
+    var gambar: String? = null
     var status: Int = 0
 }

@@ -78,7 +78,24 @@
                 android:layout_marginBottom="15dp"
                 android:text=""
                 android:padding="8dp" />
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/btn_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Pilih Gambar"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/imageview"
+                    android:layout_width="221dp"
+                    android:layout_height="151dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/default_image" />
 
 
             <Button

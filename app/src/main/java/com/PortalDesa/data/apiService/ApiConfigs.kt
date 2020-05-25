@@ -12,6 +12,7 @@ interface ApiConfigs {
         const val SIGN_UP = "/auth/signup"
         const val LIST_KECAMATAN = "/kecamatan/"
         const val LIST_DESA_KECAMATAN = "/desa/kecamatan/{kecamatan}"
+        const val ADD_DESA_PICTURE = "/desa/add/picture"
 
         const val DETAIL_PROFILE = "/auth/findSku/{sku}"
         const val UPDATE_DETAIL_PROFILE = "/auth/update/{sku}"

@@ -16,6 +16,12 @@ interface  ApiServices{
     @POST(ApiConfigs.ADD_DATA_MERCHANT)
     fun createDataMerchant(@Body userRequest: DaftarAdminDesaRequest ): Call<DefaultResponse>
 
+    //Desa
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @PUT(ApiConfigs.ADD_DESA_PICTURE)
+    fun addDesaimage(@Body request : GambarDesaRequest): Call<PenginapanImageResponse>
+
 
     //Account
     @Headers(
