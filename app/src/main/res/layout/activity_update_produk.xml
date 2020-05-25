@@ -6,13 +6,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context=".data.ui.main.activity.SignUpActivity">
-    <FrameLayout
-        android:id="@+id/snackbar_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    tools:context=".data.ui.main.activity.merchant.UpdateProdukActivity">
 
-    </FrameLayout>
+    <include layout="@layout/toolbar"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,7 +35,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukan nama produk"
                 android:padding="8dp" />
             <TextView
                 android:layout_width="wrap_content"
@@ -52,7 +47,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukan harga produk"
                 android:padding="8dp"
                 android:inputType="number"/>
 
@@ -68,7 +62,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukkan deskripsi produk"
                 android:padding="8dp"
                 android:inputType="textImeMultiLine"/>
 

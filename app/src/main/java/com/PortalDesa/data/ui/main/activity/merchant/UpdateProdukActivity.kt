@@ -24,6 +24,7 @@ import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.DetailProductAcitivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_update_produk.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -50,9 +51,15 @@ class UpdateProdukActivity : AppActivity(), View.OnClickListener  {
         preferences = Preferences(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_produk)
+        initView()
         getDetailProduk()
         update_produk_btn_send.setOnClickListener(this)
         update_produk_btn_image.setOnClickListener { showPictureDialog() }
+    }
+
+    private fun initView(){
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Update Produk"
     }
 
     private fun showPictureDialog() {
@@ -84,6 +91,7 @@ class UpdateProdukActivity : AppActivity(), View.OnClickListener  {
         startActivityForResult(intent, CAMERA)
     }
     fun getDetailProduk(){
+        showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
             skuProduk =intent.getStringExtra(Flag.SKU_PRODUCT_UPDATE)
@@ -101,6 +109,7 @@ class UpdateProdukActivity : AppActivity(), View.OnClickListener  {
                     call: retrofit2.Call<ProductResponse>,
                     t: Throwable
                 ) {
+                    dismissProgressDialog()
                 }
             })
         }
@@ -115,6 +124,7 @@ class UpdateProdukActivity : AppActivity(), View.OnClickListener  {
         update_produk_produk_nama.setText(data?.nama)
         update_produk_produk_harga.setText(data?.harga.toString())
         update_produk_produk_deskripsi.setText(data?.deskripsi)
+        dismissProgressDialog()
     }
 
     fun updateProduk(request: ProdukRequest) {
