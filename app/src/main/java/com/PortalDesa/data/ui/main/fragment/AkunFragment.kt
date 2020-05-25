@@ -90,27 +90,30 @@ class AkunFragment : Fragment(), View.OnClickListener {
     fun initView() {
         tv_toolbar_title.text = "Profil"
         btn_login.setOnClickListener(this)
+        btn_register.setOnClickListener(this)
         btn_logout.setOnClickListener(this)
         ln_profile.setOnClickListener(this)
         ln_keranjang.setOnClickListener(this)
         ln_pesanan.setOnClickListener(this)
-        tv_name.text = preferences.getUserDetail()!!.nickName
-        tv_email.text = preferences.getUserDetail()!!.email
-        if (preferences.getRoles().equals("ROLE_USER")) {
-            ln_signin.visibility = View.GONE
-            btn_logout.visibility = View.VISIBLE
-            ln_profile.visibility = View.VISIBLE
-            ln_keranjang.visibility = View.VISIBLE
-            ln_pesanan.visibility = View.VISIBLE
-        } else if (preferences.getRoles().equals("ROLE_MERCHANT")) {
-            ln_signin.visibility = View.GONE
-            btn_logout.visibility = View.VISIBLE
-            ln_profile.visibility = View.VISIBLE
-            ln_keranjang.visibility = View.VISIBLE
-            ln_pesanan.visibility = View.VISIBLE
-        } else {
-            val intent = Intent(activity, SignInActivity::class.java)
-            startActivity(intent)
+        if(!preferences.getAccessToken().equals("")) {
+            ln_data_akun.visibility = View.VISIBLE
+            tv_name.text = preferences.getUserDetail()!!.nickName
+            tv_email.text = preferences.getUserDetail()!!.email
+            if (preferences.getRoles().equals("ROLE_USER")) {
+                ln_signin.visibility = View.GONE
+                btn_logout.visibility = View.VISIBLE
+                ln_profile.visibility = View.VISIBLE
+                ln_keranjang.visibility = View.VISIBLE
+                ln_pesanan.visibility = View.VISIBLE
+            } else if (preferences.getRoles().equals("ROLE_MERCHANT")) {
+                ln_signin.visibility = View.GONE
+                btn_logout.visibility = View.VISIBLE
+                ln_profile.visibility = View.VISIBLE
+                ln_keranjang.visibility = View.VISIBLE
+                ln_pesanan.visibility = View.VISIBLE
+            }
+        }else{
+            ln_data_akun.visibility = View.GONE
         }
     }
 

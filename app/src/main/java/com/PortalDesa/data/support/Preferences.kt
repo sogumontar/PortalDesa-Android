@@ -86,6 +86,7 @@ class Preferences(mContext: Context) {
         e.putString(ROLES, "")
         e.putString(SKU, "")
         e.putString(NAMA, "")
+        e.putString(USER_DETAIL_DATA, "")
         e.commit()
     }
 

@@ -31,7 +31,7 @@
                 <ImageView
                     android:id="@+id/img_icon"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="220dp"
                     android:layout_margin="10dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/logoportaldesa2"
@@ -70,6 +70,11 @@
                     android:textColor="@color/white" />
 
                 </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ln_data_akun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
         <LinearLayout
             android:id="@+id/ln_profile"
             android:layout_width="match_parent"
@@ -162,6 +167,7 @@
                 android:padding="10dp"
                 android:text="Keluar"
                 android:textColor="@color/snackbar_red" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

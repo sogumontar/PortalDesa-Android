@@ -4,14 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".data.ui.main.activity.DetailProductAcitivity">
+    <include
+        android:id="@+id/ln_layout"
+        layout="@layout/toolbar"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="-5dp"
         android:background="@color/white"
-        android:layout_above="@+id/ln_btn"
+        android:layout_below="@+id/ln_layout"
         android:fillViewport="true">
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,6 +82,7 @@
                     android:textSize="16sp" />
 
                 <LinearLayout
+                    android:id="@+id/ln_jumlah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"

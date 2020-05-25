@@ -19,6 +19,7 @@ import com.PortalDesa.data.ui.main.activity.merchant.UpdateProdukActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_product.*
 import kotlinx.android.synthetic.main.activity_register_form.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Response
 import java.util.*
 import kotlin.concurrent.schedule
@@ -83,16 +84,21 @@ class DetailProductAcitivity : AppActivity() {
     }
 
     fun initView() {
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Produk"
+
         if (role.equals("ROLE_MERCHANT")) {
             produk_delete_btn.visibility = View.VISIBLE
             produk_update_btn.visibility = View.VISIBLE
             btn_pesan.visibility = View.GONE
             btn_keranjang.visibility = View.GONE
+            ln_jumlah.visibility = View.GONE
         } else if (role.equals("ROLE_USER")) {
             produk_delete_btn.visibility = View.GONE
             produk_update_btn.visibility = View.GONE
             btn_pesan.visibility = View.VISIBLE
             btn_keranjang.visibility = View.VISIBLE
+            ln_jumlah.visibility = View.VISIBLE
         } else {
             produk_delete_btn.visibility = View.GONE
             produk_update_btn.visibility = View.GONE
@@ -256,8 +262,4 @@ class DetailProductAcitivity : AppActivity() {
         }
     }
 
-//    private fun initView() {
-//        initToolbar(R.id.toolbar)
-//        tv_toolbar_title.text = getString(R.string.sign_up_tab_title_sign_up)
-//    }
 }
