@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/container"
 android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:padding="16dp"
+android:layout_height="wrap_content"
+    android:orientation="vertical"
 android:background="@color/white_bg"
-tools:context=".data.ui.main.activity.SignInActivity">
-    <ProgressBar
-        android:id="@+id/progreebar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_centerInParent="true"/>
-
+tools:context=".data.ui.main.activity.Form.DaftarAdminDesa">
+    <include layout="@layout/toolbar" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-5dp"
+        android:background="@color/white"
+        android:padding="16dp"
+        android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -143,13 +144,5 @@ tools:context=".data.ui.main.activity.SignInActivity">
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Daftar Admin Desa"
-        android:textColor="#000000"
-        android:textSize="30sp" />
-
-</RelativeLayout>
+    </ScrollView>
+</LinearLayout>

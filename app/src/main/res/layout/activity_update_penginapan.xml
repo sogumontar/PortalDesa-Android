@@ -36,7 +36,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukan nama penginapan"
                 android:padding="8dp" />
 
             <TextView
@@ -50,7 +49,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukan harga penginapan"
                 android:inputType="number"
                 android:padding="8dp" />
 
@@ -66,7 +64,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukkan deskripsi penginapan"
                 android:inputType="textImeMultiLine"
                 android:padding="8dp" />
 
@@ -83,7 +80,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukkan jumlah kamar"
                 android:inputType="number"
                 android:padding="8dp" />
 
@@ -99,7 +95,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukkan Lokasi penginapan"
                 android:inputType="text"
                 android:padding="8dp" />
 

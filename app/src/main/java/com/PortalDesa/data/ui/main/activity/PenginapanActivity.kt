@@ -1,8 +1,9 @@
 package com.PortalDesa.data.ui.main.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,21 +12,24 @@ import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.base.AppActivity
 import com.PortalDesa.data.model.response.PenginapanResponse
+import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.merchant.CreatePenginapanForm
-import com.PortalDesa.data.ui.main.activity.merchant.PenginapanForm
 import com.PortalDesa.data.ui.main.adapter.ListPenginapanAdapter
+import com.PortalDesa.data.ui.main.adapter.ListProductAdapter
 import kotlinx.android.synthetic.main.activity_penginapan.*
-import kotlinx.android.synthetic.main.item_penginapan.*
+import kotlinx.android.synthetic.main.activity_penginapan.et_search
 import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.ArrayList
 
 class PenginapanActivity : AppActivity(), View.OnClickListener {
     lateinit private var preferences : Preferences
-
     private var penginapanResponse: List<PenginapanResponse>? = null
+    private var adapter: ListPenginapanAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_penginapan)
@@ -90,7 +94,7 @@ class PenginapanActivity : AppActivity(), View.OnClickListener {
         if (penginapanResponse != null && penginapan_recycler_view != null) {
             val produkListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             penginapan_recycler_view.setLayoutManager(produkListLayoutManager)
-            val adapter = ListPenginapanAdapter(this, penginapanResponse!!)
+            adapter = ListPenginapanAdapter(this, penginapanResponse!!)
             penginapan_view_animator.setDisplayedChild(1)
             penginapan_recycler_view.setAdapter(adapter)
 
@@ -102,9 +106,36 @@ class PenginapanActivity : AppActivity(), View.OnClickListener {
         initToolbar(R.id.toolbar)
         tv_toolbar_title.text = getString(R.string.title_penginapan)
 
-//        val adapter = PenginapanAdapter()
-//        recycler_view.setAdapter(adapter)
+        et_search.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+            }
+
+            override fun onTextChanged(
+                charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+            }
+
+            override fun afterTextChanged(editable: Editable) {
+                filter(editable.toString())
+            }
+        })
     }
+
+    fun filter(text: String) {
+        val dataProduk = ArrayList<PenginapanResponse>()
+
+        //looping through existing elements
+        for (s in penginapanResponse!!) {
+            //if the existing elements contains the search input
+            if (s.nama!!.toLowerCase().contains(text.toLowerCase())) {
+                //adding the element to filtered list
+                dataProduk.add(s)
+            }
+        }
+        adapter!!.filterList(dataProduk)
+
+    }
+
+
     fun goToForm(){
         val intent = Intent(this, CreatePenginapanForm::class.java)
         startActivity(intent)

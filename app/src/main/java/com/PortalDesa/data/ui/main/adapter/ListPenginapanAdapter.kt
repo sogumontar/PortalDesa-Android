@@ -12,6 +12,7 @@ import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.model.response.PenginapanResponse
+import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
@@ -26,7 +27,7 @@ import retrofit2.Response
 /**
  * Created by Sogumontar Hendra Simangunsong on 13/05/2020.
  */
-class ListPenginapanAdapter(val context: Context, val listpenginapan: List<PenginapanResponse>) :
+class ListPenginapanAdapter(val context: Context, var listpenginapan: List<PenginapanResponse>) :
     RecyclerView.Adapter<ListPenginapanAdapter.ViewHolder>() {
 
     lateinit private var preferences: Preferences
@@ -41,6 +42,12 @@ class ListPenginapanAdapter(val context: Context, val listpenginapan: List<Pengi
         val ln_product = v.penginapan_item
         val imgPopular = v.img_penginapan
     }
+
+    fun filterList(myDataset: List<PenginapanResponse>) {
+        listpenginapan = myDataset
+        notifyDataSetChanged()
+    }
+
     fun reload(){
         val intents = Intent(context, PenginapanActivity::class.java)
         context.startActivity(intents)

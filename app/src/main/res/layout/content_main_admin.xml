@@ -57,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Desa"
+                    android:text="Pesanan"
                     android:textColor="#1F204D"
                     android:textSize="10sp" />
 
@@ -81,7 +81,7 @@
                     android:id="@+id/tv_desa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pesanan"
+                    android:text="User"
                     android:textColor="#1F204D"
                     android:textSize="10sp" />
 
