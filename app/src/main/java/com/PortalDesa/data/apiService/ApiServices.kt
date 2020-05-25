@@ -221,6 +221,11 @@ interface  ApiServices{
 
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_PESANAN_PENGINAPAN_ALL_BELUM_BAYAR)
+    fun getPesananPenginapanAll(): Call<List<TransaksiPenginapanResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @GET(ApiConfigs.LIST_PESANAN_ALL_SUDAH_BAYAR)
     fun getPesananAllSudahBayar(): Call<List<PesananResponse>>
 
@@ -257,6 +262,11 @@ interface  ApiServices{
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @PUT(ApiConfigs.TRANSAKSI_PAYMENT)
     fun bayar(@Path("idPesanan")sku: String , @Body request : TransaksiRequest): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @POST(ApiConfigs.ADD_TRANSAKSI_PENGINAPAN)
+    fun addTransaksiPenginapan( @Body request : TransaksiPenginapanRequest): Call<DefaultResponse>
 
 
 }

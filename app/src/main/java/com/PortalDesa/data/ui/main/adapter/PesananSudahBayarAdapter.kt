@@ -42,9 +42,8 @@ class PesananSudahBayarAdapter(val context: Context, val list : List<PesananResp
             .load("https://portal-desa.herokuapp.com/transaksi/get/"+list.get(position).resi)
             .into(holder.image)
         holder?.image
-        val test=list.get(position).metode
         holder.alamat.text = list.get(position).resi
-        holder.harga.text = list.get(position).harga
+        holder.harga.text = list.get(position).harga.toString()
         holder.metode.text = list.get(position).metode
     }
 

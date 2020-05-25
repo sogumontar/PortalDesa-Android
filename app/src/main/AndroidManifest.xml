@@ -14,6 +14,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".data.ui.main.activity.merchant.UpdateProdukActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".data.ui.main.activity.DetailPenginapanActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".data.ui.main.activity.BayarPesananActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".data.ui.main.activity.Form.PemesananLangsung"

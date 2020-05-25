@@ -48,7 +48,7 @@ class PesananAdapter(val context: Context, val list : List<PesananResponse>) : R
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.alamat.text = list.get(position).alamat
-        holder.harga.text = list.get(position).harga
+        holder.harga.text = list.get(position).harga.toString()
         holder.metode.text = list.get(position).metode
         holder.btn_delete.setOnClickListener(View.OnClickListener {
             hapus(list.get(position).id!!)

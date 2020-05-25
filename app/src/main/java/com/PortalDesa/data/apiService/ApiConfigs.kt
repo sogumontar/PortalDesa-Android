@@ -52,6 +52,7 @@ interface ApiConfigs {
         const val LIST_PESANAN_CUSTOMER = "/transaksi/sku/pesan/{sku}"
         const val LIST_PESANAN_CUSTOMER_SUDAH_BAYAR = "/transaksi/sku/bayar/{sku}"
         const val LIST_PESANAN_ALL_BELUM_BAYAR = "/transaksi/pesanan"
+        const val LIST_PESANAN_PENGINAPAN_ALL_BELUM_BAYAR = "/transaksiPenginapan/pesanan"
         const val LIST_PESANAN_ALL_SUDAH_BAYAR = "/transaksi/pesanan/sudah"
         const val CANCEL_PESANAN = "/transaksi/pesanan/cancel/{sku}"
 
@@ -66,6 +67,7 @@ interface ApiConfigs {
         //Transaksi
         const val TRANSAKSI_ADD= "/transaksi/add"
         const val TRANSAKSI_PAYMENT= "/transaksi/bayar/{idPesanan}"
+        const val ADD_TRANSAKSI_PENGINAPAN= "/transaksiPenginapan/add"
 
         //Customer
         const val ROUTE_GET_ALAMAT_CUSTOMER= "/customer/{sku}"

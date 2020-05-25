@@ -58,7 +58,7 @@ class DaftarPesananBelumDibayarAdapter(val context: Context, val listPesanan : L
         holder?.btnBayar.visibility=View.GONE
         holder?.alamat.text = listPesanan.get(position).alamat
         holder?.metode.text = listPesanan.get(position).metode
-        holder?.harga.text = listPesanan.get(position).harga
+        holder?.harga.text = listPesanan.get(position).harga.toString()
     }
 
     fun reload(){
