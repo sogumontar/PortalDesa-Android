@@ -12,16 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".data.ui.main.activity.merchant.UpdateProdukActivity"></activity>
+        <activity android:name=".data.ui.main.activity.DetailPenginapanActivity"></activity>
+        <activity android:name=".data.ui.main.activity.merchant.UpdateProdukActivity" />
         <activity android:name=".data.ui.main.activity.BayarPesananActivity" />
         <activity android:name=".data.ui.main.activity.Form.PemesananLangsung" />
         <activity
             android:name=".data.ui.main.activity.admin.DaftarPesananActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.admin.DaftarAkunActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.PesananActivity"
             android:theme="@style/AppTheme.NoActionBar" />
