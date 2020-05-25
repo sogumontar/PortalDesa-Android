@@ -20,11 +20,10 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".data.ui.main.activity.admin.DaftarPesananActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.admin.DaftarAkunActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.PesananActivity"
             android:theme="@style/AppTheme.NoActionBar" />

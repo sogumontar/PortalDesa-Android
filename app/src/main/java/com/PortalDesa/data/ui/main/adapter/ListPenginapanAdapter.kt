@@ -16,6 +16,7 @@ import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.ui.main.activity.DetailPenginapanActivity
 import com.PortalDesa.data.ui.main.activity.DetailProductAcitivity
 import com.PortalDesa.data.ui.main.activity.PenginapanActivity
 import com.PortalDesa.data.ui.main.activity.merchant.UpdatePenginapan
@@ -88,8 +89,8 @@ class ListPenginapanAdapter(val context: Context, var listpenginapan: List<Pengi
 
         holder?.tvDesc.text = listpenginapan.get(position).nama
         holder?.ln_product.setOnClickListener(View.OnClickListener {
-            val intent = Intent(context, DetailProductAcitivity::class.java)
-            intent.putExtra(Flag.PRODUCT_NAME, listpenginapan.get(position).nama)
+            val intent = Intent(context, DetailPenginapanActivity::class.java)
+            intent.putExtra(Flag.PENGINAPAN_ID, listpenginapan.get(position).sku)
             context.startActivity(intent)
         })
 
