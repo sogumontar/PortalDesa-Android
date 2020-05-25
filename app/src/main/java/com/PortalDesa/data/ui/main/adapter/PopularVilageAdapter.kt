@@ -13,7 +13,7 @@ import com.PortalDesa.data.ui.main.activity.DetailKecamatanActivtiy
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_popular_vilage.view.*
 
-class PopularVilageAdapter(val context: Context, val listKec : List<KecamatanResponse>, var check : Boolean) : RecyclerView.Adapter<PopularVilageAdapter.ViewHolder>() {
+class PopularVilageAdapter(val context: Context, var listKec : List<KecamatanResponse>, var check : Boolean) : RecyclerView.Adapter<PopularVilageAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
@@ -22,6 +22,10 @@ class PopularVilageAdapter(val context: Context, val listKec : List<KecamatanRes
         val ln_product = v.ln_product
     }
 
+    fun filterList(myDataset: List<KecamatanResponse>) {
+        listKec = myDataset
+        notifyDataSetChanged()
+    }
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(

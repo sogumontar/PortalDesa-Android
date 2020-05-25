@@ -14,6 +14,7 @@ import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.ui.main.activity.admin.MainActivityAdmin
 import kotlinx.android.synthetic.main.activity_daftar_admin_desa.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Response
 
 class DaftarAdminDesa : AppActivity(),  View.OnClickListener  {
@@ -28,6 +29,11 @@ class DaftarAdminDesa : AppActivity(),  View.OnClickListener  {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Apply the adapter to the spinner
         spinner.adapter = adapter
+    }
+
+    private fun initView() {
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Daftar Admin Desa"
     }
 
     fun simpan(){

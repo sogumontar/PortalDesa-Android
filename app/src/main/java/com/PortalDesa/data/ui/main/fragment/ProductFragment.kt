@@ -61,20 +61,11 @@ class ProductFragment : Fragment(), View.OnClickListener{
     fun initData(){
         val role = preferences.getRoles()
         et_search.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(
-                charSequence: CharSequence,
-                i: Int,
-                i1: Int,
-                i2: Int
-            ) {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }
 
             override fun onTextChanged(
-                charSequence: CharSequence,
-                i: Int,
-                i1: Int,
-                i2: Int
-            ) {
+                charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }
 
             override fun afterTextChanged(editable: Editable) {
@@ -83,19 +74,7 @@ class ProductFragment : Fragment(), View.OnClickListener{
         })
 
         button_create_produk.setOnClickListener(this)
-//        if(role.equals("ROLE_MERCHANT")){
-//            button_create_produk.visibility = View.VISIBLE
-//            produk_btn_hapus.visibility = View.VISIBLE
-//            produk_btn_update.visibility=View.VISIBLE
-//            produk_btn_cart.visibility=View.GONE
-//            produk_btn_pesan.visibility=View.GONE
-//        }else if(role.equals("ROLE_USER")){
-//            button_create_produk.visibility = View.GONE
-//            produk_btn_hapus.visibility = View.GONE
-//            produk_btn_update.visibility=View.GONE
-//            produk_btn_cart.visibility=View.VISIBLE
-//            produk_btn_pesan.visibility=View.VISIBLE
-//        }
+
         val sku = preferences.getSku()
         if (Connectivity().isNetworkAvailable(activity!!)) {
             val client = APIServiceGenerator().createService
@@ -157,13 +136,7 @@ class ProductFragment : Fragment(), View.OnClickListener{
             }
         }
         adapter!!.filterList(dataProduk)
-//        if (bank.getData().size() === 0) {
-//            tv_not_found.setVisibility(View.VISIBLE)
-//            recyclerView.setVisibility(View.GONE)
-//        } else {
-//            tv_not_found.setVisibility(View.GONE)
-//            recyclerView.setVisibility(View.VISIBLE)
-//        }
+
     }
 
     fun displayProduct(){

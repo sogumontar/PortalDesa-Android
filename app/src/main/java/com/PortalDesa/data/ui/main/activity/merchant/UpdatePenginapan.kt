@@ -25,6 +25,7 @@ import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.PenginapanActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_update_penginapan.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -54,7 +55,14 @@ class UpdatePenginapan : AppActivity(), View.OnClickListener {
         getDetailPenginapan()
         btn_image.setOnClickListener { showPictureDialog() }
         update_btn_save.setOnClickListener(this)
+        initView()
     }
+
+    fun initView() {
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Penginapan"
+    }
+
     private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(this)
         pictureDialog.setTitle("Select Action")
@@ -93,6 +101,7 @@ class UpdatePenginapan : AppActivity(), View.OnClickListener {
         update_penginapan_deskripsi.setText(data?.deskripsi)
         update_penginapan_kamar.setText(data?.jumlahKamar.toString())
         update_penginapan_lokasi.setText(data?.lokasi)
+        dismissProgressDialog()
     }
 
 
@@ -101,6 +110,7 @@ class UpdatePenginapan : AppActivity(), View.OnClickListener {
     }
 
     fun getDetailPenginapan(){
+        showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
             val call = client.lihatPenginapanBySku(intent.getStringExtra(Flag.SKU_PENGINAPAN))
@@ -117,6 +127,7 @@ class UpdatePenginapan : AppActivity(), View.OnClickListener {
                     call: retrofit2.Call<PenginapanResponse>,
                     t: Throwable
                 ) {
+                    dismissProgressDialog()
                 }
             })
         }

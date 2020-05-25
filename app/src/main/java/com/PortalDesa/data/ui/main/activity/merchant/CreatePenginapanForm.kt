@@ -24,6 +24,7 @@ import com.PortalDesa.data.support.TopSnackBar
 import com.PortalDesa.data.ui.main.activity.PenginapanActivity
 import kotlinx.android.synthetic.main.activity_create_penginapan_form.*
 import kotlinx.android.synthetic.main.activity_create_penginapan_form.btn_image
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -54,9 +55,15 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
 
             uploadImagePenginapan(penginapanImageRequest!!)
         }
+        initView()
     }
 
-    private fun showPictureDialog() {
+    fun initView() {
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Penginapan"
+    }
+
+        private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(this)
         pictureDialog.setTitle("Select Action")
         val pictureDialogItems = arrayOf("Select photo from gallery", "Capture photo from camera")
