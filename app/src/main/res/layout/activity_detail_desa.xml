@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".data.ui.main.activity.DetailProductAcitivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ln_btn"
+        android:layout_marginBottom="-5dp"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <ImageView
+                android:id="@+id/img_icon"
+                android:layout_width="366dp"
+                android:layout_height="279dp"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/img_icon"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingTop="10dp"
+                    android:paddingRight="25dp"
+                    android:paddingLeft="25dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Desa"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:padding="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Kepala Desa"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/et_namaKD"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="15dp"
+                        android:padding="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:text="Jumlah Penduduk"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/et_jumlah"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginBottom="15dp"
+                        android:text=""
+                        android:padding="8dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:text="Kecamatan"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/et_kecamatan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginBottom="15dp"
+                        android:text=""
+                        android:padding="8dp" />
+
+                    <Button
+                        android:visibility="gone"
+                        android:id="@+id/btn_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Pilih Gambar"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/imageview"
+                        android:layout_width="221dp"
+                        android:layout_height="151dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/default_image" />
+
+
+                    <Button
+                        android:visibility="gone"
+                        android:id="@+id/btn_update"
+                        android:layout_marginTop="24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_btn"
+
+                        android:text="@string/ubah"
+                        android:textColor="#ffff"/>
+
+                    <LinearLayout
+                        android:id="@+id/ln_signin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_penginapan"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_btn"
+                            android:padding="20dp"
+                            android:text="Penginapan"
+                            android:textColor="@color/white" />
+
+                        <Button
+                            android:id="@+id/btn_produk"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_green"
+                            android:padding="20dp"
+                            android:text="Produk"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -8,6 +8,8 @@
     <string name="prompt_password">Password</string>
     <string name="daftar"><u>Daftar</u></string>
     <string name="simpan"><u>Simpan</u></string>
+    <string name="detail_desa"><u>Detail Desa</u></string>
+    <string name="ubah"><u>Ubah</u></string>
     <string name="block"><u>Block</u></string>
     <string name="activate"><u>Activate</u></string>
     <string name="Masuk">Masuk</string>

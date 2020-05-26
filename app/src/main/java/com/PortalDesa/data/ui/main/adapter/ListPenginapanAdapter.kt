@@ -93,7 +93,8 @@ class ListPenginapanAdapter(val context: Context, var listpenginapan: List<Pengi
             intent.putExtra(Flag.PENGINAPAN_ID, listpenginapan.get(position).sku)
             context.startActivity(intent)
         })
-
+        holder.btnHapus.visibility = View.GONE
+        holder.btnUpdate.visibility = View.GONE
         if (!preferences.getRoles().equals("ROLE_MERCHANT")) {
             holder.btnHapus.visibility = View.GONE
             holder.btnUpdate.visibility = View.GONE

@@ -51,8 +51,9 @@ interface ApiConfigs {
         //Pesanan
         const val LIST_PESANAN_CUSTOMER = "/transaksi/sku/pesan/{sku}"
         const val LIST_PESANAN_CUSTOMER_SUDAH_BAYAR = "/transaksi/sku/bayar/{sku}"
-        const val LIST_PESANAN_ALL_BELUM_BAYAR = "/transaksi/pesanan"
+        const val LIST_PESANAN_ALL_BELUM_BAYAR = "/transaksi/pesanan/"
         const val LIST_PESANAN_PENGINAPAN_ALL_BELUM_BAYAR = "/transaksiPenginapan/pesanan"
+        const val LIST_PESANAN_PENGINAPAN_ALL_SUDAH_BAYAR = "/transaksiPenginapan/pesanan/sudah"
         const val LIST_PESANAN_ALL_SUDAH_BAYAR = "/transaksi/pesanan/sudah"
         const val CANCEL_PESANAN = "/transaksi/pesanan/cancel/{sku}"
 
@@ -73,5 +74,10 @@ interface ApiConfigs {
         const val ROUTE_GET_ALAMAT_CUSTOMER= "/customer/{sku}"
         const val ROUTE_SAVE_ALAMAT_CUSTOMER= "/customer/add"
         const val ROUTE_UPDATE_ALAMAT_CUSTOMER= "/customer/update/{sku}"
+
+        //Desa
+        const val ROUTE_GET_DESA_BY_NAMA= "/desa/{nama}"
+        const val ROUTE_UPDATE_DESA_BY_SKU= "/desa/update/{sku}"
+
     }
 }

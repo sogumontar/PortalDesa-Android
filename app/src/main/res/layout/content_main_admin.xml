@@ -50,7 +50,7 @@
                     android:id="@+id/iv_tab_pesanan"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@drawable/home"/>
+                    android:background="@drawable/ic_product"/>
 
                 <TextView
                     android:id="@+id/tv_tab_pesanan"
@@ -73,15 +73,15 @@
 
                 <ImageView
                     android:id="@+id/iv_desa"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/ic_product" />
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/users" />
 
                 <TextView
                     android:id="@+id/tv_desa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User"
+                    android:text="Daftar Akun"
                     android:textColor="#1F204D"
                     android:textSize="10sp" />
 
@@ -105,7 +105,7 @@
                     android:id="@+id/tv_akun"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Akun"
+                    android:text="Profile"
                     android:textColor="#1F204D"
                     android:textSize="10sp" />
 

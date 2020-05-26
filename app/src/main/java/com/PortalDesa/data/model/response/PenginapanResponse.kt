@@ -20,5 +20,6 @@ class PenginapanResponse {
     var desa: String?=null
     var kecamatan: String?=null
     var status: String? = null
+    var skuMerchant: String? = null
 
 }

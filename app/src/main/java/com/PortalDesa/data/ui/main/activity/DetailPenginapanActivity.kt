@@ -38,8 +38,8 @@ class DetailPenginapanActivity : AppActivity() {
         topSnackBar = TopSnackBar()
         role = preferences.getRoles()
         skuLogin = preferences.getSku()
-        initView()
-        initData();
+
+        initData()
 //        tv_nama.text = name.toString()
         radio_group.setOnCheckedChangeListener(
             RadioGroup.OnCheckedChangeListener { group, checkedId ->
@@ -71,6 +71,7 @@ class DetailPenginapanActivity : AppActivity() {
                     val listProduk = response.body()
                     penginapanResponse = listProduk
                     displayProduct()
+                    initView()
                     dismissProgressDialog()
                 }
 
@@ -85,30 +86,36 @@ class DetailPenginapanActivity : AppActivity() {
     }
 
     fun initView() {
-        if (role.equals("ROLE_MERCHANT")) {
+        val sku=preferences.getSku()
+        val skuMrch=penginapanResponse!!.skuMerchant
+        if (role.equals("ROLE_MERCHANT") && sku.equals(skuMrch) ) {
             produk_delete_btn.visibility = View.VISIBLE
             produk_update_btn.visibility = View.VISIBLE
             btn_pesan.visibility = View.GONE
             date.visibility = View.GONE
             lama.visibility = View.GONE
+            radio_group.visibility=View.GONE
         } else if (role.equals("ROLE_USER")) {
             produk_delete_btn.visibility = View.GONE
             produk_update_btn.visibility = View.GONE
             btn_pesan.visibility = View.VISIBLE
         } else {
+            radio_group.visibility=View.GONE
             produk_delete_btn.visibility = View.GONE
             produk_update_btn.visibility = View.GONE
             btn_pesan.visibility = View.GONE
         }
+
     }
 
     fun displayProduct() {
         Picasso.get()
             .load("https://portal-desa.herokuapp.com" + penginapanResponse?.gambar)
             .into(img_icon)
+        tv_alamat.setText("Alamat :  " + penginapanResponse!!.lokasi)
         tv_nama.setText(penginapanResponse?.nama)
         tv_harga.setText(Utils().numberToIDR(penginapanResponse!!.harga!!.toInt(), true))
-        tv_desc.setText(penginapanResponse?.deskripsi)
+        tv_desc.setText("Deskripsi : " +penginapanResponse?.deskripsi)
     }
 
 

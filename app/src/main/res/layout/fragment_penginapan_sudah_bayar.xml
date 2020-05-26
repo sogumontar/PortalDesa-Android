@@ -9,7 +9,6 @@
     android:paddingTop="5dp"
     android:paddingRight="10dp">
 
-
     <ViewAnimator
         android:id="@+id/view_animator"
         android:layout_width="match_parent"
@@ -29,7 +28,5 @@
             android:background="@color/white" />
 
     </ViewAnimator>
-
-
 
 </LinearLayout>

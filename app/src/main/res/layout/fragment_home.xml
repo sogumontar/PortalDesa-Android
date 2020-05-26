@@ -21,38 +21,6 @@
                 android:textSize="30sp" />
 
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:background="@drawable/rounded_blue">
-
-    <EditText
-        android:id="@+id/et_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Search"
-        android:textColorHint="@color/white_88"
-        android:textSize="20sp"
-        android:focusable="true"
-        android:layout_toStartOf="@id/img_search"
-        android:background="@null"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/white"/>
-        <ImageView
-            android:id="@+id/img_search"
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/ic_search" />
-
-    </RelativeLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,16 +37,6 @@
                 android:layout_margin="5dp"
                 android:textColor="@color/white"
                 android:text="Penginapan"
-                android:padding="20dp"/>
-            <Button
-                android:id="@+id/btn_produk"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_green"
-                android:layout_margin="5dp"
-                android:textColor="@color/white"
-                android:text="Produk"
                 android:padding="20dp"/>
             <Button
                 android:id="@+id/check"

@@ -6,16 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
-import com.PortalDesa.data.model.request.TransaksiPenginapanRequest
 import com.PortalDesa.data.model.response.TransaksiPenginapanResponse
 import com.PortalDesa.data.support.Preferences
-import kotlinx.android.synthetic.main.item_pesanan.view.*
+import kotlinx.android.synthetic.main.item_pesanan_penginapan.view.*
 
 /**
  * Created by Sogumontar Hendra Simangunsong on 26/05/2020.
  */
-class DaftarPesananPenginapanBelumDibayar(val context: Context, val listPesanan : List<TransaksiPenginapanResponse>) :
-    RecyclerView.Adapter<DaftarPesananPenginapanBelumDibayar.ViewHolder>() {
+class DaftarPesananPenginapanSudahDibayarAdapter(val context: Context, val listPesanan : List<TransaksiPenginapanResponse>) :
+    RecyclerView.Adapter<DaftarPesananPenginapanSudahDibayarAdapter.ViewHolder>() {
 
     lateinit private var preferences: Preferences
 
@@ -35,7 +34,7 @@ class DaftarPesananPenginapanBelumDibayar(val context: Context, val listPesanan 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): DaftarPesananPenginapanBelumDibayar.ViewHolder {
+    ): DaftarPesananPenginapanSudahDibayarAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_pesanan_penginapan, parent, false)
         return ViewHolder(view)

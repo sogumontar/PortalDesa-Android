@@ -3,9 +3,11 @@ package com.PortalDesa.data.ui.main.activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -14,14 +16,17 @@ import com.PortalDesa.R
 import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.base.AppActivity
 import com.PortalDesa.data.model.request.GambarDesaRequest
+import com.PortalDesa.data.model.request.UpdateDesaRequest
 import com.PortalDesa.data.model.request.UsersUpdateRequest
+import com.PortalDesa.data.model.response.DefaultResponse
+import com.PortalDesa.data.model.response.DesaResponse
 import com.PortalDesa.data.model.response.PenginapanImageResponse
-import com.PortalDesa.data.model.response.ProfileResponse
 import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.support.TopSnackBar
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.activity_detail_desa.*
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -29,31 +34,40 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
-import android.util.Base64
-import com.PortalDesa.data.support.Flag
 
-class ProfileActivity : AppActivity(), View.OnClickListener {
+class DetailDesaActivity : AppActivity(), View.OnClickListener {
+
     private val GALLERY = 1
     private val CAMERA = 2
 
     var name: String = ""
+    var skuDesa: String = ""
     var bitmap_val: Bitmap? = null
     var gambarDesaRequest: GambarDesaRequest? = null
 
-    private var data: ProfileResponse? = null
-    var sku: String = ""
-    var role: String = ""
+    private var desaResponse: DesaResponse? = null
     lateinit var preferences: Preferences
+    var role: String? = ""
+    var metode: String = ""
+    var skuLogin: String? = ""
+    var namaDesa: String? = ""
+    lateinit var topSnackBar: TopSnackBar
+    var skuFix: String? = ""
+    var sku: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        preferences = Preferences(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
-        btn_update.setOnClickListener(this)
-        detail_desa.setOnClickListener(this)
+        setContentView(R.layout.activity_detail_desa)
+        preferences = Preferences(this)
+        topSnackBar = TopSnackBar()
         sku = preferences.getSku()
         role = preferences.getRoles()
+        skuLogin = preferences.getSku()
         btn_image.setOnClickListener { showPictureDialog() }
+        btn_update.setOnClickListener(this)
+        btn_produk.setOnClickListener(this)
         initView()
+        initData()
     }
 
     private fun showPictureDialog() {
@@ -85,91 +99,111 @@ class ProfileActivity : AppActivity(), View.OnClickListener {
         startActivityForResult(intent, CAMERA)
     }
 
-    private fun initView() {
-        initToolbar(R.id.toolbar)
-        tv_toolbar_title.text = getString(R.string.sign_up_tab_title_profile)
 
+    fun initData() {
         showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
-            val call = client.getDetailProfile(sku)
-            call.enqueue(object : Callback<ProfileResponse> {
+            val nam=intent.getStringExtra(Flag.NAMA_DESA)
+            namaDesa = intent.getStringExtra(Flag.NAMA_DESA)
+            val call = client.getDesaByNama(nam!!)
+            call.enqueue(object : retrofit2.Callback<DesaResponse> {
                 override fun onResponse(
-                    call: retrofit2.Call<ProfileResponse>,
-                    response: Response<ProfileResponse>
+                    call: retrofit2.Call<DesaResponse>,
+                    response: Response<DesaResponse>
                 ) {
-                    val detail = response.body()
-                    data = detail
-                    displayData()
+                    val listProduk = response.body()
+                    desaResponse = listProduk
+                    skuDesa = desaResponse!!.skuAdmin!!
+                    displayProduct()
                     dismissProgressDialog()
                 }
-                override fun onFailure(
-                    call: retrofit2.Call<ProfileResponse>,
-                    t: Throwable
-                ) {
+
+                override fun onFailure(call: retrofit2.Call<DesaResponse>, t: Throwable) {
                     dismissProgressDialog()
+                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
+                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
                 }
             })
-        }
 
+        }
     }
 
-    fun updateDetailUsers(request: UsersUpdateRequest) {
+    fun displayProduct() {
+        Picasso.get()
+            .load("https://portal-desa.herokuapp.com/desa/get/" + desaResponse?.skuAdmin+".png")
+            .into(img_icon)
+        Picasso.get()
+            .load("https://portal-desa.herokuapp.com/desa/get/" + desaResponse?.skuAdmin+".png")
+            .into(imageview)
+        et_name.setText(desaResponse?.nama)
+        et_namaKD.setText(desaResponse?.namaKepalaDesa)
+        et_jumlah.setText(desaResponse?.jumlahPenduduk.toString())
+        et_kecamatan.setText(desaResponse?.kec)
+    }
+
+    fun initView() {
+        if (role.equals("ROLE_MERCHANT") && skuLogin.equals(skuDesa)) {
+            img_icon.visibility = View.GONE
+            btn_image.visibility = View.VISIBLE
+            imageview.visibility = View.VISIBLE
+            btn_update.visibility = View.VISIBLE
+        } else {
+            btn_penginapan.setOnClickListener{goToPenginapan()}
+            btn_produk.setOnClickListener{goToProduk()}
+            img_icon.visibility = View.VISIBLE
+            btn_image.visibility = View.GONE
+            imageview.visibility = View.GONE
+            btn_update.visibility = View.GONE
+        }
+    }
+    fun goToPenginapan(){
+        val intent = Intent(this, ListPenginapanPerMerchantActivity::class.java)
+        intent.putExtra(Flag.SKU_MERCHANT,desaResponse!!.skuAdmin )
+        startActivity(intent)
+    }
+    fun goToProduk(){
+        val intent = Intent(this, ListProdukPerMerchantActivity::class.java)
+        intent.putExtra(Flag.SKU_Penginapan_MERCHANT,desaResponse!!.skuAdmin )
+        startActivity(intent)
+    }
+
+    fun updateDetailDesa(request: UpdateDesaRequest) {
+        if(bitmap_val!=null && role.equals("ROLE_MERCHANT")) {
+            val s=gambarDesaRequest!!.skuDesa
+            val ss=gambarDesaRequest!!.base64File
+            uploadImagePenginapan(gambarDesaRequest!!)
+        }
         showProgressDialog()
         val client = APIServiceGenerator().createService
-        val call = client.updateProfileBySku(sku, request)
-        call.enqueue(object : Callback<UsersUpdateRequest> {
+        val skus=preferences.getSku()
+        val call = client.updateDesaBySku(skus,request)
+        call.enqueue(object : Callback<DefaultResponse> {
             override fun onResponse(
-                call: retrofit2.Call<UsersUpdateRequest>,
-                response: Response<UsersUpdateRequest>
+                call: retrofit2.Call<DefaultResponse>,
+                response: Response<DefaultResponse>
             ) {
                 val signupResponse = response.body()
                 val sksu=sku
-                if(bitmap_val!=null && role.equals("ROLE_MERCHANT")) {
-                    uploadImagePenginapan(gambarDesaRequest!!)
-                }
+
                 finish()
             }
 
-            override fun onFailure(call: retrofit2.Call<UsersUpdateRequest>, t: Throwable) {
+            override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
                 dismissProgressDialog()
             }
         })
 
     }
 
-    fun displayData() {
-        if(role.equals("ROLE_MERCHANT")){
-            btn_image.visibility= View.VISIBLE
-            imageview.visibility=View.VISIBLE
-            Picasso.get()
-                .load("https://portal-desa.herokuapp.com/desa/get/"+data?.sku+".png")
-                .into(imageview)
-            detail_desa.visibility=View.VISIBLE
-        }
-        et_email.setText(data?.email)
-        et_name.setText(data?.name)
-        et_alamat.setText(data?.alamat)
-    }
-    private fun getUser(): UsersUpdateRequest{
-        val requestUser = UsersUpdateRequest()
-        requestUser.name = et_name.text.toString()
-        requestUser.alamat = et_alamat.text.toString()
-        requestUser.email = et_email.text.toString()
-        return requestUser
-    }
-    override fun onClick(v: View?) {
-        when (v!!.id) {
-            btn_update.id -> updateDetailUsers(getUser())
-            detail_desa.id -> goToDetailDesa()
-        }
-    }
 
-    fun goToDetailDesa(){
-        intent = Intent(this, DetailDesaActivity::class.java)
-        intent.putExtra(Flag.NAMA_DESA,data?.name )
-        startActivity(intent)
-        finish()
+    private fun getRequest(): UpdateDesaRequest{
+        val requestDesa = UpdateDesaRequest()
+        requestDesa.nama =et_name.text.toString()
+        requestDesa.namaKepalaDesa =et_namaKD.text.toString()
+        requestDesa.jumlahPenduduk =Integer.parseInt(et_jumlah.text.toString())
+        requestDesa.kecamatan =et_kecamatan.text.toString()
+        return requestDesa
     }
 
     fun getImageStringBase64(bitmap: Bitmap): String? {
@@ -289,5 +323,11 @@ class ProfileActivity : AppActivity(), View.OnClickListener {
 
     companion object {
         private val IMAGE_DIRECTORY = "/bayunugrohoweb"
+    }
+
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            btn_update.id -> updateDetailDesa(getRequest())
+        }
     }
 }

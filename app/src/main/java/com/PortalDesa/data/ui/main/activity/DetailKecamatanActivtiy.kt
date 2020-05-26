@@ -10,6 +10,7 @@ import com.PortalDesa.data.base.AppActivity
 import com.PortalDesa.data.model.response.ListDesaKecamatanResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Flag
+import com.PortalDesa.data.ui.main.adapter.DaftarDesaAdapter
 import com.PortalDesa.data.ui.main.adapter.PenginapanAdapter
 import kotlinx.android.synthetic.main.activity_detail_kecamatan.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -31,6 +32,7 @@ class DetailKecamatanActivtiy : AppActivity() {
 
     }
     fun initView(){
+        tv_kecamatan.setText("Daftar desa kecamatan "+ name )
         initToolbar(R.id.toolbar)
         tv_toolbar_title.text = getString(R.string.title_daftar_desa)
     }
@@ -65,7 +67,7 @@ class DetailKecamatanActivtiy : AppActivity() {
                 recycler_view.setHasFixedSize(true)
                 val menuListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
                 recycler_view.setLayoutManager(menuListLayoutManager)
-                val adapter = PenginapanAdapter(listData)
+                val adapter = DaftarDesaAdapter(this,listData)
                 view_animator.setDisplayedChild(1)
                 recycler_view.setAdapter(adapter)
             }else{

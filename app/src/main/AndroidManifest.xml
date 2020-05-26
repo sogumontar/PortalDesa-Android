@@ -12,14 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".data.ui.main.activity.merchant.UpdateProdukActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".data.ui.main.activity.DetailPenginapanActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".data.ui.main.activity.BayarPesananActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".data.ui.main.activity.Form.PemesananLangsung"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".data.ui.main.activity.ListProdukPerMerchantActivity"></activity>
+        <activity android:name=".data.ui.main.activity.ListPenginapanPerMerchantActivity" />
+        <activity android:name=".data.ui.main.activity.DetailDesaActivity" />
+        <activity
+            android:name=".data.ui.main.activity.merchant.UpdateProdukActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".data.ui.main.activity.DetailPenginapanActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".data.ui.main.activity.BayarPesananActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".data.ui.main.activity.Form.PemesananLangsung"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.admin.DaftarPesananActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -35,22 +42,22 @@
         <activity
             android:name=".data.ui.main.activity.KeranjangActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".data.ui.main.activity.merchant.CreateProdukForm"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".data.ui.main.activity.merchant.CreateProdukForm"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.merchant.UpdatePenginapan"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.merchant.CreatePenginapanForm"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".data.ui.main.activity.merchant.PenginapanForm" />
         <activity
             android:name=".data.ui.main.activity.ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.Form.DaftarAdminDesa"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".data.ui.main.activity.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />

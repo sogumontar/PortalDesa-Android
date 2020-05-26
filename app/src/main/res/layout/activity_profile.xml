@@ -4,6 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <include layout="@layout/toolbar" />
+    <Button
+        android:visibility="gone"
+        android:id="@+id/detail_desa"
+        android:layout_marginTop="24dp"
+        android:layout_margin="50dp"
+        android:layout_marginBottom="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_btn"
+        android:text="@string/detail_desa"
+        android:textColor="#ffff"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

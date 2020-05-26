@@ -70,10 +70,10 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, PenginapanActivity::class.java)
             startActivity(intent)
         }
-        btn_produk.setOnClickListener(){
-            val intent = Intent(activity, ProductActivity::class.java)
-            startActivity(intent)
-        }
+//        btn_produk.setOnClickListener(){
+//            val intent = Intent(activity, ProductActivity::class.java)
+//            startActivity(intent)
+//        }
         check.setOnClickListener(){
             val intent = Intent(activity, PenginapanForm::class.java)
             startActivity(intent)

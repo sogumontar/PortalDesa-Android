@@ -226,6 +226,11 @@ interface  ApiServices{
 
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.LIST_PESANAN_PENGINAPAN_ALL_SUDAH_BAYAR)
+    fun getPesananPenginapanSudahBayarAll(): Call<List<TransaksiPenginapanResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
     @GET(ApiConfigs.LIST_PESANAN_ALL_SUDAH_BAYAR)
     fun getPesananAllSudahBayar(): Call<List<PesananResponse>>
 
@@ -269,4 +274,14 @@ interface  ApiServices{
     fun addTransaksiPenginapan( @Body request : TransaksiPenginapanRequest): Call<DefaultResponse>
 
 
+    //Desa
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @GET(ApiConfigs.ROUTE_GET_DESA_BY_NAMA)
+    fun getDesaByNama(@Path("nama")nama : String): Call<DesaResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE)
+    @PUT(ApiConfigs.ROUTE_UPDATE_DESA_BY_SKU)
+    fun updateDesaBySku(@Path("sku")sku : String,@Body request : UpdateDesaRequest): Call<DefaultResponse>
 }

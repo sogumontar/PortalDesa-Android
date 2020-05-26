@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".data.ui.main.activity.SignUpActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp">
+
+        <Button
+            android:id="@+id/button_create_produk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_blue_secondary"
+            android:text="Tambah"
+            android:layout_margin="25dp"
+            android:visibility="gone"
+            android:textColor="@color/white"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_blue"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_toStartOf="@id/img_search"
+                android:background="@null"
+                android:hint="Search"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white_88"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/img_search"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/ic_search" />
+
+        </RelativeLayout>
+
+        <ViewAnimator
+            android:id="@+id/view_animator"
+            android:layout_width="match_parent"
+            android:layout_height="574dp"
+            android:layout_alignParentBottom="true"
+            android:animateFirstView="true">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_produk"
+                android:layout_width="match_parent"
+                android:layout_height="453dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/white" />
+
+        </ViewAnimator>
+    </LinearLayout>
+
+</LinearLayout>
