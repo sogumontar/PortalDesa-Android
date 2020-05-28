@@ -24,7 +24,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/status_menunggu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Menunggu"
+                    android:textColor="@color/blue_secondary"
+                    android:textSize="40sp" />
 
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/status_diterima"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pesanan Diterima"
+                    android:textColor="@color/green_primary"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/status_ditolak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pesanan Ditolak"
+                    android:textColor="@color/red_danger"
+                    android:textSize="40sp" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">

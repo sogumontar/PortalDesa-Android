@@ -22,7 +22,7 @@
 
             <LinearLayout
                 android:layout_width="371dp"
-                android:layout_height="263dp"
+                android:layout_height="216dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -30,16 +30,23 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="112dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Alamat    : "
+                        android:text="Alamat Tujuan"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="24dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/pesanan_alamat"
-                        android:layout_width="247dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="194dp"
+                        android:layout_height="match_parent"
                         android:text=".........."
                         android:textColor="@color/black"
                         android:textSize="20sp" />
@@ -51,15 +58,22 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="111dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Metode   : "
+                        android:text="Metode Pembayaran  "
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="24dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/pesanan_metode"
-                        android:layout_width="245dp"
+                        android:layout_width="196dp"
                         android:layout_height="wrap_content"
                         android:text=".........."
                         android:textColor="@color/black"
@@ -72,15 +86,22 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="111dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Harga      : "
+                        android:text="Harga     "
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
                     <TextView
+                        android:layout_width="24dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
                         android:id="@+id/penginapan_harga"
-                        android:layout_width="248dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="Rp 000.000"
                         android:textColor="@color/green_primary"
@@ -90,8 +111,8 @@
                 <LinearLayout
                     android:id="@+id/linDaftar"
                     android:layout_width="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_height="184dp">
+                    android:layout_height="87dp"
+                    android:layout_gravity="center">
 
                     <ImageView
                         android:id="@+id/imageview"
@@ -102,6 +123,18 @@
                         android:foregroundGravity="center"
                         android:scaleType="fitXY"
                         android:src="@drawable/default_image" />
+
+                    <Button
+                        android:id="@+id/btn_ubah"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_blue_secondary"
+                        android:text="Ubah Resi"
+                        android:textColor="@color/white" />
                 </LinearLayout>
 
             </LinearLayout>

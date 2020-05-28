@@ -1,12 +1,15 @@
 package com.PortalDesa.data.ui.main.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
 import com.PortalDesa.data.model.response.PesananResponse
+import com.PortalDesa.data.support.Flag
+import com.PortalDesa.data.ui.main.activity.BayarPesananActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_pesanan_sudah_bayar.view.*
 
@@ -22,6 +25,7 @@ class PesananSudahBayarAdapter(val context: Context, val list : List<PesananResp
         val metode = v.pesanan_metode
         val harga = v.penginapan_harga
         val image =v.imageview
+        val ubah =v.btn_ubah
     }
 
 
@@ -43,6 +47,11 @@ class PesananSudahBayarAdapter(val context: Context, val list : List<PesananResp
             .into(holder.image)
         holder?.image
         holder.alamat.text = list.get(position).resi
+        holder.ubah.setOnClickListener{
+            val intent = Intent(context, BayarPesananActivity::class.java)
+            intent.putExtra(Flag.ID_PESANAN, list.get(position).id)
+            context.startActivity(intent)
+        }
         holder.harga.text = list.get(position).harga.toString()
         holder.metode.text = list.get(position).metode
     }

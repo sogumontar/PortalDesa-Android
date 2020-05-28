@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".data.ui.main.activity.ListProdukPerMerchantActivity"></activity>
+        <activity android:name=".data.ui.main.fragment.PenginapanSudahBayarFragment"></activity>
+        <activity android:name=".data.ui.main.activity.ListProdukPerMerchantActivity" />
         <activity android:name=".data.ui.main.activity.ListPenginapanPerMerchantActivity" />
         <activity android:name=".data.ui.main.activity.DetailDesaActivity" />
         <activity

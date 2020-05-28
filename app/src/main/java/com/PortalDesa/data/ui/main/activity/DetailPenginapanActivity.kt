@@ -19,6 +19,7 @@ import com.PortalDesa.data.ui.main.activity.merchant.UpdatePenginapan
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_penginapan.*
 import retrofit2.Response
+import java.text.DateFormat
 import java.util.*
 
 class DetailPenginapanActivity : AppActivity() {
@@ -185,6 +186,7 @@ class DetailPenginapanActivity : AppActivity() {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
         }
+        val test = datt.toString()
         val month = datePicker1.month + 1
         val msg = "You Selected: "
         val juml = et_jumlah.text
@@ -245,14 +247,26 @@ class DetailPenginapanActivity : AppActivity() {
     }
 
     fun getRequest(): TransaksiPenginapanRequest {
+        val today = Calendar.getInstance()
+//        val datt = datePicker1.init(
+//            today.get(Calendar.YEAR), today.get(Calendar.MONTH),
+//            today.get(Calendar.DAY_OF_MONTH)
+//
+//        ) { view, year, month, day ->
+//            val msg = "You Selected: $day/$month/$year"
+//            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+//
+//        }
+
+        val test = datePicker1.year.toString() + ',' + datePicker1.month.toString() + ',' + datePicker1.dayOfMonth
         val transaksiPenginapanRequest = TransaksiPenginapanRequest()
         val idCustomer = skuLogin
         transaksiPenginapanRequest.skuProduk = skuFix
         transaksiPenginapanRequest.skuCustomer = skuLogin
-        transaksiPenginapanRequest.harga = penginapanResponse?.harga
+        transaksiPenginapanRequest.harga = (Integer.parseInt(penginapanResponse?.harga.toString()) * Integer.parseInt(et_jumlah.text.toString()))
         transaksiPenginapanRequest.metode = metode
         transaksiPenginapanRequest.lamaMenginap = Integer.parseInt(et_jumlah.text.toString())
-        transaksiPenginapanRequest.checkin = datePicker1.toString()
+        transaksiPenginapanRequest.checkin = test.toString()
         return transaksiPenginapanRequest
     }
 
