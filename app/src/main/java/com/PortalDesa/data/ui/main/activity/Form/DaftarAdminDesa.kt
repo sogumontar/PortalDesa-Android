@@ -21,7 +21,7 @@ import retrofit2.Response
 
 class DaftarAdminDesa : AppActivity(), View.OnClickListener {
     private var listKecamatan: List<KecamatanResponse>? = null
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initAdapter()
