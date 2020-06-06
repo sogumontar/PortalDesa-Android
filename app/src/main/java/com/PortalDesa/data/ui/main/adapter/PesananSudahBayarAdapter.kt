@@ -26,6 +26,9 @@ class PesananSudahBayarAdapter(val context: Context, val list : List<PesananResp
         val harga = v.penginapan_harga
         val image =v.imageview
         val ubah =v.btn_ubah
+        val s_menunggu= v.status_menunggu
+        val s_diterima= v.status_diterima
+        val s_ditolak= v.status_ditolak
     }
 
 
@@ -51,6 +54,15 @@ class PesananSudahBayarAdapter(val context: Context, val list : List<PesananResp
             val intent = Intent(context, BayarPesananActivity::class.java)
             intent.putExtra(Flag.ID_PESANAN, list.get(position).id)
             context.startActivity(intent)
+        }
+        if(list.get(position).status == 5){
+            holder.ubah.visibility=View.GONE
+            holder.s_ditolak.visibility=View.VISIBLE
+        }else if(list.get(position).status == 4){
+            holder.ubah.visibility=View.GONE
+            holder.s_diterima.visibility=View.VISIBLE
+        }else{
+            holder.s_menunggu.visibility=View.VISIBLE
         }
         holder.harga.text = list.get(position).harga.toString()
         holder.metode.text = list.get(position).metode

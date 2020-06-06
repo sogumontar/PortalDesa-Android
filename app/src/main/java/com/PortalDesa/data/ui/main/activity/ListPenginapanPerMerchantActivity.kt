@@ -1,5 +1,6 @@
 package com.PortalDesa.data.ui.main.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -15,8 +16,9 @@ import com.PortalDesa.data.model.response.PenginapanResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.ui.main.activity.merchant.CreatePenginapanForm
 import com.PortalDesa.data.ui.main.adapter.ListPenginapanAdapter
-import kotlinx.android.synthetic.main.activity_penginapan.*
+import kotlinx.android.synthetic.main.activity_list_penginapan_per_merchant.*
 import retrofit2.Response
 import java.util.ArrayList
 
@@ -36,8 +38,8 @@ class ListPenginapanPerMerchantActivity : AppActivity(), View.OnClickListener {
         initView()
     }
     fun initData(){
-        val role = preferences.getRoles()
         penginapan_button_create.setOnClickListener(this)
+        val role = preferences.getRoles()
         val sku = intent.getStringExtra(Flag.SKU_MERCHANT)
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
@@ -74,7 +76,10 @@ class ListPenginapanPerMerchantActivity : AppActivity(), View.OnClickListener {
         }
     }
 
-
+    fun goToForm(){
+        val intent = Intent(this, CreatePenginapanForm::class.java)
+        startActivity(intent)
+    }
     fun initView(){
         et_search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
@@ -106,7 +111,7 @@ class ListPenginapanPerMerchantActivity : AppActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-
+            penginapan_button_create.id -> goToForm()
         }
     }
 

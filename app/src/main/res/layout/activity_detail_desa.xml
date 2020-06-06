@@ -40,6 +40,37 @@
                 android:paddingTop="10dp"
                 android:paddingRight="10dp">
 
+                <LinearLayout
+                    android:id="@+id/ln_signin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_penginapan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_btn"
+                        android:padding="20dp"
+                        android:text="Penginapan"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btn_produk"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_green"
+                        android:padding="20dp"
+                        android:text="Produk"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -61,7 +92,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
-                        android:padding="8dp" />
+                        android:imeOptions="actionDone"
+                        android:inputType="textImeMultiLine"
+                        android:background="@drawable/bg_signup_edittext"
+                        android:padding="10dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -75,7 +109,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="15dp"
-                        android:padding="8dp" />
+                        android:imeOptions="actionDone"
+                        android:inputType="textImeMultiLine"
+                        android:background="@drawable/bg_signup_edittext"
+                        android:padding="10dp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -91,7 +128,10 @@
                         android:layout_gravity="end|center_vertical"
                         android:layout_marginBottom="15dp"
                         android:text=""
-                        android:padding="8dp" />
+                        android:imeOptions="actionDone"
+                        android:inputType="textImeMultiLine"
+                        android:background="@drawable/bg_signup_edittext"
+                        android:padding="10dp" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -106,7 +146,10 @@
                         android:layout_gravity="end|center_vertical"
                         android:layout_marginBottom="15dp"
                         android:text=""
-                        android:padding="8dp" />
+                        android:imeOptions="actionDone"
+                        android:inputType="textImeMultiLine"
+                        android:background="@drawable/bg_signup_edittext"
+                        android:padding="10dp" />
 
                     <Button
                         android:visibility="gone"
@@ -131,45 +174,14 @@
                     <Button
                         android:visibility="gone"
                         android:id="@+id/btn_update"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="54dp"
+                        android:layout_margin="40dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/rounded_btn"
-
                         android:text="@string/ubah"
                         android:textColor="#ffff"/>
 
-                    <LinearLayout
-                        android:id="@+id/ln_signin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btn_penginapan"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/rounded_btn"
-                            android:padding="20dp"
-                            android:text="Penginapan"
-                            android:textColor="@color/white" />
-
-                        <Button
-                            android:id="@+id/btn_produk"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/rounded_green"
-                            android:padding="20dp"
-                            android:text="Produk"
-                            android:textColor="@color/white" />
-
-                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>

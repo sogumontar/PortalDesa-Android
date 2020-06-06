@@ -21,6 +21,7 @@ import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.support.Utils
 import com.PortalDesa.data.ui.main.activity.PesananActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_pemesanan_langsung.*
 import retrofit2.Response
 import java.util.*
@@ -178,6 +179,9 @@ class PemesananLangsung : AppActivity(), View.OnClickListener {
     }
 
     fun displayProduct() {
+        Picasso.get()
+            .load("https://portal-desa.herokuapp.com" + productResponse?.gambar)
+            .into(pesanan_langsung_gambar)
         pesanan_langsung_nama.setText(productResponse?.nama)
         pesanan_langsung_harga.setText(Utils().numberToIDR(productResponse!!.harga!!.toInt(), true))
         pesanan_langsung_jumlah.setText(intent.getStringExtra(Flag.JUMLAH_PESANAN_PRODUK))
@@ -251,6 +255,7 @@ class PemesananLangsung : AppActivity(), View.OnClickListener {
             pesanan_langsung_btn_incr.id -> btn_incr()
             pesanan_langsung_btn_decr.id -> btn_decr()
             btn_transaksi_ubah.id -> ubahAlamat()
+            btn_transaksi_simpan.id -> simpanAlamat()
             btn_pesan.id -> check()
         }
     }

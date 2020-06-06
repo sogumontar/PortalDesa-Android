@@ -17,6 +17,7 @@ interface ApiServices {
     @POST(ApiConfigs.ADD_DATA_MERCHANT)
     fun createDataMerchant(@Body userRequest: DaftarAdminDesaRequest): Call<DefaultResponse>
 
+
     //Desa
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE
@@ -157,11 +158,19 @@ interface ApiServices {
 
 
     //Produk
+
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE
     )
     @GET(ApiConfigs.LIST_PRODUK)
     fun getProductList(): Call<List<ProductResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.ROUTE_POPULAR_PRODUK)
+    fun getPopularProduct(): Call<ProductResponse>
+
 
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE
@@ -241,6 +250,76 @@ interface ApiServices {
     fun updateCart(@Body request: KeranjangUpdateRequest): Call<DefaultResponse>
 
 
+
+    //Artikel
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.ROUTE_ARTIKEL_GET_ALL)
+    fun getArtikel(): Call<List<ArtikelResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.ROUTE_ARTIKELS_GET_ALL)
+    fun getArtikelAll(): Call<List<ArtikelResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.ROUTE_BERITA_GET_ALL)
+    fun getBeritaAll(): Call<List<ArtikelResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.ROUTE_PENGUMUMAN_GET_ALL)
+    fun getPengumumanAll(): Call<List<ArtikelResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @DELETE(ApiConfigs.ROUTE_DELETE_ARTIKEL)
+    fun deleteArtikel(@Path("id")id:String): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.DETAIL_ARTIKEL)
+    fun getDetailArtikel(@Path("id") sku: String): Call<ArtikelResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.ROUTE_ARTIKEL_GET_ALL_ARTIKEL_BY_SKU)
+    fun getArtikelAllBySku(@Path("sku")sku:String): Call<List<ArtikelResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.ROUTE_ARTIKEL_GET_ALL_BERITA_BY_SKU)
+    fun getBeritaAllBySku(@Path("sku")sku:String): Call<List<ArtikelResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.ROUTE_ARTIKEL_GET_ALL_BY_SKU)
+    fun getPengumumanAllBySku(@Path("sku")sku:String): Call<List<ArtikelResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @POST(ApiConfigs.ROUTE_ARTIKEL_ADD)
+    fun createArtikel(@Path("sku") sku:String , @Body artikelRequest: ArtikelRequest): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @PUT(ApiConfigs.ROUTE_ARTIKEL_UPDATE)
+    fun updateArtikel(@Path("id") sku:String , @Body artikelRequest: ArtikelRequest): Call<DefaultResponse>
+
+
+
     //Pesanan
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE
@@ -309,6 +388,32 @@ interface ApiServices {
     )
     @GET(ApiConfigs.ROUTE_TRANSAKSI_CANCEL_PESANAN)
     fun cancelPesananPenginapan(@Path("sku") sku: String): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.TOLAK_TRANSAKSI_PRODUK)
+    fun tolakPesanan(@Path("idPesanan") sku: String): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.TERIMA_TRANSAKSI_PRODUK)
+    fun terimaPesanan(@Path("idPesanan") sku: String): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.TERIMA_TRANSAKSI_PENGINAPAN)
+    fun terimaPenginapanPesanan(@Path("idPesanan") sku: String): Call<DefaultResponse>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.TOLAK_TRANSAKSI_PENGINAPAN)
+    fun tolakPenginapanPesanan(@Path("idPesanan") sku: String): Call<DefaultResponse>
+
+
 
     //Customer
     @Headers(

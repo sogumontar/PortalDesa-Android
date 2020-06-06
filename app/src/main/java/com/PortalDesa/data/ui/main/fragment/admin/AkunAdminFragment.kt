@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.PortalDesa.R
 import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.ui.main.activity.ArtikelActivity
 import com.PortalDesa.data.ui.main.activity.Form.DaftarAdminDesa
 import com.PortalDesa.data.ui.main.activity.SignInActivity
 import com.PortalDesa.data.ui.main.activity.admin.DaftarAkunActivity
@@ -46,6 +47,7 @@ class AkunAdminFragment : Fragment(), View.OnClickListener {
         ln_daftar_akun.setOnClickListener(this)
         ln_daftar_desa.setOnClickListener(this)
         ln_pesanan.setOnClickListener(this)
+        ln_artikel.setOnClickListener(this)
     }
     fun goToDaftarAkun() {
         val intent = Intent(activity, DaftarAkunActivity::class.java)
@@ -68,12 +70,18 @@ class AkunAdminFragment : Fragment(), View.OnClickListener {
         val intent = Intent(activity, DaftarPesananActivity::class.java)
         startActivity(intent)
     }
+
+    fun goToArtikel(){
+        val intent = Intent(activity, ArtikelActivity::class.java)
+        startActivity(intent)
+    }
     override fun onClick(v: View?) {
         when (v!!.id) {
             ln_daftar_akun.id -> goToDaftarAkun()
             admin_btn_logout.id -> doLogout()
             ln_daftar_desa.id -> goToDaftarkanMerchant()
             ln_pesanan.id -> goToDaftarPesanan()
+            ln_artikel.id -> goToArtikel()
         }
     }
 

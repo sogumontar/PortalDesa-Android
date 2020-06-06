@@ -11,4 +11,5 @@ object Flag {
     val JUMLAH_PESANAN_PRODUK =""
     val ID_PESANAN =""
     val SKU_PRODUCT_UPDATE=""
+    val Id_Artikel=""
 }

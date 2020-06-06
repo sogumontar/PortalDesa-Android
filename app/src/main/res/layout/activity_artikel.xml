@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.2dp"
+            android:background="@color/cross_tabs_line_color"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_tab_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/button_white_grey_selector"
+                    android:text="Artikel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue_primary" />
+
+                <View
+                    android:id="@+id/line_tab_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="3dp"
+                    android:background="@color/blue_primary"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="53dp"
+                android:background="@color/cross_tabs_line_color"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_tab_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/button_white_grey_selector"
+                    android:text="Berita" />
+
+                <View
+                    android:id="@+id/line_tab_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="3dp"
+                    android:background="@color/blue_primary"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="53dp"
+                android:background="@color/cross_tabs_line_color"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_tab_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/button_white_grey_selector"
+                    android:text="Pengumuman" />
+
+                <View
+                    android:id="@+id/line_tab_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="3dp"
+                    android:background="@color/blue_primary"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="53dp"
+                android:background="@color/cross_tabs_line_color"/>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+</LinearLayout>

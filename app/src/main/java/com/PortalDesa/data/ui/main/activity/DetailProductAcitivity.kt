@@ -118,9 +118,17 @@ class DetailProductAcitivity : AppActivity() {
 
     fun alert() {
         Toast.makeText(this, "Produk sudah ada di dalam keranjang", Toast.LENGTH_SHORT).show()
-        Timer("SettingUp", false).schedule(1000) {
-            goToKeranjang()
-        }
+//        Timer("SettingUp", false).schedule(1000) {
+//            goToKeranjang()
+//        }
+
+    }
+
+    fun alertSuccess() {
+        Toast.makeText(this, "Produk berhasil ditambahkan ke dalam keranjang", Toast.LENGTH_SHORT).show()
+//        Timer("SettingUp", false).schedule(1000) {
+//            goToKeranjang()
+//        }
 
     }
 
@@ -173,7 +181,8 @@ class DetailProductAcitivity : AppActivity() {
                     call: retrofit2.Call<DefaultResponse>,
                     response: Response<DefaultResponse>
                 ) {
-                    goToKeranjang()
+                    alertSuccess()
+//                    goToKeranjang()
                 }
 
                 override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {

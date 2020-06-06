@@ -24,7 +24,32 @@
                 android:layout_width="371dp"
                 android:layout_height="216dp"
                 android:orientation="vertical">
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/status_menunggu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Menunggu"
+                    android:textColor="@color/blue_secondary"
+                    android:textSize="40sp" />
 
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/status_diterima"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pesanan Diterima"
+                    android:textColor="@color/green_primary"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/status_ditolak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pesanan Ditolak"
+                    android:textColor="@color/red_danger"
+                    android:textSize="40sp" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -126,12 +151,11 @@
 
                     <Button
                         android:id="@+id/btn_ubah"
-                        android:layout_width="0dp"
+                        android:layout_width="198dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
                         android:background="@drawable/rounded_blue_secondary"
                         android:text="Ubah Resi"
                         android:textColor="@color/white" />

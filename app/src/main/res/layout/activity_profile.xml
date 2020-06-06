@@ -58,7 +58,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:padding="8dp" />
+                android:imeOptions="actionDone"
+                android:inputType="textImeMultiLine"
+                android:background="@drawable/bg_signup_edittext"
+                android:padding="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,8 +74,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:imeOptions="actionDone"
+                android:inputType="textImeMultiLine"
+                android:background="@drawable/bg_signup_edittext"
                 android:layout_marginBottom="15dp"
-                android:padding="8dp" />
+                android:padding="10dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -88,7 +94,10 @@
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginBottom="15dp"
                 android:text=""
-                android:padding="8dp" />
+                android:imeOptions="actionDone"
+                android:inputType="textImeMultiLine"
+                android:background="@drawable/bg_signup_edittext"
+                android:padding="10dp" />
                 <Button
                     android:visibility="gone"
                     android:id="@+id/btn_image"
@@ -111,7 +120,8 @@
 
             <Button
                 android:id="@+id/btn_update"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="54dp"
+                android:layout_margin="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_btn"

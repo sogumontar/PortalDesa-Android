@@ -22,15 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/penginapan_button_create"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/rounded_blue_secondary"
-                android:text="Tambah Penginapan"
-                android:textColor="@color/white"
-                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -69,13 +60,15 @@
         <ViewAnimator
             android:id="@+id/penginapan_view_animator"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="509dp"
             android:layout_alignParentBottom="true"
             android:animateFirstView="true">
+
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/penginapan_recycler_view"
                 android:layout_width="match_parent"
@@ -83,5 +76,12 @@
                 android:layout_marginTop="20dp"
                 android:background="@color/white" />
         </ViewAnimator>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/penginapan_button_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_plus" />
     </LinearLayout>
 </LinearLayout>

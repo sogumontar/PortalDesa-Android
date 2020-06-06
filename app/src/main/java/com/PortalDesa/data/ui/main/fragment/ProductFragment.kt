@@ -78,30 +78,30 @@ class ProductFragment : Fragment(), View.OnClickListener{
         val sku = preferences.getSku()
         if (Connectivity().isNetworkAvailable(activity!!)) {
             val client = APIServiceGenerator().createService
-            if(role.equals("ROLE_MERCHANT")) {
-                val call = client.getProductBySkuAdmin(sku)
-                call.enqueue(object : retrofit2.Callback<List<ProductResponse>> {
-                    override fun onResponse(
-                        call: retrofit2.Call<List<ProductResponse>>,
-                        response: Response<List<ProductResponse>>
-                    ) {
-                        val listProduk = response.body()
-                        productResponse = listProduk
-                        displayProduct()
-                    }
-
-                    override fun onFailure(
-                        call: retrofit2.Call<List<ProductResponse>>,
-                        t: Throwable
-                    ) {
-                        Log.i(
-                            this.javaClass.simpleName,
-                            " Requested API : " + call.request().body()!!
-                        )
-                        Log.e(this.javaClass.simpleName, " Exceptions : $t")
-                    }
-                })
-            }else{
+//            if(role.equals("ROLE_MERCHANT")) {
+//                val call = client.getProductBySkuAdmin(sku)
+//                call.enqueue(object : retrofit2.Callback<List<ProductResponse>> {
+//                    override fun onResponse(
+//                        call: retrofit2.Call<List<ProductResponse>>,
+//                        response: Response<List<ProductResponse>>
+//                    ) {
+//                        val listProduk = response.body()
+//                        productResponse = listProduk
+//                        displayProduct()
+//                    }
+//
+//                    override fun onFailure(
+//                        call: retrofit2.Call<List<ProductResponse>>,
+//                        t: Throwable
+//                    ) {
+//                        Log.i(
+//                            this.javaClass.simpleName,
+//                            " Requested API : " + call.request().body()!!
+//                        )
+//                        Log.e(this.javaClass.simpleName, " Exceptions : $t")
+//                    }
+//                })
+//            }else{
                 val call = client.getProductList()
                 call.enqueue(object : retrofit2.Callback<List<ProductResponse>> {
                     override fun onResponse(
@@ -120,7 +120,7 @@ class ProductFragment : Fragment(), View.OnClickListener{
                         Log.e(this.javaClass.simpleName, " Exceptions : $t")
                     }
                 })
-            }
+//            }
         }
     }
 

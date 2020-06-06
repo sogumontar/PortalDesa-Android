@@ -12,6 +12,8 @@
     <string name="ubah"><u>Ubah</u></string>
     <string name="block"><u>Block</u></string>
     <string name="activate"><u>Activate</u></string>
+    <string name="delete"><u>Delete</u></string>
+    <string name="update"><u>Update</u></string>
     <string name="Masuk">Masuk</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
@@ -28,6 +30,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_test">test</string>
 
 
 </resources>

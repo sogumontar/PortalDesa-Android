@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".data.ui.main.activity.DetailProductAcitivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-5dp"
+        android:background="@color/white"
+        android:layout_below="@+id/ln_layout"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:layout_below="@+id/img_icon"
+                android:paddingLeft="10dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="103dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/judul"
+                        android:layout_width="0dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:text="...."
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:foregroundGravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="40sp" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/jenis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Berita"
+                    android:textColor="@color/black2"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/ln_jumlah"
+                    android:layout_width="match_parent"
+                    android:layout_height="279dp"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/isi"
+                        android:layout_width="0dp"
+                        android:layout_height="259dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:text="....."
+                        android:textColor="@color/black2"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/sumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Berita"
+                    android:textColor="@color/black2"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/penulis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Berita"
+                    android:textStyle="bold"
+                    android:textColor="@color/black2"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/ln_btn"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/produk_delete_btn"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_red_button"
+            android:text="Delete"
+            android:textColor="@color/snackbar_red" />
+
+        <Button
+            android:id="@+id/produk_update_btn"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_blue_secondary"
+            android:text="Update"
+            android:textColor="#ffff" />
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

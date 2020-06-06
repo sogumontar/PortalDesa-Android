@@ -140,17 +140,18 @@ class ProfileActivity : AppActivity(), View.OnClickListener {
 
     fun displayData() {
         if(role.equals("ROLE_MERCHANT")){
-            btn_image.visibility= View.VISIBLE
-            imageview.visibility=View.VISIBLE
-            Picasso.get()
-                .load("https://portal-desa.herokuapp.com/desa/get/"+data?.sku+".png")
-                .into(imageview)
+//            btn_image.visibility= View.VISIBLE
+//            imageview.visibility=View.VISIBLE
+//            Picasso.get()
+//                .load("https://portal-desa.herokuapp.com/desa/get/"+data?.sku+".png")
+//                .into(imageview)
             detail_desa.visibility=View.VISIBLE
         }
         et_email.setText(data?.email)
         et_name.setText(data?.name)
         et_alamat.setText(data?.alamat)
     }
+
     private fun getUser(): UsersUpdateRequest{
         val requestUser = UsersUpdateRequest()
         requestUser.name = et_name.text.toString()

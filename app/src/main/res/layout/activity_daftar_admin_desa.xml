@@ -43,6 +43,7 @@ tools:context=".data.ui.main.activity.Form.DaftarAdminDesa">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:layout_marginTop="20dp">
 
             <TextView
@@ -50,11 +51,22 @@ tools:context=".data.ui.main.activity.Form.DaftarAdminDesa">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Kecamatan : " />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/et_kecamatan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:background="@drawable/bg_signup_edittext"
+                android:padding="8dp" />
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="1dp"
                 android:layout_alignParentTop="true" />
+            </RelativeLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

@@ -67,7 +67,7 @@
                     android:paddingBottom="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Profile"
@@ -97,7 +97,7 @@
                     android:paddingBottom="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="213dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Daftarkan Admin Desa"
@@ -126,10 +126,10 @@
                     android:paddingBottom="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="138dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Daftarkan Akun"
+                        android:text="Daftar Akun"
                         android:textColor="@color/blue_primary"
                         android:textSize="18sp" />
 
@@ -155,10 +155,38 @@
                     android:paddingBottom="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="153dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Daftar Pesanan"
+                        android:textColor="@color/blue_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=">"
+                        android:textColor="@color/black2"
+                        android:textSize="18sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ln_artikel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="153dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Artikel Desa"
                         android:textColor="@color/blue_primary"
                         android:textSize="18sp" />
 
@@ -184,7 +212,7 @@
                     android:paddingBottom="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="126dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Produk"
@@ -213,7 +241,7 @@
                     android:paddingBottom="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="143dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Penginapan"

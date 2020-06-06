@@ -73,9 +73,9 @@
 
                 <ImageView
                     android:id="@+id/iv_desa"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/users" />
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/ic_grup_users" />
 
                 <TextView
                     android:id="@+id/tv_desa"

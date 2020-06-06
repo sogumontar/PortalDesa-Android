@@ -61,6 +61,20 @@ interface ApiConfigs {
         const val ROUTE_TRANSAKSI_CANCEL_PESANAN = "/transaksiPenginapan/pesanan/cancel/{sku}"
 
 
+        //Artikel
+        const val ROUTE_ARTIKEL_GET_ALL = "/artikel/"
+        const val ROUTE_ARTIKELS_GET_ALL = "/artikel/artikel/"
+        const val ROUTE_BERITA_GET_ALL = "/artikel/berita/"
+        const val ROUTE_PENGUMUMAN_GET_ALL = "/artikel/pengumuman/"
+        const val ROUTE_ARTIKEL_GET_ALL_ARTIKEL_BY_SKU = "/artikel/artikel/{sku}"
+        const val ROUTE_ARTIKEL_GET_ALL_BERITA_BY_SKU = "/artikel/berita{sku}"
+        const val ROUTE_ARTIKEL_GET_ALL_BY_SKU = "/artikel/pemumuman{sku}"
+        const val ROUTE_ARTIKEL_ADD = "/artikel/add/{sku}"
+        const val ROUTE_ARTIKEL_UPDATE = "/artikel/update/{id}"
+        const val ROUTE_DELETE_ARTIKEL = "/artikel/delete/{id}"
+        const val DETAIL_ARTIKEL = "/artikel/detail/{id}"
+
+
         //Cart
         const val LIST_CART_CUSTOMER = "/keranjang/customer/{sku}"
         const val ADD_TO_CART_CUSTOMER = "/keranjang/save"
@@ -73,6 +87,10 @@ interface ApiConfigs {
         const val TRANSAKSI_PAYMENT= "/transaksi/bayar/{idPesanan}"
         const val TRANSAKSI_PENGINAPAN_PAYMENT= "/transaksiPenginapan/bayar/{idPesanan}"
         const val ADD_TRANSAKSI_PENGINAPAN= "/transaksiPenginapan/add"
+        const val TOLAK_TRANSAKSI_PRODUK= "/transaksi/tolak/{idPesanan}"
+        const val TERIMA_TRANSAKSI_PRODUK= "/transaksi/terima/{idPesanan}"
+        const val TOLAK_TRANSAKSI_PENGINAPAN= "/transaksiPenginapan/tolak/{idPesanan}"
+        const val TERIMA_TRANSAKSI_PENGINAPAN= "/transaksiPenginapan/terima/{idPesanan}"
 
         //Customer
         const val ROUTE_GET_ALAMAT_CUSTOMER= "/customer/{sku}"
@@ -82,6 +100,9 @@ interface ApiConfigs {
         //Desa
         const val ROUTE_GET_DESA_BY_NAMA= "/desa/{nama}"
         const val ROUTE_UPDATE_DESA_BY_SKU= "/desa/update/{sku}"
+
+        //PopularProduk
+        const val ROUTE_POPULAR_PRODUK= "/produk/popular/"
 
     }
 }

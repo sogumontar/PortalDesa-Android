@@ -104,6 +104,63 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ln_penginapan_saya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Penginapan Saya"
+                        android:textColor="@color/blue_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=">"
+                        android:textColor="@color/black2"
+                        android:textSize="18sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ln_produk_saya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Produk Saya"
+                        android:textColor="@color/blue_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=">"
+                        android:textColor="@color/black2"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/ln_pesanan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -131,14 +188,12 @@
                         android:textColor="@color/black2"
                         android:textSize="18sp" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:id="@+id/ln_keranjang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginBottom="30dp"
                     android:orientation="horizontal"
                     android:paddingTop="5dp">
 
@@ -161,6 +216,64 @@
                         android:textSize="18sp" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ln_artikel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Artikel"
+                        android:textColor="@color/blue_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=">"
+                        android:textColor="@color/black2"
+                        android:textSize="18sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ln_tambah_artikel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Tambah Artikel"
+                        android:textColor="@color/blue_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=">"
+                        android:textColor="@color/black2"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
 
                 <Button
                     android:id="@+id/btn_logout"

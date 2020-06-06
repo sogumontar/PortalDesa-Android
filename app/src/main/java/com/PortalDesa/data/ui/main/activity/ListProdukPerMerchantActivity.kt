@@ -1,5 +1,6 @@
 package com.PortalDesa.data.ui.main.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,6 +16,7 @@ import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.ui.main.activity.merchant.CreateProdukForm
 import com.PortalDesa.data.ui.main.adapter.ListProductAdapter
 import kotlinx.android.synthetic.main.activity_list_produk_per_merchant.*
 import retrofit2.Response
@@ -106,8 +108,14 @@ class ListProdukPerMerchantActivity : AppActivity(), View.OnClickListener {
 
         }
     }
+    fun goToForm(){
+        val intent = Intent(this, CreateProdukForm::class.java)
+        startActivity(intent)
+    }
 
     override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+        when(v!!.id) {
+            button_create_produk.id -> goToForm()
+        }
     }
 }

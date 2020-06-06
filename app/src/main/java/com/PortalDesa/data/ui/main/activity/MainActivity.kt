@@ -12,6 +12,7 @@ import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.admin.MainActivityAdmin
 import com.PortalDesa.data.ui.main.fragment.AkunFragment
 import com.PortalDesa.data.ui.main.fragment.HomeFragment
+import com.PortalDesa.data.ui.main.fragment.PenginapanFragment
 import com.PortalDesa.data.ui.main.fragment.ProductFragment
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -26,7 +27,7 @@ class MainActivity : AppActivity(), View.OnClickListener {
         tabSelected(0, "Beranda")
         tab_home.setOnClickListener(this)
         tab_product.setOnClickListener(this)
-
+        tab_penginapan.setOnClickListener(this)
         tab_akun.setOnClickListener(this)
     }
 
@@ -36,8 +37,11 @@ class MainActivity : AppActivity(), View.OnClickListener {
             tabSelected(0, "Beranda")
         } else if (id == tab_product.getId()) {
             tabSelected(1, "Product")
-        } else if (id == tab_akun.getId()) {
-            tabSelected(2, "Akun")
+        } else if (id == tab_penginapan.getId()) {
+            tabSelected(2, "Penginapan")
+        }
+        else if (id == tab_akun.getId()) {
+            tabSelected(3, "Akun")
         }
     }
 
@@ -47,6 +51,7 @@ class MainActivity : AppActivity(), View.OnClickListener {
             when (type) {
                 "Beranda" -> displayFragment(HomeFragment(), R.id.fragment_container)
                 "Product" -> displayFragment(ProductFragment(), R.id.fragment_container)
+                "Penginapan" -> displayFragment(PenginapanFragment(), R.id.fragment_container)
                 "Akun" -> displayFragment(AkunFragment(), R.id.fragment_container)
 
                 else -> {
@@ -61,6 +66,7 @@ class MainActivity : AppActivity(), View.OnClickListener {
     private fun updateTabView(position: Int) {
         tab_home.setBackground(ContextCompat.getDrawable(this, R.color.blue_primary))
         tab_product.setBackground(ContextCompat.getDrawable(this, R.color.blue_primary))
+        tab_penginapan.setBackground(ContextCompat.getDrawable(this, R.color.blue_primary))
         tab_akun.setBackground(ContextCompat.getDrawable(this, R.color.blue_primary))
         when (position) {
             0 -> tab_home.setBackground(
@@ -75,7 +81,13 @@ class MainActivity : AppActivity(), View.OnClickListener {
                     R.drawable.button_orange_selector
                 )
             )
-            2 -> tab_akun.setBackground(
+            2 -> tab_penginapan.setBackground(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.button_orange_selector
+                )
+            )
+            3 -> tab_akun.setBackground(
                 ContextCompat.getDrawable(
                     this,
                     R.drawable.button_orange_selector

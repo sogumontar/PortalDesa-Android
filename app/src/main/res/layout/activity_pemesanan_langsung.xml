@@ -39,7 +39,7 @@
                             android:layout_width="85dp"
                             android:layout_height="136dp"
                             android:layout_alignParentLeft="true"
-                            android:src="@drawable/ulos2" />
+                            android:src="@drawable/default_image" />
 
                         <LinearLayout
                             android:id="@+id/ln_data"
@@ -263,7 +263,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_margin="30dp"
-        android:text="PESAN ->"
+        android:text="PESAN"
         android:layout_alignParentBottom="true"
         android:textColor="@color/white"
         android:background="@drawable/rounded_green"/>

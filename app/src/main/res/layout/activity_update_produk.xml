@@ -27,6 +27,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Ubah Produk"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textSize="28sp"
+                android:padding="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Nama"
                 android:textSize="14sp" />
 
@@ -35,7 +44,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:padding="8dp" />
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:background="@drawable/bg_signup_edittext"
+                android:padding="10dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +59,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:padding="8dp"
+                android:imeOptions="actionDone"
+                android:background="@drawable/bg_signup_edittext"
+                android:padding="10dp"
                 android:inputType="number"/>
 
             <TextView
@@ -62,17 +76,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:padding="8dp"
+                android:padding="10dp"
+                android:imeOptions="actionDone"
+                android:background="@drawable/bg_signup_edittext"
                 android:inputType="textImeMultiLine"/>
 
             <Button
                 android:id="@+id/update_produk_btn_image"
-                android:layout_width="158dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/button_white_grey_selected_bg"
-                android:text="Select Image"
+                android:text="Pilih Gambar"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <ImageView
@@ -86,12 +101,13 @@
 
             <Button
                 android:id="@+id/update_produk_btn_send"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="54dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_btn"
                 android:text="@string/simpan"
-                android:layout_margin="20dp"
+                android:padding="10dp"
+                android:layout_margin="40dp"
                 android:textColor="#ffff"/>
 
         </LinearLayout>

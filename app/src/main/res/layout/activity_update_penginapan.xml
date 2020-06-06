@@ -28,6 +28,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Ubah Penginapan"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textSize="28sp"
+                android:padding="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Nama"
                 android:textSize="14sp" />
 
@@ -36,7 +44,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:padding="8dp" />
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:background="@drawable/bg_signup_edittext"
+                android:padding="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,7 +61,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:inputType="number"
-                android:padding="8dp" />
+                android:imeOptions="actionDone"
+                android:background="@drawable/bg_signup_edittext"
+                android:padding="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,7 +78,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="15dp"
                 android:inputType="textImeMultiLine"
-                android:padding="8dp" />
+                android:imeOptions="actionDone"
+                android:background="@drawable/bg_signup_edittext"
+                android:padding="10dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -81,7 +96,9 @@
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginBottom="15dp"
                 android:inputType="number"
-                android:padding="8dp" />
+                android:imeOptions="actionDone"
+                android:background="@drawable/bg_signup_edittext"
+                android:padding="10dp" />
 
 
             <TextView
@@ -95,8 +112,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
+                android:imeOptions="actionDone"
                 android:inputType="text"
-                android:padding="8dp" />
+                android:background="@drawable/bg_signup_edittext"
+                android:padding="10dp" />
 
 
             <Button
@@ -122,7 +141,8 @@
                 android:id="@+id/update_btn_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="54dp"
+                android:layout_margin="40dp"
                 android:background="@drawable/rounded_btn"
                 android:text="@string/simpan"
                 android:padding="10dp"

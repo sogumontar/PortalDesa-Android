@@ -13,6 +13,7 @@ import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.model.response.PesananResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Flag
+import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.BayarPesananActivity
 import com.PortalDesa.data.ui.main.activity.PesananActivity
 import kotlinx.android.synthetic.main.item_pesanan.view.*
@@ -23,7 +24,7 @@ import retrofit2.Response
  */
 
 class PesananAdapter(val context: Context, val list : List<PesananResponse>) : RecyclerView.Adapter<PesananAdapter.ViewHolder>() {
-
+    lateinit private var preferences: Preferences
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
         val alamat = v.pesanan_alamat
@@ -31,6 +32,8 @@ class PesananAdapter(val context: Context, val list : List<PesananResponse>) : R
         val harga = v.penginapan_harga
         val btn_delete = v.btn_pesanan_del
         val btn_bayar = v.btn_bayar
+        val btn_tolak = v.btn_pesanan_tolak
+        val btn_terima = v.btn_terima
     }
 
 
@@ -39,6 +42,7 @@ class PesananAdapter(val context: Context, val list : List<PesananResponse>) : R
         parent: ViewGroup,
         viewType: Int
     ): PesananAdapter.ViewHolder {
+        preferences = Preferences(context)
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_pesanan, parent, false)
         return ViewHolder(view)
@@ -47,6 +51,12 @@ class PesananAdapter(val context: Context, val list : List<PesananResponse>) : R
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        if(preferences.getRoles().equals("ROLE_ADMIN")){
+            holder.btn_terima.visibility=View.VISIBLE
+            holder.btn_delete.visibility=View.GONE
+            holder.btn_bayar.visibility=View.GONE
+            holder.btn_tolak.visibility=View.VISIBLE
+        }
         holder.alamat.text = list.get(position).alamat
         holder.harga.text = list.get(position).harga.toString()
         holder.metode.text = list.get(position).metode

@@ -66,7 +66,7 @@ class DetailDesaActivity : AppActivity(), View.OnClickListener {
         btn_image.setOnClickListener { showPictureDialog() }
         btn_update.setOnClickListener(this)
         btn_produk.setOnClickListener(this)
-        initView()
+        btn_penginapan.setOnClickListener(this)
         initData()
     }
 
@@ -117,6 +117,7 @@ class DetailDesaActivity : AppActivity(), View.OnClickListener {
                     skuDesa = desaResponse!!.skuAdmin!!
                     displayProduct()
                     dismissProgressDialog()
+                    initView()
                 }
 
                 override fun onFailure(call: retrofit2.Call<DesaResponse>, t: Throwable) {
@@ -328,6 +329,8 @@ class DetailDesaActivity : AppActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v!!.id) {
             btn_update.id -> updateDetailDesa(getRequest())
+            btn_produk.id -> goToProduk()
+            btn_penginapan.id -> goToPenginapan()
         }
     }
 }

@@ -158,6 +158,32 @@
                         android:background="@drawable/rounded_blue_secondary"
                         android:text="Bayar"
                         android:textColor="@color/white" />
+
+                    <Button
+                        android:visibility="gone"
+                        android:id="@+id/btn_pesanan_tolak"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginRight="10dp"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/rounded_red_button"
+                        android:text="Tolak"
+                        android:textColor="@color/snackbar_red" />
+
+                    <Button
+                        android:visibility="gone"
+                        android:id="@+id/btn_terima"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/rounded_green"
+                        android:text="Terima"
+                        android:textColor="@color/white" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

@@ -19,6 +19,7 @@
         android:layout_marginBottom="-5dp"
         android:background="@color/white"
         android:fillViewport="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,16 +32,28 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Tambah Produk"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textSize="34sp"
+                android:padding="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Nama"
                 android:textSize="14sp" />
-
             <EditText
                 android:id="@+id/produk_nama"
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:background="@drawable/bg_signup_edittext"
                 android:hint="Masukan nama produk"
-                android:padding="8dp" />
+                android:textSize="13sp"
+                android:textColor="@color/black2"
+                android:padding="10dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,12 +62,16 @@
 
             <EditText
                 android:id="@+id/produk_harga"
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:background="@drawable/bg_signup_edittext"
                 android:hint="Masukan harga produk"
-                android:padding="8dp"
-                android:inputType="number"/>
+                android:textSize="13sp"
+                android:textColor="@color/black2"
+                android:padding="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,10 +84,12 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:hint="Masukkan deskripsi produk"
-                android:padding="8dp"
-                android:inputType="textImeMultiLine"/>
+                android:imeOptions="actionDone"
+                android:inputType="textImeMultiLine"
+                android:background="@drawable/bg_signup_edittext"
+                android:textSize="13sp"
+                android:textColor="@color/black2"
+                android:padding="50dp"/>
 
             <Button
                 android:id="@+id/btn_image"
@@ -93,12 +112,12 @@
 
             <Button
                 android:id="@+id/btn_send"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="54dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_btn"
                 android:text="@string/simpan"
-                android:layout_margin="20dp"
+                android:layout_margin="40dp"
                 android:textColor="#ffff"/>
 
         </LinearLayout>

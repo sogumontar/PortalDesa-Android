@@ -16,6 +16,7 @@ import com.PortalDesa.data.model.response.TransaksiPenginapanResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.ui.main.activity.BayarPesananActivity
+import com.PortalDesa.data.ui.main.activity.BayarPesananPenginapanActivity
 import com.PortalDesa.data.ui.main.activity.PesananActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_pesanan_penginapan.view.*
@@ -80,7 +81,7 @@ class PenginapanBelumBayarAdapter(val context: Context, val list : List<Transaks
             hapus(list.get(position).id!!)
         })
         holder.btn_bayar.setOnClickListener(View.OnClickListener {
-            val intent = Intent(context, BayarPesananActivity::class.java)
+            val intent = Intent(context, BayarPesananPenginapanActivity::class.java)
             intent.putExtra(Flag.ID_PESANAN, list.get(position).id)
             context.startActivity(intent)
         })

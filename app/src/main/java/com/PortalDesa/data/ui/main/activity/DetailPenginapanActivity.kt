@@ -190,17 +190,17 @@ class DetailPenginapanActivity : AppActivity() {
         val month = datePicker1.month + 1
         val msg = "You Selected: "
         val juml = et_jumlah.text
-//        if(yearNow > (datePicker1.year+1)){
-//            Toast.makeText(this, "Masa tersebut telah lewat, silahkan pilih tanggal yang akan datang", Toast.LENGTH_SHORT).show()
-//        }else if(monthNow > datePicker1.month){
-//            Toast.makeText(this, "Masa tersebut telah lewat, silahkan pilih tanggal yang akan datang", Toast.LENGTH_SHORT).show()
-//        }else if(dayNow > datePicker1.dayOfMonth){
-//            Toast.makeText(this, "Masa tersebut telah lewat, silahkan pilih tanggal yang akan datang", Toast.LENGTH_SHORT).show()
-//        }else if(et_jumlah.text.equals("")){
-//            Toast.makeText(this, "Masukkan data lama menginap", Toast.LENGTH_SHORT).show()
-//        }else {
-//            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-//        }
+        if(yearNow > (datePicker1.year+1)){
+            Toast.makeText(this, "Masa tersebut telah lewat, silahkan pilih tanggal yang akan datang", Toast.LENGTH_SHORT).show()
+        }else if(monthNow > datePicker1.month){
+            Toast.makeText(this, "Masa tersebut telah lewat, silahkan pilih tanggal yang akan datang", Toast.LENGTH_SHORT).show()
+        }else if(dayNow > datePicker1.dayOfMonth){
+            Toast.makeText(this, "Masa tersebut telah lewat, silahkan pilih tanggal yang akan datang", Toast.LENGTH_SHORT).show()
+        }else if(et_jumlah.text.equals("")){
+            Toast.makeText(this, "Masukkan data lama menginap", Toast.LENGTH_SHORT).show()
+        }else {
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun radio_button_click(view: View) {

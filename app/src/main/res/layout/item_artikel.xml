@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/lin_all"
+        android:layout_width="match_parent"
+        android:layout_height="439dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title, secondary and supporting text -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/artikel_judul"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="....."
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="187dp">
+
+
+            <TextView
+                android:id="@+id/tv_isi"
+                android:layout_width="match_parent"
+                android:layout_height="187dp"
+                android:layout_marginTop="8dp"
+                android:text="....."
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Penulis   : "
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/penulis"
+                android:layout_width="253dp"
+                android:layout_height="match_parent"
+                android:text="..."
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="20dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="Sumber  : "
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/sumber"
+                android:layout_width="253dp"
+                android:layout_height="match_parent"
+                android:text="..."
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="20dp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_red_button"
+                android:padding="20dp"
+                android:text="@string/delete"
+                android:textColor="@color/snackbar_red" />
+
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_blue_secondary"
+                android:padding="20dp"
+                android:text="@string/update"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

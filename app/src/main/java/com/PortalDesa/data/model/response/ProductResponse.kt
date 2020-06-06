@@ -17,4 +17,5 @@ class ProductResponse {
     var deskripsi: String? = null
     var skuDesa: String? = null
     var status: String? = null
+    var jumlahPembelian: String? = null
 }

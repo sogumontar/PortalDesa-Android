@@ -26,16 +26,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Tambah Penginapan"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textSize="28sp"
+                android:padding="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Nama"
                 android:textSize="14sp" />
-
             <EditText
                 android:id="@+id/penginapan_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:background="@drawable/bg_signup_edittext"
                 android:hint="Masukan nama penginapan"
-                android:padding="8dp" />
+                android:padding="10dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,7 +59,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:hint="Masukan harga penginapan"
-                android:padding="8dp"
+                android:padding="10dp"
+                android:imeOptions="actionDone"
+                android:background="@drawable/bg_signup_edittext"
                 android:inputType="number"/>
 
             <TextView
@@ -63,8 +76,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="Masukkan deskripsi penginapan"
-                android:padding="8dp"
+                android:padding="50dp"
+                android:imeOptions="actionDone"
+                android:background="@drawable/bg_signup_edittext"
                 android:inputType="textImeMultiLine"/>
 
             <TextView
@@ -81,7 +95,9 @@
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginBottom="15dp"
                 android:hint="Masukkan jumlah kamar"
-                android:padding="8dp"
+                android:padding="10dp"
+                android:imeOptions="actionDone"
+                android:background="@drawable/bg_signup_edittext"
                 android:inputType="number"/>
 
 
@@ -96,6 +112,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Masukkan Lokasi penginapan"
+                android:imeOptions="actionDone"
+                android:padding="10dp"
+                android:background="@drawable/bg_signup_edittext"
                 android:inputType="text"/>
 
 
@@ -104,6 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
                 android:foregroundGravity="left"
                 android:text="Select Image"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -120,12 +140,12 @@
 
             <Button
                 android:id="@+id/btn_save"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="54dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_btn"
                 android:text="@string/simpan"
-                android:layout_margin="20dp"
+                android:layout_margin="40dp"
                 android:textColor="#ffff"/>
 
         </LinearLayout>
