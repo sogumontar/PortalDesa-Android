@@ -14,6 +14,7 @@ class SplashActivity: AppActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         preferences = Preferences(this)
+        
         if (preferences.getRoles().equals("ROLE_ADMIN")) {
             goToAdminMainActivity()
         }else{
