@@ -98,7 +98,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                         if(listProduk!!.size==0){
                             Toast.makeText(applicationContext,"Produk di Keranjang Belum ada",Toast.LENGTH_SHORT).show()
                             Timer("SettingUp", false).schedule(1000) {
-                                goToProduct()
+                                finish()
                             }
                         }else{
                             checkAlamat()
@@ -207,9 +207,10 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
 
         }
     }
-    fun goToKeranjang(){
-        val intent = Intent(this, KeranjangActivity::class.java)
+    fun goToMain(){
+        val intent = Intent(this, PesananActivity::class.java)
         startActivity(intent)
+        finish()
     }
     private fun getAlamatRequest(): CustomerRequest{
         val customerRequest = CustomerRequest()
@@ -238,6 +239,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
     }
 
     fun ubahAlamat(){
+        showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
             val call = client.updateAlamatCustomer(preferences.getSku(),getAlamatRequest())
@@ -247,18 +249,20 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                     response: Response<DefaultResponse>
                 ) {
                     val listProduk = response.body()
-                    goToKeranjang()
+                    dismissProgressDialog()
                 }
 
                 override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
                     Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
                     Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                    dismissProgressDialog()
                 }
             })
 
         }
     }
     fun simpanAlamat(){
+        showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
             val call = client.saveAlamatCustomer(getAlamatRequest())
@@ -267,12 +271,13 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                     call: retrofit2.Call<DefaultResponse>,
                     response: Response<DefaultResponse>
                 ) {
-                    goToKeranjang()
+                    dismissProgressDialog()
                 }
 
                 override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
                     Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
                     Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                    dismissProgressDialog()
                 }
             })
 
@@ -297,7 +302,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                     call: retrofit2.Call<DefaultResponse>,
                     response: Response<DefaultResponse>
                 ) {
-                    goToKeranjang()
+                    goToMain()
                 }
 
                 override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {

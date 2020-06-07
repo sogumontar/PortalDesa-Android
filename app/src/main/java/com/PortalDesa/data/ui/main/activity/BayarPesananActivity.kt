@@ -62,6 +62,7 @@ class BayarPesananActivity : AppActivity() {
                     Log.i("cek", "cek")
                     dismissProgressDialog()
                     goToPesanan()
+
                 }
 
                 override fun onFailure(
@@ -80,6 +81,7 @@ class BayarPesananActivity : AppActivity() {
     fun goToPesanan() {
         val intent = Intent(this, PesananActivity::class.java)
         startActivity(intent)
+        finish()
     }
     private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(this)

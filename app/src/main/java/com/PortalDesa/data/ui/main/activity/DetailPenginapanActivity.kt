@@ -1,10 +1,13 @@
 package com.PortalDesa.data.ui.main.activity
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -19,7 +22,6 @@ import com.PortalDesa.data.ui.main.activity.merchant.UpdatePenginapan
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_penginapan.*
 import retrofit2.Response
-import java.text.DateFormat
 import java.util.*
 
 class DetailPenginapanActivity : AppActivity() {
@@ -31,6 +33,10 @@ class DetailPenginapanActivity : AppActivity() {
     var skuLogin: String? = ""
     lateinit var topSnackBar: TopSnackBar
     var skuFix: String? = ""
+
+    private val mYear = Calendar.getInstance()[Calendar.YEAR]
+    private val mMonth = Calendar.getInstance()[Calendar.MONTH]
+    private val mDay = Calendar.getInstance()[Calendar.DAY_OF_MONTH]
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +54,14 @@ class DetailPenginapanActivity : AppActivity() {
                 metode = radio.text.toString()
             })
         btn_pesan.setOnClickListener {
-            simpanAlamat()
+            val test : String = et_jumlah.text.toString()
+            if(test==null || test==""){
+                Toast.makeText(this, "Lama menginap tidak boleh kosong", Toast.LENGTH_LONG).show()
+            } else if(metode.equals("")){
+                Toast.makeText(this, "Metode pembayaran harus dipili", Toast.LENGTH_LONG).show()
+            }else {
+                simpanAlamat()
+            }
         }
         produk_delete_btn.setOnClickListener {
             delete()
@@ -56,9 +69,21 @@ class DetailPenginapanActivity : AppActivity() {
         produk_update_btn.setOnClickListener {
             goToUpdateForm()
         }
+        et_tanggal_in.setOnClickListener {
+            createDialogDateIn()
+        }
     }
 
     fun initData() {
+
+        var today = Date()
+        val sdf = SimpleDateFormat("dd/MM/yyyy ")
+        val currentDate = sdf.format(Date())
+        val day: Int = Integer.valueOf(Utils().formatDate(currentDate, "dd", "dd/MM/yyyy"))
+        val month: Int = Integer.valueOf(Utils().formatDate(currentDate, "MM", "dd/MM/yyyy")) - 1
+        val year: Int = Integer.valueOf(Utils().formatDate(currentDate, "yyyy", "dd/MM/yyyy"))
+        et_tanggal_in.setText(""+day+"/"+month+"/"+year)
+        et_jumlah.setText("1")
         showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
@@ -93,7 +118,7 @@ class DetailPenginapanActivity : AppActivity() {
             produk_delete_btn.visibility = View.VISIBLE
             produk_update_btn.visibility = View.VISIBLE
             btn_pesan.visibility = View.GONE
-            date.visibility = View.GONE
+            et_tanggal_in.visibility = View.GONE
             lama.visibility = View.GONE
             radio_group.visibility=View.GONE
         } else if (role.equals("ROLE_USER")) {
@@ -119,6 +144,32 @@ class DetailPenginapanActivity : AppActivity() {
         tv_desc.setText("Deskripsi : " +penginapanResponse?.deskripsi)
     }
 
+    private fun createDialogDateIn() {
+        val listener =
+            OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                val date: String
+                val dateOut: String
+                val month: String
+                date = dayOfMonth.toString()
+                dateOut = (dayOfMonth+1).toString()
+                month = (monthOfYear + 1).toString()
+                et_tanggal_in.setText("$date/$month/$year")
+
+            }
+        val currentDate: String = et_tanggal_in.getText().toString()
+        var dpDialog = DatePickerDialog(this, listener, mYear, mMonth, mDay)
+        if (currentDate != "") {
+            val day: Int =
+                Integer.valueOf(Utils().formatDate(currentDate, "dd", "dd/MM/yyyy"))
+            val month: Int =
+                Integer.valueOf(Utils().formatDate(currentDate, "MM", "dd/MM/yyyy")) - 1
+            val year: Int =
+                Integer.valueOf(Utils().formatDate(currentDate, "yyyy", "dd/MM/yyyy"))
+            dpDialog = DatePickerDialog(this, listener, year, month, day)
+        }
+        dpDialog.datePicker.minDate = System.currentTimeMillis() - 1000
+        dpDialog.show()
+    }
 
     private fun showMessage(message: String) {
         topSnackBar.showError(this, findViewById(R.id.snackbar_container), message)
@@ -165,44 +216,6 @@ class DetailPenginapanActivity : AppActivity() {
 
     }
 
-    fun goToPemesananLangsung() {
-        val today = Calendar.getInstance()
-        val yearNow = Calendar.getInstance().get(Calendar.YEAR)
-        val monthNow = Calendar.getInstance().get(Calendar.MONTH) + 1
-        val dayNow = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-        var days = 0
-        var months = 0
-        var years = 0
-
-        val datt = datePicker1.init(
-            today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-            today.get(Calendar.DAY_OF_MONTH)
-
-        ) { view, year, month, day ->
-            days = day
-            months = month
-            years = year
-            val msg = "You Selected: $day/$month/$year"
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-
-        }
-        val test = datt.toString()
-        val month = datePicker1.month + 1
-        val msg = "You Selected: "
-        val juml = et_jumlah.text
-        if(yearNow > (datePicker1.year+1)){
-            Toast.makeText(this, "Masa tersebut telah lewat, silahkan pilih tanggal yang akan datang", Toast.LENGTH_SHORT).show()
-        }else if(monthNow > datePicker1.month){
-            Toast.makeText(this, "Masa tersebut telah lewat, silahkan pilih tanggal yang akan datang", Toast.LENGTH_SHORT).show()
-        }else if(dayNow > datePicker1.dayOfMonth){
-            Toast.makeText(this, "Masa tersebut telah lewat, silahkan pilih tanggal yang akan datang", Toast.LENGTH_SHORT).show()
-        }else if(et_jumlah.text.equals("")){
-            Toast.makeText(this, "Masukkan data lama menginap", Toast.LENGTH_SHORT).show()
-        }else {
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-        }
-    }
-
     fun radio_button_click(view: View) {
         val radio: RadioButton = findViewById(radio_group.checkedRadioButtonId)
         if (metode.toString().equals("ATM Mandiri")) {
@@ -243,30 +256,19 @@ class DetailPenginapanActivity : AppActivity() {
 
     fun goToPesanan(){
         val intent = Intent(this, PesananActivity::class.java)
+        intent.putExtra(Flag.ID_PESANAN, 3)
         startActivity(intent)
+        finish()
     }
 
     fun getRequest(): TransaksiPenginapanRequest {
-        val today = Calendar.getInstance()
-//        val datt = datePicker1.init(
-//            today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-//            today.get(Calendar.DAY_OF_MONTH)
-//
-//        ) { view, year, month, day ->
-//            val msg = "You Selected: $day/$month/$year"
-//            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-//
-//        }
-
-        val test = datePicker1.year.toString() + ',' + datePicker1.month.toString() + ',' + datePicker1.dayOfMonth
         val transaksiPenginapanRequest = TransaksiPenginapanRequest()
-        val idCustomer = skuLogin
         transaksiPenginapanRequest.skuProduk = skuFix
         transaksiPenginapanRequest.skuCustomer = skuLogin
         transaksiPenginapanRequest.harga = (Integer.parseInt(penginapanResponse?.harga.toString()) * Integer.parseInt(et_jumlah.text.toString()))
         transaksiPenginapanRequest.metode = metode
         transaksiPenginapanRequest.lamaMenginap = Integer.parseInt(et_jumlah.text.toString())
-        transaksiPenginapanRequest.checkin = test.toString()
+        transaksiPenginapanRequest.checkin = et_tanggal_in.toString()
         return transaksiPenginapanRequest
     }
 

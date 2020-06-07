@@ -1,6 +1,9 @@
 package com.PortalDesa.data.support
 
+import android.util.Log
 import java.text.NumberFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 
 class Utils {
@@ -14,5 +17,18 @@ class Utils {
         } else {
             numberIDR
         }
+    }
+
+    fun formatDate(dateTime: String?, format: String?, originFormat: String?): String {
+        val fmt = SimpleDateFormat(originFormat)
+        var date: Date? = null
+        try {
+            date = fmt.parse(dateTime)
+        } catch (e: ParseException) {
+            Log.e("formatDate: err:", e.message)
+            e.printStackTrace()
+        }
+        val fmtOut = SimpleDateFormat(format)
+        return fmtOut.format(date)
     }
 }

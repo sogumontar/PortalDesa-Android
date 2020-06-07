@@ -46,12 +46,12 @@
                         android:id="@+id/tv_nama"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:text=""
-                        android:textSize="30sp" />
+                        android:textSize="23sp" />
 
                     <TextView
                         android:id="@+id/tv_harga"
@@ -59,11 +59,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_gravity="center"
                         android:textColor="@color/red_danger"
-                        android:text="Rp "
-                        android:textSize="20sp" />
+                        android:text="Rp 0"
+                        android:textSize="18sp" />
 
                 </LinearLayout>
                 <TextView
@@ -82,6 +84,38 @@
                     android:text=""
                     android:textColor="@color/black2"
                     android:textSize="16sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:text="Check-in"
+                        android:textColor="@color/black2"
+                        android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_tanggal_in"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:background="@color/transparent"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:hint="Pilih Tanggal"
+                    android:inputType="textCapWords"
+                    android:textColor="@color/text_edittext_black" />
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:id="@+id/lama"
@@ -105,31 +139,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:inputType="number"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_margin="10dp"
-                        android:text="Tanggal Check-in"
-                        android:textColor="@color/black2"
-                        android:textSize="16sp" />
-
-                    <DatePicker
-                        android:id="@+id/datePicker1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:datePickerMode="spinner"
-                        android:calendarViewShown="false"/>
-
 
                 </LinearLayout>
                 <LinearLayout
@@ -236,7 +245,7 @@
             android:layout_margin="15dp"
             android:layout_weight="1"
             android:visibility="gone"
-            android:background="@drawable/rounded_blue_secondary"
+            android:background="@drawable/rounded_btn"
             android:text="Update"
             android:textColor="#ffff" />
 
@@ -256,7 +265,7 @@
             android:layout_height="60dp"
             android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_blue_secondary"
+            android:background="@drawable/rounded_btn"
             android:text="Pesan"
             android:textColor="#ffff" />
 
