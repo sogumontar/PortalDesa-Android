@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".data.ui.main.activity.LupaPasswordActivity"></activity>
+        <activity android:name=".data.ui.main.activity.GantiPasswordActivity"></activity>
+        <activity android:name=".data.ui.main.activity.VerifikasiKodeActivity" />
+        <activity android:name=".data.ui.main.activity.LupaPasswordActivity" />
         <activity
             android:name=".data.ui.main.activity.test"
             android:label="@string/title_activity_test"

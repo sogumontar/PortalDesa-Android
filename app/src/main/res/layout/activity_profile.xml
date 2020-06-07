@@ -128,6 +128,22 @@
 
                 android:text="@string/simpan"
                 android:textColor="#ffff"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/gantiPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                        android:text="Ganti Password"
+                    android:clickable="true"
+                    android:textColor="#ACE7EF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
 
         </LinearLayout>
     </ScrollView>

@@ -50,12 +50,17 @@ class ProfileActivity : AppActivity(), View.OnClickListener {
         setContentView(R.layout.activity_profile)
         btn_update.setOnClickListener(this)
         detail_desa.setOnClickListener(this)
+        gantiPassword.setOnClickListener(this)
         sku = preferences.getSku()
         role = preferences.getRoles()
         btn_image.setOnClickListener { showPictureDialog() }
         initView()
     }
 
+    fun goToFormGantiPassword(){
+        val intent = Intent(this, GantiPasswordActivity::class.java)
+        startActivity(intent)
+    }
     private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(this)
         pictureDialog.setTitle("Select Action")
@@ -163,6 +168,7 @@ class ProfileActivity : AppActivity(), View.OnClickListener {
         when (v!!.id) {
             btn_update.id -> updateDetailUsers(getUser())
             detail_desa.id -> goToDetailDesa()
+            gantiPassword.id -> goToFormGantiPassword()
         }
     }
 

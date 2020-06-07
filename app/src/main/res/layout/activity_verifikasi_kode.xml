@@ -24,7 +24,7 @@
                 android:id="@+id/txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lupa Password"
+                android:text="Kode Verifikasi"
                 android:textColor="#000000"
                 android:textSize="30sp"
                 android:gravity="center"/>
@@ -48,11 +48,25 @@
                 android:textSize="13sp"
                 android:textColor="@color/black2"
                 android:padding="10dp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Kode verifikasi akan dikirim ke email yang terdaftar pada akun ini." />
+                android:layout_marginTop="20dp"
+                android:text="Kode Verifikasi" />
+
+            <EditText
+                android:id="@+id/kode"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_signup_edittext"
+                android:hint="Masukkan Kode Verifikasi"
+                android:textSize="13sp"
+                android:textColor="@color/black2"
+                android:padding="10dp"/>
+
 
             <Button
                 android:id="@+id/btnKirim"
@@ -64,22 +78,6 @@
                 android:text="@string/kirim"
                 android:textColor="@color/white"/>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:padding="5dp">
-                <TextView
-                    android:id="@+id/tvDaftar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|center_vertical"
-                    android:text="Verifikasi Kode"
-                    android:clickable="true"
-                    android:textColor="#ACE7EF"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </FrameLayout>
 
         </LinearLayout>
     </ScrollView>

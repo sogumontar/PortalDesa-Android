@@ -18,9 +18,9 @@ import retrofit2.Response
 import com.PortalDesa.data.base.AppActivity
 
 
-class SignInActivity : AppActivity(), View.OnClickListener{
+class SignInActivity : AppActivity(), View.OnClickListener {
 
-   lateinit var preferences : Preferences
+    lateinit var preferences: Preferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,23 +29,30 @@ class SignInActivity : AppActivity(), View.OnClickListener{
         preferences = Preferences(this)
         btnLogin.setOnClickListener(this)
         tvDaftar.setOnClickListener(this)
+        gotoLupas.setOnClickListener(this)
 
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
-            btnLogin.id->userLogin(getUser())
-            tvDaftar.id->goToRegister()
+        when (v!!.id) {
+            btnLogin.id -> userLogin(getUser())
+            tvDaftar.id -> goToRegister()
+            gotoLupas.id -> goToLupaPassword()
         }
     }
-    private fun goToRegister(){
+
+    private fun goToRegister() {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
     }
 
+    private fun goToLupaPassword() {
+        val intent = Intent(this, LupaPasswordActivity::class.java)
+        startActivity(intent)
+    }
 
 
-    fun userLogin(user : UserRequest){
+    fun userLogin(user: UserRequest) {
         showProgressDialog()
         val client = APIServiceGenerator().createService
         val call = client.doSignIn(user)
@@ -55,25 +62,29 @@ class SignInActivity : AppActivity(), View.OnClickListener{
                 response: Response<UserResponse>
             ) {
                 val userResponse = response.body()
-                if(userResponse?.status == 1){
+                if (userResponse?.status == 1) {
                     preferences.saveUserDetail(userResponse)
                     val statusCode = userResponse!!.status
                     val token = userResponse!!.accessToken
                     val sku = userResponse!!.skuLog
                     val roles = userResponse!!.role
                     val nick = userResponse!!.nickName
-                        preferences.setName(nick)
-                        preferences.setNAMAp(nick)
-                        preferences.setROLES(roles)
-                        preferences.getRoles()
-                        preferences.setToken(token)
-                        preferences.getAccessToken()
-                        preferences.setSku(sku)
-                        preferences.getSku()
+                    preferences.setName(nick)
+                    preferences.setNAMAp(nick)
+                    preferences.setROLES(roles)
+                    preferences.getRoles()
+                    preferences.setToken(token)
+                    preferences.getAccessToken()
+                    preferences.setSku(sku)
+                    preferences.getSku()
 
-                        goToHome(userResponse   !!.role)
-                }else{
-                    Toast.makeText(applicationContext,"Username/Password Salah", Toast.LENGTH_SHORT).show()
+                    goToHome(userResponse!!.role)
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Username/Password Salah",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     goToLogin()
                 }
             }
@@ -83,23 +94,24 @@ class SignInActivity : AppActivity(), View.OnClickListener{
             }
         })
     }
-    fun goToLogin(){
-        intent = Intent(this  , SignInActivity::class.java)
+
+    fun goToLogin() {
+        intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
     }
 
-    private fun goToHome( roles: String?){
+    private fun goToHome(roles: String?) {
         var intent = Intent()
-        if(roles!!.equals("ROLE_ADMIN")){
-            intent = Intent(this  , MainActivityAdmin::class.java)
-        }else{
+        if (roles!!.equals("ROLE_ADMIN")) {
+            intent = Intent(this, MainActivityAdmin::class.java)
+        } else {
             intent = Intent(this, MainActivity::class.java)
         }
         startActivity(intent)
         finish()
     }
 
-    private fun getUser(): UserRequest{
+    private fun getUser(): UserRequest {
         val requestUser = UserRequest()
         requestUser.username = username.text.toString()
         requestUser.password = password.text.toString()

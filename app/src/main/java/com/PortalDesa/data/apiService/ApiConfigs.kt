@@ -10,6 +10,9 @@ interface ApiConfigs {
         //Auth
         const val SIGN_IN = "/auth/signin"
         const val SIGN_UP = "/auth/signup"
+        const val LUPA_PASSWORD = "/auth/forgetPassword/{username}"
+        const val CHECK_CODE = "/auth/checkCode"
+        const val GANTI_PASSWORD = "/auth/updatePassword/{sku}"
         const val LIST_KECAMATAN = "/kecamatan/"
         const val LIST_DESA_KECAMATAN = "/desa/kecamatan/{kecamatan}"
         const val ADD_DESA_PICTURE = "/desa/add/picture"

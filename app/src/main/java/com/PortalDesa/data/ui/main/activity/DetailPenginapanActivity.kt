@@ -268,7 +268,7 @@ class DetailPenginapanActivity : AppActivity() {
         transaksiPenginapanRequest.harga = (Integer.parseInt(penginapanResponse?.harga.toString()) * Integer.parseInt(et_jumlah.text.toString()))
         transaksiPenginapanRequest.metode = metode
         transaksiPenginapanRequest.lamaMenginap = Integer.parseInt(et_jumlah.text.toString())
-        transaksiPenginapanRequest.checkin = et_tanggal_in.toString()
+        transaksiPenginapanRequest.checkin = et_tanggal_in.text.toString()
         return transaksiPenginapanRequest
     }
 

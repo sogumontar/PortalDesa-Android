@@ -148,9 +148,8 @@
                     <RadioGroup
                         android:id="@+id/radio_group"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="15dp"
                         android:layout_height="wrap_content"
-                        >
+                        android:layout_marginTop="15dp">
 
                         <TextView
                             android:id="@+id/title"
@@ -159,20 +158,20 @@
                             android:text="Metode Pembayaran"
                             android:textSize="20sp"
                             android:textStyle="bold" />
+
                         <RadioButton
                             android:id="@+id/metode_atm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ATM Mandiri"
                             android:onClick="radio_button_click"
-                            />
+                            android:text="ATM Mandiri" />
+
                         <RadioButton
                             android:id="@+id/metode_indomaret"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Atm BRI"
                             android:onClick="radio_button_click"
-                            />
+                            android:text="Atm BRI" />
                     </RadioGroup>
 
                 </LinearLayout>

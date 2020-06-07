@@ -55,6 +55,27 @@ interface ApiServices {
     fun doSignup(@Body signupRequest: SignupRequest): Call<SignupResponse>
 
 
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @POST(ApiConfigs.CHECK_CODE)
+    fun checkVerificationCode(@Body verificationCodeRequest: VerificationCodeRequest): Call<DefaultResponse>
+
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @PUT(ApiConfigs.GANTI_PASSWORD)
+    fun gantiPassword(@Path("sku") sku: String,@Body gantiPasswordRequest: GantiPasswordRequest): Call<DefaultResponse>
+
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.LUPA_PASSWORD)
+    fun lupaPassword(@Path("username") username: String): Call<DefaultResponse>
+
+
     //List Kecamatan
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE
