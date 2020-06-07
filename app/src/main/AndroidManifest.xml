@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".data.ui.main.activity.LupaPasswordActivity"></activity>
         <activity
             android:name=".data.ui.main.activity.test"
             android:label="@string/title_activity_test"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".data.ui.main.activity.DetailArtikelActivity" />
         <activity android:name=".data.ui.main.activity.Form.EditArtikel" />
         <activity android:name=".data.ui.main.activity.Form.TambahArtikelActivity" />
