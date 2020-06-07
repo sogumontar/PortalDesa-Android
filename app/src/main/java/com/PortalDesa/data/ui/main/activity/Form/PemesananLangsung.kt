@@ -234,6 +234,7 @@ class PemesananLangsung : AppActivity(), View.OnClickListener {
     fun goToPesanan() {
         val intent = Intent(this, PesananActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     fun getDataForRequest(): TransaksiRequest {

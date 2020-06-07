@@ -121,13 +121,16 @@ class HomeFragment : Fragment() {
     }
 
     fun displayPopularProduct(){
-        Picasso.get()
-            .load("https://portal-desa.herokuapp.com" + productResponse?.gambar)
-            .into(img_icon)
-        tv_nama.setText(productResponse?.nama)
-        tv_harga.setText(
-            Utils().numberToIDR(productResponse!!.harga!!.toInt(),true))
-        desc.setText(productResponse?.deskripsi)
-        jumlah.setText(productResponse?.jumlahPembelian)
+        if(img_icon!=null) {
+            Picasso.get()
+                .load("https://portal-desa.herokuapp.com" + productResponse?.gambar)
+                .into(img_icon)
+            tv_nama.setText(productResponse?.nama)
+            tv_harga.setText(
+                Utils().numberToIDR(productResponse!!.harga!!.toInt(), true)
+            )
+            desc.setText(productResponse?.deskripsi)
+            jumlah.setText(productResponse?.jumlahPembelian)
+        }
     }
 }

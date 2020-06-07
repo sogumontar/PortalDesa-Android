@@ -11,6 +11,7 @@ import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.base.AppActivity
 import com.PortalDesa.data.model.response.PesananResponse
 import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.adapter.PesananAdapter
 import com.PortalDesa.data.ui.main.adapter.PesananSudahBayarAdapter
@@ -36,6 +37,10 @@ class PesananActivity : AppActivity(), View.OnClickListener {
         btn_tab_3.setOnClickListener(this)
         btn_tab_4.setOnClickListener(this)
         tabSelected(1)
+        if(intent.hasExtra(Flag.ID_PESANAN)) {
+            val position = intent.getIntExtra(Flag.ID_PESANAN, 0)
+            tabSelected(position)
+        }
     }
 
     private fun initView() {

@@ -72,7 +72,9 @@ class PesananAdapter(val context: Context, val list : List<PesananResponse>) : R
 
     fun reload(){
         val intent = Intent(context, PesananActivity::class.java)
+        intent.putExtra(Flag.ID_PESANAN, 1)
         context.startActivity(intent)
+        (context as PesananActivity).finish()
     }
     fun hapus(sku:String){
         if (Connectivity().isNetworkAvailable(context)) {

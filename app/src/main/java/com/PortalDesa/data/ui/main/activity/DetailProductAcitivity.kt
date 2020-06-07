@@ -86,6 +86,7 @@ class DetailProductAcitivity : AppActivity() {
     fun initView() {
         initToolbar(R.id.toolbar)
         tv_toolbar_title.text = "Produk"
+        et_jumlah.setText("1")
 
         if (role.equals("ROLE_MERCHANT")) {
             produk_delete_btn.visibility = View.VISIBLE
@@ -181,6 +182,8 @@ class DetailProductAcitivity : AppActivity() {
                     call: retrofit2.Call<DefaultResponse>,
                     response: Response<DefaultResponse>
                 ) {
+                    dismissProgressDialog()
+                    finish()
                     alertSuccess()
 //                    goToKeranjang()
                 }
@@ -191,6 +194,7 @@ class DetailProductAcitivity : AppActivity() {
                         " Requested API : " + call.request().body()!!
                     )
                     Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                    dismissProgressDialog()
                 }
             })
 
