@@ -66,6 +66,9 @@ class ListPenginapanPerMerchantActivity : AppActivity(), View.OnClickListener {
     }
 
     fun displayProduct(){
+        if(preferences.getRoles().equals("ROLE_MERCHANT")){
+            penginapan_button_create.visibility=View.VISIBLE
+        }
         if (penginapanResponse != null && penginapan_recycler_view != null) {
             val produkListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             penginapan_recycler_view.setLayoutManager(produkListLayoutManager)

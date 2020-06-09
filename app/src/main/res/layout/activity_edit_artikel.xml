@@ -37,10 +37,13 @@
 
                 <EditText
                     android:id="@+id/judul"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:background="@drawable/bg_signup_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:padding="8dp" />
+                    android:padding="10dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,8 +68,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
                         android:background="@drawable/bg_signup_edittext"
-                        android:padding="8dp" />
+                        android:padding="10dp" />
                     <Spinner
                         android:id="@+id/spinner"
                         android:layout_width="match_parent"
@@ -92,8 +97,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:padding="8dp"
-                    android:background="@null"
+                    android:padding="10dp"
+                    android:imeOptions="actionDone"
+                    android:background="@drawable/bg_signup_edittext"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:overScrollMode="always"
@@ -115,10 +121,12 @@
                     android:text=":" />
                 <EditText
                     android:id="@+id/sumber"
+                    android:imeOptions="actionDone"
+                    android:background="@drawable/bg_signup_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:padding="8dp"
+                    android:padding="10dp"
                     android:inputType="textEmailAddress"
                     />
             </LinearLayout>
@@ -137,10 +145,13 @@
                     android:text=":" />
                 <EditText
                     android:id="@+id/penulis"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:background="@drawable/bg_signup_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:padding="8dp"
+                    android:padding="10dp"
                     />
             </LinearLayout>
 

@@ -141,6 +141,12 @@ class DetailDesaActivity : AppActivity(), View.OnClickListener {
         et_namaKD.setText(desaResponse?.namaKepalaDesa)
         et_jumlah.setText(desaResponse?.jumlahPenduduk.toString())
         et_kecamatan.setText(desaResponse?.kec)
+        if (!role.equals("ROLE_MERCHANT")) {
+            et_name.isEnabled=false
+            et_namaKD.isEnabled=false
+            et_jumlah.isEnabled=false
+            et_kecamatan.isEnabled=false
+        }
     }
 
     fun initView() {

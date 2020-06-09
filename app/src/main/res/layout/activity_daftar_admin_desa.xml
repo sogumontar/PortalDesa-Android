@@ -37,8 +37,11 @@ tools:context=".data.ui.main.activity.Form.DaftarAdminDesa">
                 android:id="@+id/namaDesa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:background="@drawable/bg_signup_edittext"
                 android:layout_marginTop="8dp"
-                android:padding="8dp" />
+                android:padding="10dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,8 +62,10 @@ tools:context=".data.ui.main.activity.Form.DaftarAdminDesa">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"
+                android:imeOptions="actionDone"
+                android:inputType="text"
                 android:background="@drawable/bg_signup_edittext"
-                android:padding="8dp" />
+                android:padding="10dp" />
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
@@ -83,7 +88,10 @@ tools:context=".data.ui.main.activity.Form.DaftarAdminDesa">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:padding="8dp" />
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:background="@drawable/bg_signup_edittext"
+                android:padding="10dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -100,7 +108,9 @@ tools:context=".data.ui.main.activity.Form.DaftarAdminDesa">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:padding="8dp"
+                android:padding="10dp"
+                android:imeOptions="actionDone"
+                android:background="@drawable/bg_signup_edittext"
                 android:inputType="textEmailAddress"
                 />
         </LinearLayout>
@@ -119,7 +129,9 @@ tools:context=".data.ui.main.activity.Form.DaftarAdminDesa">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:padding="8dp"
+                android:padding="10dp"
+                android:imeOptions="actionDone"
+                android:background="@drawable/bg_signup_edittext"
                 android:inputType="textPassword"
                 />
         </LinearLayout>
@@ -138,7 +150,9 @@ tools:context=".data.ui.main.activity.Form.DaftarAdminDesa">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:padding="8dp"
+                android:padding="10dp"
+                android:imeOptions="actionDone"
+                android:background="@drawable/bg_signup_edittext"
                 android:inputType="textPassword"
                 />
         </LinearLayout>

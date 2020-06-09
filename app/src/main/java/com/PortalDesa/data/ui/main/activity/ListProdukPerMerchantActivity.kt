@@ -99,6 +99,9 @@ class ListProdukPerMerchantActivity : AppActivity(), View.OnClickListener {
     }
 
     fun displayProduct(){
+        if(preferences.getRoles().equals("ROLE_MERCHANT")){
+            button_create_produk.visibility=View.VISIBLE
+        }
         if (productResponse != null && recycler_view_produk != null) {
             val mainMenuLayoutManager = GridLayoutManager(this, 2)
             recycler_view_produk.setLayoutManager(mainMenuLayoutManager)
