@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center">
+
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="285dp"
+        android:layout_height="202dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:foregroundGravity="center"
+        android:scaleType="fitXY"
+        android:src="@drawable/logoportaldesa" />
+
+</RelativeLayout>
