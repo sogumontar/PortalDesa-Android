@@ -20,6 +20,7 @@ class PopularVilageAdapter(val context: Context, var listKec : List<KecamatanRes
         val tvDesc = v.tv_desc
         val imgPopular = v.img_icon
         val ln_product = v.ln_product
+        val harga = v.tv_harga
     }
 
     fun filterList(myDataset: List<KecamatanResponse>) {
@@ -44,6 +45,7 @@ class PopularVilageAdapter(val context: Context, var listKec : List<KecamatanRes
             .load("https://portal-desa.herokuapp.com/kecamatan/get/"+listKec.get(position).nama+".jpg")
             .into(holder.imgPopular)
 
+        holder.harga.visibility=View.GONE
         holder.tvDesc.text = "Kecamatan " + listKec.get(position).nama
         holder.ln_product.setOnClickListener(View.OnClickListener {
             val intent = Intent(context, DetailKecamatanActivtiy::class.java)

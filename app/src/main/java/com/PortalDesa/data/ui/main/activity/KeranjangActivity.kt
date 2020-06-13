@@ -98,7 +98,9 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                         if(listProduk!!.size==0){
                             Toast.makeText(applicationContext,"Produk di Keranjang Belum ada",Toast.LENGTH_SHORT).show()
                             Timer("SettingUp", false).schedule(1000) {
-                                finish()
+
+                                checkAlamat()
+                                displayProduct()
                             }
                         }else{
                             checkAlamat()
@@ -131,7 +133,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
         }
         totall=hargaTotal
         total.setText(Utils().numberToIDR(totall!!, true))
-        if (keranjangResponse != null) {
+        if (keranjangResponse!!.size != 0) {
             val produkListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             recycler_view_keranjang.setLayoutManager(produkListLayoutManager)
 
@@ -212,6 +214,12 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
         startActivity(intent)
         finish()
     }
+
+    fun goToKeranjang(){
+        val intent = Intent(this, KeranjangActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
     private fun getAlamatRequest(): CustomerRequest{
         val customerRequest = CustomerRequest()
         customerRequest.id = UUID.randomUUID().toString()
@@ -249,6 +257,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                     response: Response<DefaultResponse>
                 ) {
                     val listProduk = response.body()
+                    goToKeranjang()
                     dismissProgressDialog()
                 }
 
@@ -271,6 +280,7 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
                     call: retrofit2.Call<DefaultResponse>,
                     response: Response<DefaultResponse>
                 ) {
+                    goToKeranjang()
                     dismissProgressDialog()
                 }
 
@@ -295,21 +305,29 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
     fun simpanTransaksi(){
         showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
-            val client = APIServiceGenerator().createService
-            val call = client.addTransaction(getDataForRequest())
-            call.enqueue(object : retrofit2.Callback<DefaultResponse> {
-                override fun onResponse(
-                    call: retrofit2.Call<DefaultResponse>,
-                    response: Response<DefaultResponse>
-                ) {
-                    goToMain()
-                }
+            if(keranjangResponse!!.size != 0) {
+                val client = APIServiceGenerator().createService
+                val call = client.addTransaction(getDataForRequest())
+                call.enqueue(object : retrofit2.Callback<DefaultResponse> {
+                    override fun onResponse(
+                        call: retrofit2.Call<DefaultResponse>,
+                        response: Response<DefaultResponse>
+                    ) {
+                        goToMain()
+                    }
 
-                override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
-                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
-                }
-            })
+                    override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
+                        Log.i(
+                            this.javaClass.simpleName,
+                            " Requested API : " + call.request().body()!!
+                        )
+                        Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                    }
+                })
+            }else{
+                Toast.makeText(this,"Keranjang andakosong",Toast.LENGTH_SHORT).show()
+                dismissProgressDialog()
+            }
 
         }
     }

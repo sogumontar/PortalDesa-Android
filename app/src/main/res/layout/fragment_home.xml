@@ -58,7 +58,7 @@
                     android:layout_weight="1"
                     android:gravity="right"
                     android:text="Lihat lainnya >>  "
-                    android:textColor="@color/trio_bar_red"
+                    android:textColor="@color/blue_secondary"
                     android:textSize="16sp" />
 
             </LinearLayout>
