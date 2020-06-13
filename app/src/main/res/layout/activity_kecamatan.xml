@@ -76,7 +76,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_kecamatan"
             android:layout_width="match_parent"
-            android:layout_height="453dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@color/white" />
 

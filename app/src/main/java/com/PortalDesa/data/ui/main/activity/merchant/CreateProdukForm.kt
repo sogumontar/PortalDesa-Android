@@ -196,7 +196,7 @@ return
         {
             if (data != null)
             {
-                val contentURI = data!!.data
+                val contentURI = data.data
                 try
                 {
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
@@ -228,7 +228,7 @@ return
     }
     fun saveImage(myBitmap: Bitmap):String {
         val request = PenginapanImageRequest()
-        request.nama = preferences!!.getSku()
+        request.nama = preferences.getSku()
         request.gambar = "image, "+getImageStringBase64(myBitmap)
 
         penginapanImageRequest = request

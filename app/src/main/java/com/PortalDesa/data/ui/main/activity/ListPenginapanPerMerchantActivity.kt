@@ -19,6 +19,7 @@ import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.merchant.CreatePenginapanForm
 import com.PortalDesa.data.ui.main.adapter.ListPenginapanAdapter
 import kotlinx.android.synthetic.main.activity_list_penginapan_per_merchant.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Response
 import java.util.ArrayList
 
@@ -84,6 +85,9 @@ class ListPenginapanPerMerchantActivity : AppActivity(), View.OnClickListener {
         startActivity(intent)
     }
     fun initView(){
+        initToolbar(R.id.toolbar)
+        val name = intent.getStringExtra(Flag.NAMA_DESA)
+        tv_toolbar_title.text = "Penginapan Desa"
         et_search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".data.ui.main.activity.SignUpActivity">
+    android:orientation="vertical">
     <include layout="@layout/toolbar" />
 
     <LinearLayout
@@ -24,7 +23,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/black_home"
-            android:textSize="20sp"/>
+            android:textSize="24sp"/>
         <ViewAnimator
             android:id="@+id/view_animator"
             android:layout_width="match_parent"

@@ -27,6 +27,7 @@ import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.support.TopSnackBar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_desa.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -67,7 +68,12 @@ class DetailDesaActivity : AppActivity(), View.OnClickListener {
         btn_update.setOnClickListener(this)
         btn_produk.setOnClickListener(this)
         btn_penginapan.setOnClickListener(this)
+        initView()
         initData()
+    }
+    fun initView(){
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Detail Desa"
     }
 
     private fun showPictureDialog() {
@@ -117,7 +123,7 @@ class DetailDesaActivity : AppActivity(), View.OnClickListener {
                     skuDesa = desaResponse!!.skuAdmin!!
                     displayProduct()
                     dismissProgressDialog()
-                    initView()
+                    displayData()
                 }
 
                 override fun onFailure(call: retrofit2.Call<DesaResponse>, t: Throwable) {
@@ -149,7 +155,7 @@ class DetailDesaActivity : AppActivity(), View.OnClickListener {
         }
     }
 
-    fun initView() {
+    fun displayData() {
         if (role.equals("ROLE_MERCHANT") && skuLogin.equals(skuDesa)) {
             img_icon.visibility = View.GONE
             btn_image.visibility = View.VISIBLE
@@ -167,11 +173,13 @@ class DetailDesaActivity : AppActivity(), View.OnClickListener {
     fun goToPenginapan(){
         val intent = Intent(this, ListPenginapanPerMerchantActivity::class.java)
         intent.putExtra(Flag.SKU_MERCHANT,desaResponse!!.skuAdmin )
+        intent.putExtra(Flag.NAMA_DESA,desaResponse!!.nama )
         startActivity(intent)
     }
     fun goToProduk(){
         val intent = Intent(this, ListProdukPerMerchantActivity::class.java)
         intent.putExtra(Flag.SKU_Penginapan_MERCHANT,desaResponse!!.skuAdmin )
+        intent.putExtra(Flag.NAMA_DESA,desaResponse!!.nama )
         startActivity(intent)
     }
 
@@ -190,9 +198,6 @@ class DetailDesaActivity : AppActivity(), View.OnClickListener {
                 call: retrofit2.Call<DefaultResponse>,
                 response: Response<DefaultResponse>
             ) {
-                val signupResponse = response.body()
-                val sksu=sku
-
                 finish()
             }
 

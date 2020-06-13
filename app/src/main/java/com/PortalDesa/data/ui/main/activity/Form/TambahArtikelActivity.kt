@@ -17,6 +17,7 @@ import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.ArtikelActivity
 import kotlinx.android.synthetic.main.activity_tambah_artikel.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Response
 
 class TambahArtikelActivity : AppActivity(), View.OnClickListener  {
@@ -30,6 +31,7 @@ class TambahArtikelActivity : AppActivity(), View.OnClickListener  {
         jenisVal.setOnClickListener(this)
         btn_simpan_artikel.setOnClickListener(this)
         preferences = Preferences(this)
+        initView()
         spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -40,6 +42,11 @@ class TambahArtikelActivity : AppActivity(), View.OnClickListener  {
             }
 
         }
+    }
+
+    fun initView(){
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Tambah Artikel"
     }
 
     private fun showDataKecamatan(){

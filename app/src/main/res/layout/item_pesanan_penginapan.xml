@@ -130,7 +130,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/pesanan_lama_menginap"
+                        android:id="@+id/tv_lama_menginap"
                         android:layout_width="194dp"
                         android:layout_height="wrap_content"
                         android:text=".........."
@@ -210,7 +210,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/checkin"
+                        android:id="@+id/tv_tgl_checkin"
                         android:layout_width="195dp"
                         android:layout_height="wrap_content"
                         android:text="...."

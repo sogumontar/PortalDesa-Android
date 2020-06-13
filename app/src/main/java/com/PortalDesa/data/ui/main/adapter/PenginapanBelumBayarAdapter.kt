@@ -37,6 +37,8 @@ class PenginapanBelumBayarAdapter(val context: Context, val list : List<Transaks
         val btn_bayar = v.btn_bayar
         val penginapan_alamat = v.penginapan_alamat
         val img = v.img_icon
+        val tv_tgl_checkin = v.tv_tgl_checkin
+        val tv_lama_menginap = v.tv_lama_menginap
     }
 
 
@@ -62,7 +64,7 @@ class PenginapanBelumBayarAdapter(val context: Context, val list : List<Transaks
                 ) {
                     val listProduk = response.body()
                     holder.penginapan_alamat.text = listProduk!!.nama
-                    holder.alamat.text = listProduk!!.lokasi
+                    holder.alamat.text = listProduk.lokasi
                     Picasso.get()
                         .load("https://portal-desa.herokuapp.com" + listProduk.gambar)
                         .into(holder.img)
@@ -76,6 +78,8 @@ class PenginapanBelumBayarAdapter(val context: Context, val list : List<Transaks
 
         }
         holder.harga.text = list.get(position).harga.toString()
+        holder.tv_tgl_checkin.text = list.get(position).checkin.toString()
+        holder.tv_lama_menginap.text = list.get(position).lamaMenginap.toString()
         holder.metode.text = list.get(position).metode
         holder.btn_delete.setOnClickListener(View.OnClickListener {
             hapus(list.get(position).id!!)
@@ -88,10 +92,14 @@ class PenginapanBelumBayarAdapter(val context: Context, val list : List<Transaks
     }
 
     fun reload(){
+        (context as PesananActivity).dismissProgressDialog()
         val intent = Intent(context, PesananActivity::class.java)
+        intent.putExtra(Flag.ID_PESANAN, 3)
         context.startActivity(intent)
+        (context as PesananActivity).finish()
     }
     fun hapus(sku:String){
+        (context as PesananActivity).showProgressDialog()
         if (Connectivity().isNetworkAvailable(context)) {
             val client = APIServiceGenerator().createService
             val call = client.cancelPesananPenginapan(sku)
@@ -104,7 +112,7 @@ class PenginapanBelumBayarAdapter(val context: Context, val list : List<Transaks
                     reload()
                 }
                 override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
-
+                    (context as PesananActivity).dismissProgressDialog()
                 }
             })
 

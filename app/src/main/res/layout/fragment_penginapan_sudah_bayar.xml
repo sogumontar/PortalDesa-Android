@@ -12,7 +12,7 @@
     <ViewAnimator
         android:id="@+id/view_animator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:animateFirstView="true">
 
@@ -24,9 +24,18 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_pesanan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/white" />
 
     </ViewAnimator>
+    <TextView
+        android:id="@+id/tv_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="Belum ada pesanan"
+        android:textColor="@color/soft_grey"
+        />
 
 </LinearLayout>

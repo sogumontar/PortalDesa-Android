@@ -12,6 +12,7 @@ import com.PortalDesa.data.model.request.GantiPasswordRequest
 import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.support.Preferences
 import kotlinx.android.synthetic.main.activity_ganti_password.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -25,6 +26,12 @@ class GantiPasswordActivity : AppActivity() , View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ganti_password)
         btnKirim.setOnClickListener(this)
+        initView()
+    }
+
+    fun initView(){
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Ganti Password"
     }
 
     fun gantiPassword(){

@@ -48,8 +48,11 @@ class BayarPesananPenginapanActivity : AppActivity() {
         preferences = Preferences(this)
         btn_image.setOnClickListener { showPictureDialog() }
         btn_send.setOnClickListener {
-
-            uploadImagePenginapan(transaksiRequest!!)
+            if(!name.equals("")) {
+                uploadImagePenginapan(transaksiRequest!!)
+            }else{
+                Toast.makeText(this,"Pilih Ganbar terlebih dahulu", Toast.LENGTH_LONG).show()
+            }
         }
     }
     fun uploadImagePenginapan(request: TransaksiRequest) {
@@ -82,7 +85,9 @@ class BayarPesananPenginapanActivity : AppActivity() {
     }
     fun goToPesanan() {
         val intent = Intent(this, PesananActivity::class.java)
+        intent.putExtra(Flag.ID_PESANAN, 3)
         startActivity(intent)
+        finish()
     }
     private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(this)

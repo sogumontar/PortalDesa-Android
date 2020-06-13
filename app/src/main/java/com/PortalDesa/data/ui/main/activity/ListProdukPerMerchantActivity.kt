@@ -19,6 +19,7 @@ import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.merchant.CreateProdukForm
 import com.PortalDesa.data.ui.main.adapter.ListProductAdapter
 import kotlinx.android.synthetic.main.activity_list_produk_per_merchant.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Response
 
 class ListProdukPerMerchantActivity : AppActivity(), View.OnClickListener {
@@ -37,6 +38,9 @@ class ListProdukPerMerchantActivity : AppActivity(), View.OnClickListener {
         initData()
     }
     fun initData() {
+        initToolbar(R.id.toolbar)
+        val name = intent.getStringExtra(Flag.NAMA_DESA)
+        tv_toolbar_title.text = "Produk Desa"
         val role = preferences.getRoles()
         et_search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {

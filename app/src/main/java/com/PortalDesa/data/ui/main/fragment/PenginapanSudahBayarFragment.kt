@@ -16,7 +16,11 @@ import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.adapter.PenginapanBelumBayarAdapter
 import com.PortalDesa.data.ui.main.adapter.PenginapanSudahDibayarAdapter
+import kotlinx.android.synthetic.main.fragment_belum_bayar.*
 import kotlinx.android.synthetic.main.fragment_penginapan_sudah_bayar.*
+import kotlinx.android.synthetic.main.fragment_penginapan_sudah_bayar.recycler_view_pesanan
+import kotlinx.android.synthetic.main.fragment_penginapan_sudah_bayar.tv_no_data
+import kotlinx.android.synthetic.main.fragment_penginapan_sudah_bayar.view_animator
 import retrofit2.Response
 
 /**
@@ -80,6 +84,9 @@ class PenginapanSudahBayarFragment() : Fragment(){
             val adapter = PenginapanSudahDibayarAdapter(activity as Context, list)
             view_animator.setDisplayedChild(1)
             recycler_view_pesanan.setAdapter(adapter)
+            if(list.size==0){
+                tv_no_data.visibility = View.VISIBLE
+            }
         }
 
     }

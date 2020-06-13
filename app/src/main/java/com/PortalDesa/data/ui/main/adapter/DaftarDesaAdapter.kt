@@ -56,7 +56,6 @@ class DaftarDesaAdapter(val context: Context,val listDesa : List<ListDesaKecamat
 
     fun goToDetailDesa(id:String){
         val intent = Intent(context, DetailDesaActivity::class.java)
-        val s=id
         intent.putExtra(Flag.NAMA_DESA,id )
         context.startActivity(intent)
     }

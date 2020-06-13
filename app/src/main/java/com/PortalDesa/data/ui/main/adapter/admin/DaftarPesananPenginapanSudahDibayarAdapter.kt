@@ -35,7 +35,7 @@ class DaftarPesananPenginapanSudahDibayarAdapter(val context: Context, val listP
         val alamat = v.pesanan_alamat
         val img_icons = v.img_icon
         val penginapan = v.penginapan_alamat
-        val lama = v.pesanan_lama_menginap
+        val lama = v.tv_lama_menginap
         val metode = v.pesanan_metode
         val harga = v.penginapan_harga
         val btnBayar = v.btn_bayar
@@ -46,7 +46,7 @@ class DaftarPesananPenginapanSudahDibayarAdapter(val context: Context, val listP
         val s_diterima= v.status_diterima
         val s_ditolak= v.status_ditolak
         val admin= v.lin_admin
-        val checkin= v.checkin
+        val checkin= v.tv_tgl_checkin
 
     }
 
@@ -91,17 +91,17 @@ class DaftarPesananPenginapanSudahDibayarAdapter(val context: Context, val listP
         }
 
         if(preferences.getRoles().equals("ROLE_ADMIN")){
-            holder?.btnDelete.visibility=View.GONE
+            holder.btnDelete.visibility=View.GONE
 
             if(listPesanan.get(position).status == 2){
-                holder?.btnTerima.setOnClickListener{
+                holder.btnTerima.setOnClickListener{
                     terima(listPesanan.get(position).id!!)
                 }
-                holder?.btnTolak.setOnClickListener{
+                holder.btnTolak.setOnClickListener{
                     tolak(listPesanan.get(position).id!!)
                 }
 
-                holder?.admin.visibility=View.VISIBLE
+                holder.admin.visibility=View.VISIBLE
                 holder.s_menunggu.visibility=View.VISIBLE
             }else if(listPesanan.get(position).status == 3){
                 holder.s_diterima.visibility=View.VISIBLE
@@ -110,11 +110,11 @@ class DaftarPesananPenginapanSudahDibayarAdapter(val context: Context, val listP
                 holder.s_ditolak.visibility=View.VISIBLE
             }
         }
-        holder?.btnBayar.visibility=View.GONE
-        holder?.lama.text = listPesanan.get(position).lamaMenginap.toString()
-        holder?.metode.text = listPesanan.get(position).metode
-        holder?.harga.text = Utils().numberToIDR(listPesanan.get(position).harga!!.toInt(),true)
-        holder?.checkin.text = listPesanan.get(position).checkin
+        holder.btnBayar.visibility=View.GONE
+        holder.lama.text = listPesanan.get(position).lamaMenginap.toString()
+        holder.metode.text = listPesanan.get(position).metode
+        holder.harga.text = Utils().numberToIDR(listPesanan.get(position).harga!!.toInt(),true)
+        holder.checkin.text = listPesanan.get(position).checkin
     }
 
     fun terima(id:String){

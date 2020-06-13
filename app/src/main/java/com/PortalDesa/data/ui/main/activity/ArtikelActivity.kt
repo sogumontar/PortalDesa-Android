@@ -6,11 +6,13 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.PortalDesa.R
 import com.PortalDesa.data.base.AppActivity
+import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.fragment.ArtikelFragment
 import com.PortalDesa.data.ui.main.fragment.BeritaFragment
 import com.PortalDesa.data.ui.main.fragment.PengumumanFragment
 import kotlinx.android.synthetic.main.activity_artikel.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class ArtikelActivity : AppActivity(), View.OnClickListener  {
     lateinit var preferences: Preferences
@@ -23,6 +25,16 @@ class ArtikelActivity : AppActivity(), View.OnClickListener  {
         btn_tab_2.setOnClickListener(this)
         btn_tab_3.setOnClickListener(this)
         tabSelected(1)
+        if(intent.hasExtra(Flag.Id_Artikel)) {
+            val position = intent.getIntExtra(Flag.Id_Artikel, 0)
+            tabSelected(position)
+        }
+        initView()
+    }
+
+    fun initView(){
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Artikel"
     }
 
     private fun tabSelected(position: Int) {

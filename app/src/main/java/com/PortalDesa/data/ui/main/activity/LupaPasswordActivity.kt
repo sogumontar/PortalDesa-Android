@@ -11,6 +11,7 @@ import com.PortalDesa.data.base.AppActivity
 import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.support.Preferences
 import kotlinx.android.synthetic.main.activity_lupa_password.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -24,8 +25,13 @@ class LupaPasswordActivity : AppActivity(), View.OnClickListener {
 
         preferences = Preferences(this)
         btnKirim.setOnClickListener(this)
+        initView()
     }
 
+    fun initView(){
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Lupa Password"
+    }
 
     fun kirimKode(){
         showProgressDialog()

@@ -8,32 +8,21 @@
     tools:context=".data.ui.main.activity.MainActivity"
     >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/tab_layout_wrapper"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:clickable="true"
-        android:gravity="center"
-        android:orientation="vertical">
-
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/tab_layout"
-            android:layout_above="@+id/tab_layout_wrapper">
-
+            android:layout_above="@+id/tab_layout">
         </FrameLayout>
-
-
 
         <LinearLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="62dp"
             android:background="@color/blue_primary"
+            android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent">
 
@@ -142,10 +131,5 @@
             </LinearLayout>
 
         </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
 </RelativeLayout>

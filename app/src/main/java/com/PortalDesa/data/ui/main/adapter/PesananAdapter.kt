@@ -71,12 +71,14 @@ class PesananAdapter(val context: Context, val list : List<PesananResponse>) : R
     }
 
     fun reload(){
+        (context as PesananActivity).dismissProgressDialog()
         val intent = Intent(context, PesananActivity::class.java)
         intent.putExtra(Flag.ID_PESANAN, 1)
         context.startActivity(intent)
         (context as PesananActivity).finish()
     }
     fun hapus(sku:String){
+        (context as PesananActivity).showProgressDialog()
         if (Connectivity().isNetworkAvailable(context)) {
             val client = APIServiceGenerator().createService
             val call = client.cancelPesanan(sku)
@@ -89,7 +91,7 @@ class PesananAdapter(val context: Context, val list : List<PesananResponse>) : R
                     reload()
                 }
                 override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
-
+                    (context as PesananActivity).dismissProgressDialog()
                 }
             })
 

@@ -50,11 +50,15 @@ class PengumumanAdapter(val context: Context, var data: List<ArtikelResponse>) :
     }
 
     fun reload() {
-        val intents = Intent(context, ArtikelActivity::class.java)
-        context.startActivity(intents)
+        (context as ArtikelActivity).dismissProgressDialog()
+        val intent = Intent(context, ArtikelActivity::class.java)
+        intent.putExtra(Flag.Id_Artikel, 3)
+        context.startActivity(intent)
+        (context as ArtikelActivity).finish()
     }
 
     fun delete(sku: String = "") {
+        (context as ArtikelActivity).showProgressDialog()
         if (Connectivity().isNetworkAvailable(context)) {
             val client = APIServiceGenerator().createService
             val call = client.deletePenginapan(sku)
@@ -68,7 +72,7 @@ class PengumumanAdapter(val context: Context, var data: List<ArtikelResponse>) :
                 }
 
                 override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
-
+                    (context as ArtikelActivity).dismissProgressDialog()
                 }
             })
 
