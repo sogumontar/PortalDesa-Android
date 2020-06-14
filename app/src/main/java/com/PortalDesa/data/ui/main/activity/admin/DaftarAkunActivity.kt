@@ -20,6 +20,8 @@ import kotlinx.android.synthetic.main.toolbar.*
         btn_tab_1.setOnClickListener(this)
         btn_tab_2.setOnClickListener(this)
         tabSelected(1)
+        l1.visibility=View.GONE
+        l2.visibility=View.GONE
     }
 
         private fun initView() {
