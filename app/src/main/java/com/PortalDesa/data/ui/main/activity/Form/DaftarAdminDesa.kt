@@ -16,6 +16,8 @@ import com.PortalDesa.data.model.request.DaftarAdminDesaRequest
 import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.model.response.KecamatanResponse
 import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.support.FormValidation
+import com.PortalDesa.data.support.TopSnackBar
 import com.PortalDesa.data.ui.main.activity.admin.MainActivityAdmin
 import kotlinx.android.synthetic.main.activity_daftar_admin_desa.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -24,20 +26,26 @@ import retrofit2.Response
 
 
 class DaftarAdminDesa : AppActivity(), View.OnClickListener {
+    lateinit var topSnackBar: TopSnackBar
     private var listNamaKecamatan: ArrayList<String> = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        topSnackBar = TopSnackBar()
         setContentView(R.layout.activity_daftar_admin_desa)
         btn_admin_daftar_merchant.setOnClickListener(this)
         et_kecamatan.setOnClickListener(this)
-        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    et_kecamatan.setText(spinner.selectedItem.toString())
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                et_kecamatan.setText(spinner.selectedItem.toString())
             }
 
         }
@@ -56,11 +64,12 @@ class DaftarAdminDesa : AppActivity(), View.OnClickListener {
         }
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
     fun initAdapter() {
         hideKeyboard(this)
-        if(listNamaKecamatan.size>0){
+        if (listNamaKecamatan.size > 0) {
             showDataKecamatan(listNamaKecamatan)
-        }else {
+        } else {
             showProgressDialog()
             if (Connectivity().isNetworkAvailable(this)) {
                 val client = APIServiceGenerator().createService
@@ -90,11 +99,12 @@ class DaftarAdminDesa : AppActivity(), View.OnClickListener {
         }
     }
 
-    private fun showDataKecamatan(list : ArrayList<String>){
+    private fun showDataKecamatan(list: ArrayList<String>) {
 
         val adapter = ArrayAdapter(
             this,
-            android.R.layout.simple_spinner_item, list)
+            android.R.layout.simple_spinner_item, list
+        )
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Apply the adapter to the spinner
@@ -112,23 +122,28 @@ class DaftarAdminDesa : AppActivity(), View.OnClickListener {
     }
 
     fun simpan() {
-        showProgressDialog()
-        if (Connectivity().isNetworkAvailable(this)) {
-            val client = APIServiceGenerator().createService
-            val call = client.createDataMerchant(getData())
-            call.enqueue(object : retrofit2.Callback<DefaultResponse> {
-                override fun onResponse(
-                    call: retrofit2.Call<DefaultResponse>,
-                    response: Response<DefaultResponse>
-                ) {
-                    goToMainActivity()
-                }
+        if (checkField()) {
+            showProgressDialog()
+            if (Connectivity().isNetworkAvailable(this)) {
+                val client = APIServiceGenerator().createService
+                val call = client.createDataMerchant(getData())
+                call.enqueue(object : retrofit2.Callback<DefaultResponse> {
+                    override fun onResponse(
+                        call: retrofit2.Call<DefaultResponse>,
+                        response: Response<DefaultResponse>
+                    ) {
+                        goToMainActivity()
+                    }
 
-                override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
-                    Log.i(this.javaClass.simpleName, " Requested API : " + call.request().body()!!)
-                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
-                }
-            })
+                    override fun onFailure(call: retrofit2.Call<DefaultResponse>, t: Throwable) {
+                        Log.i(
+                            this.javaClass.simpleName,
+                            " Requested API : " + call.request().body()!!
+                        )
+                        Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                    }
+                })
+            }
         }
     }
 
@@ -142,12 +157,44 @@ class DaftarAdminDesa : AppActivity(), View.OnClickListener {
         daftarAdminDesaRequest.nama = namaDesa.text.toString()
 //        daftarAdminDesaRequest.kecamatan = kecamatan.text.toString()
         daftarAdminDesaRequest.kecamatan = spinner.selectedItem.toString()
-        val kec=spinner.selectedItem.toString()
+        val kec = spinner.selectedItem.toString()
         daftarAdminDesaRequest.username = username.text.toString()
         daftarAdminDesaRequest.email = email.text.toString()
         daftarAdminDesaRequest.password = password.text.toString()
         daftarAdminDesaRequest.confirmPassword = confirmPassword.text.toString()
         return daftarAdminDesaRequest
+    }
+
+    private fun showMessage(message: String) {
+        topSnackBar.showError(this, findViewById(R.id.snackbar_container), message)
+    }
+
+    private fun checkField(): Boolean {
+        var check = true
+        if (!FormValidation().required(namaDesa.getText().toString())) {
+            showMessage("Nama Desa tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(et_kecamatan.getText().toString())) {
+            showMessage("Kecamatan tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(username.getText().toString())) {
+            showMessage("Username tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(email.getText().toString())) {
+            showMessage("Email tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(password.getText().toString())) {
+            showMessage("Password tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(confirmPassword.getText().toString())) {
+            showMessage("Confirm Password tidak boleh kosong")
+            check = false
+        } else if (confirmPassword.getText().equals(password.getText())) {
+            showMessage("Password Tidak Sama")
+            check = false
+        }
+
+        return check
     }
 
     override fun onClick(v: View?) {

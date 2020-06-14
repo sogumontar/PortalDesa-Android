@@ -7,7 +7,6 @@ import com.PortalDesa.R
 import com.PortalDesa.data.base.AppActivity
 import com.PortalDesa.data.ui.main.fragment.DaftarAkunFragment
 import com.PortalDesa.data.ui.main.fragment.admin.DaftarAkunAdminFragment
-import com.PortalDesa.data.ui.main.fragment.admin.AkunAdminFragment
 import kotlinx.android.synthetic.main.activity_pesanan.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -20,11 +19,11 @@ import kotlinx.android.synthetic.main.toolbar.*
         btn_tab_1.setOnClickListener(this)
         btn_tab_2.setOnClickListener(this)
         tabSelected(1)
-        l1.visibility=View.GONE
-        l2.visibility=View.GONE
+
     }
 
         private fun initView() {
+
             initToolbar(R.id.toolbar)
             tv_toolbar_title.text = "Daftar Akun"
         }

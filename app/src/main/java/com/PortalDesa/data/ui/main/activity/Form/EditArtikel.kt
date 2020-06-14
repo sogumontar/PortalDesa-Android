@@ -15,9 +15,7 @@ import com.PortalDesa.data.base.AppActivity
 import com.PortalDesa.data.model.request.ArtikelRequest
 import com.PortalDesa.data.model.response.ArtikelResponse
 import com.PortalDesa.data.model.response.DefaultResponse
-import com.PortalDesa.data.support.Connectivity
-import com.PortalDesa.data.support.Flag
-import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.support.*
 import com.PortalDesa.data.ui.main.activity.ArtikelActivity
 import kotlinx.android.synthetic.main.activity_edit_artikel.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -25,6 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class EditArtikel : AppActivity(), View.OnClickListener {
+    lateinit var topSnackBar: TopSnackBar
     var idArtikel = ""
     var jenis =
         arrayOf("Artikel", "Berita", "Pengumuman")
@@ -36,6 +35,7 @@ class EditArtikel : AppActivity(), View.OnClickListener {
         jenisVal.setOnClickListener(this)
         btn_simpan_artikel.setOnClickListener(this)
         preferences = Preferences(this)
+        topSnackBar = TopSnackBar()
         idArtikel = intent.getStringExtra(Flag.Id_Artikel)
         initView()
         spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -160,7 +160,32 @@ class EditArtikel : AppActivity(), View.OnClickListener {
         return artikelRequest
     }
 
+    private fun checkField(): Boolean {
+        var check = true
+        if (!FormValidation().required(judul.getText().toString())) {
+            showMessage("Judul tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(jenisVal.getText().toString())) {
+            showMessage("Jenis tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(isi.getText().toString())) {
+            showMessage("Isi tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(sumber.getText().toString())) {
+            showMessage("Sumber tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(penulis.getText().toString())) {
+            showMessage("Penulis tidak boleh kosong")
+            check = false
+        }
 
+        return check
+    }
+
+
+    private fun showMessage(message: String) {
+        topSnackBar.showError(this, findViewById(R.id.snackbar_container), message)
+    }
     override fun onClick(v: View?) {
         when (v!!.id) {
             jenisVal.id -> showDataKecamatan()

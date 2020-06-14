@@ -18,6 +18,7 @@ import com.PortalDesa.data.model.request.PenginapanImageRequest
 import com.PortalDesa.data.model.response.PenginapanImageResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
+import com.PortalDesa.data.support.TopSnackBar
 import kotlinx.android.synthetic.main.activity_penginapan_form.*
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +36,7 @@ class PenginapanForm : AppActivity() {
 
     var preferences: Preferences? = null
 
+    lateinit var topSnackBar: TopSnackBar
     var penginapanImageRequest: PenginapanImageRequest? = null
 
     var name: String = ""
@@ -43,6 +45,7 @@ class PenginapanForm : AppActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_penginapan_form)
         preferences = Preferences(this)
+        topSnackBar = TopSnackBar()
         btn_image.setOnClickListener { showPictureDialog() }
         btn_send.setOnClickListener {
 

@@ -19,6 +19,7 @@ import com.PortalDesa.data.model.request.PenginapanRequest
 import com.PortalDesa.data.model.response.PenginapanImageResponse
 import com.PortalDesa.data.model.response.ProfileResponse
 import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.support.FormValidation
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.support.TopSnackBar
 import com.PortalDesa.data.ui.main.activity.PenginapanActivity
@@ -36,8 +37,8 @@ import java.util.*
 class CreatePenginapanForm : AppActivity(), View.OnClickListener {
     var sku: String = ""
     var nickName: String = ""
-    lateinit var preferences: Preferences
     lateinit var topSnackBar: TopSnackBar
+    lateinit var preferences: Preferences
     private val GALLERY = 1
     private val CAMERA = 2
     var name: String = ""
@@ -47,6 +48,7 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
         preferences = Preferences(this)
         super.onCreate(savedInstanceState)
         sku = preferences.getSku()
+        topSnackBar = TopSnackBar()
         nickName = preferences.getNamap()
         setContentView(R.layout.activity_create_penginapan_form)
         btn_image.setOnClickListener { showPictureDialog() }
@@ -63,7 +65,7 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
         tv_toolbar_title.text = "Penginapan"
     }
 
-        private fun showPictureDialog() {
+    private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(this)
         pictureDialog.setTitle("Select Action")
         val pictureDialogItems = arrayOf("Select photo from gallery", "Capture photo from camera")
@@ -103,7 +105,7 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
         return imageStringBase64
     }
 
-    fun uploadImagePenginapan(request : PenginapanImageRequest){
+    fun uploadImagePenginapan(request: PenginapanImageRequest) {
         showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService
@@ -137,24 +139,25 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
     }
 
     fun save(request: PenginapanRequest) {
-        showProgressDialog()
-        val client = APIServiceGenerator().createService
-        val call = client.addPenginapan(request)
-        call.enqueue(object : Callback<PenginapanRequest> {
-            override fun onResponse(
-                call: retrofit2.Call<PenginapanRequest>,
-                response: Response<PenginapanRequest>
-            ) {
-                dismissProgressDialog()
-                goToPenginapan()
-                finish()
-            }
+        if (checkField()) {
+            showProgressDialog()
+            val client = APIServiceGenerator().createService
+            val call = client.addPenginapan(request)
+            call.enqueue(object : Callback<PenginapanRequest> {
+                override fun onResponse(
+                    call: retrofit2.Call<PenginapanRequest>,
+                    response: Response<PenginapanRequest>
+                ) {
+                    dismissProgressDialog()
+                    goToPenginapan()
+                    finish()
+                }
 
-            override fun onFailure(call: retrofit2.Call<PenginapanRequest>, t: Throwable) {
-                dismissProgressDialog()
-            }
-        })
-
+                override fun onFailure(call: retrofit2.Call<PenginapanRequest>, t: Throwable) {
+                    dismissProgressDialog()
+                }
+            })
+        }
     }
 //    fun save(request: PenginapanRequest) {
 //        val coba =request.desa
@@ -192,17 +195,14 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
     }
 
 
-    override fun onActivityResult(requestCode:Int, resultCode:Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == GALLERY)
-        {
-            if (data != null)
-            {
+        if (requestCode == GALLERY) {
+            if (data != null) {
                 val contentURI = data!!.data
-                try
-                {
+                try {
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
                     val path = saveImage(bitmap)
                     bitmap_val = bitmap
@@ -211,17 +211,14 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
 
                     imageview!!.setImageBitmap(bitmap)
 
-                }
-                catch (e: IOException) {
+                } catch (e: IOException) {
                     e.printStackTrace()
                     Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
                 }
 
             }
 
-        }
-        else if (requestCode == CAMERA)
-        {
+        } else if (requestCode == CAMERA) {
             val thumbnail = data!!.extras!!.get("data") as Bitmap
             bitmap_val = thumbnail
             imageview!!.setImageBitmap(thumbnail)
@@ -231,42 +228,44 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
         }
     }
 
-    fun saveImage(myBitmap: Bitmap):String {
+    fun saveImage(myBitmap: Bitmap): String {
         val request = PenginapanImageRequest()
         request.nama = preferences!!.getSku()
-        request.gambar = "image, "+getImageStringBase64(myBitmap)
+        request.gambar = "image, " + getImageStringBase64(myBitmap)
 
         penginapanImageRequest = request
         val bytes = ByteArrayOutputStream()
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
         val wallpaperDirectory = File(
-            (Environment.getExternalStorageDirectory()).toString() + "/bayunugrohoweb")
+            (Environment.getExternalStorageDirectory()).toString() + "/bayunugrohoweb"
+        )
 // have the object build the directory structure, if needed.
-        Log.d("fee",wallpaperDirectory.toString())
-        if (!wallpaperDirectory.exists())
-        {
+        Log.d("fee", wallpaperDirectory.toString())
+        if (!wallpaperDirectory.exists()) {
 
             wallpaperDirectory.mkdirs()
         }
 
-        try
-        {
-            Log.d("heel",wallpaperDirectory.toString())
-            val f = File(wallpaperDirectory, ((Calendar.getInstance()
-                .getTimeInMillis()).toString() + ".jpg"))
+        try {
+            Log.d("heel", wallpaperDirectory.toString())
+            val f = File(
+                wallpaperDirectory, ((Calendar.getInstance()
+                    .getTimeInMillis()).toString() + ".jpg")
+            )
             f.createNewFile()
             val fo = FileOutputStream(f)
             fo.write(bytes.toByteArray())
-            MediaScannerConnection.scanFile(this,
+            MediaScannerConnection.scanFile(
+                this,
                 arrayOf(f.getPath()),
-                arrayOf("image/jpeg"), null)
+                arrayOf("image/jpeg"), null
+            )
             fo.close()
             name = f.getAbsolutePath()
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath())
 
             return f.getAbsolutePath()
-        }
-        catch (e1: IOException) {
+        } catch (e1: IOException) {
             e1.printStackTrace()
         }
 
@@ -274,10 +273,36 @@ class CreatePenginapanForm : AppActivity(), View.OnClickListener {
     }
 
 
-
     fun goToPenginapan() {
         val intent = Intent(this, PenginapanActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun checkField(): Boolean {
+        var check = true
+        if (!FormValidation().required(penginapan_nama.getText().toString())) {
+            showMessage("Nama Penginapan tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(penginapan_harga.getText().toString())) {
+            showMessage("Harga tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(penginapan_deskripsi.getText().toString())) {
+            showMessage("Deskripsi tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(penginapan_kamar.getText().toString())) {
+            showMessage("Kamar tidak boleh kosong")
+            check = false
+        } else if (!FormValidation().required(penginapan_lokasi.getText().toString())) {
+            showMessage("Lokasi tidak boleh kosong")
+            check = false
+        }
+
+        return check
+    }
+
+
+    private fun showMessage(message: String) {
+        topSnackBar.showError(this, findViewById(R.id.snackbar_container), message)
     }
 
     override fun onClick(v: View?) {

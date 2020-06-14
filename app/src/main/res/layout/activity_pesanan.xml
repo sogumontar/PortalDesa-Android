@@ -74,7 +74,6 @@
                 android:background="@color/cross_tabs_line_color"/>
 
             <LinearLayout
-                android:id="@+id/l1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -103,7 +102,6 @@
                 android:background="@color/cross_tabs_line_color"/>
 
             <LinearLayout
-                android:id="@+id/l2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
