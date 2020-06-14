@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pesanan)
+        setContentView(R.layout.activity_daftar_akun_list)
         initView()
         btn_tab_1.setOnClickListener(this)
         btn_tab_2.setOnClickListener(this)

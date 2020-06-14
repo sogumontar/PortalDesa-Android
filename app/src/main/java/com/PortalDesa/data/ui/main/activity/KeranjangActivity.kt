@@ -68,7 +68,6 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
     }
 
     fun radio_button_click(view: View){
-        val radio: RadioButton = findViewById(radio_group.checkedRadioButtonId)
         if(metode.toString().equals("ATM Mandiri")){
             metode= "ATM Mandiri"
             linear_metode.visibility=View.VISIBLE
@@ -82,7 +81,6 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
     }
     fun initData(){
         showProgressDialog()
-        val role = preferences.getRoles()
         val sku = preferences.getSku()
 
         if (Connectivity().isNetworkAvailable(this)) {
@@ -127,18 +125,18 @@ class KeranjangActivity : AppActivity(),  View.OnClickListener {
         startActivity(intent)
     }
     fun displayProduct(){
-        var hargaTotal: Int=0
-        for(dat in keranjangResponse!!){
-            hargaTotal+= (dat.harga!!*dat.jumlah!!)
-        }
-        totall=hargaTotal
-        total.setText(Utils().numberToIDR(totall!!, true))
         if (keranjangResponse!!.size != 0) {
+            var hargaTotal: Int=0
+            for(dat in keranjangResponse!!){
+                hargaTotal+= (dat.harga!!*dat.jumlah!!)
+            }
             val produkListLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             recycler_view_keranjang.setLayoutManager(produkListLayoutManager)
 
             adapter = KeranjangAdapter(this, keranjangResponse!!)
             recycler_view_keranjang.setAdapter(adapter)
+            totall=hargaTotal
+            total.setText(Utils().numberToIDR(totall!!, true))
         }
         dismissProgressDialog()
     }

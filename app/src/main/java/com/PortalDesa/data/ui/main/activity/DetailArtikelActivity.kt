@@ -11,6 +11,7 @@ import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
 import kotlinx.android.synthetic.main.activity_detail_artikel.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -28,6 +29,9 @@ class DetailArtikelActivity : AppActivity() {
     }
 
     private fun initView() {
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Artikel"
+
         showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService

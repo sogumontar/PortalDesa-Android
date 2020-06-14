@@ -50,8 +50,11 @@ class BeritaAdapter(val context: Context, var data: List<ArtikelResponse>) :
     }
 
     fun reload() {
-        val intents = Intent(context, ArtikelActivity::class.java)
-        context.startActivity(intents)
+        (context as ArtikelActivity).dismissProgressDialog()
+        val intent = Intent(context, ArtikelActivity::class.java)
+        intent.putExtra(Flag.Id_Artikel, 2)
+        context.startActivity(intent)
+        (context as ArtikelActivity).finish()
     }
 
     fun delete(sku: String = "") {

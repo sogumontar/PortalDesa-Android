@@ -36,7 +36,7 @@ class PenginapanSudahDibayarAdapter(val context: Context, val list : List<Transa
         val img = v.img_icon
         val metode = v.pesanan_metode
         val harga = v.penginapan_harga
-        val lama_menginap = v.pesanan_lama_menginap
+        val lama_menginap = v.tv_lama_menginap
         val btn_delete = v.btn_pesanan_del
         val btn_bayar = v.btn_bayar
         val lin_image= v.linDaftar
@@ -69,7 +69,7 @@ class PenginapanSudahDibayarAdapter(val context: Context, val list : List<Transa
                 ) {
                     val listProduk = response.body()
                     holder.penginapan_alamat.text = listProduk!!.nama
-                    holder.alamat.text = listProduk!!.lokasi
+                    holder.alamat.text = listProduk.lokasi
                     Picasso.get()
                         .load("https://portal-desa.herokuapp.com" + listProduk.gambar)
                         .into(holder.img)

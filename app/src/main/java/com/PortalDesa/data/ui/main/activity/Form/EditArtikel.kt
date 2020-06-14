@@ -20,6 +20,7 @@ import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.ArtikelActivity
 import kotlinx.android.synthetic.main.activity_edit_artikel.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -55,6 +56,8 @@ class EditArtikel : AppActivity(), View.OnClickListener {
     }
 
     private fun initView() {
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Edit"
         showProgressDialog()
         if (Connectivity().isNetworkAvailable(this)) {
             val client = APIServiceGenerator().createService

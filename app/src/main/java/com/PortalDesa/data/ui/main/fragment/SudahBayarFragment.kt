@@ -23,7 +23,10 @@ import com.PortalDesa.data.ui.main.activity.merchant.CreateProdukForm
 import com.PortalDesa.data.ui.main.adapter.ListProductAdapter
 import com.PortalDesa.data.ui.main.adapter.PesananAdapter
 import com.PortalDesa.data.ui.main.adapter.PesananSudahBayarAdapter
+import kotlinx.android.synthetic.main.fragment_belum_bayar.*
 import kotlinx.android.synthetic.main.fragment_pernah_bayar.*
+import kotlinx.android.synthetic.main.fragment_pernah_bayar.recycler_view_pesanan
+import kotlinx.android.synthetic.main.fragment_pernah_bayar.tv_no_data
 import kotlinx.android.synthetic.main.fragment_produk.view_animator
 import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Response
@@ -87,6 +90,9 @@ class SudahBayarFragment() : Fragment(){
             val adapter = PesananSudahBayarAdapter(activity as Context, list)
             view_animator.setDisplayedChild(1)
             recycler_view_pesanan.setAdapter(adapter)
+            if(list.size==0){
+                tv_no_data.visibility = View.VISIBLE
+            }
         }
 
     }

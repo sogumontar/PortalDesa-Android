@@ -41,6 +41,7 @@ class DaftarAdminDesa : AppActivity(), View.OnClickListener {
             }
 
         }
+        initView()
 
     }
 

@@ -85,6 +85,9 @@ class BelumBayarFragment() : Fragment(){
             val adapter = PesananAdapter(activity as Context, list)
             view_animator.setDisplayedChild(1)
             recycler_view_pesanan.setAdapter(adapter)
+            if(list.size==0){
+                tv_no_data.visibility = View.VISIBLE
+            }
         }
 
     }

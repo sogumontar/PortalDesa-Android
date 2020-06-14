@@ -15,7 +15,10 @@ import com.PortalDesa.data.model.response.TransaksiPenginapanResponse
 import com.PortalDesa.data.support.Connectivity
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.adapter.PenginapanBelumBayarAdapter
+import kotlinx.android.synthetic.main.fragment_belum_bayar.*
 import kotlinx.android.synthetic.main.fragment_penginapan_belum_bayar.*
+import kotlinx.android.synthetic.main.fragment_penginapan_belum_bayar.recycler_view_pesanan
+import kotlinx.android.synthetic.main.fragment_penginapan_belum_bayar.view_animator
 import retrofit2.Response
 
 /**
@@ -79,6 +82,9 @@ class PenginapanBelumBayarFragment() : Fragment(){
             val adapter = PenginapanBelumBayarAdapter(activity as Context, list)
             view_animator.setDisplayedChild(1)
             recycler_view_pesanan.setAdapter(adapter)
+            if(list.size==0){
+                tv_no_data.visibility = View.VISIBLE
+            }
         }
 
     }

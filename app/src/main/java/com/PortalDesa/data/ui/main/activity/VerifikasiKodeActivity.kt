@@ -12,6 +12,7 @@ import com.PortalDesa.data.model.request.VerificationCodeRequest
 import com.PortalDesa.data.model.response.DefaultResponse
 import com.PortalDesa.data.support.Preferences
 import kotlinx.android.synthetic.main.activity_verifikasi_kode.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -23,6 +24,12 @@ class VerifikasiKodeActivity : AppActivity(), View.OnClickListener  {
         setContentView(R.layout.activity_verifikasi_kode)
         preferences = Preferences(this)
         btnKirim.setOnClickListener(this)
+        initView()
+    }
+
+    fun initView(){
+        initToolbar(R.id.toolbar)
+        tv_toolbar_title.text = "Verifikasi Kode"
     }
 
     fun kirimKode(){

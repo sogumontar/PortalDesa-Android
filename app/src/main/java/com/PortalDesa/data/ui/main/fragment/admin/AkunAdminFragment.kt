@@ -13,6 +13,7 @@ import com.PortalDesa.R
 import com.PortalDesa.data.support.Preferences
 import com.PortalDesa.data.ui.main.activity.ArtikelActivity
 import com.PortalDesa.data.ui.main.activity.Form.DaftarAdminDesa
+import com.PortalDesa.data.ui.main.activity.ProfileActivity
 import com.PortalDesa.data.ui.main.activity.SignInActivity
 import com.PortalDesa.data.ui.main.activity.admin.DaftarAkunActivity
 import com.PortalDesa.data.ui.main.activity.admin.DaftarPesananActivity
@@ -48,6 +49,7 @@ class AkunAdminFragment : Fragment(), View.OnClickListener {
         ln_daftar_desa.setOnClickListener(this)
         ln_pesanan.setOnClickListener(this)
         ln_artikel.setOnClickListener(this)
+        ln_profil.setOnClickListener(this)
     }
     fun goToDaftarAkun() {
         val intent = Intent(activity, DaftarAkunActivity::class.java)
@@ -75,6 +77,11 @@ class AkunAdminFragment : Fragment(), View.OnClickListener {
         val intent = Intent(activity, ArtikelActivity::class.java)
         startActivity(intent)
     }
+
+    fun gotoProfile(){
+        val intent = Intent(activity, ProfileActivity::class.java)
+        startActivity(intent)
+    }
     override fun onClick(v: View?) {
         when (v!!.id) {
             ln_daftar_akun.id -> goToDaftarAkun()
@@ -82,6 +89,7 @@ class AkunAdminFragment : Fragment(), View.OnClickListener {
             ln_daftar_desa.id -> goToDaftarkanMerchant()
             ln_pesanan.id -> goToDaftarPesanan()
             ln_artikel.id -> goToArtikel()
+            ln_profil.id -> gotoProfile()
         }
     }
 
