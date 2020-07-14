@@ -138,10 +138,10 @@ class DetailDesaActivity : AppActivity(), View.OnClickListener {
 
     fun displayProduct() {
         Picasso.get()
-            .load("https://portal-desa.herokuapp.com/desa/get/" + desaResponse?.skuAdmin+".png")
+            .load("https://portal-desa.herokuapp.com/desa/get/" + desaResponse?.sku+".png")
             .into(img_icon)
         Picasso.get()
-            .load("https://portal-desa.herokuapp.com/desa/get/" + desaResponse?.skuAdmin+".png")
+            .load("https://portal-desa.herokuapp.com/desa/get/" + desaResponse?.sku+".png")
             .into(imageview)
         et_name.setText(desaResponse?.nama)
         et_namaKD.setText(desaResponse?.namaKepalaDesa)

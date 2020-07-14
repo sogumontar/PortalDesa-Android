@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <include layout="@layout/toolbar" />
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
@@ -95,86 +96,105 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="4dp"
+                card_view:cardCornerRadius="10dp"
+                card_view:cardElevation="15dp"
+                card_view:cardMaxElevation="5dp"
+                card_view:cardUseCompatPadding="true">
 
-                <ImageView
-                    android:id="@+id/img_icon"
-                    android:layout_width="383dp"
-                    android:layout_height="256dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:foregroundGravity="center_vertical"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_singkong"
-                    android:translationZ="5dp" />
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="181dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/img_icon"
+                        android:layout_width="166dp"
+                        android:layout_height="144dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:foregroundGravity="center_vertical"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/default_image"
+                        android:translationZ="5dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_white_grey_selector"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_nama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:text="..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+                        <TextView
+                            android:id="@+id/tv_harga"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:text="Rp......"
+                            android:textColor="@color/green_primary"
+                            android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/tv_nama"
-                    android:layout_width="239dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="Nama"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:textSize="30sp" />
+                        <TextView
+                            android:id="@+id/desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="112dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:text=""
+                            android:textColor="@color/black_home"
+                            android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/tv_harga"
-                    android:layout_width="132dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Rp..."
-                    android:textColor="@color/green_primary"
-                    android:textSize="18sp" />
-            </LinearLayout>
+                    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp">
 
-                <TextView
-                    android:id="@+id/desc"
-                    android:layout_width="381dp"
-                    android:layout_height="102dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-            </LinearLayout>
 
-            <LinearLayout
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    </LinearLayout>
 
-                <TextView
-                    android:layout_width="269dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="Jumlah Pesanan : "
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/jumlah"
-                    android:layout_width="98dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="0"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                </LinearLayout>
 
-            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="269dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:text="Jumlah Pesanan : "
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/jumlah"
+                        android:layout_width="98dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
 

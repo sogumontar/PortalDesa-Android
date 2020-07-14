@@ -14,6 +14,7 @@ interface ApiConfigs {
         const val CHECK_CODE = "/auth/checkCode"
         const val GANTI_PASSWORD = "/auth/updatePassword/{sku}"
         const val LIST_KECAMATAN = "/kecamatan/"
+        const val LIST_KECAMATAN_ADD = "/kecamatan/add"
         const val LIST_DESA_KECAMATAN = "/desa/kecamatan/{kecamatan}"
         const val ADD_DESA_PICTURE = "/desa/add/picture"
 
@@ -44,6 +45,8 @@ interface ApiConfigs {
         //Produk
         const val ROUTE_ADD_PRODUK = "/produk/add"
         const val LIST_PRODUK = "/produk/"
+        const val LIST_PRODUK_ASC = "/produk/ASC/"
+        const val LIST_PRODUK_DESC = "/produk/ASC/"
         const val LIST_PRODUK_BY_SKU_ADMIN = "/produk/skuDesa/{sku}"
         const val LIST_PRODUK_BY_SKU_PRODUK = "/produk/sku/{sku}"
         const val DELETE_PRODUK_BY_SKU_PRODUK = "/produk/delete/{sku}"

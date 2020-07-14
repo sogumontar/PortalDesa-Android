@@ -45,11 +45,9 @@ class BayarPesananActivity : AppActivity() {
         preferences = Preferences(this)
         btn_image.setOnClickListener { showPictureDialog() }
         btn_send.setOnClickListener {
-            if(!name.equals("")) {
+
                 uploadImagePenginapan(transaksiRequest!!)
-            }else{
-                Toast.makeText(this,"Pilih Ganbar terlebih dahulu", Toast.LENGTH_LONG).show()
-            }
+
         }
     }
     fun uploadImagePenginapan(request: TransaksiRequest) {

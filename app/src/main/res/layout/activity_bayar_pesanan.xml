@@ -25,13 +25,12 @@
         android:id="@+id/imageview"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/btn_send"
+        android:layout_width="193dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:background="@drawable/rounded_btn"
         android:text="Upload"
-        android:background="@drawable/button_white_grey_selector"
-        />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 </LinearLayout>

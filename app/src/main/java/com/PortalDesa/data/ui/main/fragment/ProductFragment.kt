@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.PortalDesa.R
@@ -40,6 +42,7 @@ class ProductFragment : Fragment(), View.OnClickListener{
         }
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) : View?{
+
         return inflater.inflate(R.layout.fragment_produk, container, false)
     }
 
@@ -47,11 +50,64 @@ class ProductFragment : Fragment(), View.OnClickListener{
         super.onViewCreated(view, savedInstanceState)
         recycler_view_produk.setHasFixedSize(true)
         preferences = Preferences(activity as Context)
+
+//        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//
+//            }
+//
+//            override fun onItemSelected(
+//                parent: AdapterView<*>?,
+//                view: View?,
+//                position: Int,
+//                id: Long
+//            ) {
+//                sort()
+////                println(spinner.selectedItem.toString())
+//            }
+//        }
         initView()
         initData()
     }
 
+    fun sort(){
+        if (Connectivity().isNetworkAvailable(activity!!)) {
+            val client = APIServiceGenerator().createService
+            val call = client.getProductListDESC()
+            call.enqueue(object : retrofit2.Callback<List<ProductResponse>> {
+                override fun onResponse(
+                    call: retrofit2.Call<List<ProductResponse>>,
+                    response: Response<List<ProductResponse>>
+                ) {
+                    val listProduk = response.body()
+                    productResponse = listProduk
+                    displayProduct()
+                }
+
+                override fun onFailure(
+                    call: retrofit2.Call<List<ProductResponse>>,
+                    t: Throwable
+                ) {
+                    Log.e(this.javaClass.simpleName, " Exceptions : $t")
+                }
+            })
+//            }
+        }
+    }
+
     fun initView(){
+        ArrayAdapter.createFromResource(
+            activity as Context,
+            R.array.filter,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+
+            sort()
+            spinner.adapter = adapter
+        }
         if(preferences.getRoles().equals("ROLE_MERCHANT")){
             button_create_produk.visibility=View.VISIBLE
         }
@@ -78,30 +134,6 @@ class ProductFragment : Fragment(), View.OnClickListener{
         val sku = preferences.getSku()
         if (Connectivity().isNetworkAvailable(activity!!)) {
             val client = APIServiceGenerator().createService
-//            if(role.equals("ROLE_MERCHANT")) {
-//                val call = client.getProductBySkuAdmin(sku)
-//                call.enqueue(object : retrofit2.Callback<List<ProductResponse>> {
-//                    override fun onResponse(
-//                        call: retrofit2.Call<List<ProductResponse>>,
-//                        response: Response<List<ProductResponse>>
-//                    ) {
-//                        val listProduk = response.body()
-//                        productResponse = listProduk
-//                        displayProduct()
-//                    }
-//
-//                    override fun onFailure(
-//                        call: retrofit2.Call<List<ProductResponse>>,
-//                        t: Throwable
-//                    ) {
-//                        Log.i(
-//                            this.javaClass.simpleName,
-//                            " Requested API : " + call.request().body()!!
-//                        )
-//                        Log.e(this.javaClass.simpleName, " Exceptions : $t")
-//                    }
-//                })
-//            }else{
                 val call = client.getProductList()
                 call.enqueue(object : retrofit2.Callback<List<ProductResponse>> {
                     override fun onResponse(

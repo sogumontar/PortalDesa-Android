@@ -130,6 +130,10 @@ class DetailPenginapanActivity : AppActivity() {
             produk_delete_btn.visibility = View.GONE
             produk_update_btn.visibility = View.GONE
             btn_pesan.visibility = View.GONE
+            btn_pesan.visibility = View.GONE
+            et_tanggal_in.visibility = View.GONE
+            lama.visibility = View.GONE
+            radio_group.visibility=View.GONE
         }
 
     }

@@ -40,6 +40,7 @@ class BeritaAdapter(val context: Context, var data: List<ArtikelResponse>) :
         val update = v.btn_update
         val all = v.lin_all
         val allMerchant = v.lin
+        val tanggal = v.tanggal
 
 
     }
@@ -93,6 +94,7 @@ class BeritaAdapter(val context: Context, var data: List<ArtikelResponse>) :
             holder?.judul.text = data.get(position).judul
             holder?.penulis.text = data.get(position).penulis
             holder?.sumber.text = data.get(position).sumber
+            holder?.tanggal.text = data.get(position).date
             if ((data.get(position).isi)!!.length >= 50) {
                 holder?.isi.text = data.get(position).isi!!.substring(50) + "..."
             } else {

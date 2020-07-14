@@ -39,7 +39,7 @@ class DetailProductAcitivity : AppActivity() {
         topSnackBar = TopSnackBar()
         role = preferences.getRoles()
         skuLogin = preferences.getSku()
-        initView()
+
         initData();
 //        tv_nama.text = name.toString()
         btn_keranjang.setOnClickListener() {
@@ -70,6 +70,7 @@ class DetailProductAcitivity : AppActivity() {
                     val listProduk = response.body()
                     productResponse = listProduk
                     displayProduct()
+                    initView()
                     dismissProgressDialog()
                 }
 
@@ -87,8 +88,9 @@ class DetailProductAcitivity : AppActivity() {
         initToolbar(R.id.toolbar)
         tv_toolbar_title.text = "Produk"
         et_jumlah.setText("1")
-
-        if (role.equals("ROLE_MERCHANT")) {
+        var sku = preferences.getSku()
+        var skus = productResponse!!.skuDesa
+        if (role.equals("ROLE_MERCHANT") && productResponse!!.skuDesa.equals(sku)) {
             produk_delete_btn.visibility = View.VISIBLE
             produk_update_btn.visibility = View.VISIBLE
             btn_pesan.visibility = View.GONE
@@ -100,11 +102,14 @@ class DetailProductAcitivity : AppActivity() {
             btn_pesan.visibility = View.VISIBLE
             btn_keranjang.visibility = View.VISIBLE
             ln_jumlah.visibility = View.VISIBLE
+            lin_total.visibility = View.VISIBLE
         } else {
             produk_delete_btn.visibility = View.GONE
             produk_update_btn.visibility = View.GONE
             btn_pesan.visibility = View.GONE
+            ln_jumlah.visibility = View.GONE
             btn_keranjang.visibility = View.GONE
+            lin_total.visibility = View.VISIBLE
         }
     }
 
@@ -113,6 +118,11 @@ class DetailProductAcitivity : AppActivity() {
             .load("https://portal-desa.herokuapp.com" + productResponse?.gambar)
             .into(img_icon)
         tv_nama.setText(productResponse?.nama)
+        if (productResponse?.jumlahPembelian == null) {
+            total.setText("0")
+        } else {
+            total.setText(productResponse?.jumlahPembelian)
+        }
         tv_harga.setText(Utils().numberToIDR(productResponse!!.harga!!.toInt(), true))
         tv_desc.setText(productResponse?.deskripsi)
     }
@@ -126,7 +136,8 @@ class DetailProductAcitivity : AppActivity() {
     }
 
     fun alertSuccess() {
-        Toast.makeText(this, "Produk berhasil ditambahkan ke dalam keranjang", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Produk berhasil ditambahkan ke dalam keranjang", Toast.LENGTH_SHORT)
+            .show()
 //        Timer("SettingUp", false).schedule(1000) {
 //            goToKeranjang()
 //        }
@@ -236,9 +247,10 @@ class DetailProductAcitivity : AppActivity() {
         startActivity(intent)
         finish()
     }
-    fun goToUpdateForm(){
+
+    fun goToUpdateForm() {
         intent = Intent(this, UpdateProdukActivity::class.java)
-        intent.putExtra(Flag.SKU_PRODUCT_UPDATE,skuFix)
+        intent.putExtra(Flag.SKU_PRODUCT_UPDATE, skuFix)
         startActivity(intent)
         finish()
     }

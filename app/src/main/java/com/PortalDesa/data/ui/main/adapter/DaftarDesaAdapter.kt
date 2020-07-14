@@ -44,7 +44,7 @@ class DaftarDesaAdapter(val context: Context,val listDesa : List<ListDesaKecamat
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Picasso.get()
-            .load("https://portal-desa.herokuapp.com/desa/get/"+listDesa.get(position).gambar)
+            .load("https://portal-desa.herokuapp.com/desa/get/"+listDesa.get(position).sku+".png")
             .into(holder.imgLogo)
         holder.btn_delete.visibility=View.GONE
         holder.btn_update.visibility=View.GONE

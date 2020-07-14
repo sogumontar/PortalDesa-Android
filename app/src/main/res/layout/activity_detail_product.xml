@@ -67,8 +67,38 @@
                         android:gravity="right"
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
-                        android:textColor="@color/red_danger"
+                        android:textColor="@color/green_primary"
                         android:text="Rp "
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:text="Total Pembelian"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/total"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:text="..."
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -125,7 +155,7 @@
             android:layout_margin="15dp"
             android:layout_weight="1"
             android:visibility="gone"
-            android:background="@drawable/rounded_blue_secondary"
+            android:background="@drawable/rounded_btn"
             android:text="Update"
             android:textColor="#ffff" />
 

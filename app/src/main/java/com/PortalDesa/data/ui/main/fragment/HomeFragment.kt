@@ -13,7 +13,9 @@ import com.PortalDesa.data.apiService.APIServiceGenerator
 import com.PortalDesa.data.model.response.KecamatanResponse
 import com.PortalDesa.data.model.response.ProductResponse
 import com.PortalDesa.data.support.Connectivity
+import com.PortalDesa.data.support.Flag
 import com.PortalDesa.data.support.Utils
+import com.PortalDesa.data.ui.main.activity.DetailProductAcitivity
 import com.PortalDesa.data.ui.main.activity.KecamatanActivity
 import com.PortalDesa.data.ui.main.activity.PenginapanActivity
 import com.PortalDesa.data.ui.main.activity.ProductActivity
@@ -21,6 +23,7 @@ import com.PortalDesa.data.ui.main.activity.merchant.PenginapanForm
 import com.PortalDesa.data.ui.main.adapter.PopularVilageAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -48,6 +51,7 @@ class HomeFragment : Fragment() {
     }
 
     fun initView(){
+        tv_toolbar_title.text = "Portal Desa"
         if (Connectivity().isNetworkAvailable(activity!!)) {
             val client = APIServiceGenerator().createService
             val call = client.getKecamatanList()
@@ -107,6 +111,11 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, KecamatanActivity::class.java)
             startActivity(intent)
         })
+        cardview.setOnClickListener{
+            val intent = Intent(context, DetailProductAcitivity::class.java)
+            intent.putExtra(Flag.PRODUCT_NAME, productResponse!!.sku)
+            startActivity(intent)
+        }
     }
     fun displayKecamatan(){
         if (listKecamatan != null && recycler_popular != null) {

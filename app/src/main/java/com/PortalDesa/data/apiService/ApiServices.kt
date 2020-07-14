@@ -83,6 +83,12 @@ interface ApiServices {
     @GET(ApiConfigs.LIST_KECAMATAN)
     fun getKecamatanList(): Call<List<KecamatanResponse>>
 
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @POST(ApiConfigs.LIST_KECAMATAN_ADD)
+    fun addKecamatan(@Body request: KecamatanRequest): Call<DefaultResponse>
+
     //List Kecamatan
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE
@@ -185,6 +191,18 @@ interface ApiServices {
     )
     @GET(ApiConfigs.LIST_PRODUK)
     fun getProductList(): Call<List<ProductResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.LIST_PRODUK_ASC)
+    fun getProductListASC(): Call<List<ProductResponse>>
+
+    @Headers(
+        "Content-Type:" + ApiConfigs.CONTENT_TYPE
+    )
+    @GET(ApiConfigs.LIST_PRODUK_DESC)
+    fun getProductListDESC(): Call<List<ProductResponse>>
 
     @Headers(
         "Content-Type:" + ApiConfigs.CONTENT_TYPE

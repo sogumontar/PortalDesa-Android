@@ -7,4 +7,10 @@
         <item>Silaen</item>
     </string-array>
 
+    <string-array name="filter">
+        <item></item>
+        <item>Nama</item>
+        <item>Harga</item>
+    </string-array>
+
 </resources>

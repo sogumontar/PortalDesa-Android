@@ -28,6 +28,8 @@ class ListProductAdapter(val context: Context, var listProduk: List<ProductRespo
         val tvHarga = v.tv_harga
         val ln_product = v.ln_product
         val imgPopular = v.img_icon
+        val total = v.total
+        val liTotal = v.lin_total
     }
 
     fun filterList(myDataset: List<ProductResponse>) {
@@ -51,7 +53,12 @@ class ListProductAdapter(val context: Context, var listProduk: List<ProductRespo
         Picasso.get()
             .load("https://portal-desa.herokuapp.com"+listProduk.get(position).gambar)
             .into(holder.imgPopular)
-
+        holder?.liTotal.visibility= View.VISIBLE
+        if(listProduk.get(position).jumlahPembelian ==  null){
+            holder?.total.text = "0"
+        }else {
+            holder?.total.text = listProduk.get(position).jumlahPembelian
+        }
         holder?.tvDesc.text = listProduk.get(position).nama
         holder?.tvHarga.text = Utils().numberToIDR(listProduk.get(position).harga!!.toInt(), true)
         holder?.ln_product.setOnClickListener(View.OnClickListener {

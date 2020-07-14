@@ -37,7 +37,35 @@
         android:textColor="@color/black_home"
         android:text="Balige"
         android:textSize="18sp" />
+    <LinearLayout
+        android:id="@+id/lin_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:paddingTop="5dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Pembelian : "
+            android:textColor="@color/black_home"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="..."
+            android:textSize="16sp" />
+
+    </LinearLayout>
     <TextView
         android:id="@+id/tv_harga"
         android:layout_width="match_parent"

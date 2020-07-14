@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textAllCaps="false"
-                    android:background="@drawable/rounded_blue_secondary"
+                    android:background="@drawable/rounded_btn"
                     android:text="Simpan"
                     android:textColor="@color/white"/>
 

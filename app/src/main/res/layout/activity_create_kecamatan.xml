@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context=".data.ui.main.activity.SignUpActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-5dp"
+        android:background="@color/white"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingTop="10dp"
+            android:paddingRight="25dp"
+            android:paddingLeft="25dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tambah Kecamatan"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textSize="28sp"
+                android:padding="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/penginapan_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:background="@drawable/bg_signup_edittext"
+                android:hint="Masukan nama penginapan"
+                android:padding="10dp" />
+
+
+            <Button
+                android:id="@+id/btn_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:foregroundGravity="left"
+                android:text="Select Image"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="200dp"
+                android:layout_height="172dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:foregroundGravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/default_image" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_marginTop="54dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_btn"
+                android:text="@string/simpan"
+                android:layout_margin="40dp"
+                android:textColor="#ffff"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
